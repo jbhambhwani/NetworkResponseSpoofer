@@ -8,29 +8,42 @@
 
 import UIKit
 import XCTest
+import APIResponseSpoofer
 
-class APIResponseSpooferTests: XCTestCase {
+class APIResponseSpooferTests: XCTestCase, NSURLConnectionDataDelegate {
+    
+    var readyExpectation: XCTestExpectation?
     
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        APIResponseSpoofer.startRecording(scenario: "Testing Spoofer")
     }
     
     override func tearDown() {
         // Put teardown code here. This method is called after the invocation of each test method in the class.
+        APIResponseSpoofer.stopRecording()
         super.tearDown()
     }
     
-    func testExample() {
-        // This is an example of a functional test case.
-        XCTAssert(true, "Pass")
-    }
-    
-    func testPerformanceExample() {
-        // This is an example of a performance test case.
-        self.measureBlock() {
-            // Put the code you want to measure the time of here.
-        }
+    func testSpooferProtocol() {
+        
+        // Create an expectation which will be fulfilled when we receive data
+        readyExpectation = expectationWithDescription("ResponseReceived")
+        
+        // Fetch some data using a URL session
+        let session = NSURLSession.sharedSession()
+        let url = NSURL(string: "http://echo.jsontest.com/key/value/one/two")
+        session.dataTaskWithURL(url!, completionHandler: { data, response, error in
+            if error == nil {
+                self.readyExpectation?.fulfill()
+            }
+        }).resume()
+        
+        // Loop until the expectation is fulfilled
+        waitForExpectationsWithTimeout(5, handler: { error in
+            XCTAssertNil(error, "Error")
+        })
     }
     
 }

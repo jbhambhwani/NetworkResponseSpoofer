@@ -7,9 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		411AC4DF1B69979000501DAA /* APIResponseSpoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* APIResponseSpoofer.swift */; };
+		411AC4E01B69979800501DAA /* RecorderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* RecorderProtocol.swift */; };
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA591B684D7E001DE517 /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; };
 		4147EA601B684D7E001DE517 /* APIResponseSpooferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA5F1B684D7E001DE517 /* APIResponseSpooferTests.swift */; };
+		4147EA6A1B684DBD001DE517 /* APIResponseSpoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* APIResponseSpoofer.swift */; };
+		4147EA6C1B684F15001DE517 /* RecorderProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* RecorderProtocol.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +33,9 @@
 		4147EA581B684D7E001DE517 /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA5E1B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA5F1B684D7E001DE517 /* APIResponseSpooferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSpooferTests.swift; sourceTree = "<group>"; };
+		4147EA691B684DBD001DE517 /* APIResponseSpoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponseSpoofer.swift; sourceTree = "<group>"; };
+		4147EA6B1B684F15001DE517 /* RecorderProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecorderProtocol.swift; sourceTree = "<group>"; };
+		41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SpooferPlayground.playground; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,6 +79,9 @@
 			isa = PBXGroup;
 			children = (
 				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
+				4147EA691B684DBD001DE517 /* APIResponseSpoofer.swift */,
+				4147EA6B1B684F15001DE517 /* RecorderProtocol.swift */,
+				41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
 			);
 			path = APIResponseSpoofer;
@@ -209,6 +219,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4147EA6A1B684DBD001DE517 /* APIResponseSpoofer.swift in Sources */,
+				4147EA6C1B684F15001DE517 /* RecorderProtocol.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,6 +228,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411AC4DF1B69979000501DAA /* APIResponseSpoofer.swift in Sources */,
+				411AC4E01B69979800501DAA /* RecorderProtocol.swift in Sources */,
 				4147EA601B684D7E001DE517 /* APIResponseSpooferTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -323,6 +337,7 @@
 		4147EA641B684D7E001DE517 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -332,12 +347,14 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 			};
 			name = Debug;
 		};
 		4147EA651B684D7E001DE517 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
@@ -399,6 +416,7 @@
 				4147EA651B684D7E001DE517 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4147EA661B684D7E001DE517 /* Build configuration list for PBXNativeTarget "APIResponseSpooferTests" */ = {
 			isa = XCConfigurationList;
@@ -407,6 +425,7 @@
 				4147EA681B684D7E001DE517 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
