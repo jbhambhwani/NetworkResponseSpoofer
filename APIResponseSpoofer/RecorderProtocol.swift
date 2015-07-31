@@ -31,7 +31,7 @@ class RecorderProtocol : NSURLProtocol {
     }
     
     override func startLoading() {
-        println("-------------Spoofer Protocol: Connecting to server---------------")
+        println("\n-------------Spoofer Protocol: Connecting to server---------------")
         // 1: Get a copy of the request
         var newRequest = self.request.mutableCopy() as! NSMutableURLRequest
         // 2: Set a custom key in the request so that we don't have to handle infinite loop
@@ -83,7 +83,6 @@ class RecorderProtocol : NSURLProtocol {
         // Save the response
         if let newResponse = currentResponse {
             Spoofer.sharedInstance.scenario?.addResponse(newResponse)
-            debugPrintln("Saving response \(newResponse)")
         }
     }
     

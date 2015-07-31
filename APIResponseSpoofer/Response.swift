@@ -49,6 +49,6 @@ class Response : NSObject, NSCoding {
 
 // MARK: Helper methods for debugging
 extension Response: DebugPrintable, Printable {
-    override var description: String { return "URL:\(requestURL)"}
-    override var debugDescription: String { return " URL: \(requestURL)\n Method: \(method)\n CreatedDate: \(createdDate)\n"}
+    override var description: String { return " URL: \(requestURL)\n Method: \(method)"}
+    override var debugDescription: String { return " URL: \(requestURL)\n Method: \(method)\n CreatedDate: \(createdDate)\n MIMEType: \(mimeType)\n Encoding: \(encoding)\n"}
 }

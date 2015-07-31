@@ -30,7 +30,7 @@ class APIResponseSpooferTests: XCTestCase, NSURLConnectionDataDelegate {
         readyExpectation = expectationWithDescription("ResponseReceived")
         
         // Start recording responses
-        Spoofer.startRecording(scenario: Scenario())
+        Spoofer.startRecording(scenarioName: "Smoke Test Spoofer")
         
         // Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
