@@ -8,18 +8,27 @@
 
 import Foundation
 
+struct ResponseFields {
+    static let requestURL = "requestURL"
+    static let httpMethod = "httpMethod"
+    static let data = "data"
+    static let createdDate = "createdDate"
+    static let mimeType = "mimeType"
+    static let encoding = "encoding"
+}
+
 class Response : NSObject, NSCoding {
     
     let requestURL: String
-    let method: String
+    let httpMethod: String
     let data: NSData?
     let createdDate: NSDate
     let mimeType: String?
     let encoding: String?
     
-    init?(requestURL: String, method: String, data: NSData?, mimeType: String?, encoding: String?) {
+    init?(requestURL: String, httpMethod: String, data: NSData?, mimeType: String?, encoding: String?) {
         self.requestURL = requestURL
-        self.method = method
+        self.httpMethod = httpMethod
         self.data = data
         self.createdDate = NSDate()
         self.mimeType = mimeType
@@ -28,27 +37,27 @@ class Response : NSObject, NSCoding {
     
     // MARK: NSCoding
     required init(coder aDecoder: NSCoder) {
-        requestURL = aDecoder.decodeObjectForKey("requestURL") as! String
-        method = aDecoder.decodeObjectForKey("method") as! String
-        data = aDecoder.decodeObjectForKey("data") as? NSData
-        createdDate = aDecoder.decodeObjectForKey("createdDate") as! NSDate
-        mimeType = aDecoder.decodeObjectForKey("mimeType") as? String
-        encoding = aDecoder.decodeObjectForKey("encoding") as? String
+        requestURL = aDecoder.decodeObjectForKey(ResponseFields.requestURL) as! String
+        httpMethod = aDecoder.decodeObjectForKey(ResponseFields.httpMethod) as! String
+        data = aDecoder.decodeObjectForKey(ResponseFields.data) as? NSData
+        createdDate = aDecoder.decodeObjectForKey(ResponseFields.createdDate) as! NSDate
+        mimeType = aDecoder.decodeObjectForKey(ResponseFields.mimeType) as? String
+        encoding = aDecoder.decodeObjectForKey(ResponseFields.encoding) as? String
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(requestURL, forKey: "requestURL")
-        aCoder.encodeObject(method, forKey: "method")
-        aCoder.encodeObject(data, forKey: "data")
-        aCoder.encodeObject(createdDate, forKey: "createdDate")
-        aCoder.encodeObject(mimeType, forKey: "mimeType")
-        aCoder.encodeObject(encoding, forKey: "encoding")
+        aCoder.encodeObject(requestURL, forKey: ResponseFields.requestURL)
+        aCoder.encodeObject(httpMethod, forKey: ResponseFields.httpMethod)
+        aCoder.encodeObject(data, forKey: ResponseFields.data)
+        aCoder.encodeObject(createdDate, forKey: ResponseFields.createdDate)
+        aCoder.encodeObject(mimeType, forKey: ResponseFields.mimeType)
+        aCoder.encodeObject(encoding, forKey: ResponseFields.encoding)
     }
     
 }
 
 // MARK: Helper methods for debugging
 extension Response: DebugPrintable, Printable {
-    override var description: String { return " URL: \(requestURL)\n Method: \(method)"}
-    override var debugDescription: String { return " URL: \(requestURL)\n Method: \(method)\n CreatedDate: \(createdDate)\n MIMEType: \(mimeType)\n Encoding: \(encoding)\n"}
+    override var description: String { return " URL: \(requestURL)\n Method: \(httpMethod)"}
+    override var debugDescription: String { return " URL: \(requestURL)\n Method: \(httpMethod)\n CreatedDate: \(createdDate)\n MIMEType: \(mimeType)\n Encoding: \(encoding)\n"}
 }

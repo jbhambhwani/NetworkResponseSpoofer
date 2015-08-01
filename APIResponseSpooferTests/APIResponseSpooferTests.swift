@@ -10,7 +10,7 @@ import UIKit
 import XCTest
 import APIResponseSpoofer
 
-class APIResponseSpooferTests: XCTestCase, NSURLConnectionDataDelegate {
+class APIResponseSpooferTests: XCTestCase {
     
     var readyExpectation: XCTestExpectation?
     
@@ -26,13 +26,13 @@ class APIResponseSpooferTests: XCTestCase, NSURLConnectionDataDelegate {
     
     func testSpooferProtocol() {
         
-        // Create an expectation which will be fulfilled when we receive data
+        // 1: Create an expectation which will be fulfilled when we receive data
         readyExpectation = expectationWithDescription("ResponseReceived")
         
-        // Start recording responses
+        // 2: Start recording responses
         Spoofer.startRecording(scenarioName: "Smoke Test Spoofer")
         
-        // Fetch some data using a URL session
+        // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: "http://echo.jsontest.com/key/value/one/two")
         session.dataTaskWithURL(url!, completionHandler: { data, response, error in
@@ -42,8 +42,8 @@ class APIResponseSpooferTests: XCTestCase, NSURLConnectionDataDelegate {
             }
         }).resume()
         
-        // Loop until the expectation is fulfilled
-        waitForExpectationsWithTimeout(5, handler: { error in
+        // 4: Loop until the expectation is fulfilled
+        waitForExpectationsWithTimeout(10, handler: { error in
             XCTAssertNil(error, "Error")
         })
     }

@@ -17,7 +17,7 @@ import Foundation
     private var spoofedDomains = [String]()
     
     // MARK: Configurable public properties
-    public class var whitelistDomainsToSpoof:[String]? {
+    public class var domainsToSpoof:[String]? {
         get {
         return self.sharedInstance.spoofedDomains
         }
@@ -31,7 +31,6 @@ import Foundation
         if success {
             self.sharedInstance.scenario = Scenario(name: scenarioName)
             self.sharedInstance.recording = true
-            println("------------------Response Spoofer Activated!---------------------")
         }
         return success
     }
@@ -41,7 +40,6 @@ import Foundation
         self.sharedInstance.scenario?.saveScenario({ success, scenario in
             self.sharedInstance.scenario = nil
             self.sharedInstance.recording = false
-            println("-----------------Response Spoofer Deactivated!--------------------")
             }, errorHandler: { error in
                 // TODO
         })
@@ -53,8 +51,8 @@ import Foundation
     
     public class func shouldHandleURL(url: NSURL) -> Bool {
         // If whitelist is set, use it
-        if whitelistDomainsToSpoof!.count > 0 {
-            for (index, hostDomain) in enumerate(whitelistDomainsToSpoof!) {
+        if domainsToSpoof!.count > 0 {
+            for (index, hostDomain) in enumerate(domainsToSpoof!) {
                 if hostDomain == url.host {
                     return true
                 }

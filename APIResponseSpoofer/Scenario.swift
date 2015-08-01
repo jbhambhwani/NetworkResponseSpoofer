@@ -26,9 +26,8 @@ class Scenario : NSObject, NSCoding {
     
     func addResponse(response: Response) {
         apiResponses.append(response)
-        println("------------------------------------------------------------------")
-        println("Received response:\n\(response)")
-        println("------------------------------------------------------------------")
+        println("-----------------------------------------------------------------------------------------------")
+        println("Response received:\n\(response)")
     }
     
     func saveScenario(callback: ((success: Bool, scenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
@@ -42,9 +41,9 @@ class Scenario : NSObject, NSCoding {
             let data = NSKeyedArchiver.archivedDataWithRootObject(self)
             let success = data.writeToURL(urlToWrite, atomically: true)
             if success {
-                println("------------------------------------------------------------------")
+                println("-----------------------------------------------------------------------------------------------")
                 println("Saved\(self) \nFile: \(escapedString!)")
-                println("------------------------------------------------------------------\n")
+                println("-----------------------------------------------------------------------------------------------\n")
                 callback?(success: true, scenario: self)
             } else {
                 errorHandler!(error: NSError(domain: "", code: 0, userInfo: nil))

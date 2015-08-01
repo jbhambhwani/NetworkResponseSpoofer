@@ -15,17 +15,17 @@ class RecorderProtocol : NSURLProtocol {
     var response: NSURLResponse!
     
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
-        // If the request was already handled by the protocol, return
-        if NSURLProtocol.propertyForKey("RecorderProtocolHandledKey", inRequest: request) != nil {
-            return false
-        }
+        // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
+        let isHTTP = (request.URL!.scheme == "http") || (request.URL!.scheme == "https")
+        // 2: Check if the request was already handled. We set the below key in startLoading for handled requests
+        let isHandled = (NSURLProtocol.propertyForKey("RecorderProtocolHandledKey", inRequest: request) != nil) ? true : false
+        // 3: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
+        let shouldHandleURL = Spoofer.shouldHandleURL(request.URL!)
         
-        // Check if there are whitelist requirements. Only handle white listed requests if set
-        if Spoofer.shouldHandleURL(request.URL!) {
+        if isHTTP && !isHandled && shouldHandleURL {
             return true
-        } else {
-            return false
         }
+        return false
     }
     
     override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
@@ -33,14 +33,14 @@ class RecorderProtocol : NSURLProtocol {
     }
     
     override class func requestIsCacheEquivalent(aRequest: NSURLRequest, toRequest bRequest: NSURLRequest) -> Bool {
+        // Let the super class handle it
         return super.requestIsCacheEquivalent(aRequest, toRequest:bRequest)
     }
     
     override func startLoading() {
-        println("\n-------------Spoofer Protocol: Connecting to server---------------")
-        // 1: Get a copy of the request
+        // 1: Get a copy of the original request
         var newRequest = self.request.mutableCopy() as! NSMutableURLRequest
-        // 2: Set a custom key in the request so that we don't have to handle infinite loop
+        // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
         NSURLProtocol.setProperty(true, forKey: "RecorderProtocolHandledKey", inRequest: newRequest)
         // 3: Start a new connection to fetch the data
         self.connection = NSURLConnection(request: newRequest, delegate: self)
@@ -84,8 +84,8 @@ class RecorderProtocol : NSURLProtocol {
     }
     
     func saveResponse() {
-        // Create the internal data structure which encapsulates all the needed data to recreate this response
-        let currentResponse:Response? = Response(requestURL: self.request.URL!.absoluteString!, method:self.request.HTTPMethod!, data: self.mutableData!, mimeType: self.response.MIMEType, encoding: self.response.textEncodingName)
+        // Create the internal data structure which encapsulates all the needed data to replay this response later
+        let currentResponse:Response? = Response(requestURL: self.request.URL!.absoluteString!, httpMethod:self.request.HTTPMethod!, data: self.mutableData!, mimeType: self.response.MIMEType, encoding: self.response.textEncodingName)
         // Save the response
         if let newResponse = currentResponse {
             Spoofer.sharedInstance.scenario?.addResponse(newResponse)
