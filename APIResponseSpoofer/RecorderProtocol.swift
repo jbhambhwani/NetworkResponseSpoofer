@@ -85,11 +85,9 @@ class RecorderProtocol : NSURLProtocol {
     
     func saveResponse() {
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        let currentResponse:Response? = Response(requestURL: self.request.URL!.absoluteString!, httpMethod:self.request.HTTPMethod!, data: self.mutableData!, mimeType: self.response.MIMEType, encoding: self.response.textEncodingName)
+        let currentResponse:Response? = Response(httpRequest: self.request, httpResponse: self.response, data: self.mutableData)
         // Save the response
-        if let newResponse = currentResponse {
-            Spoofer.sharedInstance.scenario?.addResponse(newResponse)
-        }
+        Spoofer.addResponse(currentResponse)
     }
     
 }

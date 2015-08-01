@@ -16,7 +16,7 @@ import Foundation
     var recording: Bool = false
     private var spoofedDomains = [String]()
     
-    // MARK: Configurable public properties
+    // MARK: Public properties
     public class var domainsToSpoof:[String]? {
         get {
         return self.sharedInstance.spoofedDomains
@@ -26,6 +26,7 @@ import Foundation
         }
     }
     
+    // MARK: Public methods
     public class func startRecording(#scenarioName: String) -> Bool {
         let success = NSURLProtocol.registerClass(RecorderProtocol)
         if success {
@@ -49,7 +50,8 @@ import Foundation
         return self.sharedInstance.recording
     }
     
-    public class func shouldHandleURL(url: NSURL) -> Bool {
+    // MARK: Internal methods
+    class func shouldHandleURL(url: NSURL) -> Bool {
         // If whitelist is set, use it
         if domainsToSpoof!.count > 0 {
             for (index, hostDomain) in enumerate(domainsToSpoof!) {
@@ -61,6 +63,12 @@ import Foundation
         } else {
             // Handle all cases in case no domains are requested for
             return true
+        }
+    }
+    
+    class func addResponse(response: Response?) {
+        if let newResponse = response {
+            self.sharedInstance.scenario?.addResponse(newResponse)
         }
     }
     

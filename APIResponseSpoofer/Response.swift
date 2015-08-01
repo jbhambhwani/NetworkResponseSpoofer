@@ -26,6 +26,7 @@ class Response : NSObject, NSCoding {
     let mimeType: String?
     let encoding: String?
     
+    // Designated initializer
     init?(requestURL: String, httpMethod: String, data: NSData?, mimeType: String?, encoding: String?) {
         self.requestURL = requestURL
         self.httpMethod = httpMethod
@@ -33,6 +34,10 @@ class Response : NSObject, NSCoding {
         self.createdDate = NSDate()
         self.mimeType = mimeType
         self.encoding = encoding
+    }
+    
+    convenience init?(httpRequest: NSURLRequest, httpResponse: NSURLResponse, data: NSData?) {
+        self.init(requestURL: httpRequest.URL!.absoluteString!, httpMethod:httpRequest.HTTPMethod!, data: data!, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName)
     }
     
     // MARK: NSCoding
