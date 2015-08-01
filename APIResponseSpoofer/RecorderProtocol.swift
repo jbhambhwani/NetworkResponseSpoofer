@@ -19,7 +19,13 @@ class RecorderProtocol : NSURLProtocol {
         if NSURLProtocol.propertyForKey("RecorderProtocolHandledKey", inRequest: request) != nil {
             return false
         }
-        return true
+        
+        // Check if there are whitelist requirements. Only handle white listed requests if set
+        if Spoofer.shouldHandleURL(request.URL!) {
+            return true
+        } else {
+            return false
+        }
     }
     
     override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {

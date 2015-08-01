@@ -11,7 +11,7 @@ import Foundation
 class Scenario : NSObject, NSCoding {
     
     let name: String
-    var apiResponses:[Response]?
+    var apiResponses = [Response]()
     
     lazy var applicationDocumentsDirectory: NSURL = {
         // The directory in the application's documents Application Support directory used to store the Scenario files.
@@ -19,13 +19,13 @@ class Scenario : NSObject, NSCoding {
         return urls[urls.count-1] as! NSURL
         }()
     
+    // MARK: - 
     init(name: String = "Default") {
         self.name = name
-        apiResponses = [Response]()
     }
     
     func addResponse(response: Response) {
-        apiResponses?.append(response)
+        apiResponses.append(response)
         println("------------------------------------------------------------------")
         println("Received response:\n\(response)")
         println("------------------------------------------------------------------")
@@ -55,7 +55,7 @@ class Scenario : NSObject, NSCoding {
     // MARK: NSCoding
     required init(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey("name") as! String
-        apiResponses = aDecoder.decodeObjectForKey("responses") as? [Response]
+        apiResponses = aDecoder.decodeObjectForKey("responses") as! [Response]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
