@@ -12,14 +12,15 @@ import Foundation
     
     // MARK: Internal variables and shared instance
     static let sharedInstance = Spoofer()
-    var scenario: Scenario? = nil
-    var recording: Bool = false
+    private var scenario: Scenario? = nil
+    private var recording: Bool = false
+    private var replaying: Bool = false
     private var spoofedDomains = [String]()
     
     // MARK: Public properties
     public class var domainsToSpoof:[String]? {
         get {
-        return self.sharedInstance.spoofedDomains
+            return self.sharedInstance.spoofedDomains
         }
         set {
             self.sharedInstance.spoofedDomains = newValue!
@@ -28,7 +29,7 @@ import Foundation
     
     // MARK: Public methods
     public class func startRecording(#scenarioName: String) -> Bool {
-        let success = NSURLProtocol.registerClass(RecorderProtocol)
+        let success = NSURLProtocol.registerClass(RecordingProtocol)
         if success {
             self.sharedInstance.scenario = Scenario(name: scenarioName)
             self.sharedInstance.recording = true
@@ -37,8 +38,8 @@ import Foundation
     }
     
     public class func stopRecording() {
-        NSURLProtocol.unregisterClass(RecorderProtocol)
-        self.sharedInstance.scenario?.saveScenario({ success, scenario in
+        NSURLProtocol.unregisterClass(RecordingProtocol)
+        Store.saveScenario(self.sharedInstance.scenario!, callback: { success, savedScenario in
             self.sharedInstance.scenario = nil
             self.sharedInstance.recording = false
             }, errorHandler: { error in
@@ -48,6 +49,22 @@ import Foundation
     
     public class func isRecording() -> Bool {
         return self.sharedInstance.recording
+    }
+    
+    public class func startReplaying(#scenarioName: String) -> Bool {
+        let success = NSURLProtocol.registerClass(ReplayingProtocol)
+        if success {
+            self.sharedInstance.replaying = true
+        }
+        return success
+    }
+    
+    public class func stopReplaying() {
+        NSURLProtocol.unregisterClass(ReplayingProtocol)
+    }
+    
+    public class func isReplaying() -> Bool {
+        return self.sharedInstance.replaying
     }
     
     // MARK: Internal methods

@@ -1,5 +1,5 @@
 //
-//  RecorderProtocol.swift
+//  RecordingProtocol.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 7/28/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecorderProtocol : NSURLProtocol {
+class RecordingProtocol : NSURLProtocol {
     
     var connection: NSURLConnection!
     var mutableData: NSMutableData!
@@ -17,10 +17,10 @@ class RecorderProtocol : NSURLProtocol {
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
         let isHTTP = (request.URL!.scheme == "http") || (request.URL!.scheme == "https")
-        // 2: Check if the request was already handled. We set the below key in startLoading for handled requests
-        let isHandled = (NSURLProtocol.propertyForKey("RecorderProtocolHandledKey", inRequest: request) != nil) ? true : false
-        // 3: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
+        // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(request.URL!)
+        // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
+        let isHandled = (NSURLProtocol.propertyForKey("RecorderProtocolHandledKey", inRequest: request) != nil) ? true : false
         
         if isHTTP && !isHandled && shouldHandleURL {
             return true

@@ -15,6 +15,7 @@ struct ResponseFields {
     static let createdDate = "createdDate"
     static let mimeType = "mimeType"
     static let encoding = "encoding"
+    static let headerFields = "headerFields"
 }
 
 class Response : NSObject, NSCoding {
@@ -25,19 +26,21 @@ class Response : NSObject, NSCoding {
     let createdDate: NSDate
     let mimeType: String?
     let encoding: String?
+    let headerFields: [NSObject:AnyObject]?
     
     // Designated initializer
-    init?(requestURL: String, httpMethod: String, data: NSData?, mimeType: String?, encoding: String?) {
+    init?(requestURL: String, httpMethod: String, data: NSData?, mimeType: String?, encoding: String?, headerFields: [NSObject : AnyObject]?) {
         self.requestURL = requestURL
         self.httpMethod = httpMethod
         self.data = data
         self.createdDate = NSDate()
         self.mimeType = mimeType
         self.encoding = encoding
+        self.headerFields = headerFields
     }
     
     convenience init?(httpRequest: NSURLRequest, httpResponse: NSURLResponse, data: NSData?) {
-        self.init(requestURL: httpRequest.URL!.absoluteString!, httpMethod:httpRequest.HTTPMethod!, data: data!, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName)
+        self.init(requestURL: httpRequest.URL!.absoluteString!, httpMethod:httpRequest.HTTPMethod!, data: data!, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: nil)
     }
     
     // MARK: NSCoding
@@ -48,6 +51,7 @@ class Response : NSObject, NSCoding {
         createdDate = aDecoder.decodeObjectForKey(ResponseFields.createdDate) as! NSDate
         mimeType = aDecoder.decodeObjectForKey(ResponseFields.mimeType) as? String
         encoding = aDecoder.decodeObjectForKey(ResponseFields.encoding) as? String
+        headerFields = aDecoder.decodeObjectForKey(ResponseFields.encoding) as? [NSObject : AnyObject]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -57,6 +61,7 @@ class Response : NSObject, NSCoding {
         aCoder.encodeObject(createdDate, forKey: ResponseFields.createdDate)
         aCoder.encodeObject(mimeType, forKey: ResponseFields.mimeType)
         aCoder.encodeObject(encoding, forKey: ResponseFields.encoding)
+        aCoder.encodeObject(headerFields, forKey: ResponseFields.headerFields)
     }
     
 }
