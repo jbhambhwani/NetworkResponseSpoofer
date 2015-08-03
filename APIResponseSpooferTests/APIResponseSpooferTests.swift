@@ -13,6 +13,7 @@ import APIResponseSpoofer
 class APIResponseSpooferTests: XCTestCase {
     
     var readyExpectation: XCTestExpectation?
+    let smokeTest = "Smoke Test Spoofer"
     
     override func setUp() {
         super.setUp()
@@ -24,14 +25,14 @@ class APIResponseSpooferTests: XCTestCase {
         super.tearDown()
     }
     
-    func testSpooferProtocol() {
-        
+    func testSpooferRecord() {
+
         // 1: Create an expectation which will be fulfilled when we receive data
         readyExpectation = expectationWithDescription("ResponseReceived")
-        
+
         // 2: Start recording responses
-        Spoofer.startRecording(scenarioName: "Smoke Test Spoofer")
-        
+        Spoofer.startRecording(scenarioName: smokeTest)
+
         // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
         let url = NSURL(string: "http://echo.jsontest.com/key/value/one/two")
@@ -41,11 +42,25 @@ class APIResponseSpooferTests: XCTestCase {
                 self.readyExpectation?.fulfill()
             }
         }).resume()
-        
+
         // 4: Loop until the expectation is fulfilled
         waitForExpectationsWithTimeout(10, handler: { error in
             XCTAssertNil(error, "Error")
         })
+    }
+    
+    func testSpooferReplay() {
+        
+        // 1: Start replaying the smoke test scenario
+        Spoofer.startReplaying(scenarioName: smokeTest)
+        // 2: Make sure the scenario was loaded to spoofer
+        if let smokeScenario = Spoofer.spoofedScenario {
+            assert(smokeScenario.name == smokeTest, "Smoke test scenario was not loaded correctly")
+        } else {
+            assert(false, "Smoke test scenario was not loaded")
+        }
+        // 3: Stop the replay
+        Spoofer.stopReplaying()
     }
     
 }

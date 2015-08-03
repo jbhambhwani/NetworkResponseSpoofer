@@ -35,8 +35,11 @@ class ReplayingProtocol : NSURLProtocol {
     }
     
     override func startLoading() {
-
         let success:Bool = true
+        
+        let url = self.request.URL
+
+        
         // let response:Response = Response(httpRequest: nil, httpResponse: nil, data: nil)
         // let url = NSURL(string: "")
         // let httpResponse = NSHTTPURLResponse(URL: url!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: response!.headerFields)

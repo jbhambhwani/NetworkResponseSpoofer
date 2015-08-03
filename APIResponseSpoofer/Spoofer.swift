@@ -27,14 +27,27 @@ import Foundation
         }
     }
     
+    // MARK: Internally exposed properties
+    class var spoofedScenario: Scenario? {
+        get {
+            if let unwrappedScenario = Spoofer.sharedInstance.scenario {
+                return unwrappedScenario
+            }
+            return nil
+        }
+        set(newValue) {
+            Spoofer.sharedInstance.scenario = newValue
+        }
+    }
+    
     // MARK: Public methods
     public class func startRecording(#scenarioName: String) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
         if protocolRegistered {
+            self.sharedInstance.recording = true
             // Create a fresh scenario based on the named passed in
             // TODO: Check if scenario exists and ask the user if to overwrite
-            self.sharedInstance.scenario = Scenario(name: scenarioName)
-            self.sharedInstance.recording = true
+            self.spoofedScenario = Scenario(name: scenarioName)
         }
         return protocolRegistered
     }
@@ -42,8 +55,8 @@ import Foundation
     public class func stopRecording() {
         NSURLProtocol.unregisterClass(RecordingProtocol)
         Store.saveScenario(self.sharedInstance.scenario!, callback: { success, savedScenario in
-            self.sharedInstance.scenario = nil
             self.sharedInstance.recording = false
+            self.spoofedScenario = nil
             }, errorHandler: { error in
                 // TODO: Let know the user that the scenario could not be saved
         })
@@ -58,7 +71,7 @@ import Foundation
         Store.loadScenario(scenarioName, callback: { success, scenario in
             if success {
                 self.sharedInstance.replaying = true
-                self.sharedInstance.scenario = scenario
+                self.spoofedScenario = scenario
             }
             }, errorHandler: { error in
                 // TODO: Let know the user that the scenario could not be loaded
@@ -68,7 +81,7 @@ import Foundation
     
     public class func stopReplaying() {
         NSURLProtocol.unregisterClass(ReplayingProtocol)
-        self.sharedInstance.scenario = nil
+        self.spoofedScenario = nil
         self.sharedInstance.replaying = false
     }
     
@@ -95,7 +108,7 @@ import Foundation
     class func addResponse(response: Response?) {
         // Add the new response that we recieved to the scenario
         if let newResponse = response {
-            self.sharedInstance.scenario?.addResponse(newResponse)
+            self.spoofedScenario!.addResponse(newResponse)
         }
     }
     
