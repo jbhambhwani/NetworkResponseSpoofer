@@ -18,23 +18,25 @@ import Foundation
     private var spoofedDomains = [String]()
     
     // MARK: Public properties
-    public class var domainsToSpoof:[String]? {
+    public class var domainsToSpoof:[String] {
         get {
             return self.sharedInstance.spoofedDomains
         }
         set {
-            self.sharedInstance.spoofedDomains = newValue!
+            self.sharedInstance.spoofedDomains = newValue
         }
     }
     
     // MARK: Public methods
     public class func startRecording(#scenarioName: String) -> Bool {
-        let success = NSURLProtocol.registerClass(RecordingProtocol)
-        if success {
+        let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
+        if protocolRegistered {
+            // Create a fresh scenario based on the named passed in
+            // TODO: Check if scenario exists and ask the user if to overwrite
             self.sharedInstance.scenario = Scenario(name: scenarioName)
             self.sharedInstance.recording = true
         }
-        return success
+        return protocolRegistered
     }
     
     public class func stopRecording() {
@@ -52,15 +54,22 @@ import Foundation
     }
     
     public class func startReplaying(#scenarioName: String) -> Bool {
-        let success = NSURLProtocol.registerClass(ReplayingProtocol)
-        if success {
-            self.sharedInstance.replaying = true
-        }
-        return success
+        let protocolRegistered = NSURLProtocol.registerClass(ReplayingProtocol)
+        Store.loadScenario(scenarioName, callback: { success, scenario in
+            if success {
+                self.sharedInstance.replaying = true
+                self.sharedInstance.scenario = scenario
+            }
+            }, errorHandler: { error in
+                // TODO: Let know the user that the scenario could not be loaded
+        })
+        return protocolRegistered
     }
     
     public class func stopReplaying() {
         NSURLProtocol.unregisterClass(ReplayingProtocol)
+        self.sharedInstance.scenario = nil
+        self.sharedInstance.replaying = false
     }
     
     public class func isReplaying() -> Bool {
@@ -70,8 +79,8 @@ import Foundation
     // MARK: Internal methods
     class func shouldHandleURL(url: NSURL) -> Bool {
         // If whitelist is set, use it
-        if domainsToSpoof!.count > 0 {
-            for (index, hostDomain) in enumerate(domainsToSpoof!) {
+        if domainsToSpoof.count > 0 {
+            for (index, hostDomain) in enumerate(domainsToSpoof) {
                 if hostDomain == url.host {
                     return true
                 }
@@ -84,6 +93,7 @@ import Foundation
     }
     
     class func addResponse(response: Response?) {
+        // Add the new response that we recieved to the scenario
         if let newResponse = response {
             self.sharedInstance.scenario?.addResponse(newResponse)
         }
