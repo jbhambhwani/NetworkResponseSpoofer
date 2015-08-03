@@ -10,8 +10,8 @@ import Foundation
 
 @objc public class Spoofer {
     
-    // MARK: Internal variables and shared instance
-    static let sharedInstance = Spoofer()
+    // MARK: Internal variables
+    private static let sharedInstance = Spoofer()
     private var scenario: Scenario? = nil
     private var recording: Bool = false
     private var replaying: Bool = false
@@ -27,24 +27,11 @@ import Foundation
         }
     }
     
-    // MARK: Internally exposed properties
-    class var spoofedScenario: Scenario? {
-        get {
-            if let unwrappedScenario = Spoofer.sharedInstance.scenario {
-                return unwrappedScenario
-            }
-            return nil
-        }
-        set(newValue) {
-            Spoofer.sharedInstance.scenario = newValue
-        }
-    }
-    
     // MARK: Public methods
     public class func startRecording(#scenarioName: String) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
         if protocolRegistered {
-            self.sharedInstance.recording = true
+            self.setRecording = true
             // Create a fresh scenario based on the named passed in
             // TODO: Check if scenario exists and ask the user if to overwrite
             self.spoofedScenario = Scenario(name: scenarioName)
@@ -55,7 +42,7 @@ import Foundation
     public class func stopRecording() {
         NSURLProtocol.unregisterClass(RecordingProtocol)
         Store.saveScenario(self.sharedInstance.scenario!, callback: { success, savedScenario in
-            self.sharedInstance.recording = false
+            self.setRecording = false
             self.spoofedScenario = nil
             }, errorHandler: { error in
                 // TODO: Let know the user that the scenario could not be saved
@@ -70,7 +57,7 @@ import Foundation
         let protocolRegistered = NSURLProtocol.registerClass(ReplayingProtocol)
         Store.loadScenario(scenarioName, callback: { success, scenario in
             if success {
-                self.sharedInstance.replaying = true
+                self.setReplaying = true
                 self.spoofedScenario = scenario
             }
             }, errorHandler: { error in
@@ -82,14 +69,14 @@ import Foundation
     public class func stopReplaying() {
         NSURLProtocol.unregisterClass(ReplayingProtocol)
         self.spoofedScenario = nil
-        self.sharedInstance.replaying = false
+        self.setReplaying = false
     }
     
     public class func isReplaying() -> Bool {
         return self.sharedInstance.replaying
     }
     
-    // MARK: Internal methods
+    // MARK: Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
         // If whitelist is set, use it
         if domainsToSpoof.count > 0 {
@@ -104,12 +91,45 @@ import Foundation
             return true
         }
     }
-    
-    class func addResponse(response: Response?) {
-        // Add the new response that we recieved to the scenario
-        if let newResponse = response {
-            self.spoofedScenario!.addResponse(newResponse)
+
+    class var spoofedScenario: Scenario? {
+        get {
+        if let unwrappedScenario = Spoofer.sharedInstance.scenario {
+        return unwrappedScenario
+        }
+        return nil
+        }
+        set(newValue) {
+            self.sharedInstance.scenario = newValue
         }
     }
     
+    class var setRecording: Bool {
+        get {
+        return self.sharedInstance.recording
+        }
+        set(newValue) {
+            self.sharedInstance.recording = newValue
+            if newValue {
+                println("-----------------------------------Spoofer Recording Started-----------------------------------")
+            } else {
+                println("------------------------------------Spoofer Recording Ended------------------------------------")
+            }
+        }
+    }
+    
+    class var setReplaying: Bool {
+        get {
+        return self.sharedInstance.replaying
+        }
+        set(newValue) {
+            self.sharedInstance.replaying = newValue
+            if newValue {
+                println("------------------------------------Spoofer Replay Started------------------------------------")
+            } else {
+                println("-------------------------------------Spoofer Replay Ended-------------------------------------")
+            }
+        }
+    }
+
 }

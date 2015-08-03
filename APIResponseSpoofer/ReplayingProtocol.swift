@@ -18,8 +18,11 @@ class ReplayingProtocol : NSURLProtocol {
         let isHTTP = (request.URL!.scheme == "http") || (request.URL!.scheme == "https")
         // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(request.URL!)
+        // 3: Check if we have a scenario loaded in memory
+        let hasSavedScenario = (Spoofer.spoofedScenario != nil) ? true : false
         
-        if isHTTP && shouldHandleURL {
+        // TODO: Also check if the scenario has a response matching the criteria (url, headers etc) for the current request
+        if isHTTP && shouldHandleURL && hasSavedScenario {
             return true
         }
         return false
@@ -35,19 +38,14 @@ class ReplayingProtocol : NSURLProtocol {
     }
     
     override func startLoading() {
-        let success:Bool = true
-        
-        let url = self.request.URL
-
-        
-        // let response:Response = Response(httpRequest: nil, httpResponse: nil, data: nil)
-        // let url = NSURL(string: "")
-        // let httpResponse = NSHTTPURLResponse(URL: url!, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: response!.headerFields)
-        // self.client?.URLProtocol(self, didReceiveResponse: httpResponse, cacheStoragePolicy: .NotAllowed)
-        // self.client?.URLProtocol(self, didLoadData: data)
-        if success {
+        let success:Bool = false
+        if let cachedResponse = Spoofer.spoofedScenario?.responseForRequest(self.request) {
+            let httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields)
+            self.client?.URLProtocol(self, didReceiveResponse: httpResponse!, cacheStoragePolicy: .NotAllowed)
+            self.client?.URLProtocol(self, didLoadData: cachedResponse.data!)
             self.client?.URLProtocolDidFinishLoading(self)
         } else {
+            // TODO: Throw a valid error
             self.client?.URLProtocol(self, didFailWithError: NSError())
         }
     }

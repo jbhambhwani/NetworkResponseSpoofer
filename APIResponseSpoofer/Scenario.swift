@@ -16,14 +16,14 @@ struct ScenarioFields {
 class Scenario : NSObject, NSCoding {
     
     let name: String
-    var apiResponses = [Response]()
+    var apiResponses = [APIResponse]()
     
     // MARK: - 
     init(name: String = "Default") {
         self.name = name
     }
     
-    func addResponse(response: Response) {
+    func addResponse(response: APIResponse) {
         apiResponses.append(response)
         println("-----------------------------------------------------------------------------------------------")
         println("Response received:\n\(response)")
@@ -32,12 +32,22 @@ class Scenario : NSObject, NSCoding {
     // MARK: NSCoding
     required init(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(ScenarioFields.name) as! String
-        apiResponses = aDecoder.decodeObjectForKey(ScenarioFields.responses) as! [Response]
+        apiResponses = aDecoder.decodeObjectForKey(ScenarioFields.responses) as! [APIResponse]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: ScenarioFields.name)
         aCoder.encodeObject(apiResponses, forKey: ScenarioFields.responses)
+    }
+    
+    func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
+        for response in apiResponses {
+            // TODO: Create Normalize the url's by stripping out query parameter values. Compare based only on host and query parameters
+            if response.requestURL == urlRequest.URL {
+                return response
+            }
+        }
+        return nil
     }
     
 }

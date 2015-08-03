@@ -85,9 +85,9 @@ class RecordingProtocol : NSURLProtocol {
     
     func saveResponse() {
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        let currentResponse:Response? = Response(httpRequest: self.request, httpResponse: self.response, data: self.mutableData)
+        let currentResponse:APIResponse? = APIResponse(httpRequest: self.request, httpResponse: self.response, data: self.mutableData)
         // Save the response
-        Spoofer.addResponse(currentResponse)
+        Spoofer.spoofedScenario!.addResponse(currentResponse!)
     }
     
 }
