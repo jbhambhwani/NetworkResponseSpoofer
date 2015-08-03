@@ -40,7 +40,8 @@ class APIResponse : NSObject, NSCoding {
     }
     
     convenience init?(httpRequest: NSURLRequest, httpResponse: NSURLResponse, data: NSData?) {
-        self.init(requestURL: httpRequest.URL!, httpMethod:httpRequest.HTTPMethod!, data: data!, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: nil)
+        let httpURLResponse = httpResponse as! NSHTTPURLResponse
+        self.init(requestURL: httpRequest.URL!, httpMethod: httpRequest.HTTPMethod!, data: data!, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: httpURLResponse.allHeaderFields)
     }
     
     // MARK: NSCoding

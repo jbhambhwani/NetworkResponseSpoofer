@@ -22,6 +22,8 @@
 		4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */; };
 		416552DD1B69F922006D8EDF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DC1B69F922006D8EDF /* Scenario.swift */; };
 		416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DE1B69FA74006D8EDF /* APIResponse.swift */; };
+		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
+		41DFB3EA1B70253B00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -48,6 +50,7 @@
 		416552DC1B69F922006D8EDF /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		416552DE1B69FA74006D8EDF /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SpooferPlayground.playground; sourceTree = "<group>"; };
+		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -112,6 +115,7 @@
 				4147EA691B684DBD001DE517 /* Spoofer.swift */,
 				4131B8F31B6EA71800EAFE04 /* Model */,
 				4131B8F21B6EA6F400EAFE04 /* Protocols */,
+				416453A71B7027A400615A39 /* Extensions */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
 			);
 			path = APIResponseSpoofer;
@@ -142,6 +146,14 @@
 				4147EA5E1B684D7E001DE517 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		416453A71B7027A400615A39 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				41DFB3E81B70252C00038958 /* URLExtension.swift */,
+			);
+			name = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -252,6 +264,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */,
+				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */,
 				416552DD1B69F922006D8EDF /* Scenario.swift in Sources */,
 				4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */,
@@ -269,6 +282,7 @@
 				411AC4DF1B69979000501DAA /* Spoofer.swift in Sources */,
 				412F23161B6AB13C00A41F34 /* APIResponse.swift in Sources */,
 				411AC4E01B69979800501DAA /* RecordingProtocol.swift in Sources */,
+				41DFB3EA1B70253B00038958 /* URLExtension.swift in Sources */,
 				412F23171B6AB14300A41F34 /* Scenario.swift in Sources */,
 				4147EA601B684D7E001DE517 /* APIResponseSpooferTests.swift in Sources */,
 			);

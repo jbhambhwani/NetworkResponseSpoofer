@@ -14,7 +14,7 @@ class APIResponseSpooferTests: XCTestCase {
     
     var readyExpectation: XCTestExpectation?
     let smokeTest = "Smoke Test Spoofer"
-    let testURL = "http://echo.jsontest.com/key/value/one/two"
+    let smokeURL = NSURL(string: "http://echo.jsontest.com/key/value/one/two")!
     
     override func setUp() {
         super.setUp()
@@ -36,8 +36,7 @@ class APIResponseSpooferTests: XCTestCase {
         
         // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
-        let url = NSURL(string: testURL)
-        session.dataTaskWithURL(url!, completionHandler: { data, response, error in
+        session.dataTaskWithURL(smokeURL, completionHandler: { data, response, error in
             if error == nil {
                 Spoofer.stopRecording()
                 self.readyExpectation?.fulfill()
@@ -74,8 +73,7 @@ class APIResponseSpooferTests: XCTestCase {
         
         // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
-        let url = NSURL(string: testURL)
-        session.dataTaskWithURL(url!, completionHandler: { data, response, error in
+        session.dataTaskWithURL(smokeURL, completionHandler: { data, response, error in
             if error == nil {
                 println("Cached Response : \(response) \nCached Data: \(data)")
                 Spoofer.stopReplaying()
@@ -87,6 +85,15 @@ class APIResponseSpooferTests: XCTestCase {
         waitForExpectationsWithTimeout(10, handler: { error in
             XCTAssertNil(error, "Error")
         })
+    }
+    
+    func test04URLNormalization() {
+        let normalizedSmokeURL = "echo.jsontest.com/key/value/one/two"
+        assert(smokeURL.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
+        
+        let complexURL = NSURL(string: "http://www.example.com:8042/over/there/index.html?type=animal&name=cat#nose")
+        let normalizedComplexURL = "www.example.com/over/there/index.html?type&name"
+        assert(complexURL!.normalizedURLString == normalizedComplexURL, "Normalized version has to have the host and query parameters values stipped away")
     }
     
 }

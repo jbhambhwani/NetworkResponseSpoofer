@@ -125,9 +125,9 @@ import Foundation
         set(newValue) {
             self.sharedInstance.replaying = newValue
             if newValue {
-                println("------------------------------------Spoofer Replay Started------------------------------------")
+                println("------------------------------------Spoofer Replay Started-------------------------------------")
             } else {
-                println("-------------------------------------Spoofer Replay Ended-------------------------------------")
+                println("-------------------------------------Spoofer Replay Ended--------------------------------------")
             }
         }
     }

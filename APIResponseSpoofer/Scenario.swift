@@ -41,9 +41,10 @@ class Scenario : NSObject, NSCoding {
     }
     
     func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
+        let normalizedInputURL = urlRequest.URL?.normalizedURLString
         for response in apiResponses {
             // TODO: Create Normalize the url's by stripping out query parameter values. Compare based only on host and query parameters
-            if response.requestURL == urlRequest.URL {
+            if response.requestURL.normalizedURLString ==  normalizedInputURL {
                 return response
             }
         }
