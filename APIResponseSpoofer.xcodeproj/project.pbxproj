@@ -124,9 +124,9 @@
 		4147EA501B684D7E001DE517 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */,
 				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
 				4147EA511B684D7E001DE517 /* Info.plist */,
+				41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
