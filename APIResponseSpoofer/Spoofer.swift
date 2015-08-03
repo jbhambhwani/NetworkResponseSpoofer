@@ -43,7 +43,7 @@ import Foundation
             self.sharedInstance.scenario = nil
             self.sharedInstance.recording = false
             }, errorHandler: { error in
-                // TODO
+                // TODO: Let know the user that the scenario could not be saved
         })
     }
     
