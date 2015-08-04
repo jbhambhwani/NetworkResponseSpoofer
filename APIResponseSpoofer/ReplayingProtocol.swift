@@ -15,7 +15,7 @@ class ReplayingProtocol : NSURLProtocol {
     
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
-        let isHTTP = (request.URL!.scheme == "http") || (request.URL!.scheme == "https")
+        let isHTTP = request.URL!.isHTTP
         // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(request.URL!)
         // 3: Check if we have a scenario loaded in memory
@@ -40,13 +40,18 @@ class ReplayingProtocol : NSURLProtocol {
     override func startLoading() {
         let success:Bool = false
         if let cachedResponse = Spoofer.spoofedScenario?.responseForRequest(self.request) {
-            let httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields)
-            self.client?.URLProtocol(self, didReceiveResponse: httpResponse!, cacheStoragePolicy: .NotAllowed)
+            // TODO: The first method of creating url response is the normal way. Somehow was not working for certain cases. 2nd case works but has http status as 0. Need to decide!
+            // let httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields)
+            let httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, MIMEType: cachedResponse.mimeType, expectedContentLength: -1, textEncodingName: cachedResponse.encoding)
+            self.client?.URLProtocol(self, didReceiveResponse: httpResponse, cacheStoragePolicy: .NotAllowed)
             self.client?.URLProtocol(self, didLoadData: cachedResponse.data!)
             self.client?.URLProtocolDidFinishLoading(self)
         } else {
-            // TODO: Throw a valid error
-            self.client?.URLProtocol(self, didFailWithError: NSError())
+            // Throw an error in case we are unable to load a response
+            let urlString:String = self.request.URL!.absoluteString!
+            let infoDict = ["Unable to load response": NSLocalizedFailureReasonErrorKey, urlString: NSURLErrorFailingURLErrorKey]
+            let httpError = NSError(domain: "APIResponseSpoofer", code: 500, userInfo: infoDict)
+            self.client?.URLProtocol(self, didFailWithError: httpError)
         }
     }
     

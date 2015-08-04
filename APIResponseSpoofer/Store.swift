@@ -24,7 +24,9 @@ class Store {
             println("-----------------------------------------------------------------------------------------------\n")
             callback?(success: true, savedScenario: scenario)
         } else {
-            errorHandler!(error: NSError(domain: "", code: 0, userInfo: nil))
+            let infoDict = ["Unable to save scenario": NSLocalizedFailureReasonErrorKey]
+            let spooferError = NSError(domain: "APIResponseSpoofer", code: 500, userInfo: infoDict)
+            errorHandler!(error: spooferError)
         }
     }
     
@@ -39,8 +41,9 @@ class Store {
                 println("-----------------------------------------------------------------------------------------------\n")
             }
         } else {
-            // TODO: Let the user know the scenario could not be loaded
-            errorHandler!(error: NSError(domain: "", code: 0, userInfo: nil))
+            let infoDict = ["Unable to load scenario": NSLocalizedFailureReasonErrorKey]
+            let spooferError = NSError(domain: "APIResponseSpoofer", code: 500, userInfo: infoDict)
+            errorHandler!(error: spooferError)
         }
     }
     
@@ -61,7 +64,7 @@ class Store {
         return documentsDirectoryString!
     }
     
-    // TODO: Currently not creating the folder. Need to debug
+    // TODO: Currently not creating the folder "Spoofer". Need to debug
     private class func spooferDocumentsDirectory() -> String {
         let documentsDirectory = applicationDocumentsDirectory()
         let spooferFolder = documentsDirectory.stringByAppendingPathComponent("Spoofer")

@@ -78,17 +78,17 @@ import Foundation
     
     // MARK: Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
-        // If whitelist is set, use it
-        if domainsToSpoof.count > 0 {
+        if domainsToSpoof.isEmpty {
+            // Handle all cases in case no domains are whitelisted
+            return true
+        } else {
+            // If whitelist is set, use it
             for (index, hostDomain) in enumerate(domainsToSpoof) {
                 if hostDomain == url.host {
                     return true
                 }
             }
             return false
-        } else {
-            // Handle all cases in case no domains are requested for
-            return true
         }
     }
 

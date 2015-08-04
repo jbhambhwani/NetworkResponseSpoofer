@@ -16,7 +16,7 @@ class RecordingProtocol : NSURLProtocol {
     
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
-        let isHTTP = (request.URL!.scheme == "http") || (request.URL!.scheme == "https")
+        let isHTTP = request.URL!.isHTTP
         // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(request.URL!)
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests

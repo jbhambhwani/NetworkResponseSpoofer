@@ -21,7 +21,7 @@ extension NSURL {
     var normalizedQueryItemNames: String? {
         get {
             if let queryItems = allQueryItems {
-                let allQueryItemsNames = map(queryItems){return $0.name}
+                var allQueryItemsNames = map(queryItems){return $0.name}
                 let normalizedNames = "?" + "&".join(allQueryItemsNames)
                 return normalizedNames
             }
@@ -35,10 +35,18 @@ extension NSURL {
             if let path = self.path {
                 normalizedString += path
             }
-            if let queryItemNames = self.normalizedQueryItemNames {
-                normalizedString += queryItemNames
-            }
+            // TODO - Enable whitelist/blacklist on query pparameter names and then enable this. Right now there could be cases where even parameters change based on scenario.
+            // if let queryItemNames = self.normalizedQueryItemNames {
+            //     normalizedString += queryItemNames
+            // }
             return normalizedString
+        }
+    }
+    
+    var isHTTP: Bool {
+        get {
+            let isHTTPURL = (self.scheme == "http") || (self.scheme == "https")
+            return isHTTPURL
         }
     }
     
