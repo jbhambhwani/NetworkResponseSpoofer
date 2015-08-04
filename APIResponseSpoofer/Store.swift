@@ -10,6 +10,7 @@ import Foundation
 
 class Store {
     
+    // Save a scenario to disk
     class func saveScenario(scenario: Scenario, callback: ((success: Bool, savedScenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
         let scenarioFilePath = getScenarioFilePath(scenario.name)
         if NSFileManager.defaultManager().fileExistsAtPath(scenarioFilePath) {
@@ -30,6 +31,7 @@ class Store {
         }
     }
     
+    // Load a scenario from disk
     class func loadScenario(scenarioName: String, callback: ((success: Bool, scenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
         let scenarioFilePath = getScenarioFilePath(scenarioName)
         if NSFileManager.defaultManager().fileExistsAtPath(scenarioFilePath) {
@@ -46,7 +48,31 @@ class Store {
             errorHandler!(error: spooferError)
         }
     }
+
+    // Retrieve all scenarios from disk
+    class func allScenarios() -> [Scenario]? {
+        // Get a reference to the documents directory
+        let spooferDirectory = applicationDocumentsDirectory()
+        if let allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtPath(spooferDirectory, error: nil) as? [String] {
+            let scenarioFiles:[String] = allFiles.map(){ $0.lastPathComponent }.filter(){ $0.pathExtension == "scenario"}
+            if scenarioFiles.isEmpty {
+                return nil
+            } else {
+                var cachedScenarios = [Scenario]()
+                for oneFile in scenarioFiles {
+                    let scenarioFielPath = getScenarioFilePath(oneFile.stringByDeletingPathExtension)
+                    if let scenarioData = NSFileManager.defaultManager().contentsAtPath(scenarioFielPath) {
+                        let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(scenarioData) as? Scenario
+                        cachedScenarios.append(scenario!)
+                    }
+                }
+                return cachedScenarios
+            }
+        }
+        return nil
+    }
     
+    // MARK: Private methods
     private class func getScenarioFilePath(scenarioName: String) -> String {
         // Get a reference to the documents directory
         let spooferDirectory = applicationDocumentsDirectory()
