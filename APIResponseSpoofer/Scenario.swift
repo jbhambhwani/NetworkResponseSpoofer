@@ -25,12 +25,12 @@ class Scenario : NSObject, NSCoding {
     
     func addResponse(response: APIResponse) {
         apiResponses.append(response)
-        println("-----------------------------------------------------------------------------------------------")
-        println("Response received:\n\(response)")
+        print("-----------------------------------------------------------------------------------------------")
+        print("Response received:\n\(response)")
     }
     
     // MARK: NSCoding
-    required init(coder aDecoder: NSCoder) {
+    required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(ScenarioFields.name) as! String
         apiResponses = aDecoder.decodeObjectForKey(ScenarioFields.responses) as! [APIResponse]
     }
@@ -54,7 +54,7 @@ class Scenario : NSObject, NSCoding {
 }
 
 // MARK: Helper methods for debugging
-extension Scenario: DebugPrintable, Printable {
+extension Scenario: CustomDebugStringConvertible {
     override var description: String { return " Scenario: \(name)"}
     override var debugDescription: String { return " Scenario: \(name)\n Responses: \(apiResponses)\n"}
 }

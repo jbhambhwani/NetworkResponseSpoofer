@@ -8,7 +8,7 @@
 
 import Foundation
 
-@objc public class Spoofer {
+public class Spoofer {
     
     // MARK: Internal variables
     private static let sharedInstance = Spoofer()
@@ -16,6 +16,7 @@ import Foundation
     private var recording: Bool = false
     private var replaying: Bool = false
     private var spoofedDomains = [String]()
+    private var ignoredQueryParameters = [String]()
     
     // MARK: Public properties
     public class var domainsToSpoof:[String] {
@@ -27,8 +28,17 @@ import Foundation
         }
     }
     
+    public class var parametersToIgnore:[String] {
+        get {
+            return self.sharedInstance.ignoredQueryParameters
+        }
+        set {
+            self.sharedInstance.ignoredQueryParameters = newValue
+        }
+    }
+    
     // MARK: Public methods
-    public class func startRecording(#scenarioName: String) -> Bool {
+    public class func startRecording(scenarioName scenarioName: String) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
         if protocolRegistered {
             self.setRecording = true
@@ -53,7 +63,7 @@ import Foundation
         return self.sharedInstance.recording
     }
     
-    public class func startReplaying(#scenarioName: String) -> Bool {
+    public class func startReplaying(scenarioName scenarioName: String) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(ReplayingProtocol)
         Store.loadScenario(scenarioName, callback: { success, scenario in
             if success {
@@ -83,7 +93,7 @@ import Foundation
             return true
         } else {
             // If whitelist is set, use it
-            for (index, hostDomain) in enumerate(domainsToSpoof) {
+            for hostDomain in domainsToSpoof {
                 if hostDomain == url.host {
                     return true
                 }
@@ -111,9 +121,9 @@ import Foundation
         set(newValue) {
             self.sharedInstance.recording = newValue
             if newValue {
-                println("-----------------------------------Spoofer Recording Started-----------------------------------")
+                print("-----------------------------------Spoofer Recording Started-----------------------------------")
             } else {
-                println("------------------------------------Spoofer Recording Ended------------------------------------")
+                print("------------------------------------Spoofer Recording Ended------------------------------------")
             }
         }
     }
@@ -125,9 +135,9 @@ import Foundation
         set(newValue) {
             self.sharedInstance.replaying = newValue
             if newValue {
-                println("------------------------------------Spoofer Replay Started-------------------------------------")
+                print("------------------------------------Spoofer Replay Started-------------------------------------")
             } else {
-                println("-------------------------------------Spoofer Replay Ended--------------------------------------")
+                print("-------------------------------------Spoofer Replay Ended--------------------------------------")
             }
         }
     }

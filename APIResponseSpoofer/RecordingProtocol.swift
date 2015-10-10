@@ -39,7 +39,7 @@ class RecordingProtocol : NSURLProtocol {
     
     override func startLoading() {
         // 1: Get a copy of the original request
-        var newRequest = self.request.mutableCopy() as! NSMutableURLRequest
+        let newRequest = self.request.mutableCopy() as! NSMutableURLRequest
         // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
         NSURLProtocol.setProperty(true, forKey: "RecorderProtocolHandledKey", inRequest: newRequest)
         // 3: Start a new connection to fetch the data
