@@ -25,7 +25,6 @@ class Scenario : NSObject, NSCoding {
     
     func addResponse(response: APIResponse) {
         apiResponses.append(response)
-        print("-----------------------------------------------------------------------------------------------")
         print("Response received:\n\(response)")
     }
     

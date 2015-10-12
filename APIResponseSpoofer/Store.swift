@@ -24,9 +24,8 @@ class Store {
         let data = NSKeyedArchiver.archivedDataWithRootObject(scenario)
         let success = data.writeToURL(scenarioFileURL, atomically: true)
         if success {
-            print("-----------------------------------------------------------------------------------------------")
+            logFormattedSeperator()
             print("Saved\(scenario) \nFile: \(scenarioFileURL)")
-            print("-----------------------------------------------------------------------------------------------\n")
             callback?(success: true, savedScenario: scenario)
         } else {
             let infoDict = ["Unable to save scenario": NSLocalizedFailureReasonErrorKey]
@@ -49,9 +48,8 @@ class Store {
         if let unwrappedData = scenarioData where unwrappedData.length > 0 {
             let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(unwrappedData) as? Scenario
             callback?(success: true, scenario: scenario)
-            print("-----------------------------------------------------------------------------------------------")
             print("Loaded\(scenario!) \nFile: \(scenarioFileURL)")
-            print("-----------------------------------------------------------------------------------------------\n")
+            logFormattedSeperator()
         } else {
             let infoDict = ["Empty Scenario File: \(scenarioFileURL)": NSLocalizedFailureReasonErrorKey]
             let spooferError = NSError(domain: "APIResponseSpoofer", code: 501, userInfo: infoDict)
@@ -61,7 +59,6 @@ class Store {
 
     // Retrieve all scenarios from disk
     class func allScenarioNames() -> [NSString] {
-        
         var allFiles:[NSURL]
         do {
             try allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtURL(spooferDocumentsDirectory(), includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)

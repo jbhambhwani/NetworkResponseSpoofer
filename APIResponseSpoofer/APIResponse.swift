@@ -8,14 +8,14 @@
 
 import Foundation
 
-struct ResponseFields {
-    static let requestURL = "requestURL"
-    static let httpMethod = "httpMethod"
-    static let data = "data"
-    static let createdDate = "createdDate"
-    static let mimeType = "mimeType"
-    static let encoding = "encoding"
-    static let headerFields = "headerFields"
+enum ResponseKeys: String {
+    case requestURL
+    case httpMethod
+    case data
+    case createdDate
+    case mimeType
+    case encoding
+    case headerFields
 }
 
 class APIResponse : NSObject, NSCoding {
@@ -46,23 +46,23 @@ class APIResponse : NSObject, NSCoding {
     
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
-        requestURL = aDecoder.decodeObjectForKey(ResponseFields.requestURL) as! NSURL
-        httpMethod = aDecoder.decodeObjectForKey(ResponseFields.httpMethod) as! String
-        data = aDecoder.decodeObjectForKey(ResponseFields.data) as? NSData
-        createdDate = aDecoder.decodeObjectForKey(ResponseFields.createdDate) as! NSDate
-        mimeType = aDecoder.decodeObjectForKey(ResponseFields.mimeType) as? String
-        encoding = aDecoder.decodeObjectForKey(ResponseFields.encoding) as? String
-        headerFields = aDecoder.decodeObjectForKey(ResponseFields.encoding) as? [String : String]
+        requestURL = aDecoder.decodeObjectForKey(ResponseKeys.requestURL.rawValue) as! NSURL
+        httpMethod = aDecoder.decodeObjectForKey(ResponseKeys.httpMethod.rawValue) as! String
+        data = aDecoder.decodeObjectForKey(ResponseKeys.data.rawValue) as? NSData
+        createdDate = aDecoder.decodeObjectForKey(ResponseKeys.createdDate.rawValue) as! NSDate
+        mimeType = aDecoder.decodeObjectForKey(ResponseKeys.mimeType.rawValue) as? String
+        encoding = aDecoder.decodeObjectForKey(ResponseKeys.encoding.rawValue) as? String
+        headerFields = aDecoder.decodeObjectForKey(ResponseKeys.encoding.rawValue) as? [String : String]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(requestURL, forKey: ResponseFields.requestURL)
-        aCoder.encodeObject(httpMethod, forKey: ResponseFields.httpMethod)
-        aCoder.encodeObject(data, forKey: ResponseFields.data)
-        aCoder.encodeObject(createdDate, forKey: ResponseFields.createdDate)
-        aCoder.encodeObject(mimeType, forKey: ResponseFields.mimeType)
-        aCoder.encodeObject(encoding, forKey: ResponseFields.encoding)
-        aCoder.encodeObject(headerFields, forKey: ResponseFields.headerFields)
+        aCoder.encodeObject(requestURL, forKey: ResponseKeys.requestURL.rawValue)
+        aCoder.encodeObject(httpMethod, forKey: ResponseKeys.httpMethod.rawValue)
+        aCoder.encodeObject(data, forKey: ResponseKeys.data.rawValue)
+        aCoder.encodeObject(createdDate, forKey: ResponseKeys.createdDate.rawValue)
+        aCoder.encodeObject(mimeType, forKey: ResponseKeys.mimeType.rawValue)
+        aCoder.encodeObject(encoding, forKey: ResponseKeys.encoding.rawValue)
+        aCoder.encodeObject(headerFields, forKey: ResponseKeys.headerFields.rawValue)
     }
     
 }

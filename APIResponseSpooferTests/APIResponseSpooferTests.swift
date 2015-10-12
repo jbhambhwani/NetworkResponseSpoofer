@@ -102,8 +102,17 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func test07LoadAllScenarios() {
-        let allScenarios = Store.allScenarios()
+        let allScenarios = Store.allScenarioNames()
         print("All Scenarios:\n\(allScenarios)")
     }
     
+    func testFormattedSeperator() {
+        logFormattedSeperator("Scenario Loaded Succesfully!")
+        logFormattedSeperator("")
+        logFormattedSeperator("--")
+        logFormattedSeperator("+")
+        logFormattedSeperator("@")
+        logFormattedSeperator("This string has to be 100 characters plus to that it breaks the formmated seperator logic. But who will want this anyway?")
+    }
+
 }

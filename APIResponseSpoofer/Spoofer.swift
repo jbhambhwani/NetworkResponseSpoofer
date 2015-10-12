@@ -129,9 +129,9 @@ public class Spoofer {
         set(newValue) {
             self.sharedInstance.recording = newValue
             if newValue {
-                print("-----------------------------------Spoofer Recording Started-----------------------------------")
+                logFormattedSeperator("Spoofer Recording Started")
             } else {
-                print("------------------------------------Spoofer Recording Ended------------------------------------")
+                logFormattedSeperator("Spoofer Recording Ended")
             }
         }
     }
@@ -143,9 +143,9 @@ public class Spoofer {
         set(newValue) {
             self.sharedInstance.replaying = newValue
             if newValue {
-                print("------------------------------------Spoofer Replay Started-------------------------------------")
+                logFormattedSeperator("Spoofer Replay Started")
             } else {
-                print("-------------------------------------Spoofer Replay Ended--------------------------------------")
+                logFormattedSeperator("Spoofer Replay Ended")
             }
         }
     }
