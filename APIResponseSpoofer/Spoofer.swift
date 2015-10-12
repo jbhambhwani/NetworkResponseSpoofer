@@ -19,6 +19,14 @@ public class Spoofer {
     private var ignoredQueryParameters = [String]()
     
     // MARK: Public properties
+    public class func showRecordedScenarios(inViewController vc: UIViewController) {
+        let frameworkBundle = NSBundle(identifier: "com.hotwire.apiresponsespoofer")
+        let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
+        let scenarioLister = storyBoard.instantiateViewControllerWithIdentifier("ScenarioListNavController")
+        vc.view.addSubview(scenarioLister.view)
+        vc.presentViewController(scenarioLister, animated: true, completion: nil)
+    }
+    
     public class var domainsToSpoof:[String] {
         get {
             return self.sharedInstance.spoofedDomains

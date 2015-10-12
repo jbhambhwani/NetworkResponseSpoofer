@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		411A357A1BC74A7D001D128D /* APIResponseSpooferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */; };
 		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; settings = {ASSET_TAGS = (); }; };
+		412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; settings = {ASSET_TAGS = (); }; };
+		412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; settings = {ASSET_TAGS = (); }; };
 		4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */; };
 		4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EF1B6EA21C00EAFE04 /* Store.swift */; };
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -27,12 +29,22 @@
 			remoteGlobalIDString = 4147EA4C1B684D7E001DE517;
 			remoteInfo = APIResponseSpoofer;
 		};
+		412A7BAB1BC9D441002E9FF2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 412A7BA71BC9D441002E9FF2 /* SpooferDemo.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 412A7B921BC9D441002E9FF2;
+			remoteInfo = SpooferDemo;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSpooferTests.swift; sourceTree = "<group>"; };
 		411A357B1BC74A7D001D128D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
+		412A7BA71BC9D441002E9FF2 /* SpooferDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SpooferDemo.xcodeproj; path = SpooferDemo/SpooferDemo.xcodeproj; sourceTree = "<group>"; };
+		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
 		4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayingProtocol.swift; sourceTree = "<group>"; };
 		4131B8EF1B6EA21C00EAFE04 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -74,6 +86,23 @@
 			path = APIResponseSpooferTests;
 			sourceTree = "<group>";
 		};
+		412A7B881BC9D20A002E9FF2 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
+				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		412A7BA81BC9D441002E9FF2 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				412A7BAC1BC9D441002E9FF2 /* SpooferDemo.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4131B8F21B6EA6F400EAFE04 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
@@ -96,6 +125,7 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
+				412A7BA71BC9D441002E9FF2 /* SpooferDemo.xcodeproj */,
 				4147EA4F1B684D7E001DE517 /* APIResponseSpoofer */,
 				411A35781BC74A7D001D128D /* APIResponseSpooferTests */,
 				4147EA4E1B684D7E001DE517 /* Products */,
@@ -116,6 +146,7 @@
 			children = (
 				4147EA691B684DBD001DE517 /* Spoofer.swift */,
 				4131B8F31B6EA71800EAFE04 /* Model */,
+				412A7B881BC9D20A002E9FF2 /* View */,
 				4131B8F21B6EA6F400EAFE04 /* Protocols */,
 				416453A71B7027A400615A39 /* Extensions */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
@@ -220,6 +251,12 @@
 			mainGroup = 4147EA431B684D7E001DE517;
 			productRefGroup = 4147EA4E1B684D7E001DE517 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 412A7BA81BC9D441002E9FF2 /* Products */;
+					ProjectRef = 412A7BA71BC9D441002E9FF2 /* SpooferDemo.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4147EA4C1B684D7E001DE517 /* APIResponseSpoofer */,
@@ -227,6 +264,16 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		412A7BAC1BC9D441002E9FF2 /* SpooferDemo.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = SpooferDemo.app;
+			remoteRef = 412A7BAB1BC9D441002E9FF2 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		411A35751BC74A7D001D128D /* Resources */ = {
@@ -240,6 +287,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -261,6 +309,7 @@
 				416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */,
+				412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */,
 				416552DD1B69F922006D8EDF /* Scenario.swift in Sources */,
 				4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */,
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
@@ -404,7 +453,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = NO;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.apiresponsespoofer.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.apiresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -422,7 +471,7 @@
 				INFOPLIST_FILE = APIResponseSpoofer/Info.plist;
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.apiresponsespoofer.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.apiresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
@@ -439,6 +488,7 @@
 				411A35811BC74A7D001D128D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		4147EA471B684D7E001DE517 /* Build configuration list for PBXProject "APIResponseSpoofer" */ = {
 			isa = XCConfigurationList;
