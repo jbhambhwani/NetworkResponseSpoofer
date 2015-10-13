@@ -16,7 +16,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ScenarioCell" textLabel="XFJ-Wv-vSA" style="IBUITableViewCellStyleDefault" id="Ifc-0R-z7k">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="122" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Ifc-0R-z7k" id="xKm-0g-JYH">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
@@ -41,7 +41,7 @@
                             <outlet property="delegate" destination="brR-F4-4fZ" id="Z7W-rK-FaU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recorded Scenarios" prompt="Tap to start replay" id="FOd-Dt-kCQ">
+                    <navigationItem key="navigationItem" title="Recorded Scenarios" prompt="Tap a scenario to start replay" id="FOd-Dt-kCQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aL0-Gi-jnC">
                             <connections>
                                 <action selector="cancel:" destination="brR-F4-4fZ" id="bOd-bj-pmr"/>

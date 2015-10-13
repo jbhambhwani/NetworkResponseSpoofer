@@ -63,12 +63,12 @@ class Store {
     }
 
     // Retrieve all scenarios from disk
-    class func allScenarioNames() -> [NSString] {
+    class func allScenarioNames() -> [String] {
         var allFiles:[NSURL]
         do {
             try allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtURL(spooferDocumentsDirectory(), includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
         } catch {
-            return [NSString]()
+            return [String]()
         }
         
         let scenarioFiles:[NSString] = allFiles.map{ $0.lastPathComponent! }.filter{ $0.pathExtension == "scenario"}

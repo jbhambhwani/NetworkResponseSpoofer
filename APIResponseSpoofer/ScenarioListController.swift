@@ -12,32 +12,57 @@ class ScenarioListController: UITableViewController {
     
     static let identifier = "ScenarioListNavController"
     
-    lazy var scenarioNames:[NSString] = {
-        return Store.allScenarioNames()
+    lazy var scenarioNames:[String] = {
+        return Store.allScenarioNames() as [String]
         }()
+    
+    lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.delegate = self
+        controller.dimsBackgroundDuringPresentation = false
+        controller.searchBar.sizeToFit()
+        controller.searchBar.barTintColor = UIColor.lightGrayColor()
+        return controller
+    }()
+    
+    var filteredScenarios = [String]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        tableView.scrollsToTop = true
+        tableView.tableHeaderView = searchController.searchBar
     }
     
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return scenarioNames.count
+        return searchController.active ? filteredScenarios.count : scenarioNames.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("ScenarioCell", forIndexPath: indexPath)
-        cell.textLabel?.text = scenarioNames[indexPath.row] as String
+        let scenario: String = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+        cell.textLabel?.text = scenario
         return cell
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: Tableview Delegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        Spoofer.startReplaying(scenarioName: scenarioNames[indexPath.row] as String)
-        self.presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        let scenario = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+        Spoofer.startReplaying(scenarioName: scenario)
+        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+    }
+}
+
+extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        filteredScenarios = scenarioNames.filter({ scenario -> Bool in
+            return scenario.lowercaseString.rangeOfString(searchController.searchBar.text!.lowercaseString) != nil
+        })
+        self.tableView.reloadData()
     }
 }
