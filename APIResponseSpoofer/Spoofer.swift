@@ -97,10 +97,10 @@ public class Spoofer {
         return self.sharedInstance.replaying
     }
     
-    public class func showRecordedScenarios(inViewController vc: UIViewController) {
+    public class func showRecordedScenarios(inViewController sourceViewController: UIViewController) {
         let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)
-        vc.view.addSubview(scenarioListController.view)
-        vc.presentViewController(scenarioListController, animated: true, completion: nil)
+        sourceViewController.view.addSubview(scenarioListController.view)
+        sourceViewController.presentViewController(scenarioListController, animated: true, completion: nil)
     }
     
     // MARK: Internal methods and properties

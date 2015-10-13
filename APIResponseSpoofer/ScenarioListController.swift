@@ -12,11 +12,11 @@ class ScenarioListController: UITableViewController {
     
     static let identifier = "ScenarioListNavController"
     
-    lazy var scenarioNames:[String] = {
+    private lazy var scenarioNames:[String] = {
         return Store.allScenarioNames() as [String]
         }()
     
-    lazy var searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
@@ -28,6 +28,7 @@ class ScenarioListController: UITableViewController {
     
     var filteredScenarios = [String]()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.scrollsToTop = true
