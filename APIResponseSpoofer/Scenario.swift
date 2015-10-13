@@ -42,7 +42,6 @@ class Scenario : NSObject, NSCoding {
     func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
         let normalizedInputURL = urlRequest.URL?.normalizedURLString
         for response in apiResponses {
-            // TODO: Create Normalize the url's by stripping out query parameter values. Compare based only on host and query parameters
             if response.requestURL.normalizedURLString ==  normalizedInputURL {
                 return response
             }
@@ -54,6 +53,6 @@ class Scenario : NSObject, NSCoding {
 
 // MARK: Helper methods for debugging
 extension Scenario: CustomDebugStringConvertible {
-    override var description: String { return " Scenario: \(name)"}
-    override var debugDescription: String { return " Scenario: \(name)\n Responses: \(apiResponses)\n"}
+    override var description: String { return "Scenario: \(name)"}
+    override var debugDescription: String { return "Scenario: \(name)\n Responses: \(apiResponses)\n"}
 }

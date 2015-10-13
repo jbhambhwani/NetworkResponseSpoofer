@@ -18,18 +18,19 @@ public class Spoofer {
     private var spoofedDomains = [String]()
     private var ignoredQueryParameters = [String]()
     
-    // MARK: Public properties
-    public class func showRecordedScenarios(inViewController vc: UIViewController) {
-        let frameworkBundle = NSBundle(identifier: "com.hotwire.apiresponsespoofer")
-        let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
-        let scenarioLister = storyBoard.instantiateViewControllerWithIdentifier("ScenarioListNavController")
-        vc.view.addSubview(scenarioLister.view)
-        vc.presentViewController(scenarioLister, animated: true, completion: nil)
+    // MARK: Public Enums
+    public enum SpooferError: ErrorType {
+        case DiskReadError
+        case DiskWriteError
+        case EmptyFileError(fileName: String)
+        case DocumentsAccessError
+        case FolderCreationError
     }
     
+    // MARK: Public properties
     public class var domainsToSpoof:[String] {
         get {
-            return self.sharedInstance.spoofedDomains
+        return self.sharedInstance.spoofedDomains
         }
         set {
             self.sharedInstance.spoofedDomains = newValue
@@ -38,7 +39,7 @@ public class Spoofer {
     
     public class var parametersToIgnore:[String] {
         get {
-            return self.sharedInstance.ignoredQueryParameters
+        return self.sharedInstance.ignoredQueryParameters
         }
         set {
             self.sharedInstance.ignoredQueryParameters = newValue
@@ -63,6 +64,8 @@ public class Spoofer {
             self.setRecording = false
             self.spoofedScenario = nil
             }, errorHandler: { error in
+                self.setRecording = false
+                self.spoofedScenario = nil
                 // TODO: Let know the user that the scenario could not be saved
         })
     }
@@ -94,6 +97,12 @@ public class Spoofer {
         return self.sharedInstance.replaying
     }
     
+    public class func showRecordedScenarios(inViewController vc: UIViewController) {
+        let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)
+        vc.view.addSubview(scenarioListController.view)
+        vc.presentViewController(scenarioListController, animated: true, completion: nil)
+    }
+    
     // MARK: Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
         if domainsToSpoof.isEmpty {
@@ -109,7 +118,7 @@ public class Spoofer {
             return false
         }
     }
-
+    
     class var spoofedScenario: Scenario? {
         get {
         if let unwrappedScenario = Spoofer.sharedInstance.scenario {
@@ -149,5 +158,5 @@ public class Spoofer {
             }
         }
     }
-
+    
 }

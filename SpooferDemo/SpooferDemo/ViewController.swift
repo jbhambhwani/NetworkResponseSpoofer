@@ -39,11 +39,11 @@ class ViewController: UIViewController {
         switch sender {
         case recordButton:
             replayButton.setTitle(ButtonTitle.StartReplaying.rawValue, forState: .Normal)
-            replayButton.setTitleColor(UIColor.greenColor(), forState: .Normal)
+            replayButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
             
         case replayButton:
             recordButton.setTitle(ButtonTitle.StartRecording.rawValue, forState: .Normal)
-            recordButton.setTitleColor(UIColor.greenColor(), forState: .Normal)
+            recordButton.setTitleColor(UIColor.blueColor(), forState: .Normal)
             
         default:
             print("Invalid button")
@@ -61,7 +61,7 @@ class ViewController: UIViewController {
         case (recordButton, ButtonTitle.StopRecording.rawValue):
             // Stop Recording
             sender.setTitle(ButtonTitle.StartRecording.rawValue, forState: .Normal)
-            sender.setTitleColor(UIColor.greenColor(), forState: .Normal)
+            sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
             Spoofer.stopRecording()
             
         case (replayButton, ButtonTitle.StartReplaying.rawValue):
@@ -73,7 +73,7 @@ class ViewController: UIViewController {
         case (replayButton, ButtonTitle.StopReplaying.rawValue):
             // Stop Replay
             sender.setTitle(ButtonTitle.StartReplaying.rawValue, forState: .Normal)
-            sender.setTitleColor(UIColor.greenColor(), forState: .Normal)
+            sender.setTitleColor(UIColor.blueColor(), forState: .Normal)
             Spoofer.stopReplaying()
             
         default:
@@ -82,11 +82,18 @@ class ViewController: UIViewController {
     }
     
     func performSampleNetworkRequests() {
-        NSURLSession.sharedSession().dataTaskWithURL(NSURL(string: "http://jsonplaceholder.typicode.com/users")!, completionHandler: { data, response, error in
-            if error == nil {
-                print("Success 1")
-            }
+        // Get data from a few sample end points
+        sendRequest("http://jsonplaceholder.typicode.com/users")
+        sendRequest("http://jsonplaceholder.typicode.com/posts")
+    }
+    
+    func sendRequest(resource: String) {
+        guard let url = NSURL(string: resource) else { return }
+        NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { data, response, error in
+            // Spoofer has already intercepted the response if error was non nil. Nothing to do here.
         }).resume()
     }
 }
+
+
 

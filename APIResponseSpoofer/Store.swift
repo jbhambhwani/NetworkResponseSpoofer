@@ -12,6 +12,11 @@ class Store {
     
     // Save a scenario to disk
     class func saveScenario(scenario: Scenario, callback: ((success: Bool, savedScenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+        
+//        guard scenario.apiResponses.count > 0 else {
+//            
+//        }
+        
         let scenarioFileURL = getScenarioFileURL(scenario.name)
         if NSFileManager.defaultManager().fileExistsAtPath(scenarioFileURL.absoluteString) {
             do {
@@ -30,7 +35,7 @@ class Store {
         } else {
             let infoDict = ["Unable to save scenario": NSLocalizedFailureReasonErrorKey]
             let spooferError = NSError(domain: "APIResponseSpoofer", code: 500, userInfo: infoDict)
-            errorHandler!(error: spooferError)
+            errorHandler?(error: spooferError)
         }
     }
     
@@ -67,7 +72,8 @@ class Store {
         }
         
         let scenarioFiles:[NSString] = allFiles.map{ $0.lastPathComponent! }.filter{ $0.pathExtension == "scenario"}
-        return scenarioFiles
+        let fileNames = scenarioFiles.map{ $0.stringByDeletingPathExtension }
+        return fileNames
     }
     
     // MARK: Private methods

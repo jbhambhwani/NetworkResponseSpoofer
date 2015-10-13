@@ -69,6 +69,6 @@ class APIResponse : NSObject, NSCoding {
 
 // MARK: Helper methods for debugging
 extension APIResponse: CustomDebugStringConvertible {
-    override var description: String { return " URL: \(requestURL)\n Method: \(httpMethod)"}
-    override var debugDescription: String { return " URL: \(requestURL)\n Method: \(httpMethod)\n CreatedDate: \(createdDate)\n MIMEType: \(mimeType)\n Encoding: \(encoding)\n"}
+    override var description: String { return "URL: \(requestURL)\n Method: \(httpMethod)"}
+    override var debugDescription: String { return "URL: \(requestURL)\n Method: \(httpMethod)\n CreatedDate: \(createdDate)\n MIMEType: \(mimeType)\n Encoding: \(encoding)\n"}
 }

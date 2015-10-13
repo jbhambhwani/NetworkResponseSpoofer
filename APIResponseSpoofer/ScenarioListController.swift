@@ -10,6 +10,8 @@ import UIKit
 
 class ScenarioListController: UITableViewController {
     
+    static let identifier = "ScenarioListNavController"
+    
     lazy var scenarioNames:[NSString] = {
         return Store.allScenarioNames()
         }()

@@ -41,7 +41,7 @@
                             <outlet property="delegate" destination="brR-F4-4fZ" id="Z7W-rK-FaU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recorded Scenarios" id="FOd-Dt-kCQ">
+                    <navigationItem key="navigationItem" title="Recorded Scenarios" prompt="Tap to start replay" id="FOd-Dt-kCQ">
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aL0-Gi-jnC">
                             <connections>
                                 <action selector="cancel:" destination="brR-F4-4fZ" id="bOd-bj-pmr"/>

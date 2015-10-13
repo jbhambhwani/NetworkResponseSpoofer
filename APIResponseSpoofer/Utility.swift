@@ -19,3 +19,13 @@ func logFormattedSeperator(message: String? = "-") {
         print("Message too long for formatting: \(message)")
     }
 }
+
+func spooferStoryBoard() -> UIStoryboard {
+    let frameworkBundle = NSBundle(identifier: "com.hotwire.apiresponsespoofer")
+    let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
+    return storyBoard
+}
+
+func handleError(reason: String, code: Int, errorHandler: ((error: NSError) -> Void)?) {
+    
+}
