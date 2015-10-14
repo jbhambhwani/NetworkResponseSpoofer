@@ -19,9 +19,9 @@ extension NSURL {
     
     private var normalizedQueryItemNames: String? {
         guard let queryItems = allQueryItems else { return nil }
-        // Normalization strips the values from query paramaters and only uses item names (also filter ignored params)
+        // Normalization strips the values from query paramaters and only uses query item names (also filter ignored params)
         let allQueryItemsNames = queryItems.map{ $0.name }.filter{ element in
-            !Spoofer.parametersToIgnore.contains(element)
+            !Spoofer.queryParametersToIgnore.contains(element)
         }
         let normalizedNames = "?" + allQueryItemsNames.joinWithSeparator("&")
         return normalizedNames

@@ -96,7 +96,7 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func test06ParameterIgnoreURLNormalization() {
-        Spoofer.parametersToIgnore = ["class","name","somerandom"]
+        Spoofer.queryParametersToIgnore = ["class","name","somerandom"]
         let normalizedComplexURLIgnoringParameters = "www.example.com/over/there/index.html?type"
         assert(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
     }
@@ -109,10 +109,10 @@ class APIResponseSpooferTests: XCTestCase {
     func testFormattedSeperator() {
         logFormattedSeperator("Scenario Loaded Succesfully!")
         logFormattedSeperator("")
-        logFormattedSeperator("--")
+        logFormattedSeperator("-")
         logFormattedSeperator("+")
         logFormattedSeperator("@")
-        logFormattedSeperator("This string has to be 100 characters plus to that it breaks the formmated seperator logic. But who will want this anyway?")
+        logFormattedSeperator("This string is 100 characters plus to that it breaks the formated seperator logic. But who will want this anyway?. The method should just print this string as it is.")
     }
 
 }

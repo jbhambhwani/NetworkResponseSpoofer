@@ -16,11 +16,12 @@ public enum SpooferError: Int, ErrorType {
     case DocumentsAccessError = 503
     case FolderCreationError = 504
     case EmptyScenarioError = 505
+    case NoSavedResponseError = 506
 }
 
 public class Spoofer {
     
-    // MARK: Internal variables
+    // MARK: - Internal variables
     private static let sharedInstance = Spoofer()
     private var scenario: Scenario? = nil
     private var recording: Bool = false
@@ -28,7 +29,7 @@ public class Spoofer {
     private var spoofedDomains = [String]()
     private var ignoredQueryParameters = [String]()
     
-    // MARK: Public properties
+    // MARK: - Public properties
     public class var domainsToSpoof:[String] {
         get {
         return self.sharedInstance.spoofedDomains
@@ -38,7 +39,7 @@ public class Spoofer {
         }
     }
     
-    public class var parametersToIgnore:[String] {
+    public class var queryParametersToIgnore:[String] {
         get {
         return self.sharedInstance.ignoredQueryParameters
         }
@@ -47,7 +48,7 @@ public class Spoofer {
         }
     }
     
-    // MARK: Public methods
+    // MARK: - Public methods
     public class func startRecording(scenarioName scenarioName: String) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
         if protocolRegistered {

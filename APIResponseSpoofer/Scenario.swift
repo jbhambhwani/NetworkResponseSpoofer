@@ -18,14 +18,29 @@ class Scenario : NSObject, NSCoding {
     let name: String
     var apiResponses = [APIResponse]()
     
-    // MARK: - 
+    // MARK -
     init(name: String = "Default") {
         self.name = name
     }
     
+    // MARK: - Managing responses
     func addResponse(response: APIResponse) {
         apiResponses.append(response)
         print("Response received:\n\(response)")
+    }
+    
+    func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
+        let normalizedInputURL = urlRequest.URL?.normalizedURLString
+        for response in apiResponses {
+            if response.requestURL.normalizedURLString ==  normalizedInputURL {
+                return response
+            }
+        }
+        return nil
+    }
+    
+    subscript(urlRequest: NSURLRequest) -> APIResponse? {
+        return responseForRequest(urlRequest)
     }
     
     // MARK: NSCoding
@@ -37,16 +52,6 @@ class Scenario : NSObject, NSCoding {
     func encodeWithCoder(aCoder: NSCoder) {
         aCoder.encodeObject(name, forKey: ScenarioFields.name)
         aCoder.encodeObject(apiResponses, forKey: ScenarioFields.responses)
-    }
-    
-    func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
-        let normalizedInputURL = urlRequest.URL?.normalizedURLString
-        for response in apiResponses {
-            if response.requestURL.normalizedURLString ==  normalizedInputURL {
-                return response
-            }
-        }
-        return nil
     }
     
 }

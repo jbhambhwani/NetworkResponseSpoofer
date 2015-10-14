@@ -15,23 +15,19 @@ enum ReplayMethod {
 
 class ReplayingProtocol : NSURLProtocol {
     
-    var mutableData: NSMutableData!
-    var response: NSURLResponse!
-    
     private var currentReplayMethod: ReplayMethod {
-        // Switch the replay method according to the one which suits the specific requirement.
+        // Customization: Switch the replay method according to the one which suits your specific requirement.
         return ReplayMethod.MimeTypeAndEncoding
     }
     
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
         let isHTTP = request.URL!.isHTTP
-        // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
+        // 2: Check if the request is to be handled or not based on a whitelist. If no whitelist is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(request.URL!)
         // 3: Check if we have a scenario loaded in memory
         let hasSavedScenario = (Spoofer.spoofedScenario != nil) ? true : false
         
-        // TODO: Also check if the scenario has a response matching the criteria (url, headers etc) for the current request
         if isHTTP && shouldHandleURL && hasSavedScenario {
             return true
         }
@@ -48,11 +44,9 @@ class ReplayingProtocol : NSURLProtocol {
     }
     
     override func startLoading() {
-        guard let cachedResponse = Spoofer.spoofedScenario?.responseForRequest(self.request) else {
+        guard let cachedResponse = Spoofer.spoofedScenario?[self.request] else {
             // Throw an error in case we are unable to load a response
-            let urlString = self.request.URL!.absoluteString
-            let infoDict = ["Unable to load response": NSLocalizedFailureReasonErrorKey, urlString: NSURLErrorFailingURLErrorKey]
-            let httpError = NSError(domain: "APIResponseSpoofer", code: 500, userInfo: infoDict)
+            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.NoSavedResponseError.rawValue, url: self.request.URL!.absoluteString, errorHandler: nil)
             self.client?.URLProtocol(self, didFailWithError: httpError)
             return
         }
@@ -61,14 +55,17 @@ class ReplayingProtocol : NSURLProtocol {
         switch currentReplayMethod {
         case .StatusCodeAndHeader:
             httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields)
-            // httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields)
         case .MimeTypeAndEncoding:
             httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, MIMEType: cachedResponse.mimeType, expectedContentLength: -1, textEncodingName: cachedResponse.encoding)
         }
 
-        guard let spoofedResponse: NSHTTPURLResponse = httpResponse else {
+        guard let spoofedResponse = httpResponse else {
+            // Throw an error in case we are unable to serialize a response
+            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.NoSavedResponseError.rawValue, url: self.request.URL!.absoluteString, errorHandler: nil)
+            self.client?.URLProtocol(self, didFailWithError: httpError)
             return
         }
+        
         self.client?.URLProtocol(self, didReceiveResponse: spoofedResponse, cacheStoragePolicy: .NotAllowed)
         self.client?.URLProtocol(self, didLoadData: cachedResponse.data!)
         self.client?.URLProtocolDidFinishLoading(self)

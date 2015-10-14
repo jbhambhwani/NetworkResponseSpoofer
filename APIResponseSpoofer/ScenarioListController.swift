@@ -48,14 +48,16 @@ class ScenarioListController: UITableViewController {
     }
     
     @IBAction func cancel(sender: AnyObject) {
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        searchController.active = false
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
     // MARK: Tableview Delegate
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let scenario = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         Spoofer.startReplaying(scenarioName: scenario)
-        presentingViewController?.dismissViewControllerAnimated(true, completion: nil)
+        searchController.active = false
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
 }
 
