@@ -8,6 +8,16 @@
 
 import Foundation
 
+// MARK: Public Enums
+public enum SpooferError: Int, ErrorType {
+    case DiskReadError = 500
+    case DiskWriteError = 501
+    case EmptyFileError = 502
+    case DocumentsAccessError = 503
+    case FolderCreationError = 504
+    case EmptyScenarioError = 505
+}
+
 public class Spoofer {
     
     // MARK: Internal variables
@@ -17,15 +27,6 @@ public class Spoofer {
     private var replaying: Bool = false
     private var spoofedDomains = [String]()
     private var ignoredQueryParameters = [String]()
-    
-    // MARK: Public Enums
-    public enum SpooferError: ErrorType {
-        case DiskReadError
-        case DiskWriteError
-        case EmptyFileError(fileName: String)
-        case DocumentsAccessError
-        case FolderCreationError
-    }
     
     // MARK: Public properties
     public class var domainsToSpoof:[String] {

@@ -13,9 +13,10 @@ class Store {
     // Save a scenario to disk
     class func saveScenario(scenario: Scenario, callback: ((success: Bool, savedScenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
         
-//        guard scenario.apiResponses.count > 0 else {
-//            
-//        }
+        guard scenario.apiResponses.count > 0 else {
+            handleError("Scenario was empty and hence not saved", recoveryMessage: "No responses were recorded. Make one or more HTTP requests and try saving again", code: SpooferError.EmptyScenarioError.rawValue, errorHandler: errorHandler)
+            return
+        }
         
         let scenarioFileURL = getScenarioFileURL(scenario.name)
         if NSFileManager.defaultManager().fileExistsAtPath(scenarioFileURL.absoluteString) {
@@ -33,9 +34,7 @@ class Store {
             print("Saved\(scenario) \nFile: \(scenarioFileURL)")
             callback?(success: true, savedScenario: scenario)
         } else {
-            let infoDict = ["Unable to save scenario": NSLocalizedFailureReasonErrorKey]
-            let spooferError = NSError(domain: "APIResponseSpoofer", code: 500, userInfo: infoDict)
-            errorHandler?(error: spooferError)
+            handleError("Unable to save scenario", recoveryMessage: "Writing to disk failed. Try again", code: SpooferError.DiskWriteError.rawValue, errorHandler: errorHandler)
         }
     }
     
@@ -46,19 +45,15 @@ class Store {
         do {
             try scenarioData = NSData(contentsOfURL: scenarioFileURL, options: .DataReadingMappedIfSafe)
         } catch {
-            let infoDict = ["Error Reading from File: \(scenarioFileURL)": NSLocalizedFailureReasonErrorKey]
-            let spooferError = NSError(domain: "APIResponseSpoofer", code: 500, userInfo: infoDict)
-            errorHandler?(error: spooferError)
+            handleError("Error reading from file: \(scenarioFileURL)", recoveryMessage: "Reading from disk failed. Try again", code: SpooferError.DiskReadError.rawValue, errorHandler: errorHandler)
         }
         if let unwrappedData = scenarioData where unwrappedData.length > 0 {
             let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(unwrappedData) as? Scenario
             callback?(success: true, scenario: scenario)
-            print("Loaded\(scenario!) \nFile: \(scenarioFileURL)")
+            print("Loaded \(scenario!)\nFile: \(scenarioFileURL)")
             logFormattedSeperator()
         } else {
-            let infoDict = ["Empty Scenario File: \(scenarioFileURL)": NSLocalizedFailureReasonErrorKey]
-            let spooferError = NSError(domain: "APIResponseSpoofer", code: 501, userInfo: infoDict)
-            errorHandler?(error: spooferError)
+            handleError("Empty scenario file found at: \(scenarioFileURL)", recoveryMessage: "Remove the file or re-record the scenario.", code: SpooferError.EmptyFileError.rawValue, errorHandler: errorHandler)
         }
     }
 

@@ -26,6 +26,8 @@ func spooferStoryBoard() -> UIStoryboard {
     return storyBoard
 }
 
-func handleError(reason: String, code: Int, errorHandler: ((error: NSError) -> Void)?) {
-    
+func handleError(reason: String, recoveryMessage: String, code: Int, errorHandler: ((error: NSError) -> Void)?) {
+    let userInfo = [NSLocalizedFailureReasonErrorKey : reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
+    let spooferError = NSError(domain: "APIResponseSpoofer", code: code, userInfo: userInfo)
+    errorHandler?(error: spooferError)
 }
