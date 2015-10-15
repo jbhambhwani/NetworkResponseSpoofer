@@ -62,7 +62,8 @@ public class Spoofer {
     
     public class func stopRecording() {
         NSURLProtocol.unregisterClass(RecordingProtocol)
-        Store.saveScenario(self.sharedInstance.scenario!, callback: { success, savedScenario in
+        guard let scenario = self.sharedInstance.scenario else { return }
+        Store.saveScenario(scenario, callback: { success, savedScenario in
             self.setRecording = false
             self.spoofedScenario = nil
             }, errorHandler: { error in
