@@ -31,7 +31,7 @@ class Store {
         let success = data.writeToURL(scenarioFileURL, atomically: true)
         if success {
             logFormattedSeperator()
-            print("Saved\(scenario) \nFile: \(scenarioFileURL)")
+            print("Saved \(scenario)\nFile: \(scenarioFileURL)")
             callback?(success: true, savedScenario: scenario)
         } else {
             handleError("Unable to save scenario", recoveryMessage: "Writing to disk failed. Try again", code: SpooferError.DiskWriteError.rawValue, errorHandler: errorHandler)
