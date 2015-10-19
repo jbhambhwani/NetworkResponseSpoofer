@@ -103,7 +103,7 @@ public class Spoofer {
         })
     }
     
-    public class func isRecording() -> Bool {
+    public class var isRecording: Bool {
         return self.sharedInstance.recording
     }
     
@@ -126,7 +126,7 @@ public class Spoofer {
         self.setReplaying = false
     }
     
-    public class func isReplaying() -> Bool {
+    public class var isReplaying: Bool {
         return self.sharedInstance.replaying
     }
     
