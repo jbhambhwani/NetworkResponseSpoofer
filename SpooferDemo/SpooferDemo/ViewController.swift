@@ -60,14 +60,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         switch sender {
         case recordButton:
             replayButton.title = ButtonTitle.StartReplaying.rawValue
-            replayButton.tintColor = UIColor.blueColor()
+            replayButton.tintColor = view.tintColor
             if Spoofer.isReplaying() {
                 Spoofer.stopReplaying()
             }
             
         case replayButton:
             recordButton.title = ButtonTitle.StartRecording.rawValue
-            recordButton.tintColor = UIColor.blueColor()
+            recordButton.tintColor = view.tintColor
             if Spoofer.isRecording() {
                 Spoofer.stopRecording()
             }
@@ -82,13 +82,13 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
             // Start Recording some network requests
             sender.title = ButtonTitle.StopRecording.rawValue
             sender.tintColor = UIColor.redColor()
-            Spoofer.startRecording(scenarioName: newScenarioName)
+            Spoofer.startRecording(scenarioName: newScenarioName, inViewController: self)
             performSampleNetworkRequests()
             
         case (recordButton, ButtonTitle.StopRecording.rawValue):
             // Stop Recording
             sender.title = ButtonTitle.StartRecording.rawValue
-            sender.tintColor = UIColor.blueColor()
+            sender.tintColor = view.tintColor
             Spoofer.stopRecording()
             
         case (replayButton, ButtonTitle.StartReplaying.rawValue):
@@ -100,7 +100,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         case (replayButton, ButtonTitle.StopReplaying.rawValue):
             // Stop Replay
             sender.title = ButtonTitle.StartReplaying.rawValue
-            sender.tintColor = UIColor.blueColor()
+            sender.tintColor = view.tintColor
             Spoofer.stopReplaying()
             
         default:
@@ -111,12 +111,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     // MARK: - Helper methods
     func spooferLogReceived(notification: NSNotification) {
         guard let userInfo = notification.userInfo as? [String: String], message = userInfo["message"] else { return }
-        if consoleTextView.text.characters.count > 0 {
-            consoleTextView.text = consoleTextView.text + "\n" + message
-            consoleTextView.scrollRangeToVisible(NSRange(location: consoleTextView.text.characters.count - 1, length: 1))
-        } else {
-            consoleTextView.text = message
-        }
+        // Marshall the UI updates to main thread
+        dispatch_async(dispatch_get_main_queue(), {
+            if self.consoleTextView.text.characters.count > 0 {
+                self.consoleTextView.text = self.consoleTextView.text + "\n" + message
+                // Scroll to bottom of log
+                self.consoleTextView.scrollRangeToVisible(NSRange(location: self.consoleTextView.text.characters.count - 1, length: 1))
+            } else {
+                self.consoleTextView.text = message
+            }
+        })
     }
     
     func performSampleNetworkRequests() {

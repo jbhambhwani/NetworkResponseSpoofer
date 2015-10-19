@@ -49,12 +49,41 @@ public class Spoofer {
     }
     
     // MARK: - Public methods
-    public class func startRecording(scenarioName scenarioName: String) -> Bool {
+    public class func startRecording(scenarioName scenarioName: String, inViewController sourceViewController: UIViewController? = nil) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
         if protocolRegistered {
-            self.setRecording = true
-            // Create a fresh scenario based on the named passed in
-            self.spoofedScenario = Scenario(name: scenarioName)
+            // If a view controller was passed in, use it to display an alert controller asking for a scenario name
+            if let presentingViewController = sourceViewController {
+                let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .Alert)
+                
+                let createAction = UIAlertAction(title: "Create", style: .Default) { (_) in
+                    let scenarioNameTextField = alertController.textFields![0] as UITextField
+                    startRecording(scenarioName: scenarioNameTextField.text!)
+                }
+                createAction.enabled = false
+                
+                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
+                    self.setRecording = false
+                    self.spoofedScenario = nil
+                    NSURLProtocol.unregisterClass(RecordingProtocol)
+                }
+                
+                alertController.addTextFieldWithConfigurationHandler { (textField) in
+                    textField.placeholder = "Enter scenario name"
+                    NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                        createAction.enabled = textField.text != ""
+                    }
+                }
+                
+                alertController.addAction(createAction)
+                alertController.addAction(cancelAction)
+                
+                presentingViewController.presentViewController(alertController, animated: true, completion: nil)
+            } else {
+                self.setRecording = true
+                // Create a fresh scenario based on the named passed in
+                self.spoofedScenario = Scenario(name: scenarioName)
+            }
         }
         return protocolRegistered
     }
