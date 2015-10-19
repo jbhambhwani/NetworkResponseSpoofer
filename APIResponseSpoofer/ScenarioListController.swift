@@ -23,6 +23,9 @@ class ScenarioListController: UITableViewController {
         controller.dimsBackgroundDuringPresentation = false
         controller.searchBar.sizeToFit()
         controller.searchBar.barTintColor = UIColor.lightGrayColor()
+        controller.searchBar.tintColor = UIColor.blackColor()
+        controller.searchBar.scopeButtonTitles = ["Name","Date"]
+        controller.searchBar.delegate = self
         return controller
     }()
     
@@ -63,9 +66,20 @@ class ScenarioListController: UITableViewController {
 
 extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDelegate {
     func updateSearchResultsForSearchController(searchController: UISearchController) {
-        filteredScenarios = scenarioNames.filter({ scenario -> Bool in
-            return scenario.lowercaseString.rangeOfString(searchController.searchBar.text!.lowercaseString) != nil
-        })
+        // searchBar.selectedScopeButtonIndex
+        if searchController.searchBar.text?.characters.count > 0 {
+            filteredScenarios = scenarioNames.filter({ scenario -> Bool in
+                return scenario.lowercaseString.rangeOfString(searchController.searchBar.text!.lowercaseString) != nil
+            })
+        } else {
+            filteredScenarios = scenarioNames
+        }
+        self.tableView.reloadData()
+    }
+}
+
+extension ScenarioListController: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
         self.tableView.reloadData()
     }
 }
