@@ -47,6 +47,7 @@ class ScenarioListController: UITableViewController {
         let cell = tableView.dequeueReusableCellWithIdentifier("ScenarioCell", forIndexPath: indexPath)
         let scenario: String = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         cell.textLabel?.text = scenario
+        cell.accessibilityIdentifier = scenario
         return cell
     }
     
