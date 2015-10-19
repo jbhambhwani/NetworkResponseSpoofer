@@ -44,12 +44,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         case recordButton:
             replayButton.title = ButtonTitle.StartReplaying.rawValue
             replayButton.tintColor = UIColor.blueColor()
-            Spoofer.stopReplaying()
+            if Spoofer.isReplaying() {
+                Spoofer.stopReplaying()
+            }
             
         case replayButton:
             recordButton.title = ButtonTitle.StartRecording.rawValue
             recordButton.tintColor = UIColor.blueColor()
-            Spoofer.stopRecording()
+            if Spoofer.isRecording() {
+                Spoofer.stopRecording()
+            }
             
         default:
             print("Invalid button")

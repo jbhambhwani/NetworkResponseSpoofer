@@ -32,7 +32,7 @@ public class Spoofer {
     // MARK: - Public properties
     public class var domainsToSpoof:[String] {
         get {
-        return self.sharedInstance.spoofedDomains
+            return self.sharedInstance.spoofedDomains
         }
         set {
             self.sharedInstance.spoofedDomains = newValue
@@ -41,7 +41,7 @@ public class Spoofer {
     
     public class var queryParametersToIgnore:[String] {
         get {
-        return self.sharedInstance.ignoredQueryParameters
+            return self.sharedInstance.ignoredQueryParameters
         }
         set {
             self.sharedInstance.ignoredQueryParameters = newValue
@@ -54,7 +54,6 @@ public class Spoofer {
         if protocolRegistered {
             self.setRecording = true
             // Create a fresh scenario based on the named passed in
-            // TODO: Check if scenario exists and ask the user if to overwrite
             self.spoofedScenario = Scenario(name: scenarioName)
         }
         return protocolRegistered
@@ -64,8 +63,10 @@ public class Spoofer {
         NSURLProtocol.unregisterClass(RecordingProtocol)
         guard let scenario = self.sharedInstance.scenario else { return }
         Store.saveScenario(scenario, callback: { success, savedScenario in
-            self.setRecording = false
-            self.spoofedScenario = nil
+            if success {
+                self.setRecording = false
+                self.spoofedScenario = nil
+            }
             }, errorHandler: { error in
                 self.setRecording = false
                 self.spoofedScenario = nil
@@ -100,13 +101,14 @@ public class Spoofer {
         return self.sharedInstance.replaying
     }
     
+    // MARK: - Invoke Replay UI
     public class func showRecordedScenarios(inViewController sourceViewController: UIViewController) {
         let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)
         sourceViewController.view.addSubview(scenarioListController.view)
         sourceViewController.presentViewController(scenarioListController, animated: true, completion: nil)
     }
     
-    // MARK: Internal methods and properties
+    // MARK: - Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
         if domainsToSpoof.isEmpty {
             // Handle all cases in case no domains are whitelisted
