@@ -17,6 +17,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     @IBOutlet weak var consoleTextView: UITextView!
     @IBOutlet weak var recordButton: UIBarButtonItem!
     @IBOutlet weak var replayButton: UIBarButtonItem!
+    @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
     private enum ButtonTitle: String {
@@ -37,7 +38,23 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         return "Scenario-\(dateFormatter.stringFromDate(NSDate()))"
     }
     
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: SpooferLogNotification, object: nil)
+    }
+    
+    deinit {
+        NSNotificationCenter.defaultCenter().removeObserver(self)        
+    }
+    
+    // MARK: - User Actions
     @IBAction func buttonPressed(sender: UIBarButtonItem) {
+        
+        if sender == clearButton {
+            consoleTextView.text = ""
+            return
+        }
         
         // Reset the alternate button to default state
         switch sender {
@@ -92,6 +109,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - Helper methods
+    func spooferLogReceived(notification: NSNotification) {
+        guard let userInfo = notification.userInfo as? [String: String], message = userInfo["message"] else { return }
+        if consoleTextView.text.characters.count > 0 {
+            consoleTextView.text = consoleTextView.text + "\n" + message
+            consoleTextView.scrollRangeToVisible(NSRange(location: consoleTextView.text.characters.count - 1, length: 1))
+        } else {
+            consoleTextView.text = message
+        }
+    }
+    
     func performSampleNetworkRequests() {
         // Get data from a few sample end points
         sendRequest("http://jsonplaceholder.typicode.com/users")

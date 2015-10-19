@@ -26,7 +26,7 @@ class Scenario : NSObject, NSCoding {
     // MARK: - Managing responses
     func addResponse(response: APIResponse) {
         apiResponses.append(response)
-        print("Response received:\n\(response)")
+        postNotification("Response received:\n\(response)")
     }
     
     func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {

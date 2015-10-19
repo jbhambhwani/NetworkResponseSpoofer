@@ -8,8 +8,13 @@
 
 import Foundation
 
+public let SpooferLogNotification = "SpooferLogNotification"
+
 func logFormattedSeperator(message: String? = "-") {
     guard let message = message else { return }
+    
+    postNotification(message)
+    
     // Print "-" character before and after the message, 100 character total. Just logging every important message nicely.
     let messageStart = 50 - (message.characters.count / 2)
     if messageStart > 0 {
@@ -19,6 +24,13 @@ func logFormattedSeperator(message: String? = "-") {
     } else {
         print("Message too long for formatting: \(message)")
     }
+}
+
+func postNotification(message: String) {
+    // Print to console
+    print(message)
+    // Post a notification with the message so that any receivers can listen and log it
+    NSNotificationCenter.defaultCenter().postNotificationName(SpooferLogNotification, object: nil, userInfo: ["message": message])
 }
 
 func spooferStoryBoard() -> UIStoryboard {
