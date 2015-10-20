@@ -19,16 +19,14 @@ public enum SpooferError: Int, ErrorType {
     case NoSavedResponseError = 506
 }
 
-@objc(Spoofer)
-
-public protocol SpooferDelegate {
+@objc public protocol SpooferDelegate {
     func spooferDidStartRecording(scenarioName: String)
     func spooferDidStopRecording(scenarioName: String, success: Bool)
     func spooferDidStartReplaying(scenarioName: String, success: Bool)
     func spooferDidStopReplaying(scenarioName: String)
 }
 
-public class Spoofer: NSObject {
+@objc public class Spoofer: NSObject {
     
     // MARK: - Internal variables
     private static let sharedInstance = Spoofer()
