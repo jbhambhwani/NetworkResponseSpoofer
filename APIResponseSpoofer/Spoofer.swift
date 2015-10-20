@@ -19,7 +19,9 @@ public enum SpooferError: Int, ErrorType {
     case NoSavedResponseError = 506
 }
 
-public class Spoofer {
+@objc(Spoofer)
+
+public class Spoofer: NSObject {
     
     // MARK: - Internal variables
     private static let sharedInstance = Spoofer()
@@ -131,7 +133,8 @@ public class Spoofer {
     }
     
     // MARK: - Invoke Replay UI
-    public class func showRecordedScenarios(inViewController sourceViewController: UIViewController) {
+    public class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
+        guard let sourceViewController = sourceViewController else { return }
         let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)
         sourceViewController.view.addSubview(scenarioListController.view)
         sourceViewController.presentViewController(scenarioListController, animated: true, completion: nil)
