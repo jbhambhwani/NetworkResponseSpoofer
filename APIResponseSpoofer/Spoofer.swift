@@ -21,6 +21,13 @@ public enum SpooferError: Int, ErrorType {
 
 @objc(Spoofer)
 
+public protocol SpooferDelegate {
+    func spooferDidStartRecording(scenarioName: String)
+    func spooferDidStopRecording(scenarioName: String, success: Bool)
+    func spooferDidStartReplaying(scenarioName: String, success: Bool)
+    func spooferDidStopReplaying(scenarioName: String)
+}
+
 public class Spoofer: NSObject {
     
     // MARK: - Internal variables
@@ -30,9 +37,19 @@ public class Spoofer: NSObject {
     private var replaying: Bool = false
     private var spoofedDomains = [String]()
     private var ignoredQueryParameters = [String]()
+    private weak var delegate: SpooferDelegate?
     
     // MARK: - Public properties
-    public class var domainsToSpoof:[String] {
+    public class var delegate: SpooferDelegate? {
+        get {
+            return self.sharedInstance.delegate
+        }
+        set {
+            self.sharedInstance.delegate = newValue
+        }
+    }
+    
+    public class var domainsToSpoof: [String] {
         get {
             return self.sharedInstance.spoofedDomains
         }
@@ -41,7 +58,7 @@ public class Spoofer: NSObject {
         }
     }
     
-    public class var queryParametersToIgnore:[String] {
+    public class var queryParametersToIgnore: [String] {
         get {
             return self.sharedInstance.ignoredQueryParameters
         }
@@ -85,6 +102,8 @@ public class Spoofer: NSObject {
                 self.setRecording = true
                 // Create a fresh scenario based on the named passed in
                 self.spoofedScenario = Scenario(name: scenarioName)
+                // Inform the delegate that spoofer started recording
+                Spoofer.delegate?.spooferDidStartRecording(scenarioName)
             }
         }
         return protocolRegistered
@@ -97,11 +116,16 @@ public class Spoofer: NSObject {
             if success {
                 self.setRecording = false
                 self.spoofedScenario = nil
+                // Inform the delegate of successful save
+                Spoofer.delegate?.spooferDidStopRecording(savedScenario!.name, success: true)
             }
             }, errorHandler: { error in
-                self.setRecording = false
-                self.spoofedScenario = nil
-                // TODO: Let know the user that the scenario could not be saved
+                if let scenarioName = self.spoofedScenario?.name {
+                    // Inform the delegate that saving scenario failed
+                    Spoofer.delegate?.spooferDidStopRecording(scenarioName, success: false)
+                    self.setRecording = false
+                    self.spoofedScenario = nil
+                }
         })
     }
     
@@ -115,15 +139,22 @@ public class Spoofer: NSObject {
             if success {
                 self.setReplaying = true
                 self.spoofedScenario = scenario
+                // Inform the delegate that spoofer started replay
+                Spoofer.delegate?.spooferDidStartReplaying(scenarioName, success: true)
             }
             }, errorHandler: { error in
-                // TODO: Let know the user that the scenario could not be loaded
+                // Inform the delegate that spoofer could not start replay
+                Spoofer.delegate?.spooferDidStartReplaying(scenarioName, success: false)
         })
         return protocolRegistered
     }
     
     public class func stopReplaying() {
         NSURLProtocol.unregisterClass(ReplayingProtocol)
+        if let scenarioName = self.spoofedScenario?.name {
+            // Inform the delegate that spoofer stopped replay
+            Spoofer.delegate?.spooferDidStopReplaying(scenarioName)
+        }
         self.spoofedScenario = nil
         self.setReplaying = false
     }
@@ -158,10 +189,7 @@ public class Spoofer: NSObject {
     
     class var spoofedScenario: Scenario? {
         get {
-        if let unwrappedScenario = Spoofer.sharedInstance.scenario {
-        return unwrappedScenario
-        }
-        return nil
+            return Spoofer.sharedInstance.scenario
         }
         set(newValue) {
             self.sharedInstance.scenario = newValue
@@ -170,7 +198,7 @@ public class Spoofer: NSObject {
     
     class var setRecording: Bool {
         get {
-        return self.sharedInstance.recording
+            return self.sharedInstance.recording
         }
         set(newValue) {
             self.sharedInstance.recording = newValue
@@ -184,7 +212,7 @@ public class Spoofer: NSObject {
     
     class var setReplaying: Bool {
         get {
-        return self.sharedInstance.replaying
+            return self.sharedInstance.replaying
         }
         set(newValue) {
             self.sharedInstance.replaying = newValue

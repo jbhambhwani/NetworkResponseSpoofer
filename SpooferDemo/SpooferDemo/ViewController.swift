@@ -42,6 +42,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: SpooferLogNotification, object: nil)
+        Spoofer.delegate = self
     }
     
     deinit {
@@ -79,28 +80,19 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         // Decide on action and set state for current button press
         switch (sender, sender.title!) {
         case (recordButton, ButtonTitle.StartRecording.rawValue):
-            // Start Recording some network requests
-            sender.title = ButtonTitle.StopRecording.rawValue
-            sender.tintColor = UIColor.redColor()
+            // Start recording
             Spoofer.startRecording(scenarioName: newScenarioName, inViewController: self)
-            performSampleNetworkRequests()
             
         case (recordButton, ButtonTitle.StopRecording.rawValue):
             // Stop Recording
-            sender.title = ButtonTitle.StartRecording.rawValue
-            sender.tintColor = view.tintColor
             Spoofer.stopRecording()
             
         case (replayButton, ButtonTitle.StartReplaying.rawValue):
             // Start Replay
-            sender.title = ButtonTitle.StopReplaying.rawValue
-            sender.tintColor = UIColor.redColor()
             Spoofer.showRecordedScenarios(inViewController: self)
             
         case (replayButton, ButtonTitle.StopReplaying.rawValue):
             // Stop Replay
-            sender.title = ButtonTitle.StartReplaying.rawValue
-            sender.tintColor = view.tintColor
             Spoofer.stopReplaying()
             
         default:
@@ -136,6 +128,27 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         }).resume()
     }
     
+    func executeActionsForRecording(recordingState state: Bool) {
+        if state {
+            recordButton.title = ButtonTitle.StopRecording.rawValue
+            recordButton.tintColor = UIColor.redColor()
+            performSampleNetworkRequests()
+        } else {
+            recordButton.title = ButtonTitle.StartRecording.rawValue
+            recordButton.tintColor = view.tintColor
+        }
+    }
+    
+    func executeActionsForReplaying(replayingState state: Bool) {
+        if state {
+            replayButton.title = ButtonTitle.StopReplaying.rawValue
+            replayButton.tintColor = UIColor.redColor()
+        } else {
+            replayButton.title = ButtonTitle.StartReplaying.rawValue
+            replayButton.tintColor = view.tintColor
+        }
+    }
+    
     // MARK: - SearchBarDelegate
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         guard var searchText = searchBar.text where searchText.characters.count > 0 else { return }
@@ -164,5 +177,23 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     
 }
 
+// MARK: - Spoofer Delegate
+extension ViewController: SpooferDelegate {
+    func spooferDidStartRecording(scenarioName: String) {
+        executeActionsForRecording(recordingState: true)
+    }
+    
+    func spooferDidStopRecording(scenarioName: String, success: Bool) {
+        executeActionsForRecording(recordingState: false)
+    }
+    
+    func spooferDidStartReplaying(scenarioName: String, success: Bool) {
+        executeActionsForReplaying(replayingState: true)
+    }
+    
+    func spooferDidStopReplaying(scenarioName: String) {
+        executeActionsForReplaying(replayingState: false)
+    }
+}
 
 
