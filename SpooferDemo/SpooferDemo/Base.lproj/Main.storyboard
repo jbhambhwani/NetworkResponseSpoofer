@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--View Controller-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpooferDemo" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f47-Nv-bYC">
+                                <rect key="frame" x="0.0" y="556" width="600" height="44"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="5i3-CQ-LwE"/>
+                                </constraints>
+                                <items>
+                                    <barButtonItem title="Start Recording" id="f06-A3-MOs">
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" id="blh-LE-GcW"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="G0f-Ly-YSU"/>
+                                    <barButtonItem systemItem="trash" id="R6r-af-890">
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" id="nlO-4D-0i6"/>
+                                        </connections>
+                                    </barButtonItem>
+                                    <barButtonItem style="plain" systemItem="flexibleSpace" id="63e-Yd-kn2"/>
+                                    <barButtonItem title="Start Replaying" id="i8a-mi-ne1">
+                                        <connections>
+                                            <action selector="buttonPressed:" destination="BYZ-38-t0r" id="ph9-iB-6ex"/>
+                                        </connections>
+                                    </barButtonItem>
+                                </items>
+                            </toolbar>
+                            <navigationBar contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="D6w-WP-dVZ">
+                                <rect key="frame" x="0.0" y="0.0" width="600" height="66"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="66" id="xRj-f8-Um6"/>
+                                </constraints>
+                                <items>
+                                    <navigationItem title="Spoofer Demo" id="QBs-Z0-3rI"/>
+                                </items>
+                            </navigationBar>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="5Rj-zG-npg">
+                                <rect key="frame" x="0.0" y="66" width="600" height="490"/>
+                                <subviews>
+                                    <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="FTs-AG-a3O">
+                                        <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                                        <animations/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="44" id="VTW-kh-0qs"/>
+                                        </constraints>
+                                        <textInputTraits key="textInputTraits"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="LZv-r5-oTy"/>
+                                        </connections>
+                                    </searchBar>
+                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fh4-Xw-uSE">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="291"/>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <connections>
+                                            <outlet property="delegate" destination="BYZ-38-t0r" id="sg4-Oi-y5y"/>
+                                        </connections>
+                                    </webView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="  Console" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-44-OfY">
+                                        <rect key="frame" x="0.0" y="335" width="600" height="30"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.25098039220000001" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="30" id="QW0-tN-BJN"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XaP-Cj-RUv">
+                                        <rect key="frame" x="0.0" y="365" width="600" height="125"/>
+                                        <animations/>
+                                        <color key="backgroundColor" red="0.2156862745" green="0.1960784314" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="125" id="Urx-gJ-nzs"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                    </textView>
+                                </subviews>
+                                <animations/>
+                            </stackView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Nye-EX-Hcm">
+                                <rect key="frame" x="550" y="32" width="20" height="20"/>
+                                <animations/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="20" id="PyC-jb-UNn"/>
+                                    <constraint firstAttribute="height" constant="20" id="uGm-ys-lFy"/>
+                                </constraints>
+                            </activityIndicatorView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="5Rj-zG-npg" secondAttribute="trailing" id="3WU-Hh-GV3"/>
+                            <constraint firstItem="5Rj-zG-npg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="7ki-Hv-icu"/>
+                            <constraint firstItem="5Rj-zG-npg" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" id="7uU-9J-ytX"/>
+                            <constraint firstItem="D6w-WP-dVZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-20" id="9xf-AJ-Dxs"/>
+                            <constraint firstItem="f47-Nv-bYC" firstAttribute="top" secondItem="5Rj-zG-npg" secondAttribute="bottom" id="E92-86-2UA"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nye-EX-Hcm" secondAttribute="trailing" constant="10" id="H8O-Rv-RPz"/>
+                            <constraint firstAttribute="trailing" secondItem="5Rj-zG-npg" secondAttribute="trailing" id="HhK-Ja-s1y"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="f47-Nv-bYC" secondAttribute="bottom" id="IaP-3b-G0a"/>
+                            <constraint firstItem="D6w-WP-dVZ" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="-20" id="bkP-RK-HaE"/>
+                            <constraint firstItem="f47-Nv-bYC" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cR8-Lm-QRP"/>
+                            <constraint firstItem="5Rj-zG-npg" firstAttribute="top" secondItem="D6w-WP-dVZ" secondAttribute="bottom" id="cr2-c9-suv"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="Nye-EX-Hcm" secondAttribute="trailing" constant="10" id="ggU-3C-Hes"/>
+                            <constraint firstItem="Nye-EX-Hcm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="10" id="kwN-lq-NRO"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="D6w-WP-dVZ" secondAttribute="trailing" constant="-20" id="rzc-vi-RcN"/>
+                            <constraint firstItem="Nye-EX-Hcm" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="12" id="vuJ-GK-iKf"/>
+                            <constraint firstAttribute="trailing" secondItem="f47-Nv-bYC" secondAttribute="trailing" id="z8f-fL-AOu"/>
+                        </constraints>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="3WU-Hh-GV3"/>
+                                <exclude reference="7uU-9J-ytX"/>
+                                <exclude reference="ggU-3C-Hes"/>
+                                <exclude reference="kwN-lq-NRO"/>
+                            </mask>
+                        </variation>
+                    </view>
+                    <connections>
+                        <outlet property="activityIndicator" destination="Nye-EX-Hcm" id="vuj-Fp-wGg"/>
+                        <outlet property="clearButton" destination="R6r-af-890" id="oqt-eT-Izk"/>
+                        <outlet property="consoleTextView" destination="XaP-Cj-RUv" id="13e-G5-DBv"/>
+                        <outlet property="recordButton" destination="f06-A3-MOs" id="bC7-6O-ggR"/>
+                        <outlet property="replayButton" destination="i8a-mi-ne1" id="oe7-uG-PMQ"/>
+                        <outlet property="searchBar" destination="FTs-AG-a3O" id="9rN-20-hvy"/>
+                        <outlet property="webView" destination="Fh4-Xw-uSE" id="lsf-Nv-MRR"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1934" y="-446"/>
+        </scene>
+    </scenes>
+</document>

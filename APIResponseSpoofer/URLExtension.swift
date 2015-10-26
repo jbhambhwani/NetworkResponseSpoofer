@@ -10,44 +10,40 @@ import Foundation
 
 extension NSURL {
     
-    var allQueryItems: [NSURLQueryItem]? {
-        get {
-            let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false)!
-            let allQueryItems = components.queryItems
-            return allQueryItems as? [NSURLQueryItem]
-        }
+    // MARK: - Private properties
+    private var allQueryItems: [NSURLQueryItem]? {
+        guard let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false) else { return nil }
+        guard let queryItems = components.queryItems else { return nil }
+        return queryItems
     }
     
-    var normalizedQueryItemNames: String? {
-        get {
-            if let queryItems = allQueryItems {
-                var allQueryItemsNames = map(queryItems){return $0.name}
-                let normalizedNames = "?" + "&".join(allQueryItemsNames)
-                return normalizedNames
-            }
-            return nil
+    private var normalizedQueryItemNames: String? {
+        guard let queryItems = allQueryItems else { return nil }
+        // Normalization strips the values from query paramaters and only uses query item names (also filter ignored params)
+        let allQueryItemsNames = queryItems.map{ $0.name }.filter{ element in
+            !Spoofer.queryParametersToIgnore.contains(element)
         }
+        let normalizedNames = "?" + allQueryItemsNames.joinWithSeparator("&")
+        return normalizedNames
     }
     
+    // MARK: Public properties
     var normalizedURLString: String? {
-        get {
-            var normalizedString = self.host!
-            if let path = self.path {
-                normalizedString += path
-            }
-            // TODO - Enable whitelist/blacklist on query pparameter names and then enable this. Right now there could be cases where even parameters change based on scenario.
-            // if let queryItemNames = self.normalizedQueryItemNames {
-            //     normalizedString += queryItemNames
-            // }
-            return normalizedString
+        // If the host is empty, take an early exit
+        guard var normalizedString = self.host else { return nil }
+        // Append the path
+        if let pathString = self.path {
+            normalizedString += pathString
         }
+        // Normalize and append query parameter names (ignore values)
+        if let queryItemNames = self.normalizedQueryItemNames {
+            normalizedString += queryItemNames
+        }
+        return normalizedString
     }
     
     var isHTTP: Bool {
-        get {
-            let isHTTPURL = (self.scheme == "http") || (self.scheme == "https")
-            return isHTTPURL
-        }
+        return ["http","https"].contains(self.scheme)
     }
     
 }

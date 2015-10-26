@@ -8,13 +8,14 @@
 
 import UIKit
 import XCTest
-import APIResponseSpoofer
+@testable import APIResponseSpoofer
 
 class APIResponseSpooferTests: XCTestCase {
     
     var readyExpectation: XCTestExpectation?
     let smokeTest = "Smoke Test Spoofer"
     let smokeURL = NSURL(string: "http://echo.jsontest.com/key/value/one/two")!
+    let complexURL = NSURL(string: "http://www.example.com:8042/over/there/index.html?class=vehicle&type=2wheeler&name=ferrari#red")!
     
     override func setUp() {
         super.setUp()
@@ -27,7 +28,6 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func test01SpooferRecord() {
-        
         // 1: Create an expectation which will be fulfilled when we receive data
         readyExpectation = expectationWithDescription("ResponseReceived")
         
@@ -50,7 +50,6 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func test02SpooferPersistence() {
-        
         // 1: Start replaying the smoke test scenario
         Spoofer.startReplaying(scenarioName: smokeTest)
         // 2: Make sure the scenario was loaded to spoofer
@@ -64,7 +63,6 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func test03SpooferReplay() {
-        
         // 1: Create an expectation which will be fulfilled when we receive data
         readyExpectation = expectationWithDescription("SpoofedResponseReceived")
         
@@ -75,31 +73,46 @@ class APIResponseSpooferTests: XCTestCase {
         let session = NSURLSession.sharedSession()
         session.dataTaskWithURL(smokeURL, completionHandler: { data, response, error in
             if error == nil {
-                println("Cached Response : \(response) \nCached Data: \(data)")
+                print("Cached Response : \(response) \nCached Data: \(data)")
                 Spoofer.stopReplaying()
                 self.readyExpectation?.fulfill()
             }
         }).resume()
-
+        
         // 4: Loop until the expectation is fulfilled
         waitForExpectationsWithTimeout(10, handler: { error in
             XCTAssertNil(error, "Error")
         })
     }
     
-    func test04URLNormalization() {
+    func test04SimpleURLNormalization() {
         let normalizedSmokeURL = "echo.jsontest.com/key/value/one/two"
         assert(smokeURL.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
+    }
+    
+    func test05ComplexURLNormalization() {
+        let normalizedComplexURL = "www.example.com/over/there/index.html?class&type&name"
+        assert(complexURL.normalizedURLString == normalizedComplexURL, "Normalized version must match")
+    }
+    
+    func test06ParameterIgnoreURLNormalization() {
+        Spoofer.queryParametersToIgnore = ["class","name","somerandom"]
+        let normalizedComplexURLIgnoringParameters = "www.example.com/over/there/index.html?type"
+        assert(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
+    }
+    
+    func test07LoadAllScenarios() {
+        let allScenarios = Store.allScenarioNames()
+        print("All Scenarios:\n\(allScenarios)")
+    }
+    
+    func testFormattedSeperator() {
+        logFormattedSeperator("Scenario Loaded Succesfully!")
+        logFormattedSeperator("")
+        logFormattedSeperator("-")
+        logFormattedSeperator("+")
+        logFormattedSeperator("@")
+        logFormattedSeperator("This string is 100 characters plus to that it breaks the formated seperator logic. But who will want this anyway?. The method should just print this string as it is.")
+    }
 
-        // TODO: Uncomment after fixing URL Normalization code
-//        let complexURL = NSURL(string: "http://www.example.com:8042/over/there/index.html?type=animal&name=cat#nose")
-//        let normalizedComplexURL = "www.example.com/over/there/index.html?type&name"
-//        assert(complexURL!.normalizedURLString == normalizedComplexURL, "Normalized version has to have the host and query parameters values stipped away")
-    }
-    
-    func test05LoadAllScenarios() {
-        let allScenarios = Store.allScenarios()
-        println("All Scenarios:\n\(allScenarios)")
-    }
-    
 }
