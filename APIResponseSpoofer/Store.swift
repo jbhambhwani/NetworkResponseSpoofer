@@ -31,7 +31,7 @@ class Store {
         let success = data.writeToURL(scenarioFileURL, atomically: true)
         if success {
             logFormattedSeperator()
-            postNotification("Saved \(scenario)\nFile: \(scenarioFileURL)")
+            postNotification("Saved \(scenario)\nFile: \(scenarioFileURL)", object: self)
             callback?(success: true, savedScenario: scenario)
         } else {
             handleError("Unable to save scenario", recoveryMessage: "Writing to disk failed. Try again", code: SpooferError.DiskWriteError.rawValue, errorHandler: errorHandler)
@@ -50,7 +50,7 @@ class Store {
         if let unwrappedData = scenarioData where unwrappedData.length > 0 {
             let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(unwrappedData) as? Scenario
             callback?(success: true, scenario: scenario)
-            postNotification("Loaded \(scenario!)\nFile: \(scenarioFileURL)")
+            postNotification("Loaded \(scenario!)\nFile: \(scenarioFileURL)", object: self)
             logFormattedSeperator()
         } else {
             handleError("Empty scenario file found at: \(scenarioFileURL)", recoveryMessage: "Remove the file or re-record the scenario.", code: SpooferError.EmptyFileError.rawValue, errorHandler: errorHandler)

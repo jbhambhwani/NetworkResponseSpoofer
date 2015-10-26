@@ -66,7 +66,7 @@ class ReplayingProtocol : NSURLProtocol {
             return
         }
         
-        postNotification("Serving response from cache for : \(self.request.URL?.absoluteString)")
+        postNotification("Serving response from cache for : \(self.request.URL?.absoluteString)", object: self)
         
         self.client?.URLProtocol(self, didReceiveResponse: spoofedResponse, cacheStoragePolicy: .NotAllowed)
         self.client?.URLProtocol(self, didLoadData: cachedResponse.data!)

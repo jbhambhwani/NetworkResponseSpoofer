@@ -13,7 +13,6 @@
 		412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
 		4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */; };
 		4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EF1B6EA21C00EAFE04 /* Store.swift */; };
-		4137B6121BD87837005AF53E /* README.md in Sources */ = {isa = PBXBuildFile; fileRef = 4137B6111BD87837005AF53E /* README.md */; };
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */; };
@@ -322,7 +321,6 @@
 			files = (
 				416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
-				4137B6121BD87837005AF53E /* README.md in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,
 				4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */,
 				412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */,
@@ -482,7 +480,6 @@
 		4147EA641B684D7E001DE517 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
@@ -502,7 +499,6 @@
 		4147EA651B684D7E001DE517 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				APPLICATION_EXTENSION_API_ONLY = YES;
 				CLANG_ENABLE_MODULES = YES;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
