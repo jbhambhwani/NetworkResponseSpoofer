@@ -26,11 +26,11 @@ func logFormattedSeperator(message: String? = "-") {
     }
 }
 
-func postNotification(message: String) {
+func postNotification(message: String, object: AnyObject? = nil) {
     // Print to console
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
-    NSNotificationCenter.defaultCenter().postNotificationName(SpooferLogNotification, object: nil, userInfo: ["message": message])
+    NSNotificationCenter.defaultCenter().postNotificationName(SpooferLogNotification, object: object, userInfo: ["message": message])
 }
 
 func spooferStoryBoard() -> UIStoryboard {
