@@ -9,6 +9,10 @@
 import Foundation
 
 public let SpooferLogNotification = "SpooferLogNotification"
+public let SpooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
+public let SpooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
+public let SpooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
+public let SpooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
 
 func logFormattedSeperator(message: String? = "-") {
     guard let message = message else { return }
