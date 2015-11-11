@@ -13,10 +13,10 @@ Spoofer.startRecording(scenarioName: "Give a name to your scenario")
 
 Each scenario needs a name. Preferably keep this short so that it can be displayed as a list in device/simulator without word wrap. Once a cycle of recording finishes (end to end), stop the recording and this will save the requests and responses for that session under the scenario.
 
-If UI Testing / BDD / Users need to provide a name for the scenario from UI instead from code, invoke startRecording passing in the view controller from which to display a popup for naming the scenario.
+**Bonus Feature:** If UI Testing / BDD / Users need to provide a name for the scenario from UI instead from code, invoke startRecording passing in the view controller from which to display a popup for naming the scenario.
 
 ```swift
-Spoofer.startRecording(scenarioName: "", inViewController: self)
+Spoofer.startRecording(inViewController: self)
 ```
 
 ####Stop Recording
@@ -27,7 +27,7 @@ Spoofer.stopRecording()
 
 ####Start Replay
 ```swift
-Spoofer.startReplaying(scenarioName: "Give the scenario name to replay")
+Spoofer.startReplaying(scenarioName: "Scenario name to replay")
 ```
 
 If instead what you need is a listing of all scenarios and a convenient way to start replaying the scenario, invoke the spoofer as below asking it to show you a list of scenarios. This will popup a tableview with a list of all available scenarios, tapping one will start the replay for that particular scenario.
@@ -54,10 +54,12 @@ Spoofer.queryParametersToIgnore(["dynamicparameter","ignoreme"])
 ```
 
 ####Receiving call back from the spoofer
+
+#####Method 1
 If you need to update UI or respond to the spoofer state changes, implement the SpooferDelegate protocol and use the delegate callbacks to do so.
 ```swift
 class MyClass: SpooferDelegate {
-    
+
     init() {
         // Some setup code
         ...
@@ -74,6 +76,13 @@ func spooferDidStopRecording(scenarioName: String, success: Bool)
 func spooferDidStartReplaying(scenarioName: String, success: Bool)
 func spooferDidStopReplaying(scenarioName: String)
 ```
+
+#####Method 2
+Spoofer will fire the following notifications whenever its state changes. You can subscribe to these notifications and do any related work.
+* SpooferStartedRecordingNotification
+* SpooferStoppedRecordingNotification
+* SpooferStartedReplayingNotification
+* SpooferStoppedReplayingNotification
 
 ## Integrating via Dependency management
 
