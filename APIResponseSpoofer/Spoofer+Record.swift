@@ -16,47 +16,47 @@ extension Spoofer {
         return self.sharedInstance.recording
     }
     
-    public class func startRecording(scenarioName scenarioName: String, inViewController sourceViewController: UIViewController? = nil) -> Bool {
+    public class func startRecording(scenarioName scenarioName: String) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
         if protocolRegistered {
-            // If a view controller was passed in, use it to display an alert controller asking for a scenario name
-            if let presentingViewController = sourceViewController {
-                let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .Alert)
-                
-                let createAction = UIAlertAction(title: "Create", style: .Default) { (_) in
-                    let scenarioNameTextField = alertController.textFields![0] as UITextField
-                    startRecording(scenarioName: scenarioNameTextField.text!)
-                }
-                createAction.enabled = false
-                
-                let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
-                    self.setRecording = false
-                    self.spoofedScenario = nil
-                    NSURLProtocol.unregisterClass(RecordingProtocol)
-                }
-                
-                alertController.addTextFieldWithConfigurationHandler { (textField) in
-                    textField.placeholder = "Enter scenario name"
-                    NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                        createAction.enabled = textField.text != ""
-                    }
-                }
-                
-                alertController.addAction(createAction)
-                alertController.addAction(cancelAction)
-                
-                presentingViewController.presentViewController(alertController, animated: true, completion: nil)
-            } else {
-                self.setRecording = true
-                // Create a fresh scenario based on the named passed in
-                self.spoofedScenario = Scenario(name: scenarioName)
-                // Inform the delegate that spoofer started recording
-                Spoofer.delegate?.spooferDidStartRecording(scenarioName)
-                // Post a state change notification for interested parties
-                NSNotificationCenter.defaultCenter().postNotificationName(SpooferStartedRecordingNotification, object: sharedInstance)
-            }
+            self.setRecording = true
+            // Create a fresh scenario based on the named passed in
+            self.spoofedScenario = Scenario(name: scenarioName)
+            // Inform the delegate that spoofer started recording
+            Spoofer.delegate?.spooferDidStartRecording(scenarioName)
+            // Post a state change notification for interested parties
+            NSNotificationCenter.defaultCenter().postNotificationName(SpooferStartedRecordingNotification, object: sharedInstance)
         }
         return protocolRegistered
+    }
+    
+    public class func startRecording(inViewController sourceViewController: UIViewController) {
+        // When a view controller was passed in, use it to display an alert controller asking for a scenario name
+        let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .Alert)
+
+        let createAction = UIAlertAction(title: "Create", style: .Default) { (_) in
+            let scenarioNameTextField = alertController.textFields![0] as UITextField
+            startRecording(scenarioName: scenarioNameTextField.text!)
+        }
+        createAction.enabled = false
+
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
+            self.setRecording = false
+            self.spoofedScenario = nil
+            NSURLProtocol.unregisterClass(RecordingProtocol)
+        }
+
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Enter scenario name"
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                createAction.enabled = textField.text != ""
+            }
+        }
+
+        alertController.addAction(createAction)
+        alertController.addAction(cancelAction)
+
+        sourceViewController.presentViewController(alertController, animated: true, completion: nil)
     }
     
     public class func stopRecording() {

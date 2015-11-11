@@ -54,6 +54,6 @@ extension Spoofer {
         let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)
         sourceViewController.view.addSubview(scenarioListController.view)
         sourceViewController.presentViewController(scenarioListController, animated: true, completion: nil)
+        
     }
-    
 }
