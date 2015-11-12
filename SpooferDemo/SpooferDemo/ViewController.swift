@@ -33,11 +33,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         return formatter
     }()
     
-    private var newScenarioName: String {
-        // Generate a scenario name from current timestamp
-        return "Scenario-\(dateFormatter.stringFromDate(NSDate()))"
-    }
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -81,7 +76,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         switch (sender, sender.title!) {
         case (recordButton, ButtonTitle.StartRecording.rawValue):
             // Start recording
-            Spoofer.startRecording(scenarioName: newScenarioName, inViewController: self)
+            Spoofer.startRecording(inViewController: self)
             
         case (recordButton, ButtonTitle.StopRecording.rawValue):
             // Stop Recording

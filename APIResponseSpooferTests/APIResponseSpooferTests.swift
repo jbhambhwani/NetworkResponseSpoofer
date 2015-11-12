@@ -91,13 +91,13 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func test05ComplexURLNormalization() {
-        let normalizedComplexURL = "www.example.com/over/there/index.html?class&type&name"
+        let normalizedComplexURL = "example.com/over/there/index.html?class&type&name"
         assert(complexURL.normalizedURLString == normalizedComplexURL, "Normalized version must match")
     }
     
     func test06ParameterIgnoreURLNormalization() {
         Spoofer.queryParametersToIgnore = ["class","name","somerandom"]
-        let normalizedComplexURLIgnoringParameters = "www.example.com/over/there/index.html?type"
+        let normalizedComplexURLIgnoringParameters = "example.com/over/there/index.html?type"
         assert(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
     }
     

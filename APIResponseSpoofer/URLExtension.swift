@@ -27,18 +27,26 @@ extension NSURL {
         return normalizedNames
     }
     
-    // MARK: Public properties
+    // MARKPublic properties
     var normalizedURLString: String? {
         // If the host is empty, take an early exit
         guard var normalizedString = self.host else { return nil }
+        
+        if normalizedString.hasPrefix("www.") {
+            let wwwIndex = normalizedString.startIndex.advancedBy(4)
+            normalizedString = normalizedString.substringFromIndex(wwwIndex)
+        }
+        
         // Append the path
         if let pathString = self.path {
             normalizedString += pathString
         }
+        
         // Normalize and append query parameter names (ignore values)
         if let queryItemNames = self.normalizedQueryItemNames {
             normalizedString += queryItemNames
         }
+        
         return normalizedString
     }
     
