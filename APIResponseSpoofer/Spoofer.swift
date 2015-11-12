@@ -28,6 +28,12 @@ public enum SpooferError: Int, ErrorType {
 
 @objc public class Spoofer: NSObject {
     
+    // MARK: - Notifications
+    public static let SpooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
+    public static let SpooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
+    public static let SpooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
+    public static let SpooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
+
     // MARK: - Public properties
     public class var delegate: SpooferDelegate? {
         get {
