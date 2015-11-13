@@ -12,9 +12,12 @@ import XCTest
 
 class APIResponseSpooferTests: XCTestCase {
     
-    var readyExpectation: XCTestExpectation?
+    var responseReceived: XCTestExpectation?
+    var spoofedResponseReceived: XCTestExpectation?
+    
     let smokeTest = "Smoke Test Spoofer"
-    let smokeURL = NSURL(string: "http://echo.jsontest.com/key/value/one/two")!
+    let sampleURL1 = NSURL(string: "http://echo.jsontest.com/key/value/one/two")!
+    let sampleURL2 = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
     let complexURL = NSURL(string: "http://www.example.com:8042/over/there/index.html?class=vehicle&type=2wheeler&name=ferrari#red")!
     
     override func setUp() {
@@ -29,17 +32,17 @@ class APIResponseSpooferTests: XCTestCase {
     
     func test01SpooferRecord() {
         // 1: Create an expectation which will be fulfilled when we receive data
-        readyExpectation = expectationWithDescription("ResponseReceived")
+        responseReceived = expectationWithDescription("ResponseReceived")
         
         // 2: Start recording responses
         Spoofer.startRecording(scenarioName: smokeTest)
         
         // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
-        session.dataTaskWithURL(smokeURL, completionHandler: { data, response, error in
+        session.dataTaskWithURL(sampleURL1, completionHandler: { data, response, error in
             if error == nil {
                 Spoofer.stopRecording()
-                self.readyExpectation?.fulfill()
+                self.responseReceived?.fulfill()
             }
         }).resume()
         
@@ -64,18 +67,18 @@ class APIResponseSpooferTests: XCTestCase {
     
     func test03SpooferReplay() {
         // 1: Create an expectation which will be fulfilled when we receive data
-        readyExpectation = expectationWithDescription("SpoofedResponseReceived")
+        spoofedResponseReceived = expectationWithDescription("SpoofedResponseReceived")
         
         // 2: Start replaying the smoke test scenario so that Spoofer can send data back instead of a direct network call
         Spoofer.startReplaying(scenarioName: smokeTest)
         
         // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
-        session.dataTaskWithURL(smokeURL, completionHandler: { data, response, error in
+        session.dataTaskWithURL(sampleURL1, completionHandler: { data, response, error in
             if error == nil {
                 print("Cached Response : \(response) \nCached Data: \(data)")
                 Spoofer.stopReplaying()
-                self.readyExpectation?.fulfill()
+                self.spoofedResponseReceived?.fulfill()
             }
         }).resume()
         
@@ -87,7 +90,7 @@ class APIResponseSpooferTests: XCTestCase {
     
     func test04SimpleURLNormalization() {
         let normalizedSmokeURL = "echo.jsontest.com/key/value/one/two"
-        assert(smokeURL.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
+        assert(sampleURL1.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
     }
     
     func test05ComplexURLNormalization() {

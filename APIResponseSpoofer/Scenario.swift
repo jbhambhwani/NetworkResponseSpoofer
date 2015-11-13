@@ -25,6 +25,10 @@ class Scenario : NSObject, NSCoding {
     
     // MARK: - Managing responses
     func addResponse(response: APIResponse) {
+        if let existingResponseIndex = apiResponses.indexOf(response) {
+            // If a response matching the same normalized URL exists, remove and replace it with the new response (so that we keep latest)
+            apiResponses.removeAtIndex(existingResponseIndex)
+        }
         apiResponses.append(response)
         postNotification("Response received:\n\(response)", object: self)
     }

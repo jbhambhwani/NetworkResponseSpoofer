@@ -65,6 +65,16 @@ class APIResponse : NSObject, NSCoding {
         aCoder.encodeObject(headerFields, forKey: ResponseKeys.headerFields.rawValue)
     }
     
+    // Swift 2 broke equatable and hashable for NSObject subclasses with the override "func ==" method. This is the new usage.
+    override func isEqual(object: AnyObject?) -> Bool {
+        guard let rhs = object as? APIResponse else { return false }
+        guard let lhsURL = requestURL.normalizedURLString, rhsURL = rhs.requestURL.normalizedURLString else { return false }
+        if lhsURL == rhsURL {
+            return true
+        }
+        return false
+    }
+    
 }
 
 // MARK: Helper methods for debugging
