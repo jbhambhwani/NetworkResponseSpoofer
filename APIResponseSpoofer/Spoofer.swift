@@ -64,18 +64,20 @@ public enum SpooferError: Int, ErrorType {
     
     // MARK: - Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
-        if domainsToSpoof.isEmpty {
-            // Handle all cases in case no domains are whitelisted
-            return true
-        } else {
-            // If whitelist is set, use it
-            for hostDomain in domainsToSpoof {
-                if hostDomain == url.host {
-                    return true
-                }
+        // Take an early exit if host is empty
+        guard let host = url.host else { return false }
+        
+        // Handle all cases in case no domains are whitelisted
+        if domainsToSpoof.isEmpty { return true }
+        
+        // If whitelist is set, use it
+        for hostDomain in domainsToSpoof {
+            if host.containsString(hostDomain) {
+                return true
             }
-            return false
         }
+        
+        return false
     }
     
     class var spoofedScenario: Scenario? {
