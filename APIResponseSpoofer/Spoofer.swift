@@ -53,6 +53,15 @@ public enum SpooferError: Int, ErrorType {
         }
     }
     
+    public class var domainsToIgnore: [String] {
+        get {
+            return self.sharedInstance.ignoredDomains
+        }
+        set {
+            self.sharedInstance.ignoredDomains = newValue
+        }
+    }
+    
     public class var queryParametersToIgnore: [String] {
         get {
             return self.sharedInstance.ignoredQueryParameters
@@ -70,11 +79,12 @@ public enum SpooferError: Int, ErrorType {
         // Handle all cases in case no domains are whitelisted
         if domainsToSpoof.isEmpty { return true }
         
-        // If whitelist is set, use it
-        for hostDomain in domainsToSpoof {
-            if host.containsString(hostDomain) {
-                return true
-            }
+        // If whitelist/blacklist is set, use it
+        let whiteListedDomain = domainsToSpoof.filter{ host.containsString($0) }
+        let blackListedDomain = domainsToIgnore.filter{ host.containsString($0) }
+        
+        if whiteListedDomain.count == 1 && blackListedDomain.count == 0 {
+            return true
         }
         
         return false
@@ -123,6 +133,7 @@ public enum SpooferError: Int, ErrorType {
     var recording: Bool = false
     var replaying: Bool = false
     private var spoofedDomains = [String]()
+    private var ignoredDomains = [String]()
     private var ignoredQueryParameters = [String]()
     private weak var delegate: SpooferDelegate?
 }
