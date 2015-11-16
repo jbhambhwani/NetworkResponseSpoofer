@@ -52,6 +52,26 @@ class RecordingProtocol : NSURLProtocol {
         self.connection = nil
     }
     
+    func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace?) -> Bool {
+        return protectionSpace?.authenticationMethod == NSURLAuthenticationMethodServerTrust
+    }
+    
+    func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge?) {
+        
+        guard let challenge = challenge, sender = challenge.sender else { return }
+        
+        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
+            if Spoofer.allowSelfSignedCertificate {
+                if let serverTrust = challenge.protectionSpace.serverTrust {
+                    let credentials = NSURLCredential(forTrust: serverTrust)
+                    sender.useCredential(credentials, forAuthenticationChallenge: challenge)
+                }
+            }
+        }
+        
+        sender.continueWithoutCredentialForAuthenticationChallenge(challenge)
+    }
+    
     func connection(connection: NSURLConnection!, didReceiveResponse response: NSURLResponse!) {
         // Send the received response to the client
         self.client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)

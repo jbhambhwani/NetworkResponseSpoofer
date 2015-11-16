@@ -71,6 +71,15 @@ public enum SpooferError: Int, ErrorType {
         }
     }
     
+    public class var allowSelfSignedCertificate: Bool {
+        get {
+            return self.sharedInstance.acceptSelfSignedCertificate
+        }
+        set {
+            self.sharedInstance.acceptSelfSignedCertificate = newValue
+        }
+    }
+    
     // MARK: - Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
         // Take an early exit if host is empty
@@ -135,5 +144,6 @@ public enum SpooferError: Int, ErrorType {
     private var spoofedDomains = [String]()
     private var ignoredDomains = [String]()
     private var ignoredQueryParameters = [String]()
+    private var acceptSelfSignedCertificate = false
     private weak var delegate: SpooferDelegate?
 }
