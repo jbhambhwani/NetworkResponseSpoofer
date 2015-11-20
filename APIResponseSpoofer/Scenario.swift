@@ -34,13 +34,9 @@ class Scenario : NSObject, NSCoding {
     }
     
     func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
-        let normalizedInputURL = urlRequest.URL?.normalizedURLString
-        for response in apiResponses {
-            if response.requestURL.normalizedURLString ==  normalizedInputURL {
-                return response
-            }
-        }
-        return nil
+        let normalizedURLString = urlRequest.URL?.normalizedURLString
+        let response = apiResponses.filter { $0.requestURL.normalizedURLString == normalizedURLString }.first
+        return response
     }
     
     subscript(urlRequest: NSURLRequest) -> APIResponse? {

@@ -21,7 +21,6 @@ class Store {
         let scenarioFileURL = getScenarioFileURL(scenario.name)
         if NSFileManager.defaultManager().fileExistsAtPath(scenarioFileURL.absoluteString) {
             do {
-                // TODO: Ask if the scenario should be overwritten maybe instead of overwriting blindly
                 try NSFileManager.defaultManager().removeItemAtURL(scenarioFileURL)
             } catch {
                 
@@ -39,7 +38,7 @@ class Store {
     }
     
     // Load a scenario from disk
-    class func loadScenario(scenarioName: String, callback: ((success: Bool, scenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+    class func loadScenario(scenarioName: String, callback: ((success: Bool, scenario: Scenario) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
         let scenarioFileURL = getScenarioFileURL(scenarioName)
         var scenarioData: NSData?
         do {
@@ -49,9 +48,11 @@ class Store {
         }
         if let unwrappedData = scenarioData where unwrappedData.length > 0 {
             let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(unwrappedData) as? Scenario
-            callback?(success: true, scenario: scenario)
-            postNotification("Loaded \(scenario!)\nFile: \(scenarioFileURL)", object: self)
-            logFormattedSeperator()
+            if let unwrappedScenario = scenario {
+                callback?(success: true, scenario: unwrappedScenario)
+                postNotification("Loaded \(scenario!)\nFile: \(scenarioFileURL)", object: self)
+                logFormattedSeperator()
+            }
         } else {
             handleError("Empty scenario file found at: \(scenarioFileURL)", recoveryMessage: "Remove the file or re-record the scenario.", code: SpooferError.EmptyFileError.rawValue, errorHandler: errorHandler)
         }
@@ -76,8 +77,6 @@ class Store {
         // Get a reference to the documents directory & Construct a file name based on the scenario file
         let scenarioFileURL = spooferDocumentsDirectory().URLByAppendingPathComponent("\(scenarioName).scenario")
         return scenarioFileURL
-        // let escapedString = scenarioFilePath.absoluteString.stringByReplacingOccurrencesOfString(" ", withString: "-")
-        // return escapedString
     }
     
     private class func applicationDocumentsDirectory() -> NSURL {

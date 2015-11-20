@@ -53,6 +53,15 @@ public enum SpooferError: Int, ErrorType {
         }
     }
     
+    public class var domainsToIgnore: [String] {
+        get {
+            return self.sharedInstance.ignoredDomains
+        }
+        set {
+            self.sharedInstance.ignoredDomains = newValue
+        }
+    }
+    
     public class var queryParametersToIgnore: [String] {
         get {
             return self.sharedInstance.ignoredQueryParameters
@@ -62,20 +71,32 @@ public enum SpooferError: Int, ErrorType {
         }
     }
     
+    public class var allowSelfSignedCertificate: Bool {
+        get {
+            return self.sharedInstance.acceptSelfSignedCertificate
+        }
+        set {
+            self.sharedInstance.acceptSelfSignedCertificate = newValue
+        }
+    }
+    
     // MARK: - Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
-        if domainsToSpoof.isEmpty {
-            // Handle all cases in case no domains are whitelisted
+        // Take an early exit if host is empty
+        guard let host = url.host else { return false }
+        
+        // Handle all cases in case no domains are whitelisted
+        if domainsToSpoof.isEmpty { return true }
+        
+        // If whitelist/blacklist is set, use it
+        let whiteListedDomain = domainsToSpoof.filter{ host.containsString($0) }
+        let blackListedDomain = domainsToIgnore.filter{ host.containsString($0) }
+        
+        if whiteListedDomain.count == 1 && blackListedDomain.count == 0 {
             return true
-        } else {
-            // If whitelist is set, use it
-            for hostDomain in domainsToSpoof {
-                if hostDomain == url.host {
-                    return true
-                }
-            }
-            return false
         }
+        
+        return false
     }
     
     class var spoofedScenario: Scenario? {
@@ -121,6 +142,8 @@ public enum SpooferError: Int, ErrorType {
     var recording: Bool = false
     var replaying: Bool = false
     private var spoofedDomains = [String]()
+    private var ignoredDomains = [String]()
     private var ignoredQueryParameters = [String]()
+    private var acceptSelfSignedCertificate = false
     private weak var delegate: SpooferDelegate?
 }

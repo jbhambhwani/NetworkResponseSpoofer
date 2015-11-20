@@ -27,12 +27,6 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         case StopReplaying = "Stop Replaying"
     }
     
-    private lazy var dateFormatter: NSDateFormatter = {
-        let formatter = NSDateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd-HH-mm-ss"
-        return formatter
-    }()
-    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()

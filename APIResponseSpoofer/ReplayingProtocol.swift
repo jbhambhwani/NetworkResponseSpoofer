@@ -44,7 +44,7 @@ class ReplayingProtocol : NSURLProtocol {
     }
     
     override func startLoading() {
-        guard let cachedResponse = Spoofer.spoofedScenario?[self.request] else {
+        guard let spoofedScenario = Spoofer.spoofedScenario, cachedResponse = spoofedScenario.responseForRequest(self.request) else {
             // Throw an error in case we are unable to load a response
             let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.NoSavedResponseError.rawValue, url: self.request.URL!.absoluteString, errorHandler: nil)
             self.client?.URLProtocol(self, didFailWithError: httpError)

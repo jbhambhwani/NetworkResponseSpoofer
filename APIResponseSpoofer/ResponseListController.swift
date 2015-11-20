@@ -1,0 +1,93 @@
+//
+//  ResponseListController.swift
+//  APIResponseSpoofer
+//
+//  Created by Deepu Mukundan on 11/13/15.
+//  Copyright © 2015 Hotwire. All rights reserved.
+//
+
+import UIKit
+
+class ResponseListController: UITableViewController {
+    
+    var scenarioName: String = ""
+    
+    private var allResponses = [APIResponse]()
+    private var filteredResponses = [APIResponse]()
+    
+    private lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.delegate = self
+        controller.dimsBackgroundDuringPresentation = false
+        controller.searchBar.sizeToFit()
+        controller.searchBar.barTintColor = UIColor.lightGrayColor()
+        controller.searchBar.tintColor = UIColor.blackColor()
+        controller.searchBar.delegate = self
+        return controller
+    }()
+    
+    // MARK: - Lifecycle
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.scrollsToTop = true
+        tableView.tableHeaderView = searchController.searchBar
+        // Load the responses for the passed in scenario
+        if scenarioName.characters.count > 0 {
+            loadScenario()
+        }
+    }
+    
+    // MARK: - Table view data source
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchController.active ? filteredResponses.count : allResponses.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("RequestURLCell", forIndexPath: indexPath)
+        let response = searchController.active ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
+        cell.textLabel?.text = response.requestURL.absoluteString
+        return cell
+    }
+    
+    // Tableview Delegate
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+    }
+    
+    // MARK: Utility methods
+    func loadScenario() {
+        Store.loadScenario(scenarioName, callback: { success, scenario in
+            if success {
+                self.allResponses = scenario.apiResponses
+                self.tableView.reloadData()
+            }
+            }, errorHandler: { error in
+                
+        })
+    }
+    
+}
+
+extension ResponseListController: UISearchResultsUpdating, UISearchControllerDelegate {
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        if searchController.searchBar.text?.characters.count > 0 {
+            filteredResponses = allResponses.filter({ response -> Bool in
+                return response.requestURL.absoluteString.lowercaseString.rangeOfString(searchController.searchBar.text!.lowercaseString) != nil
+            })
+        } else {
+            filteredResponses = allResponses
+        }
+        self.tableView.reloadData()
+    }
+}
+
+extension ResponseListController: UISearchBarDelegate {
+    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
+        self.tableView.reloadData()
+    }
+}
