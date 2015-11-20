@@ -6,8 +6,9 @@
 //  Copyright (c) 2015 Hotwire. All rights reserved.
 //
 
-import UIKit
 import XCTest
+import UIKit
+
 @testable import APIResponseSpoofer
 
 class APIResponseSpooferTests: XCTestCase {
