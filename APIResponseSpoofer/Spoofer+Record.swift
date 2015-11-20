@@ -48,6 +48,7 @@ extension Spoofer {
 
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Enter scenario name"
+            textField.autocapitalizationType = .Sentences
             NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
                 createAction.enabled = textField.text != ""
             }
