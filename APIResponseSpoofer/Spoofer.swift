@@ -40,14 +40,14 @@ public enum SpooferError: Int, ErrorType {
         set { sharedInstance.delegate = newValue }
     }
     
-    public class var domainsToSpoof: [String] {
-        get { return sharedInstance.spoofedDomains }
-        set { sharedInstance.spoofedDomains = newValue }
+    public class var hostNamesToSpoof: [String] {
+        get { return sharedInstance.spoofedHosts }
+        set { sharedInstance.spoofedHosts = newValue }
     }
     
-    public class var domainsToIgnore: [String] {
-        get { return sharedInstance.ignoredDomains }
-        set { sharedInstance.ignoredDomains = newValue }
+    public class var hostNamesToIgnore: [String] {
+        get { return sharedInstance.ignoredHosts }
+        set { sharedInstance.ignoredHosts = newValue }
     }
     
     public class var subDomainsToIgnore: [String] {
@@ -71,11 +71,11 @@ public enum SpooferError: Int, ErrorType {
         guard let host = url.host else { return false }
         
         // Handle all cases in case no domains are whitelisted
-        if domainsToSpoof.isEmpty { return true }
+        if hostNamesToSpoof.isEmpty { return true }
         
         // If whitelist/blacklist is set, use it
-        let whiteListedDomain = domainsToSpoof.filter() { host.containsString($0) }
-        let blackListedDomain = domainsToIgnore.filter() { host.containsString($0) }
+        let whiteListedDomain = hostNamesToSpoof.filter() { host.containsString($0) }
+        let blackListedDomain = hostNamesToIgnore.filter() { host.containsString($0) }
         
         if whiteListedDomain.count == 1 && blackListedDomain.count == 0 {
             return true
@@ -120,8 +120,8 @@ public enum SpooferError: Int, ErrorType {
     var scenario: Scenario? = nil
     var recording: Bool = false
     var replaying: Bool = false
-    private var spoofedDomains = [String]()
-    private var ignoredDomains = [String]()
+    private var spoofedHosts = [String]()
+    private var ignoredHosts = [String]()
     private var ignoredSubdomains = [String]()
     private var ignoredQueryParameters = [String]()
     private var acceptSelfSignedCertificate = false

@@ -45,7 +45,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recorded Scenarios" prompt="Tap a scenario to start replay" id="FOd-Dt-kCQ">
-                        <barButtonItem key="backBarButtonItem" title="Scenarios" id="4fl-dr-b6I"/>
+                        <barButtonItem key="backBarButtonItem" title="Back" id="4fl-dr-b6I"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aL0-Gi-jnC">
                             <connections>
                                 <action selector="cancel:" destination="brR-F4-4fZ" id="bOd-bj-pmr"/>
