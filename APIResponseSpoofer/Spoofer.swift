@@ -36,48 +36,33 @@ public enum SpooferError: Int, ErrorType {
 
     // MARK: - Public properties
     public class var delegate: SpooferDelegate? {
-        get {
-            return self.sharedInstance.delegate
-        }
-        set {
-            self.sharedInstance.delegate = newValue
-        }
+        get { return sharedInstance.delegate }
+        set { sharedInstance.delegate = newValue }
     }
     
-    public class var domainsToSpoof: [String] {
-        get {
-            return self.sharedInstance.spoofedDomains
-        }
-        set {
-            self.sharedInstance.spoofedDomains = newValue
-        }
+    public class var hostNamesToSpoof: [String] {
+        get { return sharedInstance.spoofedHosts }
+        set { sharedInstance.spoofedHosts = newValue }
     }
     
-    public class var domainsToIgnore: [String] {
-        get {
-            return self.sharedInstance.ignoredDomains
-        }
-        set {
-            self.sharedInstance.ignoredDomains = newValue
-        }
+    public class var hostNamesToIgnore: [String] {
+        get { return sharedInstance.ignoredHosts }
+        set { sharedInstance.ignoredHosts = newValue }
+    }
+    
+    public class var subDomainsToIgnore: [String] {
+        get { return sharedInstance.ignoredSubdomains }
+        set { sharedInstance.ignoredSubdomains = newValue }
     }
     
     public class var queryParametersToIgnore: [String] {
-        get {
-            return self.sharedInstance.ignoredQueryParameters
-        }
-        set {
-            self.sharedInstance.ignoredQueryParameters = newValue
-        }
+        get { return sharedInstance.ignoredQueryParameters }
+        set { sharedInstance.ignoredQueryParameters = newValue }
     }
     
     public class var allowSelfSignedCertificate: Bool {
-        get {
-            return self.sharedInstance.acceptSelfSignedCertificate
-        }
-        set {
-            self.sharedInstance.acceptSelfSignedCertificate = newValue
-        }
+        get { return sharedInstance.acceptSelfSignedCertificate }
+        set { sharedInstance.acceptSelfSignedCertificate = newValue }
     }
     
     // MARK: - Internal methods and properties
@@ -86,11 +71,11 @@ public enum SpooferError: Int, ErrorType {
         guard let host = url.host else { return false }
         
         // Handle all cases in case no domains are whitelisted
-        if domainsToSpoof.isEmpty { return true }
+        if hostNamesToSpoof.isEmpty { return true }
         
         // If whitelist/blacklist is set, use it
-        let whiteListedDomain = domainsToSpoof.filter{ host.containsString($0) }
-        let blackListedDomain = domainsToIgnore.filter{ host.containsString($0) }
+        let whiteListedDomain = hostNamesToSpoof.filter() { host.containsString($0) }
+        let blackListedDomain = hostNamesToIgnore.filter() { host.containsString($0) }
         
         if whiteListedDomain.count == 1 && blackListedDomain.count == 0 {
             return true
@@ -100,20 +85,15 @@ public enum SpooferError: Int, ErrorType {
     }
     
     class var spoofedScenario: Scenario? {
-        get {
-            return Spoofer.sharedInstance.scenario
-        }
-        set(newValue) {
-            self.sharedInstance.scenario = newValue
-        }
+        get { return sharedInstance.scenario }
+        set { sharedInstance.scenario = newValue }
     }
     
     class var setRecording: Bool {
-        get {
-            return self.sharedInstance.recording
-        }
-        set(newValue) {
-            self.sharedInstance.recording = newValue
+        get { return sharedInstance.recording }
+        
+        set {
+            sharedInstance.recording = newValue
             if newValue {
                 logFormattedSeperator("Spoofer Recording Started")
             } else {
@@ -123,11 +103,10 @@ public enum SpooferError: Int, ErrorType {
     }
     
     class var setReplaying: Bool {
-        get {
-            return self.sharedInstance.replaying
-        }
-        set(newValue) {
-            self.sharedInstance.replaying = newValue
+        get { return sharedInstance.replaying }
+        
+        set {
+            sharedInstance.replaying = newValue
             if newValue {
                 logFormattedSeperator("Spoofer Replay Started")
             } else {
@@ -141,8 +120,9 @@ public enum SpooferError: Int, ErrorType {
     var scenario: Scenario? = nil
     var recording: Bool = false
     var replaying: Bool = false
-    private var spoofedDomains = [String]()
-    private var ignoredDomains = [String]()
+    private var spoofedHosts = [String]()
+    private var ignoredHosts = [String]()
+    private var ignoredSubdomains = [String]()
     private var ignoredQueryParameters = [String]()
     private var acceptSelfSignedCertificate = false
     private weak var delegate: SpooferDelegate?

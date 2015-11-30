@@ -37,6 +37,16 @@ extension NSURL {
             normalizedString = normalizedString.substringFromIndex(wwwIndex)
         }
         
+        // Remove sub domains which are to be ignored from the host name part. e.g. DEV, QA, PREPROD etc
+        for subDomainToIgnore in Spoofer.subDomainsToIgnore {
+            if let ignoredRange = normalizedString.rangeOfString(subDomainToIgnore + ".") {
+                normalizedString.removeRange(ignoredRange)
+            }
+            if let ignoredRange = normalizedString.rangeOfString(subDomainToIgnore) {
+                normalizedString.removeRange(ignoredRange)
+            }
+        }
+        
         // Append the path
         if let pathString = self.path {
             normalizedString += pathString
