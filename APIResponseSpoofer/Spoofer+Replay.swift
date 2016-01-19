@@ -52,7 +52,6 @@ extension Spoofer {
     public class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
         guard let sourceViewController = sourceViewController else { return }
         let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)
-        sourceViewController.view.addSubview(scenarioListController.view)
         sourceViewController.presentViewController(scenarioListController, animated: true, completion: nil)
         
     }
