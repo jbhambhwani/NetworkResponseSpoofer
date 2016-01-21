@@ -43,6 +43,15 @@ class ScenarioListController: UITableViewController {
         selectedScenarioName = ""
     }
     
+    deinit {
+        if #available(iOS 9.0, *) {
+            searchController.loadViewIfNeeded()
+        } else {
+            // Fallback on earlier versions
+            searchController.view.removeFromSuperview()
+        }
+    }
+    
     // MARK: - Table view data source
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.active ? filteredScenarios.count : scenarioNames.count
