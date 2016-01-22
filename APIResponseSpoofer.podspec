@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary = 'Network request-response recording and replaying library for iOS.'
   s.homepage = 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer'
   s.authors = { 'Hotwire' => 'hotwiredevices@gmail.com' }
-  s.source = { :git => 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer.git', :branch => 'warning-fix' }
+  s.source = { :git => 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer.git', :tag => s.version }
   s.platform = :ios
   s.ios.deployment_target = '8.0'
   s.public_header_files = 'APIResponseSpoofer/APIResponseSpoofer.h'
