@@ -8,7 +8,6 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://dmukundan@stash/scm/hotwire/apiresponsespoofer.git', :tag => s.version }
   s.platform = :ios
   s.ios.deployment_target = '8.0'
-  s.public_header_files = 'APIResponseSpoofer/APIResponseSpoofer.h'
   s.source_files = 'APIResponseSpoofer/**/*.swift'
   s.requires_arc = true
 end
