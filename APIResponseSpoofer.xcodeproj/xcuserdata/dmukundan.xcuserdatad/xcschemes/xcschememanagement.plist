@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>APIResponseSpoofer tvOS.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>2</integer>
+		</dict>
 		<key>APIResponseSpoofer.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -28,6 +33,11 @@
 			<true/>
 		</dict>
 		<key>4147EA571B684D7E001DE517</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>417881951C55C77C0057B3E1</key>
 		<dict>
 			<key>primary</key>
 			<true/>

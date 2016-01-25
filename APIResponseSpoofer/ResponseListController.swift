@@ -22,7 +22,7 @@ class ResponseListController: UITableViewController {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
-        controller.dimsBackgroundDuringPresentation = false
+        // controller.dimsBackgroundDuringPresentation = false
         controller.searchBar.sizeToFit()
         controller.searchBar.barTintColor = UIColor.lightGrayColor()
         controller.searchBar.tintColor = UIColor.blackColor()
@@ -33,7 +33,7 @@ class ResponseListController: UITableViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.scrollsToTop = true
+        // tableView.scrollsToTop = true
         tableView.tableHeaderView = searchController.searchBar
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .Plain, target: self, action: "toggleRowHeight:")
         // Load the responses for the passed in scenario
