@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer'
   s.authors = { 'Hotwire' => 'hotwiredevices@gmail.com' }
   s.source = { :git => 'https://dmukundan@stash/scm/hotwire/apiresponsespoofer.git', :tag => s.version }
-  s.platform = :ios
+  s.platforms = { :ios => "8.0", :tvos => "9.0" }
   s.ios.deployment_target = '8.0'
   s.tvos.deployment_target = '9.0'
   s.source_files = 'APIResponseSpoofer/**/*.swift'
