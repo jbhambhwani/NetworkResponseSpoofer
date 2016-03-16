@@ -52,9 +52,14 @@ extension NSURL {
             normalizedString += pathString
         }
         
-        // Normalize and append query parameter names (ignore values)
-        if let queryItemNames = self.normalizedQueryItemNames {
+        // Return current processed URL if there are no query items
+        guard let query = query else { return normalizedString }
+
+        // Normalize and append query parameter names (ignore values if normalization is requested)
+        if let queryItemNames = self.normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
             normalizedString += queryItemNames
+        } else {
+            normalizedString += "?" + query
         }
         
         return normalizedString

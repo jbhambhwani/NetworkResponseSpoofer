@@ -34,6 +34,7 @@
 		4180391E1BCB73FE004E1534 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
+		41D4AF301C98EAF00086AEB2 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsController.swift */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +77,7 @@
 		4180391D1BCB73FE004E1534 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
+		41D4AF2F1C98EAF00086AEB2 /* SettingsController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SpooferPlayground.playground; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -120,6 +122,7 @@
 			children = (
 				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
 				416322321BF67E9400F9E67A /* ResponseListController.swift */,
+				41D4AF2F1C98EAF00086AEB2 /* SettingsController.swift */,
 				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
 			);
 			name = View;
@@ -386,6 +389,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */,
+				41D4AF301C98EAF00086AEB2 /* SettingsController.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,

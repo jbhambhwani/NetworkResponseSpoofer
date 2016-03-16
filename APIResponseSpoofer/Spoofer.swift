@@ -60,6 +60,11 @@ public enum SpooferError: Int, ErrorType {
         set { sharedInstance.ignoredQueryParameters = newValue }
     }
     
+    public class var normalizeQueryParameters: Bool {
+        get { return sharedInstance.queryParameterNormalization }
+        set { sharedInstance.queryParameterNormalization = newValue }
+    }
+    
     public class var allowSelfSignedCertificate: Bool {
         get { return sharedInstance.acceptSelfSignedCertificate }
         set { sharedInstance.acceptSelfSignedCertificate = newValue }
@@ -125,5 +130,6 @@ public enum SpooferError: Int, ErrorType {
     private var ignoredSubdomains = [String]()
     private var ignoredQueryParameters = [String]()
     private var acceptSelfSignedCertificate = false
+    private var queryParameterNormalization = false
     private weak var delegate: SpooferDelegate?
 }

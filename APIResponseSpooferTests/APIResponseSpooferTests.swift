@@ -90,22 +90,29 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func test04SimpleURLNormalization() {
+        Spoofer.normalizeQueryParameters = true
         let normalizedSmokeURL = "echo.jsontest.com/key/value/one/two"
         assert(sampleURL1.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
     }
     
     func test05ComplexURLNormalization() {
+        Spoofer.normalizeQueryParameters = true
         let normalizedComplexURL = "example.com/over/there/index.html?class&type&name"
         assert(complexURL.normalizedURLString == normalizedComplexURL, "Normalized version must match")
     }
     
-    func test06ParameterIgnoreURLNormalization() {
+    func test06NoURLNormalization() {
+        assert(complexURL.normalizedURLString == complexURL.absoluteURL, "Non Normalized version must match original version")
+    }
+    
+    func test07ParameterIgnoreURLNormalization() {
+        Spoofer.normalizeQueryParameters = true
         Spoofer.queryParametersToIgnore = ["class","name","somerandom"]
         let normalizedComplexURLIgnoringParameters = "example.com/over/there/index.html?type"
         assert(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
     }
     
-    func test07LoadAllScenarios() {
+    func test08LoadAllScenarios() {
         let allScenarios = Store.allScenarioNames()
         print("All Scenarios:\n\(allScenarios)")
     }
