@@ -21,6 +21,7 @@ public enum SpooferError: Int, ErrorType {
 }
 
 // MARK: - Notifications
+
 public let SpooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
 public let SpooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
 public let SpooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
