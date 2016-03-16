@@ -15,4 +15,5 @@ public enum SpooferConfigurationType: String {
     case ignoredHosts = "Host names to Ignore"
     case ignoredSubdomains = "Subdomains to Ignore"
     case ignoredQueryParameters = "Query parameters to Ignore"
+    case None = ""
 }

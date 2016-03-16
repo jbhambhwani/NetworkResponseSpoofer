@@ -86,6 +86,9 @@
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WNr-RZ-Z7c">
                                             <rect key="frame" x="510" y="7" width="51" height="31"/>
+                                            <connections>
+                                                <action selector="onSwitchToggle:" destination="V1u-No-CWk" eventType="valueChanged" id="5zg-MS-Xpm"/>
+                                            </connections>
                                         </switch>
                                     </subviews>
                                     <constraints>

@@ -33,11 +33,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: SpooferLogNotification, object: nil)
         Spoofer.delegate = self
         
-        // Temp
-        Spoofer.hostNamesToSpoof = ["hotwire.com","google.com","apple.com"]
-        Spoofer.hostNamesToIgnore = ["stackoverflow.com","youtube.com"]
-        Spoofer.queryParametersToIgnore = ["useCluster","usePreprod"]
-        Spoofer.subDomainsToIgnore = ["QA","PREPROD","DEV"]
+        // Sample configurations
+        Spoofer.hostNamesToSpoof = ["Google.com", "Apple.com", "Facebook.com"]
+        Spoofer.hostNamesToIgnore = ["Stackoverflow.com","Youtube.com"]
+        Spoofer.queryParametersToIgnore = ["authtoken","cluster","swarm"]
+        Spoofer.subDomainsToIgnore = ["DEV","QA","PREPROD"]
     }
     
     deinit {

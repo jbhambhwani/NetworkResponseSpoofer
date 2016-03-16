@@ -37,8 +37,12 @@ class SettingsViewController: UITableViewController {
         editVC.title = cell.presenter?.text
         editVC.configurations = cell.presenter?.configurations
     }
-    
-    // MARK: - Table view data source
+
+}
+
+// MARK: - Table view data source
+
+extension SettingsViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allSettings.count
@@ -50,5 +54,4 @@ class SettingsViewController: UITableViewController {
         cell.configure(withPresenter: viewModel)
         return cell
     }
-    
 }

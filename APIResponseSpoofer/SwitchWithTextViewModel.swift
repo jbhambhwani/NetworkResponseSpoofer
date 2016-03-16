@@ -15,8 +15,12 @@ struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
 // MARK: TextPresentable Conformance
 extension SwitchWithTextViewModel {
     var text: String {
-        guard let configType = model.keys.first else { return "" }
         return configType.rawValue
+    }
+    
+    private var configType: SpooferConfigurationType {
+        guard let configType = model.keys.first else { return .None }
+        return configType
     }
     
     private var packedData: Any {
@@ -31,14 +35,21 @@ extension SwitchWithTextViewModel {
 
 // MARK: SwitchPresentable Conformance
 extension SwitchWithTextViewModel {
-    var switchOn: Bool { return modelIsBoolean }
+    var switchOn: Bool {
+        guard let boolValue = packedData as? Bool else { return modelIsBoolean }
+        return boolValue
+    }
+    
     var switchHidden: Bool { return modelIsBoolean == false }
     
     func onSwitchTogleOn(on: Bool) {
-        if on {
-            print("On")
-        } else {
-            print("Off")
+        switch configType {
+        case .queryParameterNormalization:
+            Spoofer.normalizeQueryParameters = on
+        case .acceptSelfSignedCertificate:
+            Spoofer.allowSelfSignedCertificate = on
+        default:
+            assert(false, "Unhandled case")
         }
     }
 }
