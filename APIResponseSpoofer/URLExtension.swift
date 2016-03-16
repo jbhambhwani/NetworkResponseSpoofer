@@ -47,7 +47,12 @@ extension NSURL {
             }
         }
         
-        // Append the path
+        // Set the port if one existed
+        if let portString = port?.stringValue {
+            normalizedString += ":" + portString
+        }
+        
+        // Set the path
         if let pathString = self.path {
             normalizedString += pathString
         }
@@ -59,7 +64,11 @@ extension NSURL {
         if let queryItemNames = self.normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
             normalizedString += queryItemNames
         } else {
-            normalizedString += "?" + query
+            if let fragment = fragment {
+                normalizedString += "?" + query + "#" + fragment
+            } else {
+                normalizedString += "?" + query
+            }
         }
         
         return normalizedString

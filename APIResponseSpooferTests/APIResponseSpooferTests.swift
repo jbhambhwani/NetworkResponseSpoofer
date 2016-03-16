@@ -58,9 +58,9 @@ class APIResponseSpooferTests: XCTestCase {
         Spoofer.startReplaying(scenarioName: smokeTest)
         // 2: Make sure the scenario was loaded to spoofer
         if let smokeScenario = Spoofer.spoofedScenario {
-            assert(smokeScenario.name == smokeTest, "Smoke test scenario was not loaded correctly")
+            XCTAssertTrue(smokeScenario.name == smokeTest, "Smoke test scenario was not loaded correctly")
         } else {
-            assert(false, "Smoke test scenario was not loaded")
+            XCTFail("Smoke test scenario was not loaded")
         }
         // 3: Stop the replay
         Spoofer.stopReplaying()
@@ -92,24 +92,29 @@ class APIResponseSpooferTests: XCTestCase {
     func test04SimpleURLNormalization() {
         Spoofer.normalizeQueryParameters = true
         let normalizedSmokeURL = "echo.jsontest.com/key/value/one/two"
-        assert(sampleURL1.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
+        XCTAssertTrue(sampleURL1.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
     }
     
     func test05ComplexURLNormalization() {
         Spoofer.normalizeQueryParameters = true
-        let normalizedComplexURL = "example.com/over/there/index.html?class&type&name"
-        assert(complexURL.normalizedURLString == normalizedComplexURL, "Normalized version must match")
+        let normalizedComplexURL = "example.com:8042/over/there/index.html?class&type&name"
+        XCTAssertTrue(complexURL.normalizedURLString == normalizedComplexURL, "Normalized version must match")
     }
     
     func test06NoURLNormalization() {
-        assert(complexURL.normalizedURLString == complexURL.absoluteURL, "Non Normalized version must match original version")
+        Spoofer.normalizeQueryParameters = false
+        guard let normalized = complexURL.normalizedURLString else {
+            XCTFail("Normalization failed")
+            return
+        }
+        XCTAssertTrue(complexURL.absoluteString.containsString(normalized), "Non Normalized version must match original version")
     }
     
     func test07ParameterIgnoreURLNormalization() {
         Spoofer.normalizeQueryParameters = true
         Spoofer.queryParametersToIgnore = ["class","name","somerandom"]
-        let normalizedComplexURLIgnoringParameters = "example.com/over/there/index.html?type"
-        assert(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
+        let normalizedComplexURLIgnoringParameters = "example.com:8042/over/there/index.html?type"
+        XCTAssertTrue(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
     }
     
     func test08LoadAllScenarios() {
@@ -123,7 +128,7 @@ class APIResponseSpooferTests: XCTestCase {
         logFormattedSeperator("-")
         logFormattedSeperator("+")
         logFormattedSeperator("@")
-        logFormattedSeperator("This string is 100 characters plus to that it breaks the formated seperator logic. But who will want this anyway?. The method should just print this string as it is.")
+        logFormattedSeperator("This string is 100 characters plus to that it breaks the formated seperator logic. Yes. Break the logic. That's the test. The method should just print this string as it is.")
     }
 
 }
