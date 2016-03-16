@@ -11,6 +11,9 @@ import UIKit
 
 class SettingsController: UITableViewController {
     
+    // Array of dictionaries of Spoofer Configuration Type: AnyObject
+    var allSettings = [[SpooferConfigurationType : AnyObject]]()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -19,20 +22,22 @@ class SettingsController: UITableViewController {
     }
     
     func readSpooferConfiguration() {
-        
+        guard let config = Spoofer.configurations else { return }
+        for (k,v) in Array(config).sort({ $0.0.rawValue < $1.0.rawValue })  {
+            allSettings.append([k:v])
+        }
     }
     
     // MARK: - Table view data source
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return allSettings.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("SettingsCell", forIndexPath: indexPath)
-        //TODO: Configure cell
+        cell.textLabel?.text = allSettings[indexPath.row].keys.first?.rawValue
         return cell
     }
-    
-    // Tableview Delegate
-    
+
 }

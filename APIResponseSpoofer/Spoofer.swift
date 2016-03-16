@@ -40,6 +40,10 @@ public enum SpooferError: Int, ErrorType {
         set { sharedInstance.delegate = newValue }
     }
     
+    public class var configurations: [SpooferConfigurationType : AnyObject]? {
+        return sharedInstance.config
+    }
+    
     public class var hostNamesToSpoof: [String] {
         get { return sharedInstance.spoofedHosts }
         set { sharedInstance.spoofedHosts = newValue }
@@ -121,6 +125,17 @@ public enum SpooferError: Int, ErrorType {
     }
     
     // MARK: - Internal variables
+    
+    private var config: [SpooferConfigurationType: AnyObject]? {
+        return [.queryParameterNormalization: queryParameterNormalization,
+                .acceptSelfSignedCertificate: acceptSelfSignedCertificate,
+                .spoofedHosts: spoofedHosts,
+                .ignoredHosts: ignoredHosts,
+                .ignoredSubdomains: ignoredSubdomains,
+                .ignoredQueryParameters: ignoredQueryParameters
+        ]
+    }
+    
     static let sharedInstance = Spoofer()
     var scenario: Scenario? = nil
     var recording: Bool = false

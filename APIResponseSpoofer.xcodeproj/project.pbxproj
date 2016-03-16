@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		410489BF1C99D0E800E99745 /* SpooferConfigurationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */; };
 		411A357A1BC74A7D001D128D /* APIResponseSpooferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */; };
 		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; };
 		412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
@@ -56,6 +57,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferConfigurationType.swift; sourceTree = "<group>"; };
 		411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSpooferTests.swift; sourceTree = "<group>"; };
 		411A357B1BC74A7D001D128D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -214,6 +216,7 @@
 			isa = PBXGroup;
 			children = (
 				4180391D1BCB73FE004E1534 /* Utility.swift */,
+				410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */,
 			);
 			name = Miscellaneous;
 			sourceTree = "<group>";
@@ -401,6 +404,7 @@
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
 				4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */,
+				410489BF1C99D0E800E99745 /* SpooferConfigurationType.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
