@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		410489BF1C99D0E800E99745 /* SpooferConfigurationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */; };
+		410489C21C99D94800E99745 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
 		411A357A1BC74A7D001D128D /* APIResponseSpooferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */; };
 		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; };
 		412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
@@ -58,6 +59,7 @@
 
 /* Begin PBXFileReference section */
 		410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferConfigurationType.swift; sourceTree = "<group>"; };
+		410489C11C99D94800E99745 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSpooferTests.swift; sourceTree = "<group>"; };
 		411A357B1BC74A7D001D128D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 			children = (
 				4180391D1BCB73FE004E1534 /* Utility.swift */,
 				410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */,
+				410489C11C99D94800E99745 /* Constants.swift */,
 			);
 			name = Miscellaneous;
 			sourceTree = "<group>";
@@ -396,6 +399,7 @@
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,
+				410489C21C99D94800E99745 /* Constants.swift in Sources */,
 				4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */,
 				412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */,
 				416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */,

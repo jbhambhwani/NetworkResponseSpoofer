@@ -8,17 +8,6 @@
 
 import Foundation
 
-// MARK: Public Enums
-public enum SpooferError: Int, ErrorType {
-    case DiskReadError = 500
-    case DiskWriteError = 501
-    case EmptyFileError = 502
-    case DocumentsAccessError = 503
-    case FolderCreationError = 504
-    case EmptyScenarioError = 505
-    case NoSavedResponseError = 506
-}
-
 @objc public protocol SpooferDelegate {
     func spooferDidStartRecording(scenarioName: String)
     func spooferDidStopRecording(scenarioName: String, success: Bool)
@@ -28,13 +17,8 @@ public enum SpooferError: Int, ErrorType {
 
 @objc public class Spoofer: NSObject {
     
-    // MARK: - Notifications
-    public static let SpooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
-    public static let SpooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
-    public static let SpooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
-    public static let SpooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
-
     // MARK: - Public properties
+
     public class var delegate: SpooferDelegate? {
         get { return sharedInstance.delegate }
         set { sharedInstance.delegate = newValue }
