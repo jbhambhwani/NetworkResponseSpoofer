@@ -34,7 +34,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         Spoofer.delegate = self
         
         // Sample configurations
-        Spoofer.hostNamesToSpoof = ["Google.com", "Apple.com", "Facebook.com"]
+        Spoofer.hostNamesToSpoof = ["Google.com", "Apple.com", "Facebook.com", "jsonplaceholder.typicode.com"]
         Spoofer.hostNamesToIgnore = ["Stackoverflow.com","Youtube.com"]
         Spoofer.queryParametersToIgnore = ["authtoken","cluster","swarm"]
         Spoofer.subDomainsToIgnore = ["DEV","QA","PREPROD"]
@@ -145,9 +145,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - SearchBarDelegate
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
         guard var searchText = searchBar.text where searchText.characters.count > 0 else { return }
-        if !searchText.hasPrefix("http") {
+        if searchText.hasPrefix("http") == false {
             searchText = "http://" + searchText
         }
         guard let url = NSURL(string: searchText) else { return }
@@ -158,6 +160,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - Webview Delegate
+    
     func webViewDidStartLoad(webView: UIWebView) {
         activityIndicator.startAnimating()
     }
@@ -173,6 +176,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
 }
 
 // MARK: - Spoofer Delegate
+
 extension ViewController: SpooferDelegate {
     func spooferDidStartRecording(scenarioName: String) {
         executeActionsForRecording(recordingState: true)

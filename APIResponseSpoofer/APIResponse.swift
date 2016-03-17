@@ -22,14 +22,14 @@ class APIResponse : NSObject, NSCoding {
     
     let requestURL: NSURL
     let httpMethod: String
-    let data: NSData?
+    let data: NSData
     let createdDate: NSDate
     let mimeType: String?
     let encoding: String?
     let headerFields: [String: String]?
     
     // Designated initializer
-    init?(requestURL: NSURL, httpMethod: String, data: NSData?, mimeType: String?, encoding: String?, headerFields: [String: String]?) {
+    init?(requestURL: NSURL, httpMethod: String, data: NSData, mimeType: String?, encoding: String?, headerFields: [String: String]?) {
         self.requestURL = requestURL
         self.httpMethod = httpMethod
         self.data = data
@@ -40,15 +40,20 @@ class APIResponse : NSObject, NSCoding {
     }
     
     convenience init?(httpRequest: NSURLRequest, httpResponse: NSURLResponse, data: NSData?) {
-        guard let httpURLResponse = httpResponse as? NSHTTPURLResponse else { return nil }
-        self.init(requestURL: httpRequest.URL!, httpMethod: httpRequest.HTTPMethod!, data: data!, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: httpURLResponse.allHeaderFields as? [String: String])
+        guard let httpURLResponse = httpResponse as? NSHTTPURLResponse,
+            url = httpRequest.URL,
+            method = httpRequest.HTTPMethod,
+            data = data
+        else { return nil }
+        
+        self.init(requestURL: url, httpMethod: method, data: data, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: httpURLResponse.allHeaderFields as? [String: String])
     }
     
     // MARK: NSCoding
     required init?(coder aDecoder: NSCoder) {
         requestURL = aDecoder.decodeObjectForKey(ResponseKeys.requestURL.rawValue) as! NSURL
         httpMethod = aDecoder.decodeObjectForKey(ResponseKeys.httpMethod.rawValue) as! String
-        data = aDecoder.decodeObjectForKey(ResponseKeys.data.rawValue) as? NSData
+        data = aDecoder.decodeObjectForKey(ResponseKeys.data.rawValue) as! NSData
         createdDate = aDecoder.decodeObjectForKey(ResponseKeys.createdDate.rawValue) as! NSDate
         mimeType = aDecoder.decodeObjectForKey(ResponseKeys.mimeType.rawValue) as? String
         encoding = aDecoder.decodeObjectForKey(ResponseKeys.encoding.rawValue) as? String
@@ -65,7 +70,6 @@ class APIResponse : NSObject, NSCoding {
         aCoder.encodeObject(headerFields, forKey: ResponseKeys.headerFields.rawValue)
     }
     
-    // Swift 2 broke equatable and hashable for NSObject subclasses with the override "func ==" method. This is the new usage.
     override func isEqual(object: AnyObject?) -> Bool {
         guard let rhs = object as? APIResponse else { return false }
         guard let lhsURL = requestURL.normalizedURLString, rhsURL = rhs.requestURL.normalizedURLString else { return false }
@@ -77,7 +81,8 @@ class APIResponse : NSObject, NSCoding {
     
 }
 
-// MARK: Helper methods for debugging
+// MARK: - Helper methods for debugging
+
 extension APIResponse: CustomDebugStringConvertible {
     override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)"}
     override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nCreatedDate: \(createdDate)\nMIMEType: \(mimeType)\nEncoding: \(encoding)\n"}

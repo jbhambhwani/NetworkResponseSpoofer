@@ -123,7 +123,7 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func testFormattedSeperator() {
-        logFormattedSeperator("Scenario Loaded Succesfully!")
+        logFormattedSeperator("Scenario Loaded Succesfully 👍")
         logFormattedSeperator("")
         logFormattedSeperator("-")
         logFormattedSeperator("+")

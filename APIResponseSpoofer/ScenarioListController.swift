@@ -20,11 +20,9 @@ class ScenarioListController: UITableViewController {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
-        // controller.dimsBackgroundDuringPresentation = false
         controller.searchBar.sizeToFit()
         controller.searchBar.barTintColor = UIColor.lightGrayColor()
         controller.searchBar.tintColor = UIColor.blackColor()
-        controller.searchBar.delegate = self
         return controller
     }()
     
@@ -90,21 +88,23 @@ class ScenarioListController: UITableViewController {
     }
 }
 
-extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDelegate {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if searchController.searchBar.text?.characters.count > 0 {
-            filteredScenarios = scenarioNames.filter({ scenario -> Bool in
-                return scenario.lowercaseString.rangeOfString(searchController.searchBar.text!.lowercaseString) != nil
-            })
-        } else {
-            filteredScenarios = scenarioNames
-        }
-        self.tableView.reloadData()
-    }
-}
+// MARK: - Search controller delegate
 
-extension ScenarioListController: UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        self.tableView.reloadData()
+extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDelegate {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        defer {
+            self.tableView.reloadData()
+        }
+        
+        guard let searchText = searchController.searchBar.text else {
+            filteredScenarios = scenarioNames
+            return
+        }
+        
+        filteredScenarios = scenarioNames.filter({ scenario -> Bool in
+            return scenario.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
+        })
     }
+
 }

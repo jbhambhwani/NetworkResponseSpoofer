@@ -22,15 +22,14 @@ class ResponseListController: UITableViewController {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
-        // controller.dimsBackgroundDuringPresentation = false
         controller.searchBar.sizeToFit()
         controller.searchBar.barTintColor = UIColor.lightGrayColor()
         controller.searchBar.tintColor = UIColor.blackColor()
-        controller.searchBar.delegate = self
         return controller
     }()
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // tableView.scrollsToTop = true
@@ -52,6 +51,7 @@ class ResponseListController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.active ? filteredResponses.count : allResponses.count
     }
@@ -64,6 +64,7 @@ class ResponseListController: UITableViewController {
     }
     
     // Tableview Delegate
+    
     override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
         return cellHeight
     }
@@ -73,6 +74,7 @@ class ResponseListController: UITableViewController {
     }
     
     // MARK: Utility methods
+    
     func loadScenario() {
         Store.loadScenario(scenarioName, callback: { success, scenario in
             if success {
@@ -98,21 +100,23 @@ class ResponseListController: UITableViewController {
     
 }
 
-extension ResponseListController: UISearchResultsUpdating, UISearchControllerDelegate {
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
-        if searchController.searchBar.text?.characters.count > 0 {
-            filteredResponses = allResponses.filter({ response -> Bool in
-                return response.requestURL.absoluteString.lowercaseString.rangeOfString(searchController.searchBar.text!.lowercaseString) != nil
-            })
-        } else {
-            filteredResponses = allResponses
-        }
-        self.tableView.reloadData()
-    }
-}
+// MARK: - Search controller delegate
 
-extension ResponseListController: UISearchBarDelegate {
-    func searchBar(searchBar: UISearchBar, selectedScopeButtonIndexDidChange selectedScope: Int) {
-        self.tableView.reloadData()
+extension ResponseListController: UISearchResultsUpdating, UISearchControllerDelegate {
+    
+    func updateSearchResultsForSearchController(searchController: UISearchController) {
+        defer {
+            self.tableView.reloadData()
+        }
+        
+        guard let searchText = searchController.searchBar.text else {
+            filteredResponses = allResponses
+            return
+        }
+        
+        filteredResponses = allResponses.filter({ response -> Bool in
+            return response.requestURL.absoluteString.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
+        })
     }
+    
 }

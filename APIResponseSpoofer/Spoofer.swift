@@ -61,14 +61,14 @@ import Foundation
     // MARK: - Internal methods and properties
     class func shouldHandleURL(url: NSURL) -> Bool {
         // Take an early exit if host is empty
-        guard let host = url.host else { return false }
+        guard let host = url.host?.lowercaseString else { return false }
         
         // Handle all cases in case no domains are whitelisted
         if hostNamesToSpoof.isEmpty { return true }
         
         // If whitelist/blacklist is set, use it
-        let whiteListedDomain = hostNamesToSpoof.filter() { host.containsString($0) }
-        let blackListedDomain = hostNamesToIgnore.filter() { host.containsString($0) }
+        let whiteListedDomain = hostNamesToSpoof.filter() { host.containsString($0.lowercaseString) }
+        let blackListedDomain = hostNamesToIgnore.filter() { host.containsString($0.lowercaseString) }
         
         if whiteListedDomain.count == 1 && blackListedDomain.count == 0 {
             return true

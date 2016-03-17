@@ -35,9 +35,10 @@ extension Spoofer {
         // When a view controller was passed in, use it to display an alert controller asking for a scenario name
         let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .Alert)
 
-        let createAction = UIAlertAction(title: "Create", style: .Default) { (_) in
-            let scenarioNameTextField = alertController.textFields![0] as UITextField
-            startRecording(scenarioName: scenarioNameTextField.text!)
+        let createAction = UIAlertAction(title: "Create", style: .Default) { [unowned alertController](_) in
+            if let textField = alertController.textFields?.first, scenarioName = textField.text {
+                startRecording(scenarioName: scenarioName)
+            }
         }
         createAction.enabled = false
 
@@ -68,8 +69,9 @@ extension Spoofer {
             if success {
                 self.setRecording = false
                 self.spoofedScenario = nil
+                guard let savedScenario = savedScenario else { return }
                 // Inform the delegate of successful save
-                Spoofer.delegate?.spooferDidStopRecording(savedScenario!.name, success: true)
+                Spoofer.delegate?.spooferDidStopRecording(savedScenario.name, success: true)
                 NSNotificationCenter.defaultCenter().postNotificationName(SpooferStoppedRecordingNotification, object: sharedInstance)
             }
             }, errorHandler: { error in

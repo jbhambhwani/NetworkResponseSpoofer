@@ -50,7 +50,7 @@ class Store {
             let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(unwrappedData) as? Scenario
             if let unwrappedScenario = scenario {
                 callback?(success: true, scenario: unwrappedScenario)
-                postNotification("Loaded \(scenario!)\nFile: \(scenarioFileURL)", object: self)
+                postNotification("Loaded \(unwrappedScenario)\nFile: \(scenarioFileURL)", object: self)
                 logFormattedSeperator()
             }
         } else {
@@ -67,7 +67,7 @@ class Store {
             return [String]()
         }
         
-        let scenarioFiles:[NSString] = allFiles.map{ $0.lastPathComponent! }.filter{ $0.pathExtension == "scenario"}
+        let scenarioFiles:[NSString] = allFiles.flatMap{ $0.lastPathComponent }.filter{ $0.pathExtension == "scenario"}
         let fileNames = scenarioFiles.map{ $0.stringByDeletingPathExtension }
         return fileNames
     }
@@ -92,7 +92,7 @@ class Store {
     private class func spooferDocumentsDirectory() -> NSURL {
         let spooferDirectoryURL = applicationDocumentsDirectory().URLByAppendingPathComponent("Spoofer")
         var isDir = ObjCBool(true)
-        if !NSFileManager.defaultManager().fileExistsAtPath(spooferDirectoryURL.absoluteString, isDirectory: &isDir) {
+        if NSFileManager.defaultManager().fileExistsAtPath(spooferDirectoryURL.absoluteString, isDirectory: &isDir) == false {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtURL(spooferDirectoryURL, withIntermediateDirectories: true, attributes: nil)
             } catch _ {
