@@ -20,6 +20,16 @@ public enum SpooferError: Int, ErrorType {
     case NoSavedResponseError = 506
 }
 
+public enum SpooferConfigurationType: String {
+    case queryParameterNormalization = "Query Parameter Normalization"
+    case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
+    case spoofedHosts = "Hostnames to Spoof"
+    case ignoredHosts = "Hostnames to Ignore"
+    case ignoredSubdomains = "Subdomains to Ignore"
+    case ignoredQueryParameters = "Query Parameters to Ignore"
+    case None = ""
+}
+
 // MARK: - Notifications
 
 public let SpooferStartedRecordingNotification = "SpooferStartedRecordingNotification"

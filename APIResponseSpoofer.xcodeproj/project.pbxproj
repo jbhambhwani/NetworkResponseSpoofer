@@ -7,9 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		410489BF1C99D0E800E99745 /* SpooferConfigurationType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */; };
 		410489C21C99D94800E99745 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
-		410489C71C99DCF200E99745 /* Protocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C61C99DCF200E99745 /* Protocols.swift */; };
+		410489C71C99DCF200E99745 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C61C99DCF200E99745 /* UIProtocols.swift */; };
 		410489C91C99DD4200E99745 /* SwitchWithTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */; };
 		410489CB1C99DDA100E99745 /* SwitchWithTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */; };
 		410489CD1C99E9EC00E99745 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CC1C99E9EC00E99745 /* UITableViewCell.swift */; };
@@ -63,15 +62,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferConfigurationType.swift; sourceTree = "<group>"; };
 		410489C11C99D94800E99745 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		410489C61C99DCF200E99745 /* Protocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Protocols.swift; sourceTree = "<group>"; };
+		410489C61C99DCF200E99745 /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithTextTableViewCell.swift; sourceTree = "<group>"; };
 		410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithTextViewModel.swift; sourceTree = "<group>"; };
 		410489CC1C99E9EC00E99745 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSpooferTests.swift; sourceTree = "<group>"; };
-		411A357B1BC74A7D001D128D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		411A357B1BC74A7D001D128D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = APIResponseSpooferTests/Info.plist; sourceTree = SOURCE_ROOT; };
 		4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
 		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
 		412A7BA71BC9D441002E9FF2 /* SpooferDemo.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SpooferDemo.xcodeproj; path = SpooferDemo/SpooferDemo.xcodeproj; sourceTree = "<group>"; };
@@ -125,7 +123,6 @@
 		410489C41C99DCD000E99745 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				410489C61C99DCF200E99745 /* Protocols.swift */,
 				410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */,
 			);
 			name = ViewModel;
@@ -135,7 +132,6 @@
 			isa = PBXGroup;
 			children = (
 				411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */,
-				411A357B1BC74A7D001D128D /* Info.plist */,
 			);
 			path = APIResponseSpooferTests;
 			sourceTree = "<group>";
@@ -147,7 +143,6 @@
 				416322321BF67E9400F9E67A /* ResponseListController.swift */,
 				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
 				41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */,
-				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
 				410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */,
 			);
 			name = Controller;
@@ -164,8 +159,8 @@
 		4131B8F21B6EA6F400EAFE04 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
-				4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */,
-				4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */,
+				415CB1871C9B14A600827A0B /* Networking */,
+				415CB1861C9B149F00827A0B /* UI */,
 			);
 			name = Protocol;
 			sourceTree = "<group>";
@@ -203,10 +198,9 @@
 		4147EA4F1B684D7E001DE517 /* APIResponseSpoofer */ = {
 			isa = PBXGroup;
 			children = (
-				4147EA691B684DBD001DE517 /* Spoofer.swift */,
-				41C012C91BF3F088004E54DF /* Spoofer+Record.swift */,
-				41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */,
+				415CB1891C9B14EA00827A0B /* Core */,
 				4131B8F31B6EA71800EAFE04 /* Model */,
+				415CB1881C9B14C900827A0B /* View */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
 				410489C41C99DCD000E99745 /* ViewModel */,
 				4131B8F21B6EA6F400EAFE04 /* Protocol */,
@@ -220,6 +214,7 @@
 		4147EA501B684D7E001DE517 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				411A357B1BC74A7D001D128D /* Info.plist */,
 				4137B6111BD87837005AF53E /* README.md */,
 				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
 				4147EA511B684D7E001DE517 /* Info.plist */,
@@ -228,11 +223,46 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		415CB1861C9B149F00827A0B /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				410489C61C99DCF200E99745 /* UIProtocols.swift */,
+				410489CC1C99E9EC00E99745 /* UITableViewCell.swift */,
+			);
+			name = UI;
+			sourceTree = "<group>";
+		};
+		415CB1871C9B14A600827A0B /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */,
+				4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */,
+			);
+			name = Networking;
+			sourceTree = "<group>";
+		};
+		415CB1881C9B14C900827A0B /* View */ = {
+			isa = PBXGroup;
+			children = (
+				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
+			);
+			name = View;
+			sourceTree = "<group>";
+		};
+		415CB1891C9B14EA00827A0B /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				4147EA691B684DBD001DE517 /* Spoofer.swift */,
+				41C012C91BF3F088004E54DF /* Spoofer+Record.swift */,
+				41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */,
+			);
+			name = Core;
+			sourceTree = "<group>";
+		};
 		416453A71B7027A400615A39 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
 				41DFB3E81B70252C00038958 /* URLExtension.swift */,
-				410489CC1C99E9EC00E99745 /* UITableViewCell.swift */,
 			);
 			name = Extension;
 			sourceTree = "<group>";
@@ -241,7 +271,6 @@
 			isa = PBXGroup;
 			children = (
 				4180391D1BCB73FE004E1534 /* Utility.swift */,
-				410489BE1C99D0E800E99745 /* SpooferConfigurationType.swift */,
 				410489C11C99D94800E99745 /* Constants.swift */,
 			);
 			name = Miscellaneous;
@@ -435,8 +464,7 @@
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
 				4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */,
-				410489BF1C99D0E800E99745 /* SpooferConfigurationType.swift in Sources */,
-				410489C71C99DCF200E99745 /* Protocols.swift in Sources */,
+				410489C71C99DCF200E99745 /* UIProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

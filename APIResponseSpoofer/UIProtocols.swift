@@ -1,5 +1,5 @@
 //
-//  Protocols.swift
+//  UIProtocols.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 3/16/16.
