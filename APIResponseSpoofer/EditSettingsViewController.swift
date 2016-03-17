@@ -13,6 +13,14 @@ class EditSettingsViewController: UITableViewController {
     
     var presenter: SwitchWithTextViewPresentable?
     
+    // MARK: - Lifecycle
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.scrollsToTop = true
+        tableView.tableFooterView = UIView()
+    }
+    
     // MARK: - User Actions
     
     @IBAction func addAction(sender: UIBarButtonItem) {

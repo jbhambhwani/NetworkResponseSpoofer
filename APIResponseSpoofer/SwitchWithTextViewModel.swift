@@ -14,6 +14,7 @@ struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
 
 // MARK: TextPresentable Conformance
 extension SwitchWithTextViewModel {
+    
     var text: String {
         return configType.rawValue
     }
@@ -28,19 +29,20 @@ extension SwitchWithTextViewModel {
         return data
     }
     
-    var modelIsBoolean: Bool {
+    private var modelIsBoolean: Bool {
         return packedData is Bool
     }
 }
 
 // MARK: SwitchPresentable Conformance
 extension SwitchWithTextViewModel {
+    
     var switchOn: Bool {
         guard let boolValue = packedData as? Bool else { return modelIsBoolean }
         return boolValue
     }
     
-    var switchHidden: Bool { return modelIsBoolean == false }
+    var switchHidden: Bool { return !modelIsBoolean}
     
     func onSwitchTogleOn(on: Bool) {
         switch configType {
@@ -56,7 +58,7 @@ extension SwitchWithTextViewModel {
 
 // MARK: NavigationPresentable Conformance
 extension SwitchWithTextViewModel {
-    var allowCellSelection: Bool { return modelIsBoolean == false }
+    var allowCellSelection: Bool { return !modelIsBoolean }
     var disclosureHidden: Bool { return modelIsBoolean }
 }
 

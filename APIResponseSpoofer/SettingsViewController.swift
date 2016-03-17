@@ -44,9 +44,10 @@ class SettingsViewController: UITableViewController {
 
 }
 
-// MARK: - Table view data source
 
 extension SettingsViewController {
+    
+    // MARK: - Tableview datasource
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return allSettings.count
@@ -57,5 +58,13 @@ extension SettingsViewController {
         let viewModel = SwitchWithTextViewModel(model: allSettings[indexPath.row])
         cell.configure(withPresenter: viewModel)
         return cell
+    }
+    
+    // MARK: - Tableview delegate
+    
+    override func tableView(tableView: UITableView, willSelectRowAtIndexPath indexPath: NSIndexPath) -> NSIndexPath? {
+        guard let cell = tableView.cellForRowAtIndexPath(indexPath) as? SwitchWithTextTableViewCell,
+        allowSelect = cell.presenter?.allowCellSelection else { return nil }
+        return allowSelect ? indexPath : nil
     }
 }
