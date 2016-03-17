@@ -11,9 +11,9 @@ import Foundation
 public enum SpooferConfigurationType: String {
     case queryParameterNormalization = "Query Parameter Normalization"
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
-    case spoofedHosts = "Host names to Spoof"
-    case ignoredHosts = "Host names to Ignore"
+    case spoofedHosts = "Hostnames to Spoof"
+    case ignoredHosts = "Hostnames to Ignore"
     case ignoredSubdomains = "Subdomains to Ignore"
-    case ignoredQueryParameters = "Query parameters to Ignore"
+    case ignoredQueryParameters = "Query Parameters to Ignore"
     case None = ""
 }
