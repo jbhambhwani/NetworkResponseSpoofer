@@ -12,7 +12,7 @@ class ScenarioListController: UITableViewController {
     
     static let identifier = "ScenarioListNavController"
     
-    private lazy var scenarioNames:[String] = {
+    private lazy var scenarioNames: [String] = {
         return Store.allScenarioNames() as [String]
         }()
     

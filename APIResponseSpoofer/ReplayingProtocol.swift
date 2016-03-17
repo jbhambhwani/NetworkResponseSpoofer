@@ -13,7 +13,7 @@ enum ReplayMethod {
     case MimeTypeAndEncoding
 }
 
-class ReplayingProtocol : NSURLProtocol {
+class ReplayingProtocol: NSURLProtocol {
     
     private var currentReplayMethod: ReplayMethod {
         // Customization: Switch the replay method according to the one which suits your specific requirement.

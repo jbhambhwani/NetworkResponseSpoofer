@@ -75,7 +75,7 @@ extension NSURL {
     }
     
     var isHTTP: Bool {
-        return ["http","https"].contains(self.scheme)
+        return ["http", "https"].contains(self.scheme)
     }
     
 }

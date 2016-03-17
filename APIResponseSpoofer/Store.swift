@@ -60,14 +60,14 @@ class Store {
 
     // Retrieve all scenarios from disk
     class func allScenarioNames() -> [String] {
-        var allFiles:[NSURL]
+        var allFiles: [NSURL]
         do {
             try allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtURL(spooferDocumentsDirectory(), includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
         } catch {
             return [String]()
         }
         
-        let scenarioFiles:[NSString] = allFiles.flatMap{ $0.lastPathComponent }.filter{ $0.pathExtension == "scenario"}
+        let scenarioFiles: [NSString] = allFiles.flatMap{ $0.lastPathComponent }.filter{ $0.pathExtension == "scenario"}
         let fileNames = scenarioFiles.map{ $0.stringByDeletingPathExtension }
         return fileNames
     }
@@ -82,7 +82,7 @@ class Store {
     private class func applicationDocumentsDirectory() -> NSURL {
         // The directory in the application's documents directory used to store the Scenario files.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        guard let documentsDirectoryURL:NSURL = urls.first else {
+        guard let documentsDirectoryURL: NSURL = urls.first else {
             print("Documents directory was not available")
             return NSURL()
         }

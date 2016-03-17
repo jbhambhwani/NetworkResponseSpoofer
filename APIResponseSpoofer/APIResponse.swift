@@ -18,7 +18,7 @@ enum ResponseKeys: String {
     case headerFields
 }
 
-class APIResponse : NSObject, NSCoding {
+class APIResponse: NSObject, NSCoding {
     
     let requestURL: NSURL
     let httpMethod: String

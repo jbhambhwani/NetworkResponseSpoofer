@@ -13,7 +13,7 @@ struct ScenarioFields {
     static let responses = "responses"
 }
 
-class Scenario : NSObject, NSCoding {
+class Scenario: NSObject, NSCoding {
     
     let name: String
     var apiResponses = [APIResponse]()

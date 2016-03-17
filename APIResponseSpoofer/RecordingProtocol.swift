@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecordingProtocol : NSURLProtocol {
+class RecordingProtocol: NSURLProtocol {
  
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var connection: NSURLConnection?

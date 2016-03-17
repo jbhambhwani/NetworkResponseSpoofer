@@ -112,7 +112,7 @@ class APIResponseSpooferTests: XCTestCase {
     
     func test07ParameterIgnoreURLNormalization() {
         Spoofer.normalizeQueryParameters = true
-        Spoofer.queryParametersToIgnore = ["class","name","somerandom"]
+        Spoofer.queryParametersToIgnore = ["class", "name", "somerandom"]
         let normalizedComplexURLIgnoringParameters = "example.com:8042/over/there/index.html?type"
         XCTAssertTrue(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
     }

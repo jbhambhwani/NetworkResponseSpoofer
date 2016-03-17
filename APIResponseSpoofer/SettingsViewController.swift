@@ -12,7 +12,7 @@ import UIKit
 class SettingsViewController: UITableViewController {
     
     // Array of dictionaries of Spoofer Configuration Type: AnyObject
-    var allSettings = [[SpooferConfigurationType : AnyObject]]()
+    var allSettings = [[SpooferConfigurationType: AnyObject]]()
     
     // MARK: - Lifecycle
     
@@ -29,7 +29,7 @@ class SettingsViewController: UITableViewController {
     private func readSpooferConfiguration() {
         allSettings.removeAll(keepCapacity: true)
         guard let config = Spoofer.configurations else { return }
-        for (k,v) in Array(config).sort({ $0.0.rawValue < $1.0.rawValue })  {
+        for (k, v) in Array(config).sort({ $0.0.rawValue < $1.0.rawValue })  {
             allSettings.append([k:v])
         }
     }
