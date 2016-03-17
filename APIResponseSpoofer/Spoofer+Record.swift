@@ -26,7 +26,7 @@ extension Spoofer {
             // Inform the delegate that spoofer started recording
             Spoofer.delegate?.spooferDidStartRecording(scenarioName)
             // Post a state change notification for interested parties
-            NSNotificationCenter.defaultCenter().postNotificationName(SpooferStartedRecordingNotification, object: sharedInstance)
+            NSNotificationCenter.defaultCenter().postNotificationName(spooferStartedRecordingNotification, object: sharedInstance)
         }
         return protocolRegistered
     }
@@ -72,14 +72,14 @@ extension Spoofer {
                 guard let savedScenario = savedScenario else { return }
                 // Inform the delegate of successful save
                 Spoofer.delegate?.spooferDidStopRecording(savedScenario.name, success: true)
-                NSNotificationCenter.defaultCenter().postNotificationName(SpooferStoppedRecordingNotification, object: sharedInstance)
+                NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedRecordingNotification, object: sharedInstance)
             }
             }, errorHandler: { error in
                 if let scenarioName = self.spoofedScenario?.name {
                     // Inform the delegate that saving scenario failed
                     Spoofer.delegate?.spooferDidStopRecording(scenarioName, success: false)
                     // Post a state change notification for interested parties
-                    NSNotificationCenter.defaultCenter().postNotificationName(SpooferStoppedRecordingNotification, object: sharedInstance)
+                    NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedRecordingNotification, object: sharedInstance)
                     self.setRecording = false
                     self.spoofedScenario = nil
                 }

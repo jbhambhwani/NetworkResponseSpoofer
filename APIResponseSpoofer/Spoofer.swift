@@ -59,6 +59,7 @@ import Foundation
     }
     
     // MARK: - Internal methods and properties
+    
     class func shouldHandleURL(url: NSURL) -> Bool {
         // Take an early exit if host is empty
         guard let host = url.host?.lowercaseString else { return false }

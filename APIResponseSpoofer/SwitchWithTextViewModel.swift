@@ -12,7 +12,8 @@ struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
     var model: [SpooferConfigurationType : AnyObject]
 }
 
-// MARK: TextPresentable Conformance
+// MARK: - TextPresentable Conformance
+
 extension SwitchWithTextViewModel {
     
     var text: String {
@@ -34,7 +35,8 @@ extension SwitchWithTextViewModel {
     }
 }
 
-// MARK: SwitchPresentable Conformance
+// MARK: - SwitchPresentable Conformance
+
 extension SwitchWithTextViewModel {
     
     var switchOn: Bool {
@@ -56,13 +58,17 @@ extension SwitchWithTextViewModel {
     }
 }
 
-// MARK: NavigationPresentable Conformance
+// MARK: - NavigationPresentable Conformance
+
 extension SwitchWithTextViewModel {
     var allowCellSelection: Bool { return !modelIsBoolean }
     var disclosureHidden: Bool { return modelIsBoolean }
 }
 
+// MARK: - DataPresentable Conformance
+
 extension SwitchWithTextViewModel {
+    
     var configurations: [String] {
         get {
             guard let configs = packedData as? [String] else { return [String]() }

@@ -49,7 +49,8 @@ class APIResponse: NSObject, NSCoding {
         self.init(requestURL: url, httpMethod: method, data: data, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: httpURLResponse.allHeaderFields as? [String: String])
     }
     
-    // MARK: NSCoding
+    // MARK: - NSCoding
+    
     required init?(coder aDecoder: NSCoder) {
         requestURL = aDecoder.decodeObjectForKey(ResponseKeys.requestURL.rawValue) as! NSURL
         httpMethod = aDecoder.decodeObjectForKey(ResponseKeys.httpMethod.rawValue) as! String
@@ -69,6 +70,8 @@ class APIResponse: NSObject, NSCoding {
         aCoder.encodeObject(encoding, forKey: ResponseKeys.encoding.rawValue)
         aCoder.encodeObject(headerFields, forKey: ResponseKeys.headerFields.rawValue)
     }
+    
+    // MARK: - Equatable
     
     override func isEqual(object: AnyObject?) -> Bool {
         guard let rhs = object as? APIResponse else { return false }

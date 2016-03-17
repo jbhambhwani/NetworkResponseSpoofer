@@ -9,8 +9,6 @@
 import Foundation
 import UIKit
 
-public let SpooferLogNotification = "SpooferLogNotification"
-
 func logFormattedSeperator(message: String? = "-") {
     guard let message = message else { return }
     
@@ -31,7 +29,7 @@ func postNotification(message: String, object: AnyObject? = nil) {
     // Print to console
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
-    NSNotificationCenter.defaultCenter().postNotificationName(SpooferLogNotification, object: object, userInfo: ["message": message])
+    NSNotificationCenter.defaultCenter().postNotificationName(spooferLogNotification, object: object, userInfo: ["message": message])
 }
 
 func spooferStoryBoard() -> UIStoryboard {

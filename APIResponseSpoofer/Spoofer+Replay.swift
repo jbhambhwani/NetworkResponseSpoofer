@@ -26,13 +26,13 @@ extension Spoofer {
                 // Inform the delegate that spoofer started replay
                 Spoofer.delegate?.spooferDidStartReplaying(scenarioName, success: true)
                 // Post a state change notification for interested parties
-                NSNotificationCenter.defaultCenter().postNotificationName(SpooferStartedReplayingNotification, object: sharedInstance)
+                NSNotificationCenter.defaultCenter().postNotificationName(spooferStartedReplayingNotification, object: sharedInstance)
             }
             }, errorHandler: { error in
                 // Inform the delegate that spoofer could not start replay
                 Spoofer.delegate?.spooferDidStartReplaying(scenarioName, success: false)
                 // Post a state change notification for interested parties
-                NSNotificationCenter.defaultCenter().postNotificationName(SpooferStoppedReplayingNotification, object: sharedInstance)
+                NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedReplayingNotification, object: sharedInstance)
         })
         return protocolRegistered
     }
@@ -43,13 +43,14 @@ extension Spoofer {
             // Inform the delegate that spoofer stopped replay
             Spoofer.delegate?.spooferDidStopReplaying(scenarioName)
             // Post a state change notification for interested parties
-            NSNotificationCenter.defaultCenter().postNotificationName(SpooferStoppedReplayingNotification, object: sharedInstance)
+            NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedReplayingNotification, object: sharedInstance)
         }
         self.spoofedScenario = nil
         self.setReplaying = false
     }
     
     // MARK: - Invoke Replay UI
+    
     public class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
         guard let sourceViewController = sourceViewController else { return }
         let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)

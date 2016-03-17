@@ -31,8 +31,8 @@ public enum SpooferConfigurationType: String {
 }
 
 // MARK: - Notifications
-
-public let SpooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
-public let SpooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
-public let SpooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
-public let SpooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
+public let spooferLogNotification = "SpooferLogNotification"
+public let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
+public let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
+public let spooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
+public let spooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"

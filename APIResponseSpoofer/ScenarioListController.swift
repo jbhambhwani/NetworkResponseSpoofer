@@ -51,6 +51,7 @@ class ScenarioListController: UITableViewController {
     }
     
     // MARK: - Table view data source
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.active ? filteredScenarios.count : scenarioNames.count
     }
@@ -68,7 +69,8 @@ class ScenarioListController: UITableViewController {
         navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // MARK: Tableview Delegate
+    // MARK: - Tableview Delegate
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let scenario = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         Spoofer.startReplaying(scenarioName: scenario)

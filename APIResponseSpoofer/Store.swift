@@ -72,7 +72,8 @@ class Store {
         return fileNames
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
+    
     private class func getScenarioFileURL(scenarioName: String) -> NSURL {
         // Get a reference to the documents directory & Construct a file name based on the scenario file
         let scenarioFileURL = spooferDocumentsDirectory().URLByAppendingPathComponent("\(scenarioName).scenario")

@@ -18,12 +18,12 @@ class Scenario: NSObject, NSCoding {
     let name: String
     var apiResponses = [APIResponse]()
     
-    // MARK -
     init(name: String = "Default") {
         self.name = name
     }
     
     // MARK: - Managing responses
+    
     func addResponse(response: APIResponse) {
         if let existingResponseIndex = apiResponses.indexOf(response) {
             // If a response matching the same normalized URL exists, remove and replace it with the new response (so that we keep latest)
@@ -43,7 +43,8 @@ class Scenario: NSObject, NSCoding {
         return responseForRequest(urlRequest)
     }
     
-    // MARK: NSCoding
+    // MARK: - NSCoding
+    
     required init?(coder aDecoder: NSCoder) {
         name = aDecoder.decodeObjectForKey(ScenarioFields.name) as! String
         apiResponses = aDecoder.decodeObjectForKey(ScenarioFields.responses) as! [APIResponse]

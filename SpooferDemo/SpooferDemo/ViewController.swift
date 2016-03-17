@@ -28,15 +28,16 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: SpooferLogNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: spooferLogNotification, object: nil)
         Spoofer.delegate = self
         
         // Sample configurations
-        Spoofer.hostNamesToSpoof = ["Google.com", "Apple.com", "Facebook.com", "jsonplaceholder.typicode.com"]
+        Spoofer.hostNamesToSpoof = ["jsonplaceholder.typicode.com", "Google.com", "Apple.com", "Facebook.com"]
         Spoofer.hostNamesToIgnore = ["Stackoverflow.com", "Youtube.com"]
-        Spoofer.queryParametersToIgnore = ["authtoken", "cluster", "swarm"]
+        Spoofer.queryParametersToIgnore = ["authtoken", "swarm", "cluster", "node"]
         Spoofer.subDomainsToIgnore = ["DEV", "QA", "PREPROD"]
     }
     
@@ -45,6 +46,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - User Actions
+    
     @IBAction func buttonPressed(sender: UIBarButtonItem) {
         
         if sender == clearButton {
@@ -96,6 +98,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - Helper methods
+    
     func spooferLogReceived(notification: NSNotification) {
         guard let userInfo = notification.userInfo as? [String: String], message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
@@ -194,5 +197,3 @@ extension ViewController: SpooferDelegate {
         executeActionsForReplaying(replayingState: false)
     }
 }
-
-
