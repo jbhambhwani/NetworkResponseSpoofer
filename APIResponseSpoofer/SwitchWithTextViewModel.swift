@@ -62,7 +62,26 @@ extension SwitchWithTextViewModel {
 
 extension SwitchWithTextViewModel {
     var configurations: [String] {
-        guard let configs = packedData as? [String] else { return [String]() }
-        return configs
+        get {
+            guard let configs = packedData as? [String] else { return [String]() }
+            return configs
+        }
+        set {
+            // Based on current configuration, Update the Spoofer instance with new setting
+            switch configType {
+            case .spoofedHosts:
+                Spoofer.hostNamesToSpoof = newValue
+            case .ignoredHosts:
+                Spoofer.hostNamesToIgnore = newValue
+            case .ignoredSubdomains:
+                Spoofer.subDomainsToIgnore = newValue
+            case .ignoredQueryParameters:
+                Spoofer.queryParametersToIgnore = newValue
+            default:
+                assert(false, "Unhandled case")
+            }
+            
+            model[configType] = newValue
+        }
     }
 }

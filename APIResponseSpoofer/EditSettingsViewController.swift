@@ -11,20 +11,43 @@ import UIKit
 
 class EditSettingsViewController: UITableViewController {
     
-    var configurations: [String]?
+    var presenter: SwitchWithTextViewPresentable?
+    
+    // MARK: - User Actions
+    
+    @IBAction func addAction(sender: UIBarButtonItem) {
+        
+    }
+    
+    @IBAction func editAction(sender: UIBarButtonItem) {
+        tableView.editing = !tableView.editing
+    }
     
     // MARK: - Table view data source
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard let configurations = configurations else { return 0 }
+        guard let configurations = presenter?.configurations else { return 0 }
         return configurations.count
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        guard let configurations = configurations else { return UITableViewCell() }
+        guard let configurations = presenter?.configurations else { return UITableViewCell() }
         
         let cell = tableView.dequeueReusableCellWithIdentifier(UITableViewCell.defaultReuseIdentifier, forIndexPath: indexPath)
         cell.textLabel?.text = configurations[indexPath.row]
         return cell
     }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch editingStyle {
+        case .Delete:
+            presenter?.configurations.removeAtIndex(indexPath.row)
+            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        case .Insert: break
+        case .None: break
+        
+        }
+    }
+    
 }

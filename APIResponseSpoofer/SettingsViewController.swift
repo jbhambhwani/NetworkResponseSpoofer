@@ -18,12 +18,16 @@ class SettingsViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.scrollsToTop = true
-        readSpooferConfiguration()
         tableView.tableFooterView = UIView()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        readSpooferConfiguration()
+        tableView.reloadData()
+    }
+    
     private func readSpooferConfiguration() {
+        allSettings.removeAll(keepCapacity: true)
         guard let config = Spoofer.configurations else { return }
         for (k,v) in Array(config).sort({ $0.0.rawValue < $1.0.rawValue })  {
             allSettings.append([k:v])
@@ -35,7 +39,7 @@ class SettingsViewController: UITableViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let cell = sender as? SwitchWithTextTableViewCell, editVC = segue.destinationViewController as? EditSettingsViewController else { return }
         editVC.title = cell.presenter?.text
-        editVC.configurations = cell.presenter?.configurations
+        editVC.presenter = cell.presenter
     }
 
 }
