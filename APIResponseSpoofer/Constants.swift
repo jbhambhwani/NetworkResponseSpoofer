@@ -29,10 +29,3 @@ public enum SpooferConfigurationType: String {
     case ignoredQueryParameters = "Query Parameters to Ignore"
     case None = ""
 }
-
-// MARK: - Notifications
-public let spooferLogNotification = "SpooferLogNotification"
-public let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
-public let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
-public let spooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
-public let spooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"

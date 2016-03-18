@@ -29,7 +29,7 @@ func postNotification(message: String, object: AnyObject? = nil) {
     // Print to console
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
-    NSNotificationCenter.defaultCenter().postNotificationName(spooferLogNotification, object: object, userInfo: ["message": message])
+    NSNotificationCenter.defaultCenter().postNotificationName(Spoofer.spooferLogNotification, object: object, userInfo: ["message": message])
 }
 
 func spooferStoryBoard() -> UIStoryboard {

@@ -15,10 +15,19 @@ import Foundation
     func spooferDidStopReplaying(scenarioName: String)
 }
 
+
 @objc public class Spoofer: NSObject {
     
+    // MARK - Notifications
+    
+    public static let spooferLogNotification = "SpooferLogNotification"
+    public static let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
+    public static let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
+    public static let spooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
+    public static let spooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
+    
     // MARK: - Public properties
-
+    
     public class var delegate: SpooferDelegate? {
         get { return sharedInstance.delegate }
         set { sharedInstance.delegate = newValue }
