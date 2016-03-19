@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum ResponseKeys: String {
+private enum ResponseKeys: String {
     case requestURL
     case httpMethod
     case data
@@ -48,7 +48,7 @@ class APIResponse: NSObject, NSCoding {
         
         self.init(requestURL: url, httpMethod: method, data: data, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: httpURLResponse.allHeaderFields as? [String: String])
     }
-    
+
     // MARK: - NSCoding
     
     required init?(coder aDecoder: NSCoder) {
@@ -70,8 +70,12 @@ class APIResponse: NSObject, NSCoding {
         aCoder.encodeObject(encoding, forKey: ResponseKeys.encoding.rawValue)
         aCoder.encodeObject(headerFields, forKey: ResponseKeys.headerFields.rawValue)
     }
-    
-    // MARK: - Equatable
+
+}
+
+// MARK: - NSCoding
+
+extension APIResponse {
     
     override func isEqual(object: AnyObject?) -> Bool {
         guard let rhs = object as? APIResponse else { return false }
@@ -80,6 +84,10 @@ class APIResponse: NSObject, NSCoding {
             return true
         }
         return false
+    }
+    
+    override var hashValue: Int {
+        return requestURL.hashValue ^ httpMethod.hashValue ^ data.hashValue
     }
     
 }
