@@ -104,9 +104,7 @@ extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDel
             return
         }
         
-        filteredScenarios = scenarioNames.filter({ scenario -> Bool in
-            return scenario.lowercaseString.rangeOfString(searchText.lowercaseString) != nil
-        })
+        filteredScenarios = scenarioNames.filter { $0.lowercaseString.containsString(searchText.lowercaseString) }
     }
 
 }
