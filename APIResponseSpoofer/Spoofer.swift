@@ -39,22 +39,22 @@ import Foundation
     
     public class var hostNamesToSpoof: [String] {
         get { return sharedInstance.spoofedHosts }
-        set { sharedInstance.spoofedHosts = newValue }
+        set { sharedInstance.spoofedHosts = newValue.flatMap { $0.lowercaseString } }
     }
     
     public class var hostNamesToIgnore: [String] {
         get { return sharedInstance.ignoredHosts }
-        set { sharedInstance.ignoredHosts = newValue }
+        set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercaseString } }
     }
     
     public class var subDomainsToIgnore: [String] {
         get { return sharedInstance.ignoredSubdomains }
-        set { sharedInstance.ignoredSubdomains = newValue }
+        set { sharedInstance.ignoredSubdomains = newValue.flatMap { $0.lowercaseString } }
     }
     
     public class var queryParametersToIgnore: [String] {
         get { return sharedInstance.ignoredQueryParameters }
-        set { sharedInstance.ignoredQueryParameters = newValue }
+        set { sharedInstance.ignoredQueryParameters = newValue.flatMap { $0.lowercaseString } }
     }
     
     public class var normalizeQueryParameters: Bool {
@@ -71,16 +71,16 @@ import Foundation
     
     class func shouldHandleURL(url: NSURL) -> Bool {
         // Take an early exit if host is empty
-        guard let host = url.host?.lowercaseString else { return false }
+        guard let currentHost = url.host?.lowercaseString else { return false }
         
-        // Handle all cases in case no domains are whitelisted
-        if hostNamesToSpoof.isEmpty { return true }
+        // Handle all cases in case no domains are whitelisted + blacklisted
+        if hostNamesToSpoof.isEmpty && hostNamesToIgnore.isEmpty { return true }
         
-        // If whitelist/blacklist is set, use it
-        let whiteListedDomain = hostNamesToSpoof.filter() { host.containsString($0.lowercaseString) }
-        let blackListedDomain = hostNamesToIgnore.filter() { host.containsString($0.lowercaseString) }
+        // If whitelist / blacklist is set, use it
+        let domainIsWhitelisted = hostNamesToSpoof.filter { currentHost.containsString($0) }.count > 0
+        let domainIsBlacklisted = hostNamesToIgnore.filter { currentHost.containsString($0) }.count > 0
         
-        if whiteListedDomain.count == 1 && blackListedDomain.count == 0 {
+        if domainIsWhitelisted && !domainIsBlacklisted {
             return true
         }
         

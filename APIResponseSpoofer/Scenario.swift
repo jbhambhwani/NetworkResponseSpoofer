@@ -34,8 +34,11 @@ class Scenario: NSObject, NSCoding {
     }
     
     func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
-        let normalizedURLString = urlRequest.URL?.normalizedURLString
-        let response = apiResponses.filter { $0.requestURL.normalizedURLString == normalizedURLString }.first
+        guard let requestURLString = urlRequest.URL?.normalizedURLString else { return nil }
+        let response = apiResponses.filter { savedResponse in
+            guard let savedURLString = savedResponse.requestURL.normalizedURLString else { return false }
+            return savedURLString.containsString(requestURLString)
+        }.first
         return response
     }
     

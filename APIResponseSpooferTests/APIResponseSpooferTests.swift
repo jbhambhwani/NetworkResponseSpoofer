@@ -19,6 +19,7 @@ class APIResponseSpooferTests: XCTestCase {
     let smokeTest = "Smoke Test Spoofer"
     let sampleURL1 = NSURL(string: "http://echo.jsontest.com/key/value/one/two")!
     let sampleURL2 = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
+    let allCapsURL = NSURL(string: "HTTP://JSONPLACEHOLDER.TYPICODE.COM/USERS")!
     let complexURL = NSURL(string: "http://www.example.com:8042/over/there/index.html?class=vehicle&type=2wheeler&name=ferrari#red")!
     
     override func setUp() {
@@ -117,7 +118,13 @@ class APIResponseSpooferTests: XCTestCase {
         XCTAssertTrue(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
     }
     
-    func test08LoadAllScenarios() {
+    func test08CapitalURLNormalization() {
+        Spoofer.normalizeQueryParameters = true
+        let normalizedAllCapsURL = "jsonplaceholder.typicode.com/users"
+        XCTAssertTrue(allCapsURL.normalizedURLString == normalizedAllCapsURL, "After normalization, all URL's should be lower case")
+    }
+    
+    func testLoadAllScenarios() {
         let allScenarios = Store.allScenarioNames()
         print("All Scenarios:\n\(allScenarios)")
     }

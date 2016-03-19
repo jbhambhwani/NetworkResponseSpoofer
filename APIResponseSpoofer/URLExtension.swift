@@ -27,8 +27,10 @@ extension NSURL {
         return normalizedNames
     }
     
-    // MARKPublic properties
+    // MARK:- Public properties
+    
     var normalizedURLString: String? {
+    
         // If the host is empty, take an early exit
         guard var normalizedString = self.host else { return nil }
         
@@ -36,6 +38,9 @@ extension NSURL {
             let wwwIndex = normalizedString.startIndex.advancedBy(4)
             normalizedString = normalizedString.substringFromIndex(wwwIndex)
         }
+        
+        // Lower case the string to avoid euality check issues
+        normalizedString = normalizedString.lowercaseString
         
         // Remove sub domains which are to be ignored from the host name part. e.g. DEV, QA, PREPROD etc
         for subDomainToIgnore in Spoofer.subDomainsToIgnore {
@@ -58,7 +63,7 @@ extension NSURL {
         }
         
         // Return current processed URL if there are no query items
-        guard let query = query else { return normalizedString }
+        guard let query = query else { return normalizedString.lowercaseString }
 
         // Normalize and append query parameter names (ignore values if normalization is requested)
         if let queryItemNames = self.normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
@@ -71,7 +76,7 @@ extension NSURL {
             }
         }
         
-        return normalizedString
+        return normalizedString.lowercaseString
     }
     
     var isHTTP: Bool {
