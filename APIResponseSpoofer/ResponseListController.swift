@@ -34,7 +34,7 @@ class ResponseListController: UITableViewController {
         super.viewDidLoad()
         // tableView.scrollsToTop = true
         tableView.tableHeaderView = searchController.searchBar
-        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .Plain, target: self, action: "toggleRowHeight:")
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .Plain, target: self, action: "toggleRowHeight:")
         // Load the responses for the passed in scenario
         if scenarioName.characters.count > 0 {
             loadScenario()
@@ -76,10 +76,10 @@ class ResponseListController: UITableViewController {
     // MARK: Utility methods
     
     func loadScenario() {
-        Store.loadScenario(scenarioName, callback: { success, scenario in
+        Store.loadScenario(scenarioName, callback: { [weak self] success, scenario in
             if success {
-                self.allResponses = scenario.apiResponses
-                self.tableView.reloadData()
+                self?.allResponses = scenario.apiResponses
+                self?.tableView.reloadData()
             }
             }, errorHandler: { error in
                 
@@ -106,7 +106,7 @@ extension ResponseListController: UISearchResultsUpdating, UISearchControllerDel
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         defer {
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
         
         guard let searchText = searchController.searchBar.text else {

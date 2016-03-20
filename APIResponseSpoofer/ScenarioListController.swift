@@ -80,7 +80,7 @@ class ScenarioListController: UITableViewController {
     
     // Navigation
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        self.performSegueWithIdentifier("showResponses", sender: indexPath)
+        performSegueWithIdentifier("showResponses", sender: indexPath)
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -96,7 +96,7 @@ extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDel
     
     func updateSearchResultsForSearchController(searchController: UISearchController) {
         defer {
-            self.tableView.reloadData()
+            tableView.reloadData()
         }
         
         guard let searchText = searchController.searchBar.text else {

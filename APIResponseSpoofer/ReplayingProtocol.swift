@@ -17,7 +17,7 @@ class ReplayingProtocol: NSURLProtocol {
     
     private var currentReplayMethod: ReplayMethod {
         // Customization: Switch the replay method according to the one which suits your specific requirement.
-        return ReplayMethod.MimeTypeAndEncoding
+        return .StatusCodeAndHeader
     }
     
     override class func canInitWithRequest(request: NSURLRequest) -> Bool {
@@ -46,12 +46,12 @@ class ReplayingProtocol: NSURLProtocol {
     }
     
     override func startLoading() {
-        guard let url = self.request.URL else { return }
+        guard let url = request.URL else { return }
         
-        guard let spoofedScenario = Spoofer.spoofedScenario, cachedResponse = spoofedScenario.responseForRequest(self.request) else {
+        guard let spoofedScenario = Spoofer.spoofedScenario, cachedResponse = spoofedScenario.responseForRequest(request) else {
             // Throw an error in case we are unable to load a response
             let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.NoSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
-            self.client?.URLProtocol(self, didFailWithError: httpError)
+            client?.URLProtocol(self, didFailWithError: httpError)
             return
         }
         
@@ -59,7 +59,7 @@ class ReplayingProtocol: NSURLProtocol {
         
         switch currentReplayMethod {
             case .StatusCodeAndHeader:
-                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields)
+                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
             case .MimeTypeAndEncoding:
                 httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, MIMEType: cachedResponse.mimeType, expectedContentLength: -1, textEncodingName: cachedResponse.encoding)
         }
@@ -67,19 +67,19 @@ class ReplayingProtocol: NSURLProtocol {
         guard let spoofedResponse = httpResponse else {
             // Throw an error in case we are unable to serialize a response
             let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.NoSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
-            self.client?.URLProtocol(self, didFailWithError: httpError)
+            client?.URLProtocol(self, didFailWithError: httpError)
             return
         }
         
-        postNotification("Serving response from cache for : \(self.request.URL?.absoluteString)", object: self)
+        postNotification("Serving response from cache for : \(request.URL?.absoluteString)", object: self)
         
-        self.client?.URLProtocol(self, didReceiveResponse: spoofedResponse, cacheStoragePolicy: .NotAllowed)
-        self.client?.URLProtocol(self, didLoadData: cachedResponse.data)
-        self.client?.URLProtocolDidFinishLoading(self)
+        client?.URLProtocol(self, didReceiveResponse: spoofedResponse, cacheStoragePolicy: .NotAllowed)
+        client?.URLProtocol(self, didLoadData: cachedResponse.data)
+        client?.URLProtocolDidFinishLoading(self)
     }
     
     override func stopLoading() {
-        // Do nothing
+        // Nothing to do here for replay
     }
     
 }

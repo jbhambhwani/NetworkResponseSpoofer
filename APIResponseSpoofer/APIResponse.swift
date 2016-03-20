@@ -26,10 +26,10 @@ class APIResponse: NSObject, NSCoding {
     let createdDate: NSDate
     let mimeType: String?
     let encoding: String?
-    let headerFields: [String: String]?
+    let headerFields: [NSObject : AnyObject]?
     
     // Designated initializer
-    init?(requestURL: NSURL, httpMethod: String, data: NSData, mimeType: String?, encoding: String?, headerFields: [String: String]?) {
+    init?(requestURL: NSURL, httpMethod: String, data: NSData, mimeType: String?, encoding: String?, headerFields: [NSObject: AnyObject]?) {
         self.requestURL = requestURL
         self.httpMethod = httpMethod
         self.data = data
@@ -46,7 +46,11 @@ class APIResponse: NSObject, NSCoding {
             data = data
         else { return nil }
         
-        self.init(requestURL: url, httpMethod: method, data: data, mimeType: httpResponse.MIMEType, encoding: httpResponse.textEncodingName, headerFields: httpURLResponse.allHeaderFields as? [String: String])
+        let headerFields = httpURLResponse.allHeaderFields
+        let mimeType = httpURLResponse.MIMEType
+        let encoding = httpURLResponse.textEncodingName
+        
+        self.init(requestURL: url, httpMethod: method, data: data, mimeType: mimeType, encoding: encoding, headerFields: headerFields)
     }
 
     // MARK: - NSCoding
@@ -58,7 +62,7 @@ class APIResponse: NSObject, NSCoding {
         createdDate = aDecoder.decodeObjectForKey(ResponseKeys.createdDate.rawValue) as! NSDate
         mimeType = aDecoder.decodeObjectForKey(ResponseKeys.mimeType.rawValue) as? String
         encoding = aDecoder.decodeObjectForKey(ResponseKeys.encoding.rawValue) as? String
-        headerFields = aDecoder.decodeObjectForKey(ResponseKeys.encoding.rawValue) as? [String : String]
+        headerFields = aDecoder.decodeObjectForKey(ResponseKeys.headerFields.rawValue) as? [NSObject: AnyObject]
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -96,5 +100,5 @@ extension APIResponse {
 
 extension APIResponse: CustomDebugStringConvertible {
     override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)"}
-    override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nCreatedDate: \(createdDate)\nMIMEType: \(mimeType)\nEncoding: \(encoding)\n"}
+    override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nCreatedDate: \(createdDate)\nMIMEType: \(mimeType)\nEncoding: \(encoding)\nHeaderFields: \(headerFields)\n"}
 }

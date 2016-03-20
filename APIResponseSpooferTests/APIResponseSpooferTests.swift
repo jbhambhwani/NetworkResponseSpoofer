@@ -41,10 +41,10 @@ class APIResponseSpooferTests: XCTestCase {
         
         // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
-        session.dataTaskWithURL(sampleURL1, completionHandler: { data, response, error in
+        session.dataTaskWithURL(sampleURL1, completionHandler: { [weak self] data, response, error in
             if error == nil {
                 Spoofer.stopRecording()
-                self.responseReceived?.fulfill()
+                self?.responseReceived?.fulfill()
             }
         }).resume()
         
@@ -76,11 +76,11 @@ class APIResponseSpooferTests: XCTestCase {
         
         // 3: Fetch some data using a URL session
         let session = NSURLSession.sharedSession()
-        session.dataTaskWithURL(sampleURL1, completionHandler: { data, response, error in
+        session.dataTaskWithURL(sampleURL1, completionHandler: { [weak self] data, response, error in
             if error == nil {
                 print("Cached Response : \(response) \nCached Data: \(data)")
                 Spoofer.stopReplaying()
-                self.spoofedResponseReceived?.fulfill()
+                self?.spoofedResponseReceived?.fulfill()
             }
         }).resume()
         

@@ -14,15 +14,15 @@ extension Spoofer {
     // MARK: - Public methods
     
     public class var isReplaying: Bool {
-        return self.sharedInstance.replaying
+        return sharedInstance.replaying
     }
     
     public class func startReplaying(scenarioName scenarioName: String) -> Bool {
         let protocolRegistered = NSURLProtocol.registerClass(ReplayingProtocol)
         Store.loadScenario(scenarioName, callback: { success, scenario in
             if success {
-                self.setReplaying = true
-                self.spoofedScenario = scenario
+                setReplaying = true
+                spoofedScenario = scenario
                 // Inform the delegate that spoofer started replay
                 Spoofer.delegate?.spooferDidStartReplaying(scenarioName, success: true)
                 // Post a state change notification for interested parties
@@ -39,14 +39,14 @@ extension Spoofer {
     
     public class func stopReplaying() {
         NSURLProtocol.unregisterClass(ReplayingProtocol)
-        if let scenarioName = self.spoofedScenario?.name {
+        if let scenarioName = spoofedScenario?.name {
             // Inform the delegate that spoofer stopped replay
             Spoofer.delegate?.spooferDidStopReplaying(scenarioName)
             // Post a state change notification for interested parties
             NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedReplayingNotification, object: sharedInstance)
         }
-        self.spoofedScenario = nil
-        self.setReplaying = false
+        spoofedScenario = nil
+        setReplaying = false
     }
     
     // MARK: - Invoke Replay UI

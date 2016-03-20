@@ -32,7 +32,7 @@ extension NSURL {
     var normalizedURLString: String? {
     
         // If the host is empty, take an early exit
-        guard var normalizedString = self.host else { return nil }
+        guard var normalizedString = host else { return nil }
         
         if normalizedString.hasPrefix("www.") {
             let wwwIndex = normalizedString.startIndex.advancedBy(4)
@@ -58,7 +58,7 @@ extension NSURL {
         }
         
         // Set the path
-        if let pathString = self.path {
+        if let pathString = path {
             normalizedString += pathString
         }
         
@@ -66,7 +66,7 @@ extension NSURL {
         guard let query = query else { return normalizedString.lowercaseString }
 
         // Normalize and append query parameter names (ignore values if normalization is requested)
-        if let queryItemNames = self.normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
+        if let queryItemNames = normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
             normalizedString += queryItemNames
         } else {
             if let fragment = fragment {
@@ -80,7 +80,7 @@ extension NSURL {
     }
     
     var isHTTP: Bool {
-        return ["http", "https"].contains(self.scheme)
+        return ["http", "https"].contains(scheme)
     }
     
 }
