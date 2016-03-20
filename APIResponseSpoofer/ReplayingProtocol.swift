@@ -59,9 +59,10 @@ class ReplayingProtocol: NSURLProtocol {
         
         switch currentReplayMethod {
             case .StatusCodeAndHeader:
-                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: 200, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
+                let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
+                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: statusCode, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
             case .MimeTypeAndEncoding:
-                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, MIMEType: cachedResponse.mimeType, expectedContentLength: -1, textEncodingName: cachedResponse.encoding)
+                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, MIMEType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
         }
 
         guard let spoofedResponse = httpResponse else {
