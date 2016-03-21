@@ -14,7 +14,8 @@ typealias SwitchWithTextViewPresentable = protocol<TextPresentable, SwitchPresen
 
 class SwitchWithTextTableViewCell: UITableViewCell {
     
-    @IBOutlet private weak var label: UILabel!
+    @IBOutlet private weak var titleLabel: UILabel!
+    @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var switchToggle: UISwitch!
     
     private(set) var presenter: SwitchWithTextViewPresentable?
@@ -24,7 +25,8 @@ class SwitchWithTextTableViewCell: UITableViewCell {
         self.presenter = presenter
         
         // configure the UI components
-        label.text = presenter.text
+        titleLabel.text = presenter.title
+        subtitleLabel.text = presenter.subtitle
         switchToggle.on = presenter.switchOn
         switchToggle.hidden = presenter.switchHidden
         accessoryType = presenter.disclosureHidden ? .None : .DisclosureIndicator

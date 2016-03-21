@@ -102,13 +102,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     func spooferLogReceived(notification: NSNotification) {
         guard let userInfo = notification.userInfo as? [String: String], message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
-        dispatch_async(dispatch_get_main_queue(), { [weak self]
-            if self?.consoleTextView.text.characters.count > 0 {
-                self?.consoleTextView.text = self?.consoleTextView.text + "\n" + message
+        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+            guard let strongSelf = self else { return }
+            if strongSelf.consoleTextView.text.characters.count > 0 {
+                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
                 // Scroll to bottom of log
-                self?.consoleTextView.scrollRangeToVisible(NSRange(location: self?.consoleTextView.text.characters.count - 1, length: 1))
+                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.characters.count - 1, length: 1))
             } else {
-                self?.consoleTextView.text = message
+                strongSelf.consoleTextView.text = message
             }
         })
     }

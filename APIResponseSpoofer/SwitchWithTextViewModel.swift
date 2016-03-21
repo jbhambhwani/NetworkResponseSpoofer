@@ -16,8 +16,12 @@ struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
 
 extension SwitchWithTextViewModel {
     
-    var text: String {
+    var title: String {
         return configType.rawValue
+    }
+    
+    var subtitle: String {
+        return configType.description
     }
     
     private var configType: SpooferConfigurationType {

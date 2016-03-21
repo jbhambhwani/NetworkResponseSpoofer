@@ -19,6 +19,8 @@ class SettingsViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 100.0
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -38,7 +40,7 @@ class SettingsViewController: UITableViewController {
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         guard let cell = sender as? SwitchWithTextTableViewCell, editVC = segue.destinationViewController as? EditSettingsViewController else { return }
-        editVC.title = cell.presenter?.text
+        editVC.title = cell.presenter?.title
         editVC.presenter = cell.presenter
     }
 

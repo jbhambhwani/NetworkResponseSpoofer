@@ -10,7 +10,7 @@ import UIKit
 
 class ResponseListController: UITableViewController {
     
-    var scenarioName: String = ""
+    var scenarioName = ""
     var cellHeight: CGFloat = 44.0
     let expandText = "Expand"
     let collapseText = "Collapse"
@@ -50,29 +50,6 @@ class ResponseListController: UITableViewController {
         }
     }
     
-    // MARK: - Table view data source
-    
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.active ? filteredResponses.count : allResponses.count
-    }
-    
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("RequestURLCell", forIndexPath: indexPath)
-        let response = searchController.active ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
-        cell.textLabel?.text = response.requestURL.absoluteString
-        return cell
-    }
-    
-    // Tableview Delegate
-    
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return cellHeight
-    }
-    
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return cellHeight
-    }
-    
     // MARK: Utility methods
     
     func loadScenario() {
@@ -96,6 +73,64 @@ class ResponseListController: UITableViewController {
         }
         searchController.active = false
         tableView.reloadData()
+    }
+    
+}
+
+// MARK: - Tableview datasource
+
+extension ResponseListController {
+    
+    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchController.active ? filteredResponses.count : allResponses.count
+    }
+    
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCellWithIdentifier("RequestURLCell", forIndexPath: indexPath)
+        let response = searchController.active ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
+        cell.textLabel?.text = response.requestURL.absoluteString
+        return cell
+    }
+    
+}
+
+// MARK: - Tableview delegate
+
+extension ResponseListController {
+    
+    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellHeight
+    }
+    
+    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+        return cellHeight
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch editingStyle {
+            case .Delete:
+                // Remove the response from local array
+                allResponses.removeAtIndex(indexPath.row)
+                // Create a new scenario based on the responses and save it to disk
+                let scenario = Scenario(name: scenarioName)
+                scenario.apiResponses = allResponses
+                Store.saveScenario(scenario, callback: { [weak tableView] success, savedScenario in
+                        dispatch_async(dispatch_get_main_queue(), {
+                            // Update the tableview upon succesful scenario updation
+                            tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                            // If Spoofer was already in replay mode, update the scenario with the updated version
+                            if Spoofer.spoofedScenario != nil {
+                                Spoofer.spoofedScenario = savedScenario
+                            }
+                        })
+                    }, errorHandler: { [weak tableView] error in
+                        // Cause a tableview reload if scenario creation failed due to some reason
+                        tableView?.reloadData()
+                })
+            case .Insert: break
+            case .None: break
+        }
     }
     
 }

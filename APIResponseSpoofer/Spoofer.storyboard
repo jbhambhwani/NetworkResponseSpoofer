@@ -79,31 +79,41 @@
                                     <rect key="frame" x="0.0" y="0.0" width="567" height="43.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mz-je-ld6">
-                                            <rect key="frame" x="18" y="8" width="492" height="28"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" verticalCompressionResistancePriority="749" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="3Mz-je-ld6" userLabel="Title">
+                                            <rect key="frame" x="18" y="8" width="482" height="13"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WNr-RZ-Z7c">
-                                            <rect key="frame" x="510" y="7" width="51" height="31"/>
+                                            <rect key="frame" x="510" y="6.5" width="51" height="31"/>
                                             <connections>
-                                                <action selector="onSwitchToggle:" destination="V1u-No-CWk" eventType="valueChanged" id="5zg-MS-Xpm"/>
+                                                <action selector="onSwitchToggle:" destination="V1u-No-CWk" eventType="valueChanged" id="9me-2w-YBj"/>
                                             </connections>
                                         </switch>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subtitle" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Twy-Ih-gX2" userLabel="Subtitle">
+                                            <rect key="frame" x="18" y="21" width="482" height="14.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                            <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstItem="WNr-RZ-Z7c" firstAttribute="trailing" secondItem="YyH-t6-pQX" secondAttribute="trailingMargin" id="G1O-CQ-Zt1"/>
-                                        <constraint firstItem="3Mz-je-ld6" firstAttribute="leading" secondItem="YyH-t6-pQX" secondAttribute="leadingMargin" constant="10" id="PtF-GW-1kc"/>
-                                        <constraint firstItem="WNr-RZ-Z7c" firstAttribute="centerY" secondItem="YyH-t6-pQX" secondAttribute="centerY" id="S31-Mo-Jdh"/>
-                                        <constraint firstItem="3Mz-je-ld6" firstAttribute="bottom" secondItem="YyH-t6-pQX" secondAttribute="bottomMargin" id="awE-5Z-UrX"/>
-                                        <constraint firstItem="3Mz-je-ld6" firstAttribute="top" secondItem="YyH-t6-pQX" secondAttribute="topMargin" id="ldc-TS-qdO"/>
-                                        <constraint firstItem="WNr-RZ-Z7c" firstAttribute="leading" secondItem="3Mz-je-ld6" secondAttribute="trailing" id="uFC-9S-WfS"/>
+                                        <constraint firstItem="WNr-RZ-Z7c" firstAttribute="leading" secondItem="3Mz-je-ld6" secondAttribute="trailing" constant="10" id="07P-WP-NTu"/>
+                                        <constraint firstItem="Twy-Ih-gX2" firstAttribute="leading" secondItem="3Mz-je-ld6" secondAttribute="leading" id="2C9-ps-Fyi"/>
+                                        <constraint firstItem="Twy-Ih-gX2" firstAttribute="top" secondItem="3Mz-je-ld6" secondAttribute="bottom" id="53z-Mo-CRN"/>
+                                        <constraint firstItem="3Mz-je-ld6" firstAttribute="leading" secondItem="YyH-t6-pQX" secondAttribute="leadingMargin" constant="10" id="6Td-e2-vFR"/>
+                                        <constraint firstAttribute="bottomMargin" secondItem="Twy-Ih-gX2" secondAttribute="bottom" id="Fdd-PK-iRr"/>
+                                        <constraint firstAttribute="topMargin" secondItem="3Mz-je-ld6" secondAttribute="top" id="Tt4-gf-UkP"/>
+                                        <constraint firstItem="WNr-RZ-Z7c" firstAttribute="leading" secondItem="Twy-Ih-gX2" secondAttribute="trailing" constant="10" id="mDr-F5-2J1"/>
+                                        <constraint firstItem="WNr-RZ-Z7c" firstAttribute="trailing" secondItem="YyH-t6-pQX" secondAttribute="trailingMargin" id="qIh-4B-Hsz"/>
+                                        <constraint firstItem="WNr-RZ-Z7c" firstAttribute="centerY" secondItem="YyH-t6-pQX" secondAttribute="centerY" id="xPM-FX-LDb"/>
                                     </constraints>
                                 </tableViewCellContentView>
                                 <connections>
-                                    <outlet property="label" destination="3Mz-je-ld6" id="0ah-eU-f4X"/>
-                                    <outlet property="switchToggle" destination="WNr-RZ-Z7c" id="486-cK-x95"/>
+                                    <outlet property="subtitleLabel" destination="Twy-Ih-gX2" id="TEk-XP-stH"/>
+                                    <outlet property="switchToggle" destination="WNr-RZ-Z7c" id="vyc-cN-FLe"/>
+                                    <outlet property="titleLabel" destination="3Mz-je-ld6" id="eGQ-as-DCP"/>
                                     <segue destination="Emy-fH-AuI" kind="show" identifier="EditRows" id="5Qj-mD-FOW"/>
                                 </connections>
                             </tableViewCell>

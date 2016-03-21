@@ -24,14 +24,18 @@ class EditSettingsViewController: UITableViewController {
     // MARK: - User Actions
     
     @IBAction func addAction(sender: UIBarButtonItem) {
-        
+        // TODO: Add this functionality
     }
     
     @IBAction func editAction(sender: UIBarButtonItem) {
         tableView.editing = !tableView.editing
     }
     
-    // MARK: - Table view data source
+}
+
+// MARK: - Tableview datasource
+
+extension EditSettingsViewController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let configurations = presenter?.configurations else { return 0 }
@@ -46,15 +50,20 @@ class EditSettingsViewController: UITableViewController {
         return cell
     }
     
+}
+
+// MARK: - Tableview delegate
+
+extension EditSettingsViewController {
+    
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         switch editingStyle {
-        case .Delete:
-            presenter?.configurations.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-        case .Insert: break
-        case .None: break
-        
+            case .Delete:
+                presenter?.configurations.removeAtIndex(indexPath.row)
+                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+            case .Insert: break
+            case .None: break
         }
     }
     

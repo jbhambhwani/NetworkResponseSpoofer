@@ -9,7 +9,8 @@
 import Foundation
 
 protocol TextPresentable {
-    var text: String { get }
+    var title: String { get }
+    var subtitle: String { get }
 }
 
 protocol SwitchPresentable {

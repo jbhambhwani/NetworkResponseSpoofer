@@ -143,7 +143,6 @@
 				416322321BF67E9400F9E67A /* ResponseListController.swift */,
 				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
 				41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */,
-				410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */,
 			);
 			name = Controller;
 			sourceTree = "<group>";
@@ -245,6 +244,7 @@
 			isa = PBXGroup;
 			children = (
 				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
+				410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";

@@ -11,28 +11,12 @@ import UIKit
 class ScenarioListController: UITableViewController {
     
     static let identifier = "ScenarioListNavController"
-    
-    private lazy var scenarioNames: [String] = {
-        return Store.allScenarioNames() as [String]
-        }()
-    
-    private lazy var searchController: UISearchController = {
-        let controller = UISearchController(searchResultsController: nil)
-        controller.searchResultsUpdater = self
-        controller.delegate = self
-        controller.searchBar.sizeToFit()
-        controller.searchBar.barTintColor = UIColor.lightGrayColor()
-        controller.searchBar.tintColor = UIColor.blackColor()
-        return controller
-    }()
-    
-    private var filteredScenarios = [String]()
-    private var selectedScenarioName: String = ""
-    
+
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // tableView.scrollsToTop = true
+        tableView.scrollsToTop = true
         tableView.tableHeaderView = searchController.searchBar
     }
     
@@ -49,8 +33,43 @@ class ScenarioListController: UITableViewController {
             searchController.view.removeFromSuperview()
         }
     }
+
+    @IBAction func cancel(sender: AnyObject) {
+        searchController.active = false
+        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    }
     
-    // MARK: - Table view data source
+    // MARK: - Navigation
+    
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let responseListController = segue.destinationViewController as? ResponseListController, indexPath = sender as? NSIndexPath else { return }
+        selectedScenarioName = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+        responseListController.scenarioName = selectedScenarioName
+    }
+    
+    // MARK: - Private properties
+    
+    private var filteredScenarios = [String]()
+    private var selectedScenarioName = ""
+    
+    private lazy var scenarioNames: [String] = {
+        return Store.allScenarioNames()
+    }()
+    
+    private lazy var searchController: UISearchController = {
+        let controller = UISearchController(searchResultsController: nil)
+        controller.searchResultsUpdater = self
+        controller.delegate = self
+        controller.searchBar.sizeToFit()
+        controller.searchBar.barTintColor = UIColor.lightGrayColor()
+        controller.searchBar.tintColor = UIColor.blackColor()
+        return controller
+    }()
+}
+
+// MARK: - Tableview datasource and delegate
+
+extension ScenarioListController {
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return searchController.active ? filteredScenarios.count : scenarioNames.count
@@ -64,13 +83,6 @@ class ScenarioListController: UITableViewController {
         return cell
     }
     
-    @IBAction func cancel(sender: AnyObject) {
-        searchController.active = false
-        navigationController?.dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    // MARK: - Tableview Delegate
-    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let scenario = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         Spoofer.startReplaying(scenarioName: scenario)
@@ -78,16 +90,10 @@ class ScenarioListController: UITableViewController {
         navigationController?.dismissViewControllerAnimated(true, completion: nil)
     }
     
-    // Navigation
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("showResponses", sender: indexPath)
     }
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let responseListController = segue.destinationViewController as? ResponseListController, indexPath = sender as? NSIndexPath else { return }
-        selectedScenarioName = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
-        responseListController.scenarioName = selectedScenarioName
-    }
 }
 
 // MARK: - Search controller delegate
