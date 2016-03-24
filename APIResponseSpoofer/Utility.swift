@@ -33,7 +33,7 @@ func postNotification(message: String, object: AnyObject? = nil) {
 }
 
 func spooferStoryBoard() -> UIStoryboard {
-    let frameworkBundle = NSBundle(identifier: "com.hotwire.apiresponsespoofer")
+    let frameworkBundle = NSBundle(forClass: Spoofer.self)
     let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
     return storyBoard
 }
