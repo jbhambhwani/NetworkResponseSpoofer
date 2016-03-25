@@ -25,6 +25,8 @@ class ResponseListController: UITableViewController {
         controller.searchBar.sizeToFit()
         controller.searchBar.barTintColor = UIColor.lightGrayColor()
         controller.searchBar.tintColor = UIColor.blackColor()
+        // TODO: Fix this with Swift 2.3 availability check. Make not available for TV
+        // controller.dimsBackgroundDuringPresentation = true
         return controller
     }()
     

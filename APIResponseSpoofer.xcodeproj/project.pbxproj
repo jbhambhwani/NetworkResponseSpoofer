@@ -42,6 +42,7 @@
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
 		41D4AF301C98EAF00086AEB2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
+		41F227671CA4C8A0009B012F /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -512,6 +513,7 @@
 				417881A31C55C7C30057B3E1 /* Scenario.swift in Sources */,
 				417881A41C55C7C30057B3E1 /* Store.swift in Sources */,
 				417881AC1C55CAC00057B3E1 /* ResponseListController.swift in Sources */,
+				41F227671CA4C8A0009B012F /* Constants.swift in Sources */,
 				417881AB1C55CAC00057B3E1 /* ScenarioListController.swift in Sources */,
 				417881A71C55C7C30057B3E1 /* RecordingProtocol.swift in Sources */,
 				417881A81C55C7C30057B3E1 /* ReplayingProtocol.swift in Sources */,

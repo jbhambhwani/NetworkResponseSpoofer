@@ -16,7 +16,8 @@ class ScenarioListController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        tableView.scrollsToTop = true
+        // TODO: Fix this with Swift 2.3 availability check. Make not available for TV
+        // tableView.scrollsToTop = true
         tableView.tableHeaderView = searchController.searchBar
     }
     
@@ -63,6 +64,8 @@ class ScenarioListController: UITableViewController {
         controller.searchBar.sizeToFit()
         controller.searchBar.barTintColor = UIColor.lightGrayColor()
         controller.searchBar.tintColor = UIColor.blackColor()
+        // TODO: Fix this with Swift 2.3 availability check. Make not available for TV
+        // controller.dimsBackgroundDuringPresentation = true
         return controller
     }()
 }
