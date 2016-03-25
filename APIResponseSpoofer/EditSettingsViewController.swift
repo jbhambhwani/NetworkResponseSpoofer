@@ -24,7 +24,32 @@ class EditSettingsViewController: UITableViewController {
     // MARK: - User Actions
     
     @IBAction func addAction(sender: UIBarButtonItem) {
-        // TODO: Add this functionality
+        let alertController = UIAlertController(title: title, message: "Add an entry to the list", preferredStyle: .Alert)
+        
+        let addAction = UIAlertAction(title: "Add", style: .Default) { [unowned alertController, unowned self] (_) in
+            if let textField = alertController.textFields?.first, entry = textField.text {
+                self.presenter?.configurations.append(entry)
+                self.tableView?.reloadData()
+            }
+        }
+        addAction.enabled = false
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
+            
+        }
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Enter here!"
+            textField.autocapitalizationType = .None
+            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
+                addAction.enabled = textField.text != ""
+            }
+        }
+        
+        alertController.addAction(addAction)
+        alertController.addAction(cancelAction)
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
     }
     
     @IBAction func editAction(sender: UIBarButtonItem) {
