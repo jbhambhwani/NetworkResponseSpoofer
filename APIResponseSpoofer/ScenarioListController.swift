@@ -67,7 +67,7 @@ class ScenarioListController: UITableViewController {
     }()
 }
 
-// MARK: - Tableview datasource and delegate
+// MARK: - Tableview datasource
 
 extension ScenarioListController {
     
@@ -83,6 +83,12 @@ extension ScenarioListController {
         return cell
     }
     
+}
+
+// MARK: - Tableview delegate
+
+extension ScenarioListController {
+    
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let scenario = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         Spoofer.startReplaying(scenarioName: scenario)
@@ -92,6 +98,25 @@ extension ScenarioListController {
     
     override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
         performSegueWithIdentifier("showResponses", sender: indexPath)
+    }
+    
+    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+        
+        switch editingStyle {
+        case .Delete:
+            // Remove response from local array
+            let scenarioToDelete = scenarioNames.removeAtIndex(indexPath.row)
+            Store.deleteScenario(scenarioToDelete, callback: { success in
+                    // Update the tableview upon succesful scenario deletion
+                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                }, errorHandler: { error in
+                     // Cause a tableview reload if scenario creation failed due to some reason
+                    tableView.reloadData()
+            })
+            
+        case .Insert: break
+        case .None: break
+        }
     }
     
 }

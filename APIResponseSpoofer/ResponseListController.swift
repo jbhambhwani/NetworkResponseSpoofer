@@ -128,6 +128,7 @@ extension ResponseListController {
                         // Cause a tableview reload if scenario creation failed due to some reason
                         tableView?.reloadData()
                 })
+            
             case .Insert: break
             case .None: break
         }

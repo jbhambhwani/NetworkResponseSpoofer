@@ -58,6 +58,17 @@ class Store {
         }
     }
 
+    // Delete a scenario
+    class func deleteScenario(scenarioName: String, callback: ((success: Bool) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+        let scenarioFileURL = getScenarioFileURL(scenarioName)
+        
+        if deleteScenario(scenarioName) {
+            callback?(success: true)
+        } else {
+            handleError("Unable to delete scenario at: \(scenarioFileURL)", recoveryMessage: "Retry again later", code: SpooferError.ScenarioDeletionError.rawValue, errorHandler: errorHandler)
+        }
+    }
+    
     // Retrieve all scenarios from disk
     class func allScenarioNames() -> [String] {
         var allFiles: [NSURL]
@@ -78,6 +89,17 @@ class Store {
         // Get a reference to the documents directory & Construct a file name based on the scenario file
         let scenarioFileURL = spooferDocumentsDirectory().URLByAppendingPathComponent("\(scenarioName).scenario")
         return scenarioFileURL
+    }
+
+    private class func deleteScenario(scenarioName: String) -> Bool {
+        // Get a reference to the documents directory & Construct a file name based on the scenario file
+        let scenarioFileURL = getScenarioFileURL(scenarioName)
+        do {
+            try NSFileManager.defaultManager().removeItemAtURL(scenarioFileURL)
+            return true
+        } catch {
+            return false
+        }
     }
     
     private class func applicationDocumentsDirectory() -> NSURL {

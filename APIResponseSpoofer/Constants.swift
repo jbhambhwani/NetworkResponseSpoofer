@@ -18,6 +18,7 @@ public enum SpooferError: Int, ErrorType {
     case FolderCreationError = 504
     case EmptyScenarioError = 505
     case NoSavedResponseError = 506
+    case ScenarioDeletionError = 507
 }
 
 public enum SpooferConfigurationType: String {
