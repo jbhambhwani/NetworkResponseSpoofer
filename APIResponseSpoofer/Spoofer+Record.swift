@@ -17,21 +17,28 @@ extension Spoofer {
         return sharedInstance.recording
     }
     
-    public class func startRecording(scenarioName scenarioName: String) -> Bool {
+    public class func startRecording(scenarioName name: String?) -> Bool {
+        
+        guard let name = name else { return false }
+        
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
+        
         if protocolRegistered {
             setRecording = true
             // Create a fresh scenario based on the named passed in
-            spoofedScenario = Scenario(name: scenarioName)
+            spoofedScenario = Scenario(name: name)
             // Inform the delegate that spoofer started recording
-            Spoofer.delegate?.spooferDidStartRecording(scenarioName)
+            Spoofer.delegate?.spooferDidStartRecording(name)
             // Post a state change notification for interested parties
             NSNotificationCenter.defaultCenter().postNotificationName(spooferStartedRecordingNotification, object: sharedInstance)
         }
         return protocolRegistered
     }
     
-    public class func startRecording(inViewController sourceViewController: UIViewController) {
+    public class func startRecording(inViewController sourceViewController: UIViewController?) {
+        
+        guard let sourceViewController = sourceViewController else { return }
+        
         // When a view controller was passed in, use it to display an alert controller asking for a scenario name
         let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .Alert)
 
