@@ -15,8 +15,8 @@ import Foundation
     func spooferDidStopReplaying(scenarioName: String)
 }
 
-
-@objc public class Spoofer: NSObject {
+@objc(Spoofer)
+public class Spoofer: NSObject {
     
     // MARK - Notifications
     
@@ -35,6 +35,11 @@ import Foundation
     
     public class var configurations: [SpooferConfigurationType : AnyObject]? {
         return sharedInstance.config
+    }
+    
+    public class var scenarioName: String {
+        guard let scenario = spoofedScenario else { return String() }
+        return scenario.name
     }
     
     public class var hostNamesToSpoof: [String] {
