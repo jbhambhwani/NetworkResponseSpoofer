@@ -91,7 +91,6 @@
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
 		41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
-		41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SpooferPlayground.playground; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -218,7 +217,6 @@
 				4137B6111BD87837005AF53E /* README.md */,
 				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
 				4147EA511B684D7E001DE517 /* Info.plist */,
-				41DCEFCD1B697AB4007C8F53 /* SpooferPlayground.playground */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
