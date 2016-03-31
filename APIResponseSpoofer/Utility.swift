@@ -7,8 +7,7 @@
 //
 
 import Foundation
-
-public let SpooferLogNotification = "SpooferLogNotification"
+import UIKit
 
 func logFormattedSeperator(message: String? = "-") {
     guard let message = message else { return }
@@ -30,17 +29,17 @@ func postNotification(message: String, object: AnyObject? = nil) {
     // Print to console
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
-    NSNotificationCenter.defaultCenter().postNotificationName(SpooferLogNotification, object: object, userInfo: ["message": message])
+    NSNotificationCenter.defaultCenter().postNotificationName(Spoofer.spooferLogNotification, object: object, userInfo: ["message": message])
 }
 
 func spooferStoryBoard() -> UIStoryboard {
-    let frameworkBundle = NSBundle(identifier: "com.hotwire.apiresponsespoofer")
+    let frameworkBundle = NSBundle(forClass: Spoofer.self)
     let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
     return storyBoard
 }
 
 func handleError(reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((error: NSError) -> Void)?) -> NSError {
-    var userInfo = [NSLocalizedFailureReasonErrorKey : reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
+    var userInfo = [NSLocalizedFailureReasonErrorKey: reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
     if let url = url {
         userInfo[NSURLErrorFailingURLErrorKey] = url
     }

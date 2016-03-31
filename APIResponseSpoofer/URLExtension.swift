@@ -27,15 +27,20 @@ extension NSURL {
         return normalizedNames
     }
     
-    // MARKPublic properties
+    // MARK:- Public properties
+    
     var normalizedURLString: String? {
+    
         // If the host is empty, take an early exit
-        guard var normalizedString = self.host else { return nil }
+        guard var normalizedString = host else { return nil }
         
         if normalizedString.hasPrefix("www.") {
             let wwwIndex = normalizedString.startIndex.advancedBy(4)
             normalizedString = normalizedString.substringFromIndex(wwwIndex)
         }
+        
+        // Lower case the string to avoid euality check issues
+        normalizedString = normalizedString.lowercaseString
         
         // Remove sub domains which are to be ignored from the host name part. e.g. DEV, QA, PREPROD etc
         for subDomainToIgnore in Spoofer.subDomainsToIgnore {
@@ -47,21 +52,35 @@ extension NSURL {
             }
         }
         
-        // Append the path
-        if let pathString = self.path {
+        // Set the port if one existed
+        if let portString = port?.stringValue {
+            normalizedString += ":" + portString
+        }
+        
+        // Set the path
+        if let pathString = path {
             normalizedString += pathString
         }
         
-        // Normalize and append query parameter names (ignore values)
-        if let queryItemNames = self.normalizedQueryItemNames {
+        // Return current processed URL if there are no query items
+        guard let query = query else { return normalizedString.lowercaseString }
+
+        // Normalize and append query parameter names (ignore values if normalization is requested)
+        if let queryItemNames = normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
             normalizedString += queryItemNames
+        } else {
+            if let fragment = fragment {
+                normalizedString += "?" + query + "#" + fragment
+            } else {
+                normalizedString += "?" + query
+            }
         }
         
-        return normalizedString
+        return normalizedString.lowercaseString
     }
     
     var isHTTP: Bool {
-        return ["http","https"].contains(self.scheme)
+        return ["http", "https"].contains(scheme)
     }
     
 }

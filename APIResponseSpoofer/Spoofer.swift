@@ -8,17 +8,6 @@
 
 import Foundation
 
-// MARK: Public Enums
-public enum SpooferError: Int, ErrorType {
-    case DiskReadError = 500
-    case DiskWriteError = 501
-    case EmptyFileError = 502
-    case DocumentsAccessError = 503
-    case FolderCreationError = 504
-    case EmptyScenarioError = 505
-    case NoSavedResponseError = 506
-}
-
 @objc public protocol SpooferDelegate {
     func spooferDidStartRecording(scenarioName: String)
     func spooferDidStopRecording(scenarioName: String, success: Bool)
@@ -26,38 +15,51 @@ public enum SpooferError: Int, ErrorType {
     func spooferDidStopReplaying(scenarioName: String)
 }
 
+
 @objc public class Spoofer: NSObject {
     
-    // MARK: - Notifications
-    public static let SpooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
-    public static let SpooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
-    public static let SpooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
-    public static let SpooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
-
+    // MARK - Notifications
+    
+    public static let spooferLogNotification = "SpooferLogNotification"
+    public static let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
+    public static let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
+    public static let spooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
+    public static let spooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
+    
     // MARK: - Public properties
+    
     public class var delegate: SpooferDelegate? {
         get { return sharedInstance.delegate }
         set { sharedInstance.delegate = newValue }
     }
     
+    public class var configurations: [SpooferConfigurationType : AnyObject]? {
+        return sharedInstance.config
+    }
+    
     public class var hostNamesToSpoof: [String] {
         get { return sharedInstance.spoofedHosts }
-        set { sharedInstance.spoofedHosts = newValue }
+        set { sharedInstance.spoofedHosts = newValue.flatMap { $0.lowercaseString } }
     }
     
     public class var hostNamesToIgnore: [String] {
         get { return sharedInstance.ignoredHosts }
-        set { sharedInstance.ignoredHosts = newValue }
+        set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercaseString } }
     }
     
     public class var subDomainsToIgnore: [String] {
         get { return sharedInstance.ignoredSubdomains }
-        set { sharedInstance.ignoredSubdomains = newValue }
+        set { sharedInstance.ignoredSubdomains = newValue.flatMap { $0.lowercaseString } }
     }
     
     public class var queryParametersToIgnore: [String] {
         get { return sharedInstance.ignoredQueryParameters }
-        set { sharedInstance.ignoredQueryParameters = newValue }
+        set { sharedInstance.ignoredQueryParameters = newValue.flatMap { $0.lowercaseString } }
+    }
+    
+    public class var normalizeQueryParameters: Bool {
+        get { return sharedInstance.queryParameterNormalization }
+        set { sharedInstance.queryParameterNormalization = newValue }
     }
     
     public class var allowSelfSignedCertificate: Bool {
@@ -66,18 +68,19 @@ public enum SpooferError: Int, ErrorType {
     }
     
     // MARK: - Internal methods and properties
+    
     class func shouldHandleURL(url: NSURL) -> Bool {
         // Take an early exit if host is empty
-        guard let host = url.host else { return false }
+        guard let currentHost = url.host?.lowercaseString else { return false }
         
-        // Handle all cases in case no domains are whitelisted
-        if hostNamesToSpoof.isEmpty { return true }
+        // Handle all cases in case no domains are whitelisted + blacklisted
+        if hostNamesToSpoof.isEmpty && hostNamesToIgnore.isEmpty { return true }
         
-        // If whitelist/blacklist is set, use it
-        let whiteListedDomain = hostNamesToSpoof.filter() { host.containsString($0) }
-        let blackListedDomain = hostNamesToIgnore.filter() { host.containsString($0) }
+        // If whitelist / blacklist is set, use it
+        let domainIsWhitelisted = hostNamesToSpoof.filter { currentHost.containsString($0) }.count > 0
+        let domainIsBlacklisted = hostNamesToIgnore.filter { currentHost.containsString($0) }.count > 0
         
-        if whiteListedDomain.count == 1 && blackListedDomain.count == 0 {
+        if domainIsWhitelisted && !domainIsBlacklisted {
             return true
         }
         
@@ -116,6 +119,17 @@ public enum SpooferError: Int, ErrorType {
     }
     
     // MARK: - Internal variables
+    
+    private var config: [SpooferConfigurationType: AnyObject]? {
+        return [.queryParameterNormalization: queryParameterNormalization,
+                .acceptSelfSignedCertificate: acceptSelfSignedCertificate,
+                .spoofedHosts: spoofedHosts,
+                .ignoredHosts: ignoredHosts,
+                .ignoredSubdomains: ignoredSubdomains,
+                .ignoredQueryParameters: ignoredQueryParameters
+        ]
+    }
+    
     static let sharedInstance = Spoofer()
     var scenario: Scenario? = nil
     var recording: Bool = false
@@ -125,5 +139,6 @@ public enum SpooferError: Int, ErrorType {
     private var ignoredSubdomains = [String]()
     private var ignoredQueryParameters = [String]()
     private var acceptSelfSignedCertificate = false
+    private var queryParameterNormalization = false
     private weak var delegate: SpooferDelegate?
 }

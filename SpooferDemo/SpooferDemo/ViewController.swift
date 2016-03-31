@@ -28,10 +28,17 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: SpooferLogNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: Spoofer.spooferLogNotification, object: nil)
         Spoofer.delegate = self
+        
+        // Sample configurations
+        Spoofer.hostNamesToSpoof = ["jsonplaceholder.typicode.com", "Google.com", "Apple.com", "Facebook.com"]
+        Spoofer.hostNamesToIgnore = ["Stackoverflow.com", "Youtube.com"]
+        Spoofer.queryParametersToIgnore = ["authtoken", "swarm", "cluster", "node"]
+        Spoofer.subDomainsToIgnore = ["DEV", "QA", "PREPROD"]
     }
     
     deinit {
@@ -39,6 +46,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - User Actions
+    
     @IBAction func buttonPressed(sender: UIBarButtonItem) {
         
         if sender == clearButton {
@@ -90,16 +98,18 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - Helper methods
+    
     func spooferLogReceived(notification: NSNotification) {
         guard let userInfo = notification.userInfo as? [String: String], message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
-        dispatch_async(dispatch_get_main_queue(), {
-            if self.consoleTextView.text.characters.count > 0 {
-                self.consoleTextView.text = self.consoleTextView.text + "\n" + message
+        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+            guard let strongSelf = self else { return }
+            if strongSelf.consoleTextView.text.characters.count > 0 {
+                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
                 // Scroll to bottom of log
-                self.consoleTextView.scrollRangeToVisible(NSRange(location: self.consoleTextView.text.characters.count - 1, length: 1))
+                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.characters.count - 1, length: 1))
             } else {
-                self.consoleTextView.text = message
+                strongSelf.consoleTextView.text = message
             }
         })
     }
@@ -139,9 +149,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - SearchBarDelegate
+    
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+        
         guard var searchText = searchBar.text where searchText.characters.count > 0 else { return }
-        if !searchText.hasPrefix("http") {
+        if searchText.hasPrefix("http") == false {
             searchText = "http://" + searchText
         }
         guard let url = NSURL(string: searchText) else { return }
@@ -152,6 +164,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     }
     
     // MARK: - Webview Delegate
+    
     func webViewDidStartLoad(webView: UIWebView) {
         activityIndicator.startAnimating()
     }
@@ -167,6 +180,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
 }
 
 // MARK: - Spoofer Delegate
+
 extension ViewController: SpooferDelegate {
     func spooferDidStartRecording(scenarioName: String) {
         executeActionsForRecording(recordingState: true)
@@ -184,5 +198,3 @@ extension ViewController: SpooferDelegate {
         executeActionsForReplaying(replayingState: false)
     }
 }
-
-

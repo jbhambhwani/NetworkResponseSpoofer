@@ -50,7 +50,7 @@ class Store {
             let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(unwrappedData) as? Scenario
             if let unwrappedScenario = scenario {
                 callback?(success: true, scenario: unwrappedScenario)
-                postNotification("Loaded \(scenario!)\nFile: \(scenarioFileURL)", object: self)
+                postNotification("Loaded \(unwrappedScenario)\nFile: \(scenarioFileURL)", object: self)
                 logFormattedSeperator()
             }
         } else {
@@ -58,31 +58,54 @@ class Store {
         }
     }
 
+    // Delete a scenario
+    class func deleteScenario(scenarioName: String, callback: ((success: Bool) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+        let scenarioFileURL = getScenarioFileURL(scenarioName)
+        
+        if deleteScenario(scenarioName) {
+            callback?(success: true)
+        } else {
+            handleError("Unable to delete scenario at: \(scenarioFileURL)", recoveryMessage: "Retry again later", code: SpooferError.ScenarioDeletionError.rawValue, errorHandler: errorHandler)
+        }
+    }
+    
     // Retrieve all scenarios from disk
     class func allScenarioNames() -> [String] {
-        var allFiles:[NSURL]
+        var allFiles: [NSURL]
         do {
             try allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtURL(spooferDocumentsDirectory(), includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
         } catch {
             return [String]()
         }
         
-        let scenarioFiles:[NSString] = allFiles.map{ $0.lastPathComponent! }.filter{ $0.pathExtension == "scenario"}
+        let scenarioFiles: [NSString] = allFiles.flatMap{ $0.lastPathComponent }.filter{ $0.pathExtension == "scenario"}
         let fileNames = scenarioFiles.map{ $0.stringByDeletingPathExtension }
         return fileNames
     }
     
-    // MARK: Private methods
+    // MARK: - Private methods
+    
     private class func getScenarioFileURL(scenarioName: String) -> NSURL {
         // Get a reference to the documents directory & Construct a file name based on the scenario file
         let scenarioFileURL = spooferDocumentsDirectory().URLByAppendingPathComponent("\(scenarioName).scenario")
         return scenarioFileURL
     }
+
+    private class func deleteScenario(scenarioName: String) -> Bool {
+        // Get a reference to the documents directory & Construct a file name based on the scenario file
+        let scenarioFileURL = getScenarioFileURL(scenarioName)
+        do {
+            try NSFileManager.defaultManager().removeItemAtURL(scenarioFileURL)
+            return true
+        } catch {
+            return false
+        }
+    }
     
     private class func applicationDocumentsDirectory() -> NSURL {
         // The directory in the application's documents directory used to store the Scenario files.
         let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        guard let documentsDirectoryURL:NSURL = urls.first else {
+        guard let documentsDirectoryURL: NSURL = urls.first else {
             print("Documents directory was not available")
             return NSURL()
         }
@@ -92,7 +115,7 @@ class Store {
     private class func spooferDocumentsDirectory() -> NSURL {
         let spooferDirectoryURL = applicationDocumentsDirectory().URLByAppendingPathComponent("Spoofer")
         var isDir = ObjCBool(true)
-        if !NSFileManager.defaultManager().fileExistsAtPath(spooferDirectoryURL.absoluteString, isDirectory: &isDir) {
+        if NSFileManager.defaultManager().fileExistsAtPath(spooferDirectoryURL.absoluteString, isDirectory: &isDir) == false {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtURL(spooferDirectoryURL, withIntermediateDirectories: true, attributes: nil)
             } catch _ {
