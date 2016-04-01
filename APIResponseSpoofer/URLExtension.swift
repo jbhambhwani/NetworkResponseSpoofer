@@ -42,7 +42,7 @@ extension NSURL {
         // Lower case the string to avoid euality check issues
         normalizedString = normalizedString.lowercaseString
         
-        // Remove sub domains which are to be ignored from the host name part. e.g. DEV, QA, PREPROD etc
+        // Remove sub domains which are to be ignored from the host name part. e.g. DEV, QA, PREPROD etc.
         for subDomainToIgnore in Spoofer.subDomainsToIgnore {
             if let ignoredRange = normalizedString.rangeOfString(subDomainToIgnore + ".") {
                 normalizedString.removeRange(ignoredRange)
@@ -51,7 +51,7 @@ extension NSURL {
                 normalizedString.removeRange(ignoredRange)
             }
         }
-        
+
         // Set the port if one existed
         if let portString = port?.stringValue {
             normalizedString += ":" + portString
@@ -60,6 +60,13 @@ extension NSURL {
         // Set the path
         if let pathString = path {
             normalizedString += pathString
+        }
+        
+        // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
+        for pathComponent in Spoofer.pathComponentsToIgnore {
+            if let ignoredRange = normalizedString.rangeOfString("/" + pathComponent) {
+                normalizedString.removeRange(ignoredRange)
+            }
         }
         
         // Return current processed URL if there are no query items

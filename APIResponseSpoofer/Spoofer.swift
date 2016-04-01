@@ -61,6 +61,11 @@ public class Spoofer: NSObject {
         get { return sharedInstance.ignoredQueryParameters }
         set { sharedInstance.ignoredQueryParameters = newValue.flatMap { $0.lowercaseString } }
     }
+
+    public class var pathComponentsToIgnore: [String] {
+        get { return sharedInstance.ignoredPathComponents }
+        set { sharedInstance.ignoredPathComponents = newValue.flatMap { $0.lowercaseString } }
+    }
     
     public class var normalizeQueryParameters: Bool {
         get { return sharedInstance.queryParameterNormalization }
@@ -70,6 +75,16 @@ public class Spoofer: NSObject {
     public class var allowSelfSignedCertificate: Bool {
         get { return sharedInstance.acceptSelfSignedCertificate }
         set { sharedInstance.acceptSelfSignedCertificate = newValue }
+    }
+    
+    public class func resetConfigurations() {
+        sharedInstance.spoofedHosts = [String]()
+        sharedInstance.ignoredHosts = [String]()
+        sharedInstance.ignoredSubdomains = [String]()
+        sharedInstance.ignoredQueryParameters = [String]()
+        sharedInstance.ignoredPathComponents = [String]()
+        sharedInstance.acceptSelfSignedCertificate = false
+        sharedInstance.queryParameterNormalization = false
     }
     
     // MARK: - Internal methods and properties
@@ -131,7 +146,8 @@ public class Spoofer: NSObject {
             .spoofedHosts: spoofedHosts,
             .ignoredHosts: ignoredHosts,
             .ignoredSubdomains: ignoredSubdomains,
-            .ignoredQueryParameters: ignoredQueryParameters
+            .ignoredQueryParameters: ignoredQueryParameters,
+            .ignoredPathComponents: ignoredPathComponents
         ]
     }
     
@@ -143,6 +159,7 @@ public class Spoofer: NSObject {
     private var ignoredHosts = [String]()
     private var ignoredSubdomains = [String]()
     private var ignoredQueryParameters = [String]()
+    private var ignoredPathComponents = [String]()
     private var acceptSelfSignedCertificate = false
     private var queryParameterNormalization = false
     private weak var delegate: SpooferDelegate?

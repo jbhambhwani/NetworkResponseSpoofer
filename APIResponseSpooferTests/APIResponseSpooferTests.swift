@@ -25,6 +25,7 @@ class APIResponseSpooferTests: XCTestCase {
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+        Spoofer.resetConfigurations()
     }
     
     override func tearDown() {
@@ -122,6 +123,13 @@ class APIResponseSpooferTests: XCTestCase {
         Spoofer.normalizeQueryParameters = true
         let normalizedAllCapsURL = "jsonplaceholder.typicode.com/users"
         XCTAssertTrue(allCapsURL.normalizedURLString == normalizedAllCapsURL, "After normalization, all URL's should be lower case")
+    }
+
+    func test09PathIgnoreRules() {
+        Spoofer.normalizeQueryParameters = true
+        Spoofer.pathComponentsToIgnore = ["over", "there"]
+        let normalizedPathIgnoredURL = "example.com:8042/index.html?class&type&name"
+        XCTAssertTrue(complexURL.normalizedURLString == normalizedPathIgnoredURL, "After normalization, path componets should be ignored if specified")
     }
     
     func testLoadAllScenarios() {
