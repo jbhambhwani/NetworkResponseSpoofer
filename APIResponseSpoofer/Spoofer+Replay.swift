@@ -10,7 +10,7 @@ import Foundation
 import UIKit
 
 extension Spoofer {
- 
+    
     // MARK: - Public methods
     
     public class var isReplaying: Bool {
@@ -42,6 +42,7 @@ extension Spoofer {
     
     public class func stopReplaying() {
         NSURLProtocol.unregisterClass(ReplayingProtocol)
+        setReplaying = false
         if let scenarioName = spoofedScenario?.name {
             // Inform the delegate that spoofer stopped replay
             Spoofer.delegate?.spooferDidStopReplaying(scenarioName)
@@ -49,7 +50,6 @@ extension Spoofer {
             NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedReplayingNotification, object: sharedInstance)
         }
         spoofedScenario = nil
-        setReplaying = false
     }
     
     // MARK: - Invoke Replay UI

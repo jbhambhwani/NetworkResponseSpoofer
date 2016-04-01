@@ -127,11 +127,11 @@ public class Spoofer: NSObject {
     
     private var config: [SpooferConfigurationType: AnyObject]? {
         return [.queryParameterNormalization: queryParameterNormalization,
-                .acceptSelfSignedCertificate: acceptSelfSignedCertificate,
-                .spoofedHosts: spoofedHosts,
-                .ignoredHosts: ignoredHosts,
-                .ignoredSubdomains: ignoredSubdomains,
-                .ignoredQueryParameters: ignoredQueryParameters
+            .acceptSelfSignedCertificate: acceptSelfSignedCertificate,
+            .spoofedHosts: spoofedHosts,
+            .ignoredHosts: ignoredHosts,
+            .ignoredSubdomains: ignoredSubdomains,
+            .ignoredQueryParameters: ignoredQueryParameters
         ]
     }
     
