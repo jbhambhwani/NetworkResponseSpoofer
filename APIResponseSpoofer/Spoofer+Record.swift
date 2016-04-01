@@ -41,20 +41,20 @@ extension Spoofer {
         
         // When a view controller was passed in, use it to display an alert controller asking for a scenario name
         let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .Alert)
-
+        
         let createAction = UIAlertAction(title: "Create", style: .Default) { [unowned alertController](_) in
             if let textField = alertController.textFields?.first, scenarioName = textField.text {
                 startRecording(scenarioName: scenarioName)
             }
         }
         createAction.enabled = false
-
+        
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
             setRecording = false
             spoofedScenario = nil
             NSURLProtocol.unregisterClass(RecordingProtocol)
         }
-
+        
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Enter scenario name"
             textField.autocapitalizationType = .Sentences
@@ -62,10 +62,10 @@ extension Spoofer {
                 createAction.enabled = textField.text != ""
             }
         }
-
+        
         alertController.addAction(createAction)
         alertController.addAction(cancelAction)
-
+        
         sourceViewController.presentViewController(alertController, animated: true, completion: nil)
     }
     
@@ -83,12 +83,12 @@ extension Spoofer {
             }
             }, errorHandler: { error in
                 if let scenarioName = spoofedScenario?.name {
+                    setRecording = false
+                    spoofedScenario = nil
                     // Inform the delegate that saving scenario failed
                     Spoofer.delegate?.spooferDidStopRecording(scenarioName, success: false)
                     // Post a state change notification for interested parties
                     NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedRecordingNotification, object: sharedInstance)
-                    setRecording = false
-                    spoofedScenario = nil
                 }
         })
     }
