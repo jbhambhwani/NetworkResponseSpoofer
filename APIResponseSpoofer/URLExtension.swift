@@ -30,7 +30,7 @@ extension NSURL {
     // MARK:- Public properties
     
     var normalizedURLString: String? {
-    
+        
         // If the host is empty, take an early exit
         guard var normalizedString = host else { return nil }
         
@@ -51,7 +51,7 @@ extension NSURL {
                 normalizedString.removeRange(ignoredRange)
             }
         }
-
+        
         // Set the port if one existed
         if let portString = port?.stringValue {
             normalizedString += ":" + portString
@@ -64,14 +64,15 @@ extension NSURL {
         
         // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
         for pathComponent in Spoofer.pathComponentsToIgnore {
-            if let ignoredRange = normalizedString.rangeOfString("/" + pathComponent) {
-                normalizedString.removeRange(ignoredRange)
+            if let pathComponentRange = normalizedString.rangeOfString("/" + pathComponent + "/") {
+                let ignoreRange = Range(start: pathComponentRange.startIndex, end: pathComponentRange.endIndex.predecessor())
+                normalizedString.removeRange(ignoreRange)
             }
         }
         
         // Return current processed URL if there are no query items
         guard let query = query else { return normalizedString.lowercaseString }
-
+        
         // Normalize and append query parameter names (ignore values if normalization is requested)
         if let queryItemNames = normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
             normalizedString += queryItemNames
