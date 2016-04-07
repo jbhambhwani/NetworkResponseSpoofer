@@ -31,7 +31,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("spooferLogReceived:"), name: Spoofer.spooferLogNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.spooferLogReceived(_:)), name: Spoofer.spooferLogNotification, object: nil)
         Spoofer.delegate = self
         
         // Sample configurations
