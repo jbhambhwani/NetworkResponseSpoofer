@@ -61,7 +61,7 @@ class Scenario: NSObject, NSCoding {
 }
 
 // MARK: Helper methods for debugging
-extension Scenario: CustomDebugStringConvertible {
+extension Scenario {
     override var description: String { return "Scenario: \(name)"}
     override var debugDescription: String { return "Scenario: \(name)\nResponses: \(apiResponses)\n"}
 }

@@ -65,7 +65,7 @@ extension NSURL {
         // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
         for pathComponent in Spoofer.pathComponentsToIgnore {
             if let pathComponentRange = normalizedString.rangeOfString("/" + pathComponent + "/") {
-                let ignoreRange = Range(start: pathComponentRange.startIndex, end: pathComponentRange.endIndex.predecessor())
+                let ignoreRange = pathComponentRange.startIndex ..< pathComponentRange.endIndex.predecessor()
                 normalizedString.removeRange(ignoreRange)
             }
         }

@@ -110,7 +110,7 @@ extension APIResponse {
 
 // MARK: - Helper methods for debugging
 
-extension APIResponse: CustomDebugStringConvertible {
+extension APIResponse {
     override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)"}
     override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(mimeType)\nEncoding: \(encoding)\nHeaderFields: \(headerFields)\n"}
 }
