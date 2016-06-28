@@ -23,6 +23,14 @@ extension Spoofer {
         
         let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
         
+        
+        let defaultSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        var registeredClasses = defaultSessionConfiguration.protocolClasses
+
+//        if registeredClasses?.contains(AnyClass) {
+//            registeredClasses?.insert(RecordingProtocol.classForCoder(), atIndex: 0)
+//        }
+        
         if protocolRegistered {
             setRecording = true
             // Create a fresh scenario based on the named passed in
