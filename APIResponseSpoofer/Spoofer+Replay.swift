@@ -21,7 +21,7 @@ extension Spoofer {
         
         guard let name = name else { return false }
         
-        let protocolRegistered = NSURLProtocol.registerClass(ReplayingProtocol)
+        let protocolRegistered = ReplayingProtocol.startIntercept()
         Store.loadScenario(name, callback: { success, scenario in
             if success {
                 setReplaying = true
@@ -41,7 +41,7 @@ extension Spoofer {
     }
     
     public class func stopReplaying() {
-        NSURLProtocol.unregisterClass(ReplayingProtocol)
+        ReplayingProtocol.stopIntercept()
         setReplaying = false
         if let scenarioName = spoofedScenario?.name {
             // Inform the delegate that spoofer stopped replay

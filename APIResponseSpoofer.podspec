@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'APIResponseSpoofer'
-  s.version = '1.0.1'
+  s.version = '1.0.3'
   s.license = 'MIT'
   s.summary = 'Network request-response recording and replaying library for iOS.'
   s.homepage = 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer'

@@ -8,7 +8,7 @@
 
 import Foundation
 
-class RecordingProtocol: NSURLProtocol {
+class RecordingProtocol: NSURLProtocol, NetworkInterceptable {
  
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var connection: NSURLConnection?
@@ -25,7 +25,7 @@ class RecordingProtocol: NSURLProtocol {
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
         let isHandled = (NSURLProtocol.propertyForKey(requestHandledKey, inRequest: request) != nil) ? true : false
         
-        if isHTTP && !isHandled && shouldHandleURL {
+        if Spoofer.isRecording && isHTTP && !isHandled && shouldHandleURL {
             return true
         }
         return false

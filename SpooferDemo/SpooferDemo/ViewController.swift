@@ -31,12 +31,14 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: #selector(ViewController.spooferLogReceived(_:)), name: Spoofer.spooferLogNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self,
+                                                         selector: #selector(spooferLogReceived(_:)),
+                                                         name: Spoofer.spooferLogNotification,
+                                                         object: nil)
         Spoofer.delegate = self
         
         // Sample configurations
-        Spoofer.hostNamesToSpoof = ["jsonplaceholder.typicode.com", "Google.com", "Apple.com", "Facebook.com"]
-        Spoofer.hostNamesToIgnore = ["Stackoverflow.com", "Youtube.com"]
+        Spoofer.hostNamesToIgnore = ["Google.com", "Youtube.com", "Apple.com"]
         Spoofer.queryParametersToIgnore = ["authtoken", "swarm", "cluster", "node"]
         Spoofer.subDomainsToIgnore = ["DEV", "QA", "PREPROD"]
     }
@@ -129,6 +131,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     
     func executeActionsForRecording(recordingState state: Bool) {
         if state {
+            webView.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
             recordButton.title = ButtonTitle.StopRecording.rawValue
             recordButton.tintColor = UIColor.redColor()
             performSampleNetworkRequests()
@@ -140,6 +143,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     
     func executeActionsForReplaying(replayingState state: Bool) {
         if state {
+            webView.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
             replayButton.title = ButtonTitle.StopReplaying.rawValue
             replayButton.tintColor = UIColor.redColor()
         } else {
