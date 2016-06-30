@@ -13,7 +13,7 @@ enum ReplayMethod {
     case MimeTypeAndEncoding
 }
 
-class ReplayingProtocol: NSURLProtocol {
+class ReplayingProtocol: NSURLProtocol, NetworkInterceptable {
     
     private var currentReplayMethod: ReplayMethod {
         // Customization: Switch the replay method according to the one which suits your specific requirement.
@@ -30,7 +30,7 @@ class ReplayingProtocol: NSURLProtocol {
         // 3: Check if we have a scenario loaded in memory
         let hasSavedScenario = (Spoofer.spoofedScenario != nil) ? true : false
         
-        if isHTTP && shouldHandleURL && hasSavedScenario {
+        if Spoofer.isReplaying && isHTTP && shouldHandleURL && hasSavedScenario {
             return true
         }
         return false

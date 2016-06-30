@@ -21,15 +21,7 @@ extension Spoofer {
         
         guard let name = name else { return false }
         
-        let protocolRegistered = NSURLProtocol.registerClass(RecordingProtocol)
-        
-        
-        let defaultSessionConfiguration = NSURLSessionConfiguration.defaultSessionConfiguration()
-        var registeredClasses = defaultSessionConfiguration.protocolClasses
-
-//        if registeredClasses?.contains(AnyClass) {
-//            registeredClasses?.insert(RecordingProtocol.classForCoder(), atIndex: 0)
-//        }
+        let protocolRegistered = RecordingProtocol.startIntercept()
         
         if protocolRegistered {
             setRecording = true
@@ -40,6 +32,7 @@ extension Spoofer {
             // Post a state change notification for interested parties
             NSNotificationCenter.defaultCenter().postNotificationName(spooferStartedRecordingNotification, object: sharedInstance)
         }
+        
         return protocolRegistered
     }
     
@@ -60,7 +53,7 @@ extension Spoofer {
         let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
             setRecording = false
             spoofedScenario = nil
-            NSURLProtocol.unregisterClass(RecordingProtocol)
+            RecordingProtocol.stopIntercept()
         }
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
@@ -78,7 +71,7 @@ extension Spoofer {
     }
     
     public class func stopRecording() {
-        NSURLProtocol.unregisterClass(RecordingProtocol)
+        RecordingProtocol.stopIntercept()
         guard let scenario = sharedInstance.scenario else { return }
         Store.saveScenario(scenario, callback: { success, savedScenario in
             if success {
