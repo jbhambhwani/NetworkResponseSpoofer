@@ -1,5 +1,5 @@
 //
-//  NSURLSession+Swizzle.swift
+//  URLSessionConfigurationExtension.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 6/29/16.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-// Swizzle NSURLSessionConfiguration to insert our Interceptor protocols
+// Swizzle URLSessionConfiguration to insert our Interceptor protocols
 
 public extension NSURLSessionConfiguration {
     

@@ -1,9 +1,9 @@
 //
 //  NetworkInterceptable.swift
-//  Pods
+//  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 6/28/16.
-//
+//  Copyright (c) 2016 Hotwire. All rights reserved.
 //
 
 import Foundation

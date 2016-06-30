@@ -26,7 +26,7 @@
 		416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
 		416552DD1B69F922006D8EDF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DC1B69F922006D8EDF /* Scenario.swift */; };
 		416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DE1B69FA74006D8EDF /* APIResponse.swift */; };
-		4172EF2C1D24C2D4006E44C9 /* NSURLSession+Swizzle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* NSURLSession+Swizzle.swift */; };
+		4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
 		4180391E1BCB73FE004E1534 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
@@ -77,7 +77,7 @@
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		416552DC1B69F922006D8EDF /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		416552DE1B69FA74006D8EDF /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
-		4172EF2B1D24C2D4006E44C9 /* NSURLSession+Swizzle.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSURLSession+Swizzle.swift"; sourceTree = "<group>"; };
+		4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		4180391D1BCB73FE004E1534 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
@@ -220,7 +220,6 @@
 				411913241D2369F500D3FB6E /* NetworkInterceptable.swift */,
 				4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */,
 				4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */,
-				4172EF2B1D24C2D4006E44C9 /* NSURLSession+Swizzle.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -247,6 +246,7 @@
 		416453A71B7027A400615A39 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
+				4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */,
 				41DFB3E81B70252C00038958 /* URLExtension.swift */,
 			);
 			name = Extension;
@@ -441,7 +441,7 @@
 				410489C21C99D94800E99745 /* Constants.swift in Sources */,
 				4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */,
 				41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */,
-				4172EF2C1D24C2D4006E44C9 /* NSURLSession+Swizzle.swift in Sources */,
+				4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */,
 				410489C91C99DD4200E99745 /* SwitchWithTextTableViewCell.swift in Sources */,
 				412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */,
 				416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */,
