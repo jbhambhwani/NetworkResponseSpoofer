@@ -38,8 +38,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         Spoofer.delegate = self
         
         // Sample configurations
-        Spoofer.hostNamesToSpoof = ["jsonplaceholder.typicode.com", "Google.com", "Apple.com", "Facebook.com"]
-        Spoofer.hostNamesToIgnore = ["Stackoverflow.com", "Youtube.com"]
+        Spoofer.hostNamesToIgnore = ["Google.com", "Youtube.com", "Apple.com"]
         Spoofer.queryParametersToIgnore = ["authtoken", "swarm", "cluster", "node"]
         Spoofer.subDomainsToIgnore = ["DEV", "QA", "PREPROD"]
     }

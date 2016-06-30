@@ -93,17 +93,20 @@ public class Spoofer: NSObject {
         // Take an early exit if host is empty
         guard let currentHost = url.host?.lowercaseString else { return false }
         
-        // Handle all cases in case no domains are whitelisted + blacklisted
+        // Handle all cases in case no domains are whitelisted and blacklisted
         if hostNamesToSpoof.isEmpty && hostNamesToIgnore.isEmpty { return true }
         
-        // If whitelist / blacklist is set, use it
         let domainIsWhitelisted = hostNamesToSpoof.filter { currentHost.containsString($0) }.count > 0
         let domainIsBlacklisted = hostNamesToIgnore.filter { currentHost.containsString($0) }.count > 0
+
+        if domainIsBlacklisted { return false }  // If same domain is Whitelisted and Blacklisted, prefer Blacklist. Users will have to clean up their act! :)
+        if domainIsWhitelisted { return true }
         
-        if domainIsWhitelisted && !domainIsBlacklisted {
+        // Handle corner case when domain is not present in either whitelist or blacklist
+        if !domainIsWhitelisted && !domainIsBlacklisted && hostNamesToSpoof.isEmpty {
             return true
         }
-        
+
         return false
     }
     
