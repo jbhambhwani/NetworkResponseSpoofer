@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10117" systemVersion="15F34" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Demo View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="SpooferDemo" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="DemoViewController" customModule="SpooferDemo" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -65,28 +65,39 @@
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="LZv-r5-oTy"/>
                                         </connections>
                                     </searchBar>
-                                    <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Fh4-Xw-uSE">
-                                        <rect key="frame" x="0.0" y="44" width="600" height="301"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mvl-Z3-dOU" userLabel="WebContainer">
+                                        <rect key="frame" x="0.0" y="44" width="600" height="426"/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                    </view>
+                                    <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3Y-rQ-2Zg">
+                                        <rect key="frame" x="0.0" y="470" width="600" height="20"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-9O-7y5">
+                                                <rect key="frame" x="0.0" y="0.0" width="30" height="20"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="20" id="MkZ-1Q-jLS"/>
+                                                    <constraint firstAttribute="width" constant="30" id="kgu-aC-oL4"/>
+                                                </constraints>
+                                            </imageView>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="  Console" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-44-OfY">
+                                                <rect key="frame" x="30" y="0.0" width="570" height="20"/>
+                                                <color key="backgroundColor" red="0.25098039220000001" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                                <gestureRecognizers/>
+                                                <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="20"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <gestureRecognizers/>
                                         <connections>
-                                            <outlet property="delegate" destination="BYZ-38-t0r" id="sg4-Oi-y5y"/>
+                                            <outletCollection property="gestureRecognizers" destination="9fY-K2-sz8" appends="YES" id="iVu-rO-Zla"/>
                                         </connections>
-                                    </webView>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="  Console" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-44-OfY">
-                                        <rect key="frame" x="0.0" y="345" width="600" height="20"/>
-                                        <color key="backgroundColor" red="0.25098039220000001" green="0.59999999999999998" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="20" id="QW0-tN-BJN"/>
-                                        </constraints>
-                                        <fontDescription key="fontDescription" name="Copperplate" family="Copperplate" pointSize="20"/>
-                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                        <nil key="highlightedColor"/>
-                                    </label>
+                                    </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XaP-Cj-RUv">
-                                        <rect key="frame" x="0.0" y="365" width="600" height="125"/>
+                                        <rect key="frame" x="0.0" y="490" width="600" height="0.0"/>
                                         <color key="backgroundColor" red="0.2156862745" green="0.1960784314" blue="0.27058823529999998" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="125" id="Urx-gJ-nzs"/>
+                                            <constraint firstAttribute="height" priority="999" id="urc-bF-Do9"/>
                                         </constraints>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -133,14 +144,22 @@
                     <connections>
                         <outlet property="activityIndicator" destination="Nye-EX-Hcm" id="vuj-Fp-wGg"/>
                         <outlet property="clearButton" destination="R6r-af-890" id="oqt-eT-Izk"/>
+                        <outlet property="consoleHeightConstraint" destination="urc-bF-Do9" id="pZT-DW-CmD"/>
+                        <outlet property="consolePanGestureRecognizer" destination="9fY-K2-sz8" id="9dk-5k-L15"/>
                         <outlet property="consoleTextView" destination="XaP-Cj-RUv" id="13e-G5-DBv"/>
                         <outlet property="recordButton" destination="f06-A3-MOs" id="bC7-6O-ggR"/>
                         <outlet property="replayButton" destination="i8a-mi-ne1" id="oe7-uG-PMQ"/>
                         <outlet property="searchBar" destination="FTs-AG-a3O" id="9rN-20-hvy"/>
-                        <outlet property="webView" destination="Fh4-Xw-uSE" id="lsf-Nv-MRR"/>
+                        <outlet property="webContainerView" destination="mvl-Z3-dOU" id="B98-Vq-Oqa"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <panGestureRecognizer minimumNumberOfTouches="1" id="9fY-K2-sz8">
+                    <connections>
+                        <action selector="handlePan:" destination="BYZ-38-t0r" id="58v-M0-1fy"/>
+                        <outlet property="delegate" destination="BYZ-38-t0r" id="4UE-5R-Xte"/>
+                    </connections>
+                </panGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="-1839" y="-572"/>
         </scene>

@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  DemoViewController.swift
 //  SpooferDemo
 //
 //  Created by Deepu Mukundan on 10/10/15.
@@ -10,27 +10,38 @@ import UIKit
 import WebKit
 import APIResponseSpoofer
 
-class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
+class DemoViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var webView: UIWebView!
+    @IBOutlet weak var webContainerView: UIView!
     @IBOutlet weak var consoleTextView: UITextView!
     @IBOutlet weak var recordButton: UIBarButtonItem!
     @IBOutlet weak var replayButton: UIBarButtonItem!
     @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    var webview: WKWebView!
     
-    private enum ButtonTitle: String {
-        case StartRecording = "Start Recording"
-        case StopRecording = "Stop Recording"
-        case StartReplaying = "Start Replaying"
-        case StopReplaying = "Stop Replaying"
-    }
+    @IBOutlet weak var consoleHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var consolePanGestureRecognizer: UIPanGestureRecognizer!
     
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        // Add a WKWebview to display results
+        webview = WKWebView()
+        webview.navigationDelegate = self
+        webContainerView.addSubview(webview)
+        webview.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activateConstraints([
+            webview.topAnchor.constraintEqualToAnchor(webContainerView.topAnchor),
+            webview.bottomAnchor.constraintEqualToAnchor(webContainerView.bottomAnchor),
+            webview.leadingAnchor.constraintEqualToAnchor(webContainerView.leadingAnchor),
+            webview.trailingAnchor.constraintEqualToAnchor(webContainerView.trailingAnchor)
+        ])
+
+        // Listen for Spoofer log messages and print on console
         NSNotificationCenter.defaultCenter().addObserver(self,
                                                          selector: #selector(spooferLogReceived(_:)),
                                                          name: Spoofer.spooferLogNotification,
@@ -38,7 +49,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         Spoofer.delegate = self
         
         // Sample configurations
-        Spoofer.hostNamesToIgnore = ["Google.com", "Youtube.com", "Apple.com"]
+        Spoofer.hostNamesToIgnore = ["Google.com", "Youtube.com"]
         Spoofer.queryParametersToIgnore = ["authtoken", "swarm", "cluster", "node"]
         Spoofer.subDomainsToIgnore = ["DEV", "QA", "PREPROD"]
     }
@@ -101,6 +112,11 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     
     // MARK: - Helper methods
     
+    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
+        let point = sender.translationInView(view)
+        consoleHeightConstraint.constant = -point.y
+    }
+    
     func spooferLogReceived(notification: NSNotification) {
         guard let userInfo = notification.userInfo as? [String: String], message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
@@ -116,22 +132,9 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         })
     }
     
-    func performSampleNetworkRequests() {
-        // Get data from a few sample end points
-        sendRequest("http://jsonplaceholder.typicode.com/users")
-        sendRequest("http://jsonplaceholder.typicode.com/posts")
-    }
-    
-    func sendRequest(resource: String) {
-        guard let url = NSURL(string: resource) else { return }
-        NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { data, response, error in
-            // Spoofer has already intercepted the response if error was non nil. Nothing to do here.
-        }).resume()
-    }
-    
     func executeActionsForRecording(recordingState state: Bool) {
         if state {
-            webView.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
+            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
             recordButton.title = ButtonTitle.StopRecording.rawValue
             recordButton.tintColor = UIColor.redColor()
             performSampleNetworkRequests()
@@ -143,7 +146,7 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
     
     func executeActionsForReplaying(replayingState state: Bool) {
         if state {
-            webView.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
+            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
             replayButton.title = ButtonTitle.StopReplaying.rawValue
             replayButton.tintColor = UIColor.redColor()
         } else {
@@ -152,40 +155,12 @@ class ViewController: UIViewController, UISearchBarDelegate, UIWebViewDelegate {
         }
     }
     
-    // MARK: - SearchBarDelegate
-    
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
-        
-        guard var searchText = searchBar.text where searchText.characters.count > 0 else { return }
-        if searchText.hasPrefix("http") == false {
-            searchText = "http://" + searchText
-        }
-        guard let url = NSURL(string: searchText) else { return }
-        
-        let urlRequest = NSURLRequest(URL: url)
-        webView.loadRequest(urlRequest)
-        searchBar.resignFirstResponder()
-    }
-    
-    // MARK: - Webview Delegate
-    
-    func webViewDidStartLoad(webView: UIWebView) {
-        activityIndicator.startAnimating()
-    }
-    
-    func webViewDidFinishLoad(webView: UIWebView) {
-        activityIndicator.stopAnimating()
-    }
-    
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
-        activityIndicator.stopAnimating()
-    }
-    
 }
+
 
 // MARK: - Spoofer Delegate
 
-extension ViewController: SpooferDelegate {
+extension DemoViewController: SpooferDelegate {
     func spooferDidStartRecording(scenarioName: String) {
         executeActionsForRecording(recordingState: true)
     }
