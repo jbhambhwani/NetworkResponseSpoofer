@@ -13,14 +13,12 @@ import APIResponseSpoofer
 class DemoViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var webContainerView: UIView!
+    @IBOutlet weak var webview: UIWebView!
     @IBOutlet weak var consoleTextView: UITextView!
     @IBOutlet weak var recordButton: UIBarButtonItem!
     @IBOutlet weak var replayButton: UIBarButtonItem!
     @IBOutlet weak var clearButton: UIBarButtonItem!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    var webview: WKWebView!
-    
     @IBOutlet weak var consoleHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var consolePanGestureRecognizer: UIPanGestureRecognizer!
     
@@ -28,18 +26,6 @@ class DemoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Add a WKWebview to display results
-        webview = WKWebView()
-        webview.navigationDelegate = self
-        webContainerView.addSubview(webview)
-        webview.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activateConstraints([
-            webview.topAnchor.constraintEqualToAnchor(webContainerView.topAnchor),
-            webview.bottomAnchor.constraintEqualToAnchor(webContainerView.bottomAnchor),
-            webview.leadingAnchor.constraintEqualToAnchor(webContainerView.leadingAnchor),
-            webview.trailingAnchor.constraintEqualToAnchor(webContainerView.trailingAnchor)
-        ])
 
         // Listen for Spoofer log messages and print on console
         NSNotificationCenter.defaultCenter().addObserver(self,
@@ -49,9 +35,7 @@ class DemoViewController: UIViewController {
         Spoofer.delegate = self
         
         // Sample configurations
-        Spoofer.hostNamesToIgnore = ["Google.com", "Youtube.com"]
         Spoofer.queryParametersToIgnore = ["authtoken", "swarm", "cluster", "node"]
-        Spoofer.subDomainsToIgnore = ["DEV", "QA", "PREPROD"]
     }
     
     deinit {

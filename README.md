@@ -36,6 +36,9 @@ Stop replaying the current scenario
 Spoofer.stopReplaying()
 ```
 
+##Exporting and Importing scenarios
+Spoofer uses the sandboxed documents folder of the app to save the scenario files.
+
 ##Advanced Configuration
 
 ###Whitelisting host names

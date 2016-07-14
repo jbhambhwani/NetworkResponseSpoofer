@@ -18,19 +18,20 @@ enum ButtonTitle: String {
 
 // MARK: - Webview Delegate
 
-extension DemoViewController: WKNavigationDelegate {
+extension DemoViewController: UIWebViewDelegate {
     
-    func webView(webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+    func webViewDidStartLoad(webView: UIWebView) {
         activityIndicator.startAnimating()
     }
     
-    func webView(webView: WKWebView, didFailNavigation navigation: WKNavigation!, withError error: NSError) {
+    func webViewDidFinishLoad(webView: UIWebView) {
         activityIndicator.stopAnimating()
     }
     
-    func webView(webView: WKWebView, didFinishNavigation navigation: WKNavigation!) {
+    func webView(webView: UIWebView, didFailLoadWithError error: NSError?) {
         activityIndicator.stopAnimating()
     }
+    
 }
 
 // MARK: - SearchBarDelegate

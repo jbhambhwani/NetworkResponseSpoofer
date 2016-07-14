@@ -8,17 +8,31 @@
 
 /* Begin PBXBuildFile section */
 		4107EC631D371AA900C49F68 /* DemoViewController+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4107EC621D371AA900C49F68 /* DemoViewController+Private.swift */; };
-		4107EC6E1D37F91100C49F68 /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4107EC6B1D37F90500C49F68 /* APIResponseSpoofer.framework */; };
 		412A7B961BC9D441002E9FF2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B951BC9D441002E9FF2 /* AppDelegate.swift */; };
 		412A7B981BC9D441002E9FF2 /* DemoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B971BC9D441002E9FF2 /* DemoViewController.swift */; };
 		412A7B9B1BC9D441002E9FF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B991BC9D441002E9FF2 /* Main.storyboard */; };
 		412A7B9D1BC9D441002E9FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */; };
 		412A7BA01BC9D441002E9FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B9E1BC9D441002E9FF2 /* LaunchScreen.storyboard */; };
+		41F2EB2E1D38248100916C44 /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41F2EB2D1D38248100916C44 /* APIResponseSpoofer.framework */; };
+		41F2EB2F1D38248100916C44 /* APIResponseSpoofer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41F2EB2D1D38248100916C44 /* APIResponseSpoofer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		41F2EB301D38248100916C44 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				41F2EB2F1D38248100916C44 /* APIResponseSpoofer.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		4107EC621D371AA900C49F68 /* DemoViewController+Private.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DemoViewController+Private.swift"; sourceTree = "<group>"; };
-		4107EC6B1D37F90500C49F68 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = APIResponseSpoofer.framework; path = "/Users/dmukundan/Library/Developer/Xcode/DerivedData/APIResponseSpoofer-bzhmshzhqzvhaeavzjabcqvzverq/Build/Products/Debug-iphonesimulator/APIResponseSpoofer.framework"; sourceTree = "<absolute>"; };
 		412A7B921BC9D441002E9FF2 /* SpooferDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpooferDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		412A7B951BC9D441002E9FF2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		412A7B971BC9D441002E9FF2 /* DemoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DemoViewController.swift; sourceTree = "<group>"; };
@@ -26,6 +40,7 @@
 		412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		412A7B9F1BC9D441002E9FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		412A7BA11BC9D441002E9FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		41F2EB2D1D38248100916C44 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; name = APIResponseSpoofer.framework; path = "/Users/dmukundan/Library/Developer/Xcode/DerivedData/APIResponseSpoofer-bzhmshzhqzvhaeavzjabcqvzverq/Build/Products/Debug-iphoneos/APIResponseSpoofer.framework"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4107EC6E1D37F91100C49F68 /* APIResponseSpoofer.framework in Frameworks */,
+				41F2EB2E1D38248100916C44 /* APIResponseSpoofer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -43,7 +58,7 @@
 		412A7B891BC9D441002E9FF2 = {
 			isa = PBXGroup;
 			children = (
-				4107EC6B1D37F90500C49F68 /* APIResponseSpoofer.framework */,
+				41F2EB2D1D38248100916C44 /* APIResponseSpoofer.framework */,
 				412A7B941BC9D441002E9FF2 /* SpooferDemo */,
 				412A7B931BC9D441002E9FF2 /* Products */,
 			);
@@ -81,6 +96,7 @@
 				412A7B8E1BC9D441002E9FF2 /* Sources */,
 				412A7B8F1BC9D441002E9FF2 /* Frameworks */,
 				412A7B901BC9D441002E9FF2 /* Resources */,
+				41F2EB301D38248100916C44 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
