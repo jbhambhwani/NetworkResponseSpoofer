@@ -8,20 +8,29 @@
 
 import Foundation
 
-// MARK: Public Enums
-
+/// Errors thrown by the Spoofer
 public enum SpooferError: Int, ErrorType {
+    /// Error when unable to read from the scenario file on disk
     case DiskReadError = 500
-    case DiskWriteError = 501
-    case EmptyFileError = 502
-    case DocumentsAccessError = 503
-    case FolderCreationError = 504
-    case EmptyScenarioError = 505
-    case NoSavedResponseError = 506
-    case ScenarioDeletionError = 507
+    /// Error when unable to write to a scenario file on disk
+    case DiskWriteError
+    /// Error when empty scenario file is found on disk
+    case EmptyFileError
+    /// Error when unable to access sandboxed documents folder of the app
+    case DocumentsAccessError
+    /// Error when unable to create a folder inside the Documents folder
+    case FolderCreationError
+    /// Error when scenario file has no APIResponses recorded
+    case EmptyScenarioError
+    /// Error when no saved response is found for a particular request
+    case NoSavedResponseError
+    /// Error when unable to delete a scenario from disk
+    case ScenarioDeletionError
 }
 
-public enum SpooferConfigurationType: String {
+// MARK: Internal
+
+enum SpooferConfigurationType: String {
     case queryParameterNormalization = "Query Parameter Normalization"
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
     case spoofedHosts = "Hostnames to Spoof"

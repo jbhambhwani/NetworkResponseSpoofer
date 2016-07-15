@@ -8,84 +8,126 @@
 
 import Foundation
 
+/**
+ *  Delegate methods invoked by Spoofer whenever its state changes
+ */
 @objc public protocol SpooferDelegate {
+    /**
+     Method invoked on the delegate when spoofer starts recording a scenario
+     
+     - parameter scenarioName: The scenario name under which all the responses are going to be captured
+     */
     func spooferDidStartRecording(scenarioName: String)
+    /**
+     Method invoked on the delegate when the spoofer stops recording a scenario
+     
+     - parameter scenarioName: The scenario name under which all the responses were captured
+     - parameter success: Boolean indicating if recording was successful
+     */
     func spooferDidStopRecording(scenarioName: String, success: Bool)
+    /**
+     Method invoked on the delegate when the spoofer starts replaying a pre-recorded scenario
+     
+     - parameter scenarioName: The scenario name being replayed
+     - parameter success: Boolean indicating successful replay start
+     */
     func spooferDidStartReplaying(scenarioName: String, success: Bool)
+    /**
+     Method invoked on the delegate when the spoofer stops replay of a given scenario
+     
+     - parameter scenarioName: The scenario name which just stopped replay
+     */
     func spooferDidStopReplaying(scenarioName: String)
 }
 
+/**
+ APIResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
+ */
 @objc(Spoofer)
 public class Spoofer: NSObject {
     
-    // MARK - Notifications
+    // MARK: - Configuration
     
-    public static let spooferLogNotification = "SpooferLogNotification"
-    public static let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
-    public static let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
-    public static let spooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
-    public static let spooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
-    
-    // MARK: - Public properties
-    
+    /// The delegate for the Spoofer, which will be notified whenever the Spoofer state changes
     public class var delegate: SpooferDelegate? {
         get { return sharedInstance.delegate }
         set { sharedInstance.delegate = newValue }
     }
     
-    public class var configurations: [SpooferConfigurationType : AnyObject]? {
-        return sharedInstance.config
-    }
-    
+    /// The scenario name being recorded or replayed. Returns empty when the Spoofer is not active
     public class var scenarioName: String {
         guard let scenario = spoofedScenario else { return String() }
         return scenario.name
     }
     
+    /// White list of host names the Spoofer would intercept. If set, only whitelist host names would be recorded
     public class var hostNamesToSpoof: [String] {
         get { return sharedInstance.spoofedHosts }
         set { sharedInstance.spoofedHosts = newValue.flatMap { $0.lowercaseString } }
     }
     
+    /// Blacklist of hostnames. If set, these host names would be ignored from recording
     public class var hostNamesToIgnore: [String] {
         get { return sharedInstance.ignoredHosts }
         set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercaseString } }
     }
     
+    /// Subdomains to ignore via URL normalization. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.
     public class var subDomainsToIgnore: [String] {
         get { return sharedInstance.ignoredSubdomains }
         set { sharedInstance.ignoredSubdomains = newValue.flatMap { $0.lowercaseString } }
     }
     
+    /// Query parameters that should be ignored via URL normalization. Useful when query parameters are dynamic causing URL's to mismatch.
     public class var queryParametersToIgnore: [String] {
         get { return sharedInstance.ignoredQueryParameters }
         set { sharedInstance.ignoredQueryParameters = newValue.flatMap { $0.lowercaseString } }
     }
 
+    /** Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions.
+        E.g. v1, v1.1, v2 etc
+    */
     public class var pathComponentsToIgnore: [String] {
         get { return sharedInstance.ignoredPathComponents }
         set { sharedInstance.ignoredPathComponents = newValue.flatMap { $0.lowercaseString } }
     }
     
+    /** 
+     Enable normalizing query parameters, by taking only the keys and dropping the values.
+     
+     - Note: Query Parameter Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
+     1. Reduced scenario file size saving some storage space.
+     2. Consistent response for the same end point regardless of query parameter values. 
+     
+     For E.g., a url such as example.com/api?key1=value1&key2=value2 becomes example.com/api?key1&key2. This allows the Spoofer to record and replay the same reponse for all calls to the end point with similar key-value query parameters.
+     */
     public class var normalizeQueryParameters: Bool {
         get { return sharedInstance.queryParameterNormalization }
         set { sharedInstance.queryParameterNormalization = newValue }
     }
     
+    /// Allows toggling accepting of self signed certificates
     public class var allowSelfSignedCertificate: Bool {
         get { return sharedInstance.acceptSelfSignedCertificate }
         set { sharedInstance.acceptSelfSignedCertificate = newValue }
     }
     
-    public class func resetConfigurations() {
-        sharedInstance.spoofedHosts = [String]()
-        sharedInstance.ignoredHosts = [String]()
-        sharedInstance.ignoredSubdomains = [String]()
-        sharedInstance.ignoredQueryParameters = [String]()
-        sharedInstance.ignoredPathComponents = [String]()
-        sharedInstance.acceptSelfSignedCertificate = false
-        sharedInstance.queryParameterNormalization = false
-    }
+    // MARK - Notifications
+    
+    /**
+     Fired whenever the Spoofer logs some meaningful output, as in request intercept, record start/stop etc
+     - Note: The userInfo dictionary of the notification has a "message" key, the value contains the log from the spoofer
+     */
+    public static let spooferLogNotification = "SpooferLogNotification"
+    /// Notification fired when spoofer starts recording a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    public static let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
+    /// Notification fired when spoofer stops recording a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    public static let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
+    /// Notification fired when spoofer starts replaying a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    public static let spooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
+    /// Notification fired when spoofer stops replaying a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    public static let spooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
+
     
     // MARK: - Internal methods and properties
     
@@ -139,6 +181,20 @@ public class Spoofer: NSObject {
                 logFormattedSeperator("Spoofer Replay Ended")
             }
         }
+    }
+    
+    class func resetConfigurations() {
+        sharedInstance.spoofedHosts = [String]()
+        sharedInstance.ignoredHosts = [String]()
+        sharedInstance.ignoredSubdomains = [String]()
+        sharedInstance.ignoredQueryParameters = [String]()
+        sharedInstance.ignoredPathComponents = [String]()
+        sharedInstance.acceptSelfSignedCertificate = false
+        sharedInstance.queryParameterNormalization = false
+    }
+    
+    class var configurations: [SpooferConfigurationType : AnyObject]? {
+        return sharedInstance.config
     }
     
     // MARK: - Internal variables

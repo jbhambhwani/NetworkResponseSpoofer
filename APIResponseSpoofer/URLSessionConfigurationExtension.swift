@@ -10,7 +10,7 @@ import Foundation
 
 // Swizzle URLSessionConfiguration to insert our Interceptor protocols
 
-public extension NSURLSessionConfiguration {
+extension NSURLSessionConfiguration {
     
     private struct Static {
         static var token: dispatch_once_t = 0
