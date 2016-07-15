@@ -24,7 +24,7 @@ public extension Spoofer {
      - parameter sourceViewController: The view controller from which to present the replay selection UI
      
      - Note: The replay selection UI also has few other roles.
-        - It allows configuring the spoofer using a congig button the nav bar, allowing to tweak whitelist/blacklist/query parameters, normalization etc
+        - It allows configuring the spoofer using a config button the nav bar, allowing to tweak whitelist/blacklist/query parameters, normalization etc
         - It shows the list of pre-recorded scenarios in the folder. Tapping a scenario starts replay directly and dismissed the UI
         - It allows diving deeper into the scenario by tapping the info button along the right of each scenario. This lists the url's which have recorded responses in the scenario.
      */

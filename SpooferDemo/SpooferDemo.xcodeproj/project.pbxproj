@@ -75,15 +75,23 @@
 		412A7B941BC9D441002E9FF2 /* SpooferDemo */ = {
 			isa = PBXGroup;
 			children = (
-				412A7B951BC9D441002E9FF2 /* AppDelegate.swift */,
 				412A7B971BC9D441002E9FF2 /* DemoViewController.swift */,
 				4107EC621D371AA900C49F68 /* DemoViewController+Private.swift */,
 				412A7B991BC9D441002E9FF2 /* Main.storyboard */,
-				412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */,
-				412A7B9E1BC9D441002E9FF2 /* LaunchScreen.storyboard */,
-				412A7BA11BC9D441002E9FF2 /* Info.plist */,
+				41695A721D396D9C009B8BB9 /* Supporting Files */,
 			);
 			path = SpooferDemo;
+			sourceTree = "<group>";
+		};
+		41695A721D396D9C009B8BB9 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				412A7B951BC9D441002E9FF2 /* AppDelegate.swift */,
+				412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */,
+				412A7BA11BC9D441002E9FF2 /* Info.plist */,
+				412A7B9E1BC9D441002E9FF2 /* LaunchScreen.storyboard */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
