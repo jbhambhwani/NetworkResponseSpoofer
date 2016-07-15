@@ -1,4 +1,7 @@
+# APIResponseSpoofer
+
 APIResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
+
 
 ## Getting Started
 Before you start, import Spoofer framework into your project
@@ -6,7 +9,8 @@ Before you start, import Spoofer framework into your project
 @import APIResponseSpoofer
 ```
 
-####Start Recording
+
+###Start Recording
 ```swift
 Spoofer.startRecording(inViewController: self) // Provide scenario name using popup UI
 --OR--
@@ -15,13 +19,15 @@ Spoofer.startRecording(scenarioName: "Give a name to your scenario")  // Provide
 
 Recording can be either initiated by providing the scenario name from UI (BDD / UI Tests / Manually) or from code if you prefer it that way. Each scenario needs a name. Preferably keep this short so that it can be displayed as a list in device/simulator without word wrap. Once a cycle of recording finishes (end to end), stop the recording and this will save the requests and responses for that session under the scenario.
 
-####Stop Recording
+
+###Stop Recording
 ```swift
 Spoofer.stopRecording()
 ```
 Stops recording and saves the scenario in the application's sandboxed Documents directory (under /Spoofer)
 
-####Start Replay
+
+###Start Replay
 ```swift
 Spoofer.showRecordedScenarios(inViewController: self) // Shows a list of recorded scenarios, select one to start replay
 --OR--
@@ -30,7 +36,8 @@ Spoofer.startReplaying(scenarioName: "Scenario name to replay") // Directly star
 
 The first method displays a list of recorded scenarios available in the application documents directory. Tapping a scenario from the list starts replay immediately serving the responses from inside the scenario. If you know the scenario name already and do not want a selection UI, use the second method. The UI also allows configuring the Spoofer behavior and toggling a few settings, so give it a spin.
 
-####Stop Replay
+
+###Stop Replay
 Stop replaying the current scenario
 ```swift
 Spoofer.stopReplaying()
@@ -38,6 +45,9 @@ Spoofer.stopReplaying()
 
 ##Exporting and Importing scenarios
 Spoofer uses the sandboxed documents folder of the app to save the scenario files.
+
+##Documentation
+Read the [docs](./Classes/Spoofer.html).
 
 ##Advanced Configuration
 
@@ -112,15 +122,15 @@ Spoofer will fire the following notifications whenever its state changes. You ca
 - spooferStartedReplayingNotification
 - spooferStoppedReplayingNotification
 
-## Integrating via Dependency management
+##Installation
 
-#####Cocoapods
+###Cocoapods
 ```ruby
 platform :ios, '8.0'
 pod "APIResponseSpoofer", "~> 1.0"
 ```
 
-##### Carthage
+###Carthage
 ```ruby
 github "Hotwire/APIResponseSpoofer" ~> 1.0
 ```
