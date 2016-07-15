@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>APIResponseSpoofer  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset='utf-8'>
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+  </head>
+  <body>
+    <a title="APIResponseSpoofer  Reference"></a>
+    <header>
+      <div class="content-wrapper">
+        <p><a href="index.html">APIResponseSpoofer Docs</a> (100% documented)</p>
+        <p class="header-right"><a href="https://github.com/HotwireDotCom"><img src="img/gh.png"/>View on GitHub</a></p>
+      </div>
+    </header>
+    <div class="content-wrapper">
+      <p id="breadcrumbs">
+        <a href="index.html">APIResponseSpoofer Reference</a>
+        <img id="carat" src="img/carat.png" />
+        APIResponseSpoofer  Reference
+      </p>
+    </div>
+    <div class="content-wrapper">
+      <nav class="sidebar">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a href="Classes.html">Classes</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/Spoofer.html">Spoofer</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Enums.html">Enums</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Enums/SpooferError.html">SpooferError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="Protocols.html">Protocols</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Protocols/SpooferDelegate.html">SpooferDelegate</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+        <section>
+          <section class="section">
+            
+            <a href='#apiresponsespoofer' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h1 id='apiresponsespoofer'>APIResponseSpoofer</h1>
+
+<p>APIResponseSpoofer is a network request-response recording and replaying library for iOS. It&rsquo;s built on top of the <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">Foundation URL Loading System</a> to make recording and replaying network requests really simple.</p>
+<a href='#getting-started' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='getting-started'>Getting Started</h2>
+
+<p>Before you start, import Spoofer framework into your project
+<code>swift
+@import APIResponseSpoofer
+</code></p>
+<a href='#start-recording' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='start-recording'>Start Recording</h3>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startRecording</span><span class="p">(</span><span class="nv">inViewController</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="c1">// Provide scenario name using popup UI</span>
+<span class="o">--</span><span class="kt">OR</span><span class="o">--</span>
+<span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startRecording</span><span class="p">(</span><span class="nv">scenarioName</span><span class="p">:</span> <span class="s">"Give a name to your scenario"</span><span class="p">)</span>  <span class="c1">// Provide scenario name directly from code</span>
+</code></pre>
+
+<p>Recording can be either initiated by providing the scenario name from UI (BDD / UI Tests / Manually) or from code if you prefer it that way. Each scenario needs a name. Preferably keep this short so that it can be displayed as a list in device/simulator without word wrap. Once a cycle of recording finishes (end to end), stop the recording and this will save the requests and responses for that session under the scenario.</p>
+<a href='#stop-recording' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='stop-recording'>Stop Recording</h3>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">stopRecording</span><span class="p">()</span>
+</code></pre>
+
+<p>Stops recording and saves the scenario in the application&rsquo;s sandboxed Documents directory (under /Spoofer)</p>
+<a href='#start-replay' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='start-replay'>Start Replay</h3>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">showRecordedScenarios</span><span class="p">(</span><span class="nv">inViewController</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="c1">// Shows a list of recorded scenarios, select one to start replay</span>
+<span class="o">--</span><span class="kt">OR</span><span class="o">--</span>
+<span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startReplaying</span><span class="p">(</span><span class="nv">scenarioName</span><span class="p">:</span> <span class="s">"Scenario name to replay"</span><span class="p">)</span> <span class="c1">// Directly start replaying a recorded scenario</span>
+</code></pre>
+
+<p>The first method displays a list of recorded scenarios available in the application documents directory. Tapping a scenario from the list starts replay immediately serving the responses from inside the scenario. If you know the scenario name already and do not want a selection UI, use the second method. The UI also allows configuring the Spoofer behavior and toggling a few settings, so give it a spin.</p>
+<a href='#stop-replay' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='stop-replay'>Stop Replay</h3>
+
+<p>Stop replaying the current scenario
+<code>swift
+Spoofer.stopReplaying()
+</code></p>
+<a href='#exporting-and-importing-scenarios' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='exporting-and-importing-scenarios'>Exporting and Importing scenarios</h2>
+
+<p>Spoofer uses the sandboxed documents folder of the app to save the scenario files.</p>
+<a href='#documentation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='documentation'>Documentation</h2>
+
+<p>Read the <a href="./Classes/Spoofer.html">docs</a>.</p>
+<a href='#advanced-configuration' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='advanced-configuration'>Advanced Configuration</h2>
+<a href='#whitelisting-host-names' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='whitelisting-host-names'>Whitelisting host names</h3>
+
+<p>By default, the spoofer will intercept and save all HTTP requests and responses originating from an app. If you need to be selective, provide an array of domains you want to record requests and responses from as below. Once domainsToSpoof is set, only the specified domain calls will be intercepted.
+<code>swift
+Spoofer.hostNamesToSpoof([&quot;example1.com&quot;,&quot;example2.com&quot;])
+</code></p>
+<a href='#blacklisting-host-names' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='blacklisting-host-names'>Blacklisting host names</h3>
+
+<p>Blacklist does the opposite of above, allowing selective domain names to be ignored while Spoofer records API requests and responses.
+<code>swift
+Spoofer.hostNamesToIgnore([&quot;example3.com&quot;,&quot;example4.com&quot;])
+</code></p>
+<a href='#ignoring-subdomains' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='ignoring-subdomains'>Ignoring subdomains</h3>
+
+<p>If end points have subdomains that need to be ignored, those can be set as below. This allows responses recorded from one realm to be played back on another. Spoofer normalizes the URL so that <strong>example.qa.com</strong> becomes <strong>example.com</strong>
+<code>swift
+Spoofer.subDomainsToIgnore([&quot;DEV&quot;,&quot;QA&quot;,&quot;PREPROD&quot;])
+</code></p>
+<a href='#ignoring-query-parameters' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='ignoring-query-parameters'>Ignoring query parameters</h3>
+
+<p>If constructed URL&rsquo;s contain query parameters which appear and go away dynamically, response lookup might fail during replay. To avoid that, setup ignore rules for such query parameters so that they are removed before URL&rsquo;s are compared.
+<code>swift
+Spoofer.queryParametersToIgnore([&quot;node&quot;,&quot;swarm&quot;,&quot;cluster&quot;])
+</code></p>
+<a href='#normalize-query-parameters' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='normalize-query-parameters'>Normalize query parameters</h3>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="n">normalizeQueryParameters</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre>
+
+<p>Query Parameter Normalization causes values (not keys) of the query parameters to be dropped while comparing URL&rsquo;s. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
+1. Reduced scenario file size saving some storage space.
+2. Consistent response for the same end point regardless of query parameter values</p>
+<a href='#allow-self-signed-certificate' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='allow-self-signed-certificate'>Allow self signed certificate</h3>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="n">allowSelfSignedCertificate</span> <span class="o">=</span> <span class="kc">true</span>
+</code></pre>
+
+<p>Allow spoofer to record from self signed certificate authority domains</p>
+<a href='#receiving-call-back-from-the-spoofer' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='receiving-call-back-from-the-spoofer'>Receiving call back from the spoofer</h2>
+<a href='#method-1' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h5 id='method-1'>Method 1</h5>
+
+<p>If you need to update UI or respond to the spoofer state changes, implement the SpooferDelegate protocol and use the delegate callbacks to do so.
+&ldquo;`swift
+class MyClass: SpooferDelegate {</p>
+<pre class="highlight plaintext"><code>init() {
+    // Some setup code
+    ...
+    Spoofer.delegate = self
+}
+</code></pre>
+
+<p>}</p>
+<pre class="highlight plaintext"><code>And then implement the below methods
+```swift
+func spooferDidStartRecording(scenarioName: String)
+func spooferDidStopRecording(scenarioName: String, success: Bool)
+func spooferDidStartReplaying(scenarioName: String, success: Bool)
+func spooferDidStopReplaying(scenarioName: String)
+</code></pre>
+<a href='#method-2' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h5 id='method-2'>Method 2</h5>
+
+<p>Spoofer will fire the following notifications whenever its state changes. You can subscribe to these notifications and do any related work.
+- spooferStartedRecordingNotification
+- spooferStoppedRecordingNotification
+- spooferStartedReplayingNotification
+- spooferStoppedReplayingNotification</p>
+<a href='#installation' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h2 id='installation'>Installation</h2>
+<a href='#cocoapods' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='cocoapods'>Cocoapods</h3>
+<pre class="highlight ruby"><code><span class="n">platform</span> <span class="ss">:ios</span><span class="p">,</span> <span class="s1">'8.0'</span>
+<span class="n">pod</span> <span class="s2">"APIResponseSpoofer"</span><span class="p">,</span> <span class="s2">"~&gt; 1.0"</span>
+</code></pre>
+<a href='#carthage' class='anchor' aria-hidden=true><span class="header-anchor"></span></a><h3 id='carthage'>Carthage</h3>
+<pre class="highlight ruby"><code><span class="n">github</span> <span class="s2">"Hotwire/APIResponseSpoofer"</span> <span class="o">~&gt;</span> <span class="mi">1</span><span class="o">.</span><span class="mi">0</span>
+</code></pre>
+
+          </section>
+        </section>
+        <section id="footer">
+          <p>&copy; 2016 <a class="link" href="www.hotwire.com" target="_blank" rel="external">Hotwire</a>. All rights reserved. (Last updated: 2016-07-15)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+        </section>
+      </article>
+    </div>
+  </body>
+</div>
+</html>
