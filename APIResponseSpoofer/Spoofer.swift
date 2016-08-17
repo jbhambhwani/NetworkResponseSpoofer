@@ -119,7 +119,9 @@ public class Spoofer: NSObject {
      - Note: The userInfo dictionary of the notification has a "message" key, the value contains the log from the spoofer
      */
     public static let spooferLogNotification = "SpooferLogNotification"
-    /// Notification fired when spoofer starts recording a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    /** Notification fired when spoofer starts recording a scenario.
+     - Note: Userinfo dictionary has key "scenario" which has the name of the scenario
+    */
     public static let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
     /// Notification fired when spoofer stops recording a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
     public static let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
