@@ -14,6 +14,8 @@ public enum SpooferError: Int, ErrorType {
     case DiskReadError = 500
     /// Error when unable to write to a scenario file on disk
     case DiskWriteError
+    /// Error when unable to generate a scenario url
+    case ScenarioURLError
     /// Error when empty scenario file is found on disk
     case EmptyFileError
     /// Error when unable to access sandboxed documents folder of the app

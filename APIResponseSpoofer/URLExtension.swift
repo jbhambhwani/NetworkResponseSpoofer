@@ -88,6 +88,7 @@ extension NSURL {
     }
     
     var isHTTP: Bool {
+        guard let scheme = scheme else { return false }
         return ["http", "https"].contains(scheme)
     }
     

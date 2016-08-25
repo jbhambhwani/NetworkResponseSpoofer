@@ -18,8 +18,12 @@ class Store {
             return
         }
         
-        let scenarioFileURL = getScenarioFileURL(scenario.name)
-        if NSFileManager.defaultManager().fileExistsAtPath(scenarioFileURL.absoluteString) {
+        guard let scenarioFileURL = getScenarioFileURL(scenario.name), urlPath = scenarioFileURL.absoluteString else {
+            handleError("Unable to save scenario", recoveryMessage: "URL could not be created for scenario name", code: SpooferError.ScenarioURLError.rawValue, errorHandler: errorHandler)
+            return
+        }
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(urlPath) {
             do {
                 try NSFileManager.defaultManager().removeItemAtURL(scenarioFileURL)
             } catch {
@@ -39,7 +43,12 @@ class Store {
     
     // Load a scenario from disk
     class func loadScenario(scenarioName: String, callback: ((success: Bool, scenario: Scenario) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
-        let scenarioFileURL = getScenarioFileURL(scenarioName)
+        
+        guard let scenarioFileURL = getScenarioFileURL(scenarioName) else {
+            handleError("Unable to save scenario", recoveryMessage: "URL could not be created for scenario name", code: SpooferError.ScenarioURLError.rawValue, errorHandler: errorHandler)
+            return
+        }
+        
         var scenarioData: NSData?
         do {
             try scenarioData = NSData(contentsOfURL: scenarioFileURL, options: .DataReadingMappedIfSafe)
@@ -71,11 +80,14 @@ class Store {
     
     // Retrieve all scenarios from disk
     class func allScenarioNames() -> [String] {
+        
+        guard let docsDir = spooferDocumentsDirectory() else { return [] }
+        
         var allFiles: [NSURL]
         do {
-            try allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtURL(spooferDocumentsDirectory(), includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
+            try allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtURL(docsDir, includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
         } catch {
-            return [String]()
+            return []
         }
         
         let scenarioFiles: [NSString] = allFiles.flatMap{ $0.lastPathComponent }.filter{ $0.pathExtension == "scenario"}
@@ -85,15 +97,17 @@ class Store {
     
     // MARK: - Private methods
     
-    private class func getScenarioFileURL(scenarioName: String) -> NSURL {
+    private class func getScenarioFileURL(scenarioName: String) -> NSURL? {
+        guard let docsDir = spooferDocumentsDirectory() else { return nil }
+        
         // Get a reference to the documents directory & Construct a file name based on the scenario file
-        let scenarioFileURL = spooferDocumentsDirectory().URLByAppendingPathComponent("\(scenarioName).scenario")
+        guard let scenarioFileURL = docsDir.URLByAppendingPathComponent("\(scenarioName).scenario") else { return nil }
         return scenarioFileURL
     }
 
     private class func deleteScenario(scenarioName: String) -> Bool {
         // Get a reference to the documents directory & Construct a file name based on the scenario file
-        let scenarioFileURL = getScenarioFileURL(scenarioName)
+        guard let scenarioFileURL = getScenarioFileURL(scenarioName) else { return false }
         do {
             try NSFileManager.defaultManager().removeItemAtURL(scenarioFileURL)
             return true
@@ -112,10 +126,12 @@ class Store {
         return documentsDirectoryURL
     }
     
-    private class func spooferDocumentsDirectory() -> NSURL {
-        let spooferDirectoryURL = applicationDocumentsDirectory().URLByAppendingPathComponent("Spoofer")
+    private class func spooferDocumentsDirectory() -> NSURL? {
+        guard let spooferDirectoryURL = applicationDocumentsDirectory().URLByAppendingPathComponent("Spoofer"), spooferDirectoryURLString = spooferDirectoryURL.absoluteString else { return nil }
+        
         var isDir = ObjCBool(true)
-        if NSFileManager.defaultManager().fileExistsAtPath(spooferDirectoryURL.absoluteString, isDirectory: &isDir) == false {
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(spooferDirectoryURLString, isDirectory: &isDir) == false {
             do {
                 try NSFileManager.defaultManager().createDirectoryAtURL(spooferDirectoryURL, withIntermediateDirectories: true, attributes: nil)
             } catch _ {

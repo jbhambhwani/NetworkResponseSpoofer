@@ -109,7 +109,8 @@ class APIResponseSpooferTests: XCTestCase {
             XCTFail("Normalization failed")
             return
         }
-        XCTAssertTrue(complexURL.absoluteString.containsString(normalized), "Non Normalized version must match original version")
+        guard let urlString = complexURL.absoluteString else { return }
+        XCTAssertTrue(urlString.containsString(normalized), "Non Normalized version must match original version")
     }
     
     func test07ParameterIgnoreURLNormalization() {
