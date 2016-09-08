@@ -17,10 +17,10 @@ class APIResponseSpooferTests: XCTestCase {
     var spoofedResponseReceived: XCTestExpectation?
     
     let smokeTest = "Smoke Test Spoofer"
-    let sampleURL1 = NSURL(string: "http://echo.jsontest.com/key/value/one/two")!
-    let sampleURL2 = NSURL(string: "http://jsonplaceholder.typicode.com/users")!
-    let allCapsURL = NSURL(string: "HTTP://JSONPLACEHOLDER.TYPICODE.COM/USERS")!
-    let complexURL = NSURL(string: "http://www.example.com:8042/over/there/index.html?class=vehicle&type=2wheeler&name=ferrari#red")!
+    let sampleURL1 = URL(string: "http://echo.jsontest.com/key/value/one/two")!
+    let sampleURL2 = URL(string: "http://jsonplaceholder.typicode.com/users")!
+    let allCapsURL = URL(string: "HTTP://JSONPLACEHOLDER.TYPICODE.COM/USERS")!
+    let complexURL = URL(string: "http://www.example.com:8042/over/there/index.html?class=vehicle&type=2wheeler&name=ferrari#red")!
     
     override func setUp() {
         super.setUp()
@@ -35,14 +35,14 @@ class APIResponseSpooferTests: XCTestCase {
     
     func test01SpooferRecord() {
         // 1: Create an expectation which will be fulfilled when we receive data
-        responseReceived = expectationWithDescription("ResponseReceived")
+        responseReceived = expectation(description: "ResponseReceived")
         
         // 2: Start recording responses
         Spoofer.startRecording(scenarioName: smokeTest)
         
         // 3: Fetch some data using a URL session
-        let session = NSURLSession.sharedSession()
-        session.dataTaskWithURL(sampleURL1, completionHandler: { [weak self] data, response, error in
+        let session = URLSession.shared
+        session.dataTask(with: sampleURL1, completionHandler: { [weak self] data, response, error in
             if error == nil {
                 Spoofer.stopRecording()
                 self?.responseReceived?.fulfill()
@@ -50,7 +50,7 @@ class APIResponseSpooferTests: XCTestCase {
         }).resume()
         
         // 4: Loop until the expectation is fulfilled
-        waitForExpectationsWithTimeout(10, handler: { error in
+        waitForExpectations(timeout: 10, handler: { error in
             XCTAssertNil(error, "Error")
         })
     }
@@ -70,14 +70,14 @@ class APIResponseSpooferTests: XCTestCase {
     
     func test03SpooferReplay() {
         // 1: Create an expectation which will be fulfilled when we receive data
-        spoofedResponseReceived = expectationWithDescription("SpoofedResponseReceived")
+        spoofedResponseReceived = expectation(description: "SpoofedResponseReceived")
         
         // 2: Start replaying the smoke test scenario so that Spoofer can send data back instead of a direct network call
         Spoofer.startReplaying(scenarioName: smokeTest)
         
         // 3: Fetch some data using a URL session
-        let session = NSURLSession.sharedSession()
-        session.dataTaskWithURL(sampleURL1, completionHandler: { [weak self] data, response, error in
+        let session = URLSession.shared
+        session.dataTask(with: sampleURL1, completionHandler: { [weak self] data, response, error in
             if error == nil {
                 print("Cached Response : \(response) \nCached Data: \(data)")
                 Spoofer.stopReplaying()
@@ -86,7 +86,7 @@ class APIResponseSpooferTests: XCTestCase {
         }).resume()
         
         // 4: Loop until the expectation is fulfilled
-        waitForExpectationsWithTimeout(10, handler: { error in
+        waitForExpectations(timeout: 10, handler: { error in
             XCTAssertNil(error, "Error")
         })
     }
@@ -109,8 +109,7 @@ class APIResponseSpooferTests: XCTestCase {
             XCTFail("Normalization failed")
             return
         }
-        guard let urlString = complexURL.absoluteString else { return }
-        XCTAssertTrue(urlString.containsString(normalized), "Non Normalized version must match original version")
+        XCTAssertTrue(complexURL.absoluteString.contains(normalized), "Non Normalized version must match original version")
     }
     
     func test07ParameterIgnoreURLNormalization() {

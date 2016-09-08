@@ -30,8 +30,8 @@ public extension Spoofer {
      */
     class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
         guard let sourceViewController = sourceViewController else { return }
-        let scenarioListController = spooferStoryBoard().instantiateViewControllerWithIdentifier(ScenarioListController.identifier)
-        sourceViewController.presentViewController(scenarioListController, animated: true, completion: nil)
+        let scenarioListController = spooferStoryBoard().instantiateViewController(withIdentifier: ScenarioListController.identifier)
+        sourceViewController.present(scenarioListController, animated: true, completion: nil)
     }
     
     /**
@@ -43,7 +43,7 @@ public extension Spoofer {
      
      - Returns: True if replay was started, else false
      */
-    public class func startReplaying(scenarioName name: String?) -> Bool {
+    @discardableResult public class func startReplaying(scenarioName name: String?) -> Bool {
         
         guard let name = name else { return false }
         
@@ -55,13 +55,13 @@ public extension Spoofer {
                 // Inform the delegate that spoofer started replay
                 Spoofer.delegate?.spooferDidStartReplaying(name, success: true)
                 // Post a state change notification for interested parties
-                NSNotificationCenter.defaultCenter().postNotificationName(spooferStartedReplayingNotification, object: sharedInstance, userInfo: ["scenario": name, "success": true])
+                NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStartedReplayingNotification), object: sharedInstance, userInfo: ["scenario": name, "success": true])
             }
             }, errorHandler: { error in
                 // Inform the delegate that spoofer could not start replay
                 Spoofer.delegate?.spooferDidStartReplaying(name, success: false)
                 // Post a state change notification for interested parties
-                NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedReplayingNotification, object: sharedInstance)
+                NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedReplayingNotification), object: sharedInstance)
         })
         return protocolRegistered
     }
@@ -76,7 +76,7 @@ public extension Spoofer {
             // Inform the delegate that spoofer stopped replay
             Spoofer.delegate?.spooferDidStopReplaying(scenarioName)
             // Post a state change notification for interested parties
-            NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedReplayingNotification, object: sharedInstance)
+            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedReplayingNotification), object: sharedInstance)
         }
         spoofedScenario = nil
     }

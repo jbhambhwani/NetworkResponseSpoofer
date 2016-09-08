@@ -8,11 +8,11 @@
 
 import Foundation
 
-extension NSURL {
+extension URL {
     
     // MARK: - Private properties
-    private var allQueryItems: [NSURLQueryItem]? {
-        guard let components = NSURLComponents(URL: self, resolvingAgainstBaseURL: false) else { return nil }
+    private var allQueryItems: [URLQueryItem]? {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return nil }
         guard let queryItems = components.queryItems else { return nil }
         return queryItems
     }
@@ -23,7 +23,7 @@ extension NSURL {
         let allQueryItemsNames = queryItems.map{ $0.name }.filter{ element in
             !Spoofer.queryParametersToIgnore.contains(element)
         }
-        let normalizedNames = "?" + allQueryItemsNames.joinWithSeparator("&")
+        let normalizedNames = "?" + allQueryItemsNames.joined(separator: "&")
         return normalizedNames
     }
     
@@ -35,46 +35,43 @@ extension NSURL {
         guard var normalizedString = host else { return nil }
         
         if normalizedString.hasPrefix("www.") {
-            let wwwIndex = normalizedString.startIndex.advancedBy(4)
-            normalizedString = normalizedString.substringFromIndex(wwwIndex)
+            let wwwIndex = normalizedString.index(normalizedString.startIndex, offsetBy: 4)
+            normalizedString = normalizedString.substring(from: wwwIndex)
         }
         
         // Lower case the string to avoid euality check issues
-        normalizedString = normalizedString.lowercaseString
+        normalizedString = normalizedString.lowercased()
         
         // Remove sub domains which are to be ignored from the host name part. e.g. DEV, QA, PREPROD etc.
         for subDomainToIgnore in Spoofer.subDomainsToIgnore {
-            if let ignoredRange = normalizedString.rangeOfString(subDomainToIgnore + ".") {
-                normalizedString.removeRange(ignoredRange)
+            if let ignoredRange = normalizedString.range(of: subDomainToIgnore + ".") {
+                normalizedString.removeSubrange(ignoredRange)
             }
-            if let ignoredRange = normalizedString.rangeOfString(subDomainToIgnore) {
-                normalizedString.removeRange(ignoredRange)
+            if let ignoredRange = normalizedString.range(of: subDomainToIgnore) {
+                normalizedString.removeSubrange(ignoredRange)
             }
         }
         
         // Set the port if one existed
-        if let portString = port?.stringValue {
-            normalizedString += ":" + portString
+        if let port = port {
+            normalizedString += ":" + String(port)
         }
         
         // Set the path
-        if let pathString = path {
-            normalizedString += pathString
-        }
+        normalizedString += path
         
         // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
         for pathComponent in Spoofer.pathComponentsToIgnore {
-            if let pathComponentRange = normalizedString.rangeOfString("/" + pathComponent + "/") {
-                let ignoreRange = pathComponentRange.startIndex ..< pathComponentRange.endIndex.predecessor()
-                normalizedString.removeRange(ignoreRange)
+            if let pathComponentRange = normalizedString.range(of: "/" + pathComponent) {
+                normalizedString.removeSubrange(pathComponentRange)
             }
         }
         
         // Return current processed URL if there are no query items
-        guard let query = query else { return normalizedString.lowercaseString }
+        guard let query = query else { return normalizedString.lowercased() }
         
         // Normalize and append query parameter names (ignore values if normalization is requested)
-        if let queryItemNames = normalizedQueryItemNames where Spoofer.normalizeQueryParameters {
+        if let queryItemNames = normalizedQueryItemNames, Spoofer.normalizeQueryParameters == true {
             normalizedString += queryItemNames
         } else {
             if let fragment = fragment {
@@ -84,7 +81,7 @@ extension NSURL {
             }
         }
         
-        return normalizedString.lowercaseString
+        return normalizedString.lowercased()
     }
     
     var isHTTP: Bool {

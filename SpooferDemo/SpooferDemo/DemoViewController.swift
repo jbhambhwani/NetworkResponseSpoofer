@@ -28,10 +28,10 @@ class DemoViewController: UIViewController {
         super.viewDidLoad()
 
         // Listen for Spoofer log messages and print on console
-        NSNotificationCenter.defaultCenter().addObserver(self,
-                                                         selector: #selector(spooferLogReceived(_:)),
-                                                         name: Spoofer.spooferLogNotification,
-                                                         object: nil)
+        NotificationCenter.default.addObserver(self,
+                                               selector: #selector(spooferLogReceived(_:)),
+                                               name: NSNotification.Name(rawValue: Spoofer.spooferLogNotification),
+                                               object: nil)
         Spoofer.delegate = self
         
         // Sample configurations
@@ -39,12 +39,12 @@ class DemoViewController: UIViewController {
     }
     
     deinit {
-        NSNotificationCenter.defaultCenter().removeObserver(self)        
+        NotificationCenter.default.removeObserver(self)        
     }
     
     // MARK: - User Actions
     
-    @IBAction func buttonPressed(sender: UIBarButtonItem) {
+    @IBAction func buttonPressed(_ sender: UIBarButtonItem) {
         
         if sender == clearButton {
             consoleTextView.text = ""
@@ -96,15 +96,15 @@ class DemoViewController: UIViewController {
     
     // MARK: - Helper methods
     
-    @IBAction func handlePan(sender: UIPanGestureRecognizer) {
-        let point = sender.translationInView(view)
+    @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
+        let point = sender.translation(in: view)
         consoleHeightConstraint.constant = -point.y
     }
     
-    func spooferLogReceived(notification: NSNotification) {
-        guard let userInfo = notification.userInfo as? [String: String], message = userInfo["message"] else { return }
+    func spooferLogReceived(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
-        dispatch_async(dispatch_get_main_queue(), { [weak self] in
+        DispatchQueue.main.async(execute: { [weak self] in
             guard let strongSelf = self else { return }
             if strongSelf.consoleTextView.text.characters.count > 0 {
                 strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
@@ -119,8 +119,9 @@ class DemoViewController: UIViewController {
     func executeActionsForRecording(recordingState state: Bool) {
         if state {
             webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
+            searchBar.text = ""
             recordButton.title = ButtonTitle.StopRecording.rawValue
-            recordButton.tintColor = UIColor.redColor()
+            recordButton.tintColor = UIColor.red
             performSampleNetworkRequests()
         } else {
             recordButton.title = ButtonTitle.StartRecording.rawValue
@@ -131,8 +132,9 @@ class DemoViewController: UIViewController {
     func executeActionsForReplaying(replayingState state: Bool) {
         if state {
             webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
+            searchBar.text = ""
             replayButton.title = ButtonTitle.StopReplaying.rawValue
-            replayButton.tintColor = UIColor.redColor()
+            replayButton.tintColor = UIColor.red
         } else {
             replayButton.title = ButtonTitle.StartReplaying.rawValue
             replayButton.tintColor = view.tintColor
@@ -145,19 +147,19 @@ class DemoViewController: UIViewController {
 // MARK: - Spoofer Delegate
 
 extension DemoViewController: SpooferDelegate {
-    func spooferDidStartRecording(scenarioName: String) {
+    func spooferDidStartRecording(_ scenarioName: String) {
         executeActionsForRecording(recordingState: true)
     }
     
-    func spooferDidStopRecording(scenarioName: String, success: Bool) {
+    func spooferDidStopRecording(_ scenarioName: String, success: Bool) {
         executeActionsForRecording(recordingState: false)
     }
     
-    func spooferDidStartReplaying(scenarioName: String, success: Bool) {
+    func spooferDidStartReplaying(_ scenarioName: String, success: Bool) {
         executeActionsForReplaying(replayingState: true)
     }
     
-    func spooferDidStopReplaying(scenarioName: String) {
+    func spooferDidStopReplaying(_ scenarioName: String) {
         executeActionsForReplaying(replayingState: false)
     }
 }

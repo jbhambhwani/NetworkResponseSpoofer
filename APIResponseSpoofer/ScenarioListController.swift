@@ -20,7 +20,7 @@ class ScenarioListController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
     }
     
-    override func viewWillAppear(animated: Bool) {
+    override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedScenarioName = ""
     }
@@ -34,16 +34,16 @@ class ScenarioListController: UITableViewController {
         }
     }
 
-    @IBAction func cancel(sender: AnyObject) {
-        searchController.active = false
-        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+    @IBAction func cancel(_ sender: AnyObject) {
+        searchController.isActive = false
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
     // MARK: - Navigation
     
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        guard let responseListController = segue.destinationViewController as? ResponseListController, indexPath = sender as? NSIndexPath else { return }
-        selectedScenarioName = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+        guard let responseListController = segue.destination as? ResponseListController, let indexPath = sender as? IndexPath else { return }
+        selectedScenarioName = searchController.isActive ? filteredScenarios[(indexPath as NSIndexPath).row] : scenarioNames[indexPath.row] as String
         responseListController.scenarioName = selectedScenarioName
     }
     
@@ -61,8 +61,8 @@ class ScenarioListController: UITableViewController {
         controller.searchResultsUpdater = self
         controller.delegate = self
         controller.searchBar.sizeToFit()
-        controller.searchBar.barTintColor = UIColor.lightGrayColor()
-        controller.searchBar.tintColor = UIColor.blackColor()
+        controller.searchBar.barTintColor = UIColor.lightGray
+        controller.searchBar.tintColor = UIColor.black
         controller.dimsBackgroundDuringPresentation = true
         return controller
     }()
@@ -72,13 +72,13 @@ class ScenarioListController: UITableViewController {
 
 extension ScenarioListController {
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.active ? filteredScenarios.count : scenarioNames.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchController.isActive ? filteredScenarios.count : scenarioNames.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("ScenarioCell", forIndexPath: indexPath)
-        let scenario: String = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "ScenarioCell", for: indexPath)
+        let scenario: String = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         cell.textLabel?.text = scenario
         cell.accessibilityIdentifier = scenario
         return cell
@@ -90,33 +90,33 @@ extension ScenarioListController {
 
 extension ScenarioListController {
     
-    override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        let scenario = searchController.active ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let scenario = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         Spoofer.startReplaying(scenarioName: scenario)
-        searchController.active = false
-        navigationController?.dismissViewControllerAnimated(true, completion: nil)
+        searchController.isActive = false
+        navigationController?.dismiss(animated: true, completion: nil)
     }
     
-    override func tableView(tableView: UITableView, accessoryButtonTappedForRowWithIndexPath indexPath: NSIndexPath) {
-        performSegueWithIdentifier("showResponses", sender: indexPath)
+    override func tableView(_ tableView: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
+        performSegue(withIdentifier: "showResponses", sender: indexPath)
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
-        case .Delete:
+        case .delete:
             // Remove response from local array
-            let scenarioToDelete = scenarioNames.removeAtIndex(indexPath.row)
+            let scenarioToDelete = scenarioNames.remove(at: (indexPath as NSIndexPath).row)
             Store.deleteScenario(scenarioToDelete, callback: { success in
                     // Update the tableview upon succesful scenario deletion
-                    tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                    tableView.deleteRows(at: [indexPath], with: .automatic)
                 }, errorHandler: { error in
                      // Cause a tableview reload if scenario creation failed due to some reason
                     tableView.reloadData()
             })
             
-        case .Insert: break
-        case .None: break
+        case .insert: break
+        case .none: break
         }
     }
     
@@ -126,7 +126,7 @@ extension ScenarioListController {
 
 extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDelegate {
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         defer {
             tableView.reloadData()
         }
@@ -136,7 +136,7 @@ extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDel
             return
         }
         
-        filteredScenarios = scenarioNames.filter { $0.lowercaseString.containsString(searchText.lowercaseString) }
+        filteredScenarios = scenarioNames.filter { $0.lowercased().contains(searchText.lowercased()) }
     }
 
 }

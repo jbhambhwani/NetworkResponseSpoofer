@@ -9,19 +9,19 @@
 import Foundation
 
 enum ReplayMethod {
-    case StatusCodeAndHeader
-    case MimeTypeAndEncoding
+    case statusCodeAndHeader
+    case mimeTypeAndEncoding
 }
 
-class ReplayingProtocol: NSURLProtocol, NetworkInterceptable {
+class ReplayingProtocol: URLProtocol, NetworkInterceptable {
     
     private var currentReplayMethod: ReplayMethod {
         // Customization: Switch the replay method according to the one which suits your specific requirement.
-        return .StatusCodeAndHeader
+        return .statusCodeAndHeader
     }
     
-    override class func canInitWithRequest(request: NSURLRequest) -> Bool {
-         guard let url = request.URL else { return false }
+    override class func canInit(with request: URLRequest) -> Bool {
+         guard let url = request.url else { return false }
         
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
         let isHTTP = url.isHTTP
@@ -36,47 +36,47 @@ class ReplayingProtocol: NSURLProtocol, NetworkInterceptable {
         return false
     }
     
-    override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
     
-    override class func requestIsCacheEquivalent(aRequest: NSURLRequest, toRequest bRequest: NSURLRequest) -> Bool {
+    override class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
         // Let the super class handle it
-        return super.requestIsCacheEquivalent(aRequest, toRequest:bRequest)
+        return super.requestIsCacheEquivalent(aRequest, to:bRequest)
     }
     
     override func startLoading() {
-        guard let url = request.URL else { return }
+        guard let url = request.url else { return }
         
-        guard let spoofedScenario = Spoofer.spoofedScenario, cachedResponse = spoofedScenario.responseForRequest(request) else {
+        guard let spoofedScenario = Spoofer.spoofedScenario, let cachedResponse = spoofedScenario.responseForRequest(request) else {
             // Throw an error in case we are unable to load a response
-            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.NoSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
-            client?.URLProtocol(self, didFailWithError: httpError)
+            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
+            client?.urlProtocol(self, didFailWithError: httpError)
             return
         }
         
-        var httpResponse: NSHTTPURLResponse?
+        var httpResponse: HTTPURLResponse?
         
         switch currentReplayMethod {
-            case .StatusCodeAndHeader:
+            case .statusCodeAndHeader:
                 let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
-                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, statusCode: statusCode, HTTPVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
-            case .MimeTypeAndEncoding:
-                httpResponse = NSHTTPURLResponse(URL: cachedResponse.requestURL, MIMEType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
+                httpResponse = HTTPURLResponse(url: cachedResponse.requestURL, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
+            case .mimeTypeAndEncoding:
+                httpResponse = HTTPURLResponse(url: cachedResponse.requestURL, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
         }
 
         guard let spoofedResponse = httpResponse else {
             // Throw an error in case we are unable to serialize a response
-            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.NoSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
-            client?.URLProtocol(self, didFailWithError: httpError)
+            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
+            client?.urlProtocol(self, didFailWithError: httpError)
             return
         }
         
-        postNotification("Serving response from cache for : \(request.URL?.absoluteString)", object: self)
+        postNotification("Serving response from cache for : \(request.url?.absoluteString)", object: self)
         
-        client?.URLProtocol(self, didReceiveResponse: spoofedResponse, cacheStoragePolicy: .NotAllowed)
-        client?.URLProtocol(self, didLoadData: cachedResponse.data)
-        client?.URLProtocolDidFinishLoading(self)
+        client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
+        client?.urlProtocol(self, didLoad: cachedResponse.data)
+        client?.urlProtocolDidFinishLoading(self)
     }
     
     override func stopLoading() {

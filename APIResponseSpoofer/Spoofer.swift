@@ -17,27 +17,27 @@ import Foundation
      
      - parameter scenarioName: The scenario name under which all the responses are going to be captured
      */
-    func spooferDidStartRecording(scenarioName: String)
+    func spooferDidStartRecording(_ scenarioName: String)
     /**
      Method invoked on the delegate when the spoofer stops recording a scenario
      
      - parameter scenarioName: The scenario name under which all the responses were captured
      - parameter success: Boolean indicating if recording was successful
      */
-    func spooferDidStopRecording(scenarioName: String, success: Bool)
+    func spooferDidStopRecording(_ scenarioName: String, success: Bool)
     /**
      Method invoked on the delegate when the spoofer starts replaying a pre-recorded scenario
      
      - parameter scenarioName: The scenario name being replayed
      - parameter success: Boolean indicating successful replay start
      */
-    func spooferDidStartReplaying(scenarioName: String, success: Bool)
+    func spooferDidStartReplaying(_ scenarioName: String, success: Bool)
     /**
      Method invoked on the delegate when the spoofer stops replay of a given scenario
      
      - parameter scenarioName: The scenario name which just stopped replay
      */
-    func spooferDidStopReplaying(scenarioName: String)
+    func spooferDidStopReplaying(_ scenarioName: String)
 }
 
 /**
@@ -63,25 +63,25 @@ public class Spoofer: NSObject {
     /// White list of host names the Spoofer would intercept. If set, only whitelist host names would be recorded
     public class var hostNamesToSpoof: [String] {
         get { return sharedInstance.spoofedHosts }
-        set { sharedInstance.spoofedHosts = newValue.flatMap { $0.lowercaseString } }
+        set { sharedInstance.spoofedHosts = newValue.flatMap { $0.lowercased() } }
     }
     
     /// Blacklist of hostnames. If set, these host names would be ignored from recording
     public class var hostNamesToIgnore: [String] {
         get { return sharedInstance.ignoredHosts }
-        set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercaseString } }
+        set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercased() } }
     }
     
     /// Subdomains to ignore via URL normalization. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.
     public class var subDomainsToIgnore: [String] {
         get { return sharedInstance.ignoredSubdomains }
-        set { sharedInstance.ignoredSubdomains = newValue.flatMap { $0.lowercaseString } }
+        set { sharedInstance.ignoredSubdomains = newValue.flatMap { $0.lowercased() } }
     }
     
     /// Query parameters that should be ignored via URL normalization. Useful when query parameters are dynamic causing URL's to mismatch.
     public class var queryParametersToIgnore: [String] {
         get { return sharedInstance.ignoredQueryParameters }
-        set { sharedInstance.ignoredQueryParameters = newValue.flatMap { $0.lowercaseString } }
+        set { sharedInstance.ignoredQueryParameters = newValue.flatMap { $0.lowercased() } }
     }
 
     /** Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions.
@@ -89,7 +89,7 @@ public class Spoofer: NSObject {
     */
     public class var pathComponentsToIgnore: [String] {
         get { return sharedInstance.ignoredPathComponents }
-        set { sharedInstance.ignoredPathComponents = newValue.flatMap { $0.lowercaseString } }
+        set { sharedInstance.ignoredPathComponents = newValue.flatMap { $0.lowercased() } }
     }
     
     /** 
@@ -133,15 +133,15 @@ public class Spoofer: NSObject {
     
     // MARK: - Internal methods and properties
     
-    class func shouldHandleURL(url: NSURL) -> Bool {
+    class func shouldHandleURL(_ url: URL) -> Bool {
         // Take an early exit if host is empty
-        guard let currentHost = url.host?.lowercaseString else { return false }
+        guard let currentHost = url.host?.lowercased() else { return false }
         
         // Handle all cases in case no domains are whitelisted and blacklisted
         if hostNamesToSpoof.isEmpty && hostNamesToIgnore.isEmpty { return true }
         
-        let domainIsWhitelisted = hostNamesToSpoof.filter { currentHost.containsString($0) }.count > 0
-        let domainIsBlacklisted = hostNamesToIgnore.filter { currentHost.containsString($0) }.count > 0
+        let domainIsWhitelisted = hostNamesToSpoof.filter { currentHost.contains($0) }.count > 0
+        let domainIsBlacklisted = hostNamesToIgnore.filter { currentHost.contains($0) }.count > 0
 
         if domainIsBlacklisted { return false }  // If same domain is Whitelisted and Blacklisted, prefer Blacklist. Users will have to clean up their act! :)
         if domainIsWhitelisted { return true }

@@ -50,7 +50,7 @@ extension SwitchWithTextViewModel {
     
     var switchHidden: Bool { return !modelIsBoolean}
     
-    func onSwitchTogleOn(on: Bool) {
+    func onSwitchTogleOn(_ on: Bool) {
         switch configType {
         case .queryParameterNormalization:
             Spoofer.normalizeQueryParameters = on

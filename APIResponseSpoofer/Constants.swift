@@ -9,25 +9,25 @@
 import Foundation
 
 /// Errors thrown by the Spoofer
-public enum SpooferError: Int, ErrorType {
+public enum SpooferError: Int, Error {
     /// Error when unable to read from the scenario file on disk
-    case DiskReadError = 500
+    case diskReadError = 500
     /// Error when unable to write to a scenario file on disk
-    case DiskWriteError
+    case diskWriteError
     /// Error when unable to generate a scenario url
-    case ScenarioURLError
+    case scenarioURLError
     /// Error when empty scenario file is found on disk
-    case EmptyFileError
+    case emptyFileError
     /// Error when unable to access sandboxed documents folder of the app
-    case DocumentsAccessError
+    case documentsAccessError
     /// Error when unable to create a folder inside the Documents folder
-    case FolderCreationError
+    case folderCreationError
     /// Error when scenario file has no APIResponses recorded
-    case EmptyScenarioError
+    case emptyScenarioError
     /// Error when no saved response is found for a particular request
-    case NoSavedResponseError
+    case noSavedResponseError
     /// Error when unable to delete a scenario from disk
-    case ScenarioDeletionError
+    case scenarioDeletionError
 }
 
 // MARK: Internal
@@ -44,22 +44,22 @@ enum SpooferConfigurationType: String {
     
     var description: String {
         switch self {
-            case queryParameterNormalization:
+            case .queryParameterNormalization:
                 return "Query Parameter Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are \n1. Reduced scenario file size saving some storage space. \n2. Consistent response for the same end point regardless of query parameter values"
             
-            case acceptSelfSignedCertificate:
+            case .acceptSelfSignedCertificate:
                 return "Allows spoofer to proceed recording even when the certificate is not from a trusted authority"
             
-            case spoofedHosts:
+            case .spoofedHosts:
                 return "Whitelist for hostnames to be Spoofed"
             
-            case ignoredHosts:
+            case .ignoredHosts:
                 return "Blacklist for hostnames to be ignored"
             
-            case ignoredSubdomains:
+            case .ignoredSubdomains:
                 return "A general use case would be to ignore environments like QA, DEV, Staging etc which appear as part of the url. Causes URL hostnames to match production by removing these entries"
             
-            case ignoredQueryParameters:
+            case .ignoredQueryParameters:
                     return "Use this when there are dynamic query parameter keys with each request which might cause lookup failure during replay"
             
             case .ignoredPathComponents:

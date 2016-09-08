@@ -30,33 +30,33 @@ public extension Spoofer {
         guard let sourceViewController = sourceViewController else { return }
         
         // When a view controller was passed in, use it to display an alert controller asking for a scenario name
-        let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .Alert)
+        let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .alert)
         
-        let createAction = UIAlertAction(title: "Create", style: .Default) { [unowned alertController](_) in
-            if let textField = alertController.textFields?.first, scenarioName = textField.text {
-                startRecording(scenarioName: scenarioName)
+        let createAction = UIAlertAction(title: "Create", style: .default) { [unowned alertController](_) in
+            if let textField = alertController.textFields?.first, let scenarioName = textField.text {
+                _ = startRecording(scenarioName: scenarioName)
             }
         }
-        createAction.enabled = false
+        createAction.isEnabled = false
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
             setRecording = false
             spoofedScenario = nil
             RecordingProtocol.stopIntercept()
         }
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = "Enter scenario name"
-            textField.autocapitalizationType = .Sentences
-            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                createAction.enabled = textField.text != ""
+            textField.autocapitalizationType = .sentences
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+                createAction.isEnabled = textField.text != ""
             }
         }
         
         alertController.addAction(createAction)
         alertController.addAction(cancelAction)
         
-        sourceViewController.presentViewController(alertController, animated: true, completion: nil)
+        sourceViewController.present(alertController, animated: true, completion: nil)
     }
     
     /**
@@ -66,7 +66,7 @@ public extension Spoofer {
      
      - Returns: True if recording was started, False if not
      */
-    class func startRecording(scenarioName name: String?) -> Bool {
+    @discardableResult class func startRecording(scenarioName name: String?) -> Bool {
         
         guard let name = name else { return false }
         
@@ -79,7 +79,7 @@ public extension Spoofer {
             // Inform the delegate that spoofer started recording
             Spoofer.delegate?.spooferDidStartRecording(name)
             // Post a state change notification for interested parties
-            NSNotificationCenter.defaultCenter().postNotificationName(spooferStartedRecordingNotification, object: sharedInstance, userInfo: ["scenario": name])
+            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStartedRecordingNotification), object: sharedInstance, userInfo: ["scenario": name])
         }
         
         return protocolRegistered
@@ -98,7 +98,7 @@ public extension Spoofer {
                 guard let savedScenario = savedScenario else { return }
                 // Inform the delegate of successful save
                 Spoofer.delegate?.spooferDidStopRecording(savedScenario.name, success: true)
-                NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedRecordingNotification, object: sharedInstance, userInfo: ["scenario": savedScenario.name, "success": true])
+                NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedRecordingNotification), object: sharedInstance, userInfo: ["scenario": savedScenario.name, "success": true])
             }
             }, errorHandler: { error in
                 if let scenarioName = spoofedScenario?.name {
@@ -107,7 +107,7 @@ public extension Spoofer {
                     // Inform the delegate that saving scenario failed
                     Spoofer.delegate?.spooferDidStopRecording(scenarioName, success: false)
                     // Post a state change notification for interested parties
-                    NSNotificationCenter.defaultCenter().postNotificationName(spooferStoppedRecordingNotification, object: sharedInstance, userInfo: ["scenario": scenarioName])
+                    NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedRecordingNotification), object: sharedInstance, userInfo: ["scenario": scenarioName])
                 }
         })
     }

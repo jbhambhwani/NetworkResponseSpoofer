@@ -23,8 +23,8 @@ class ResponseListController: UITableViewController {
         controller.searchResultsUpdater = self
         controller.delegate = self
         controller.searchBar.sizeToFit()
-        controller.searchBar.barTintColor = UIColor.lightGrayColor()
-        controller.searchBar.tintColor = UIColor.blackColor()
+        controller.searchBar.barTintColor = UIColor.lightGray
+        controller.searchBar.tintColor = UIColor.black
         controller.dimsBackgroundDuringPresentation = true
         return controller
     }()
@@ -35,7 +35,7 @@ class ResponseListController: UITableViewController {
         super.viewDidLoad()
         // tableView.scrollsToTop = true
         tableView.tableHeaderView = searchController.searchBar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .Plain, target: self, action: #selector(ResponseListController.toggleRowHeight(_:)))
+        navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .plain, target: self, action: #selector(ResponseListController.toggleRowHeight(_:)))
         // Load the responses for the passed in scenario
         if scenarioName.characters.count > 0 {
             loadScenario()
@@ -64,7 +64,7 @@ class ResponseListController: UITableViewController {
         })
     }
     
-    func toggleRowHeight(sender: UIBarButtonItem) {
+    func toggleRowHeight(_ sender: UIBarButtonItem) {
         if sender.title == expandText {
             sender.title = collapseText
             cellHeight = UITableViewAutomaticDimension
@@ -72,7 +72,7 @@ class ResponseListController: UITableViewController {
             sender.title = expandText
             cellHeight = 44.0
         }
-        searchController.active = false
+        searchController.isActive = false
         tableView.reloadData()
     }
     
@@ -82,13 +82,13 @@ class ResponseListController: UITableViewController {
 
 extension ResponseListController {
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return searchController.active ? filteredResponses.count : allResponses.count
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return searchController.isActive ? filteredResponses.count : allResponses.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("RequestURLCell", forIndexPath: indexPath)
-        let response = searchController.active ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "RequestURLCell", for: indexPath)
+        let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
         cell.textLabel?.text = response.requestURL.absoluteString
         return cell
     }
@@ -99,27 +99,27 @@ extension ResponseListController {
 
 extension ResponseListController {
     
-    override func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
     }
     
-    override func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return cellHeight
     }
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
-            case .Delete:
+            case .delete:
                 // Remove the response from local array
-                allResponses.removeAtIndex(indexPath.row)
+                allResponses.remove(at: (indexPath as NSIndexPath).row)
                 // Create a new scenario based on the responses and save it to disk
                 let scenario = Scenario(name: scenarioName)
                 scenario.apiResponses = allResponses
                 Store.saveScenario(scenario, callback: { [weak tableView] success, savedScenario in
-                        dispatch_async(dispatch_get_main_queue(), {
+                        DispatchQueue.main.async(execute: {
                             // Update the tableview upon succesful scenario updation
-                            tableView?.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+                            tableView?.deleteRows(at: [indexPath], with: .automatic)
                             // If Spoofer was already in replay mode, update the scenario with the updated version
                             if Spoofer.spoofedScenario != nil {
                                 Spoofer.spoofedScenario = savedScenario
@@ -130,8 +130,8 @@ extension ResponseListController {
                         tableView?.reloadData()
                 })
             
-            case .Insert: break
-            case .None: break
+            case .insert: break
+            case .none: break
         }
     }
     
@@ -141,7 +141,7 @@ extension ResponseListController {
 
 extension ResponseListController: UISearchResultsUpdating, UISearchControllerDelegate {
     
-    func updateSearchResultsForSearchController(searchController: UISearchController) {
+    func updateSearchResults(for searchController: UISearchController) {
         defer {
             tableView.reloadData()
         }
@@ -152,8 +152,7 @@ extension ResponseListController: UISearchResultsUpdating, UISearchControllerDel
         }
         
         filteredResponses = allResponses.filter {
-            guard let url = $0.requestURL.absoluteString else { return false }
-                return url.containsString(searchText.lowercaseString)
+            return $0.requestURL.absoluteString.contains(searchText.lowercased())
         }
     }
     

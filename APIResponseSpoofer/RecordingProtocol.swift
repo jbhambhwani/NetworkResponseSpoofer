@@ -8,22 +8,22 @@
 
 import Foundation
 
-class RecordingProtocol: NSURLProtocol, NetworkInterceptable {
+class RecordingProtocol: URLProtocol, NetworkInterceptable {
  
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var connection: NSURLConnection?
-    var mutableData: NSMutableData?
-    var response: NSURLResponse?
+    var response: URLResponse?
+    var responseData: Data?
     
-    override class func canInitWithRequest(request: NSURLRequest) -> Bool {
-        guard let url = request.URL else { return false }
+    override class func canInit(with request: URLRequest) -> Bool {
+        guard let url = request.url else { return false }
         
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
         let isHTTP = url.isHTTP
         // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(url)
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
-        let isHandled = (NSURLProtocol.propertyForKey(requestHandledKey, inRequest: request) != nil) ? true : false
+        let isHandled = (URLProtocol.property(forKey: requestHandledKey, in: request) != nil) ? true : false
         
         if Spoofer.isRecording && isHTTP && !isHandled && shouldHandleURL {
             return true
@@ -31,22 +31,22 @@ class RecordingProtocol: NSURLProtocol, NetworkInterceptable {
         return false
     }
     
-    override class func canonicalRequestForRequest(request: NSURLRequest) -> NSURLRequest {
+    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
     
-    override class func requestIsCacheEquivalent(aRequest: NSURLRequest, toRequest bRequest: NSURLRequest) -> Bool {
+    override class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
         // Let the super class handle it
-        return super.requestIsCacheEquivalent(aRequest, toRequest:bRequest)
+        return super.requestIsCacheEquivalent(aRequest, to:bRequest)
     }
     
     override func startLoading() {
         // 1: Get a copy of the original request
-        guard let newRequest = request.mutableCopy() as? NSMutableURLRequest else { return }
+        guard let newRequest = request as? MutableURLRequest else { return }
         // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
-        NSURLProtocol.setProperty(true, forKey: RecordingProtocol.requestHandledKey , inRequest: newRequest)
+        URLProtocol.setProperty(true, forKey: RecordingProtocol.requestHandledKey , in: newRequest)
         // 3: Start a new connection to fetch the data
-        connection = NSURLConnection(request: newRequest, delegate: self)
+        connection = NSURLConnection(request: newRequest as URLRequest, delegate: self)
     }
     
     override func stopLoading() {
@@ -54,61 +54,61 @@ class RecordingProtocol: NSURLProtocol, NetworkInterceptable {
         connection = nil
     }
     
-    func connection(connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: NSURLProtectionSpace?) -> Bool {
+    func connection(_ connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: URLProtectionSpace?) -> Bool {
         return protectionSpace?.authenticationMethod == NSURLAuthenticationMethodServerTrust
     }
     
-    func connection(connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: NSURLAuthenticationChallenge?) {
+    func connection(_ connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: URLAuthenticationChallenge?) {
         
-        guard let challenge = challenge, sender = challenge.sender else { return }
+        guard let challenge = challenge, let sender = challenge.sender else { return }
         
         if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
             if Spoofer.allowSelfSignedCertificate {
                 if let serverTrust = challenge.protectionSpace.serverTrust {
-                    let credentials = NSURLCredential(forTrust: serverTrust)
-                    sender.useCredential(credentials, forAuthenticationChallenge: challenge)
+                    let credentials = URLCredential(trust: serverTrust)
+                    sender.use(credentials, for: challenge)
                 }
             }
         }
         
-        sender.continueWithoutCredentialForAuthenticationChallenge(challenge)
+        sender.continueWithoutCredential(for: challenge)
     }
     
-    func connection(connection: NSURLConnection, didReceiveResponse response: NSURLResponse) {
+    func connection(_ connection: NSURLConnection, didReceiveResponse response: URLResponse) {
         // Send the received response to the client
-        client?.URLProtocol(self, didReceiveResponse: response, cacheStoragePolicy: .NotAllowed)
+        client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         // Save / Initialize local structures
         self.response = response
-        mutableData = NSMutableData()
+        responseData = Data()
     }
     
-    func connection(connection: NSURLConnection, didReceiveData data: NSData) {
+    func connection(_ connection: NSURLConnection, didReceiveData data: Data) {
         // Send the received data to the client
-        client?.URLProtocol(self, didLoadData: data)
+        client?.urlProtocol(self, didLoad: data)
         // Save all packets received
-        mutableData?.appendData(data)
+        responseData?.append(data)
     }
     
-    func connectionDidFinishLoading(connection: NSURLConnection) {
+    func connectionDidFinishLoading(_ connection: NSURLConnection) {
         // Let know the client that we completed loading the request
-        client?.URLProtocolDidFinishLoading(self)
+        client?.urlProtocolDidFinishLoading(self)
         // Save the response and data received as part of this request
         saveResponse()
     }
     
-    func connection(connection: NSURLConnection, didFailWithError error: NSError) {
+    func connection(_ connection: NSURLConnection, didFailWithError error: NSError) {
         // Pass error back to client
-        client?.URLProtocol(self, didFailWithError: error)
+        client?.urlProtocol(self, didFailWithError: error)
         // Reset internal data structures
-        mutableData = nil
         response = nil
+        responseData = nil
     }
     
     func saveResponse() {
-        guard let scenario = Spoofer.spoofedScenario, httpResponse = response else { return }
+        guard let scenario = Spoofer.spoofedScenario, let httpResponse = response else { return }
         
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        guard let currentResponse = APIResponse(httpRequest: request, httpResponse: httpResponse, data: mutableData) else { return }
+        guard let currentResponse = APIResponse(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
         
         // Save the response
         scenario.addResponse(currentResponse)

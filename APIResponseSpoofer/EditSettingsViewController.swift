@@ -23,37 +23,37 @@ class EditSettingsViewController: UITableViewController {
     
     // MARK: - User Actions
     
-    @IBAction func addAction(sender: UIBarButtonItem) {
-        let alertController = UIAlertController(title: title, message: "Add an entry to the list", preferredStyle: .Alert)
+    @IBAction func addAction(_ sender: UIBarButtonItem) {
+        let alertController = UIAlertController(title: title, message: "Add an entry to the list", preferredStyle: .alert)
         
-        let addAction = UIAlertAction(title: "Add", style: .Default) { [unowned alertController, unowned self] (_) in
-            if let textField = alertController.textFields?.first, entry = textField.text {
+        let addAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController, unowned self] (_) in
+            if let textField = alertController.textFields?.first, let entry = textField.text {
                 self.presenter?.configurations.append(entry)
                 self.tableView?.reloadData()
             }
         }
-        addAction.enabled = false
+        addAction.isEnabled = false
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (_) in
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
             
         }
         
-        alertController.addTextFieldWithConfigurationHandler { (textField) in
+        alertController.addTextField { (textField) in
             textField.placeholder = "Enter here!"
-            textField.autocapitalizationType = .None
-            NSNotificationCenter.defaultCenter().addObserverForName(UITextFieldTextDidChangeNotification, object: textField, queue: NSOperationQueue.mainQueue()) { (notification) in
-                addAction.enabled = textField.text != ""
+            textField.autocapitalizationType = .none
+            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
+                addAction.isEnabled = textField.text != ""
             }
         }
         
         alertController.addAction(addAction)
         alertController.addAction(cancelAction)
         
-        self.presentViewController(alertController, animated: true, completion: nil)
+        self.present(alertController, animated: true, completion: nil)
     }
     
-    @IBAction func editAction(sender: UIBarButtonItem) {
-        tableView.editing = !tableView.editing
+    @IBAction func editAction(_ sender: UIBarButtonItem) {
+        tableView.isEditing = !tableView.isEditing
     }
     
 }
@@ -62,16 +62,16 @@ class EditSettingsViewController: UITableViewController {
 
 extension EditSettingsViewController {
     
-    override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         guard let configurations = presenter?.configurations else { return 0 }
         return configurations.count
     }
     
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let configurations = presenter?.configurations else { return UITableViewCell() }
         
-        let cell = tableView.dequeueReusableCellWithIdentifier(UITableViewCell.defaultReuseIdentifier, forIndexPath: indexPath)
-        cell.textLabel?.text = configurations[indexPath.row]
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
+        cell.textLabel?.text = configurations[(indexPath as IndexPath).row]
         return cell
     }
     
@@ -81,14 +81,14 @@ extension EditSettingsViewController {
 
 extension EditSettingsViewController {
     
-    override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         
         switch editingStyle {
-            case .Delete:
-                presenter?.configurations.removeAtIndex(indexPath.row)
-                tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-            case .Insert: break
-            case .None: break
+            case .delete:
+                presenter?.configurations.remove(at: (indexPath as NSIndexPath).row)
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            case .insert: break
+            case .none: break
         }
     }
     

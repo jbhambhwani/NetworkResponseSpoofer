@@ -16,7 +16,7 @@ protocol TextPresentable {
 protocol SwitchPresentable {
     var switchOn: Bool { get }
     var switchHidden: Bool { get }
-    func onSwitchTogleOn(on: Bool)
+    func onSwitchTogleOn(_ on: Bool)
 }
 
 protocol NavigationPresentable {

@@ -17,14 +17,14 @@ protocol NetworkInterceptable: class {
 extension NetworkInterceptable {
     
     static func startIntercept() -> Bool {
-        let protocolRegistered = NSURLProtocol.registerClass(Self)
+        let protocolRegistered = URLProtocol.registerClass(Self.self)
         // Swizzle will only happen once due to dispatch_once block inside
-        NSURLSessionConfiguration.swizzleConfiguration()
+        URLSessionConfiguration.swizzleConfiguration()
         return protocolRegistered
     }
     
     static func stopIntercept() {
-        NSURLProtocol.unregisterClass(Self)
+        URLProtocol.unregisterClass(Self.self)
     }
     
 }

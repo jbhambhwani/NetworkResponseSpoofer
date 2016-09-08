@@ -24,38 +24,38 @@ class Scenario: NSObject, NSCoding {
     
     // MARK: - Managing responses
     
-    func addResponse(response: APIResponse) {
-        if let existingResponseIndex = apiResponses.indexOf(response) {
+    func addResponse(_ response: APIResponse) {
+        if let existingResponseIndex = apiResponses.index(of: response) {
             // If a response matching the same normalized URL exists, remove and replace it with the new response (so that we keep latest)
-            apiResponses.removeAtIndex(existingResponseIndex)
+            apiResponses.remove(at: existingResponseIndex)
         }
         apiResponses.append(response)
         postNotification("Response received:\n\(response)", object: self)
     }
     
-    func responseForRequest(urlRequest: NSURLRequest) -> APIResponse? {
-        guard let requestURLString = urlRequest.URL?.normalizedURLString else { return nil }
+    func responseForRequest(_ urlRequest: URLRequest) -> APIResponse? {
+        guard let requestURLString = urlRequest.url?.normalizedURLString else { return nil }
         let response = apiResponses.filter { savedResponse in
             guard let savedURLString = savedResponse.requestURL.normalizedURLString else { return false }
-            return savedURLString.containsString(requestURLString)
+            return savedURLString.contains(requestURLString)
         }.first
         return response
     }
     
-    subscript(urlRequest: NSURLRequest) -> APIResponse? {
+    subscript(urlRequest: URLRequest) -> APIResponse? {
         return responseForRequest(urlRequest)
     }
     
     // MARK: - NSCoding
     
     required init?(coder aDecoder: NSCoder) {
-        name = aDecoder.decodeObjectForKey(ScenarioFields.name) as! String
-        apiResponses = aDecoder.decodeObjectForKey(ScenarioFields.responses) as! [APIResponse]
+        name = aDecoder.decodeObject(forKey: ScenarioFields.name) as! String
+        apiResponses = aDecoder.decodeObject(forKey: ScenarioFields.responses) as! [APIResponse]
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(name, forKey: ScenarioFields.name)
-        aCoder.encodeObject(apiResponses, forKey: ScenarioFields.responses)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(name, forKey: ScenarioFields.name)
+        aCoder.encode(apiResponses, forKey: ScenarioFields.responses)
     }
     
 }

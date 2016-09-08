@@ -11,70 +11,73 @@ import Foundation
 class Store {
     
     // Save a scenario to disk
-    class func saveScenario(scenario: Scenario, callback: ((success: Bool, savedScenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+    class func saveScenario(_ scenario: Scenario, callback: ((success: Bool, savedScenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
         
         guard scenario.apiResponses.count > 0 else {
-            handleError("Scenario was empty and hence not saved", recoveryMessage: "No responses were recorded. Make one or more HTTP requests and try saving again", code: SpooferError.EmptyScenarioError.rawValue, errorHandler: errorHandler)
+            handleError("Scenario was empty and hence not saved", recoveryMessage: "No responses were recorded. Make one or more HTTP requests and try saving again", code: SpooferError.emptyScenarioError.rawValue, errorHandler: errorHandler)
             return
         }
         
-        guard let scenarioFileURL = getScenarioFileURL(scenario.name), urlPath = scenarioFileURL.absoluteString else {
-            handleError("Unable to save scenario", recoveryMessage: "URL could not be created for scenario name", code: SpooferError.ScenarioURLError.rawValue, errorHandler: errorHandler)
+        guard let scenarioFileURL = getScenarioFileURL(scenario.name) else {
+            handleError("Unable to save scenario", recoveryMessage: "URL could not be created for scenario name", code: SpooferError.scenarioURLError.rawValue, errorHandler: errorHandler)
             return
         }
         
-        if NSFileManager.defaultManager().fileExistsAtPath(urlPath) {
+        let urlPath = scenarioFileURL.absoluteString
+        
+        if FileManager.default.fileExists(atPath: urlPath) {
             do {
-                try NSFileManager.defaultManager().removeItemAtURL(scenarioFileURL)
+                try FileManager.default.removeItem(at: scenarioFileURL)
             } catch {
                 
             }
         }
-        let data = NSKeyedArchiver.archivedDataWithRootObject(scenario)
-        let success = data.writeToURL(scenarioFileURL, atomically: true)
+        let data = NSKeyedArchiver.archivedData(withRootObject: scenario)
+        let success = (try? data.write(to: scenarioFileURL, options: [])) != nil
         if success {
             logFormattedSeperator()
             postNotification("Saved \(scenario)\nFile: \(scenarioFileURL)", object: self)
             callback?(success: true, savedScenario: scenario)
         } else {
-            handleError("Unable to save scenario", recoveryMessage: "Writing to disk failed. Try again", code: SpooferError.DiskWriteError.rawValue, errorHandler: errorHandler)
+            handleError("Unable to save scenario", recoveryMessage: "Writing to disk failed. Try again", code: SpooferError.diskWriteError.rawValue, errorHandler: errorHandler)
         }
     }
     
     // Load a scenario from disk
-    class func loadScenario(scenarioName: String, callback: ((success: Bool, scenario: Scenario) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+    class func loadScenario(_ scenarioName: String, callback: ((success: Bool, scenario: Scenario) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
         
         guard let scenarioFileURL = getScenarioFileURL(scenarioName) else {
-            handleError("Unable to save scenario", recoveryMessage: "URL could not be created for scenario name", code: SpooferError.ScenarioURLError.rawValue, errorHandler: errorHandler)
+            handleError("Unable to save scenario", recoveryMessage: "URL could not be created for scenario name", code: SpooferError.scenarioURLError.rawValue, errorHandler: errorHandler)
             return
         }
         
-        var scenarioData: NSData?
+        var scenarioData: Data?
         do {
-            try scenarioData = NSData(contentsOfURL: scenarioFileURL, options: .DataReadingMappedIfSafe)
+            try scenarioData = Data(contentsOf: scenarioFileURL, options: .mappedIfSafe)
         } catch {
-            handleError("Error reading from file: \(scenarioFileURL)", recoveryMessage: "Reading from disk failed. Try again", code: SpooferError.DiskReadError.rawValue, errorHandler: errorHandler)
+            handleError("Error reading from file: \(scenarioFileURL)", recoveryMessage: "Reading from disk failed. Try again", code: SpooferError.diskReadError.rawValue, errorHandler: errorHandler)
         }
-        if let unwrappedData = scenarioData where unwrappedData.length > 0 {
-            let scenario = NSKeyedUnarchiver.unarchiveObjectWithData(unwrappedData) as? Scenario
+        if let unwrappedData = scenarioData, unwrappedData.count > 0 {
+            let scenario = NSKeyedUnarchiver.unarchiveObject(with: unwrappedData) as? Scenario
             if let unwrappedScenario = scenario {
                 callback?(success: true, scenario: unwrappedScenario)
                 postNotification("Loaded \(unwrappedScenario)\nFile: \(scenarioFileURL)", object: self)
                 logFormattedSeperator()
             }
         } else {
-            handleError("Empty scenario file found at: \(scenarioFileURL)", recoveryMessage: "Remove the file or re-record the scenario.", code: SpooferError.EmptyFileError.rawValue, errorHandler: errorHandler)
+            handleError("Empty scenario file found at: \(scenarioFileURL)", recoveryMessage: "Remove the file or re-record the scenario.", code: SpooferError.emptyFileError.rawValue, errorHandler: errorHandler)
         }
     }
 
     // Delete a scenario
-    class func deleteScenario(scenarioName: String, callback: ((success: Bool) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+    class func deleteScenario(_ scenarioName: String, callback: ((success: Bool) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+        
         let scenarioFileURL = getScenarioFileURL(scenarioName)
         
         if deleteScenario(scenarioName) {
             callback?(success: true)
         } else {
-            handleError("Unable to delete scenario at: \(scenarioFileURL)", recoveryMessage: "Retry again later", code: SpooferError.ScenarioDeletionError.rawValue, errorHandler: errorHandler)
+            handleError("Unable to delete scenario at: \(scenarioFileURL)", recoveryMessage: "Retry again later", code: SpooferError.scenarioDeletionError.rawValue, errorHandler: errorHandler)
         }
     }
     
@@ -83,61 +86,68 @@ class Store {
         
         guard let docsDir = spooferDocumentsDirectory() else { return [] }
         
-        var allFiles: [NSURL]
+        var allFiles: [URL]
         do {
-            try allFiles = NSFileManager.defaultManager().contentsOfDirectoryAtURL(docsDir, includingPropertiesForKeys: [], options: .SkipsSubdirectoryDescendants)
+            try allFiles = FileManager.default.contentsOfDirectory(at: docsDir, includingPropertiesForKeys: [], options: .skipsSubdirectoryDescendants)
         } catch {
             return []
         }
         
         let scenarioFiles: [NSString] = allFiles.flatMap{ $0.lastPathComponent }.filter{ $0.pathExtension == "scenario"}
-        let fileNames = scenarioFiles.map{ $0.stringByDeletingPathExtension }
+        let fileNames = scenarioFiles.map{ $0.deletingPathExtension }
         return fileNames
     }
     
     // MARK: - Private methods
     
-    private class func getScenarioFileURL(scenarioName: String) -> NSURL? {
+    private class func getScenarioFileURL(_ scenarioName: String) -> URL? {
+        
         guard let docsDir = spooferDocumentsDirectory() else { return nil }
         
         // Get a reference to the documents directory & Construct a file name based on the scenario file
-        guard let scenarioFileURL = docsDir.URLByAppendingPathComponent("\(scenarioName).scenario") else { return nil }
+        let scenarioFileURL =  docsDir.appendingPathComponent("\(scenarioName).scenario")
         return scenarioFileURL
     }
 
-    private class func deleteScenario(scenarioName: String) -> Bool {
+    private class func deleteScenario(_ scenarioName: String) -> Bool {
+        
         // Get a reference to the documents directory & Construct a file name based on the scenario file
         guard let scenarioFileURL = getScenarioFileURL(scenarioName) else { return false }
         do {
-            try NSFileManager.defaultManager().removeItemAtURL(scenarioFileURL)
+            try FileManager.default.removeItem(at: scenarioFileURL)
             return true
         } catch {
             return false
         }
     }
     
-    private class func applicationDocumentsDirectory() -> NSURL {
+    private class func applicationDocumentsDirectory() -> URL? {
+        
         // The directory in the application's documents directory used to store the Scenario files.
-        let urls = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask)
-        guard let documentsDirectoryURL: NSURL = urls.first else {
+        let urls = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)
+        guard let documentsDirectoryURL = urls.first else {
             print("Documents directory was not available")
-            return NSURL()
+            return nil
         }
         return documentsDirectoryURL
     }
     
-    private class func spooferDocumentsDirectory() -> NSURL? {
-        guard let spooferDirectoryURL = applicationDocumentsDirectory().URLByAppendingPathComponent("Spoofer"), spooferDirectoryURLString = spooferDirectoryURL.absoluteString else { return nil }
+    private class func spooferDocumentsDirectory() -> URL? {
         
+        guard let spooferDirectoryURL = applicationDocumentsDirectory()?.appendingPathComponent("Spoofer") else { return nil }
+        
+        let spooferDirectoryURLString = spooferDirectoryURL.absoluteString
         var isDir = ObjCBool(true)
         
-        if NSFileManager.defaultManager().fileExistsAtPath(spooferDirectoryURLString, isDirectory: &isDir) == false {
-            do {
-                try NSFileManager.defaultManager().createDirectoryAtURL(spooferDirectoryURL, withIntermediateDirectories: true, attributes: nil)
-            } catch _ {
-                print("Spoofer directory creation failed!")
-            }
+        guard FileManager.default.fileExists(atPath: spooferDirectoryURLString, isDirectory: &isDir) == false else { return nil }
+        
+        do {
+            try FileManager.default.createDirectory(at: spooferDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+        } catch _ {
+            print("Spoofer directory creation failed!")
+            return nil
         }
+        
         return spooferDirectoryURL
     }
     

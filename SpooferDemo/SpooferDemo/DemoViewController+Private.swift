@@ -20,15 +20,15 @@ enum ButtonTitle: String {
 
 extension DemoViewController: UIWebViewDelegate {
     
-    func webViewDidStartLoad(webView: UIWebView) {
+    func webViewDidStartLoad(_ webView: UIWebView) {
         activityIndicator.startAnimating()
     }
     
-    func webViewDidFinishLoad(webView: UIWebView) {
+    func webViewDidFinishLoad(_ webView: UIWebView) {
         activityIndicator.stopAnimating()
     }
     
-    func webView(webView: UIWebView, didFailLoadWithError error: NSError) {
+    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
         activityIndicator.stopAnimating()
     }
     
@@ -38,15 +38,15 @@ extension DemoViewController: UIWebViewDelegate {
 
 extension DemoViewController: UISearchBarDelegate {
     
-    func searchBarSearchButtonClicked(searchBar: UISearchBar) {
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
-        guard var searchText = searchBar.text where searchText.characters.count > 0 else { return }
+        guard var searchText = searchBar.text, searchText.characters.count > 0 else { return }
         if searchText.hasPrefix("http") == false {
             searchText = "http://" + searchText
         }
-        guard let url = NSURL(string: searchText) else { return }
+        guard let url = URL(string: searchText) else { return }
         
-        let urlRequest = NSURLRequest(URL: url)
+        let urlRequest = URLRequest(url: url)
         webview.loadRequest(urlRequest)
         searchBar.resignFirstResponder()
     }
@@ -63,9 +63,9 @@ extension DemoViewController {
         sendRequest("http://jsonplaceholder.typicode.com/posts")
     }
     
-    private func sendRequest(resource: String) {
-        guard let url = NSURL(string: resource) else { return }
-        NSURLSession.sharedSession().dataTaskWithURL(url, completionHandler: { data, response, error in
+    private func sendRequest(_ resource: String) {
+        guard let url = URL(string: resource) else { return }
+        URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             // Spoofer has already intercepted the response if error was non nil. Nothing to do here.
         }).resume()
     }

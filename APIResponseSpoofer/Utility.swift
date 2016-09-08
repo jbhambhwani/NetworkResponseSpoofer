@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-func logFormattedSeperator(message: String? = "-") {
+func logFormattedSeperator(_ message: String? = "-") {
     guard let message = message else { return }
     
     postNotification(message)
@@ -18,27 +18,27 @@ func logFormattedSeperator(message: String? = "-") {
     let messageStart = 50 - (message.characters.count / 2)
     if messageStart > 0 {
         let hyphen = Character("-")
-        let hyphenString = String(count: messageStart, repeatedValue: hyphen)
+        let hyphenString = String(repeating: hyphen, count: messageStart)
         print("\(hyphenString)\(message)\(hyphenString)")
     } else {
         print("Message too long for formatting: \(message)")
     }
 }
 
-func postNotification(message: String, object: AnyObject? = nil) {
+func postNotification(_ message: String, object: AnyObject? = nil) {
     // Print to console
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
-    NSNotificationCenter.defaultCenter().postNotificationName(Spoofer.spooferLogNotification, object: object, userInfo: ["message": message])
+    NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferLogNotification), object: object, userInfo: ["message": message])
 }
 
 func spooferStoryBoard() -> UIStoryboard {
-    let frameworkBundle = NSBundle(forClass: Spoofer.self)
+    let frameworkBundle = Bundle(for: Spoofer.self)
     let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
     return storyBoard
 }
 
-func handleError(reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((error: NSError) -> Void)?) -> NSError {
+@discardableResult func handleError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((error: NSError) -> Void)?) -> NSError {
     var userInfo = [NSLocalizedFailureReasonErrorKey: reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
     if let url = url {
         userInfo[NSURLErrorFailingURLErrorKey] = url

@@ -22,38 +22,38 @@ private enum ResponseKeys: String {
 
 class APIResponse: NSObject, NSCoding {
     
-    let requestURL: NSURL
+    let requestURL: URL
     let httpMethod: String
     let statusCode: NSInteger
-    let data: NSData
-    let createdDate: NSDate
+    let data: Data
+    let createdDate: Date
     let mimeType: String?
     let encoding: String?
     let headerFields: [NSObject : AnyObject]?
     let expectedContentLength: NSInteger
     
     // Designated initializer
-    init?(requestURL: NSURL, httpMethod: String, statusCode: NSInteger, data: NSData, mimeType: String?, encoding: String?, headerFields: [NSObject: AnyObject]?, expectedContentLength: NSInteger) {
+    init?(requestURL: URL, httpMethod: String, statusCode: NSInteger, data: Data, mimeType: String?, encoding: String?, headerFields: [NSObject: AnyObject]?, expectedContentLength: NSInteger) {
         self.requestURL = requestURL
         self.httpMethod = httpMethod
         self.statusCode = statusCode
         self.data = data
-        self.createdDate = NSDate()
+        self.createdDate = Date()
         self.mimeType = mimeType
         self.encoding = encoding
         self.headerFields = headerFields
         self.expectedContentLength = expectedContentLength
     }
     
-    convenience init?(httpRequest: NSURLRequest, httpResponse: NSURLResponse, data: NSData?) {
-        guard let httpURLResponse = httpResponse as? NSHTTPURLResponse,
-            url = httpRequest.URL,
-            method = httpRequest.HTTPMethod,
-            data = data
+    convenience init?(httpRequest: URLRequest, httpResponse: URLResponse, data: Data?) {
+        guard let httpURLResponse = httpResponse as? HTTPURLResponse,
+            let url = httpRequest.url,
+            let method = httpRequest.httpMethod,
+            let data = data
         else { return nil }
         
         let headerFields = httpURLResponse.allHeaderFields
-        let mimeType = httpURLResponse.MIMEType
+        let mimeType = httpURLResponse.mimeType
         let encoding = httpURLResponse.textEncodingName
         let contentLength = NSInteger(httpURLResponse.expectedContentLength)
         let statusCode = NSInteger(httpURLResponse.statusCode)
@@ -64,27 +64,27 @@ class APIResponse: NSObject, NSCoding {
     // MARK: - NSCoding
     
     required init?(coder aDecoder: NSCoder) {
-        requestURL = aDecoder.decodeObjectForKey(ResponseKeys.requestURL.rawValue) as! NSURL
-        httpMethod = aDecoder.decodeObjectForKey(ResponseKeys.httpMethod.rawValue) as! String
-        statusCode = aDecoder.decodeIntegerForKey(ResponseKeys.statusCode.rawValue)
-        data = aDecoder.decodeObjectForKey(ResponseKeys.data.rawValue) as! NSData
-        createdDate = aDecoder.decodeObjectForKey(ResponseKeys.createdDate.rawValue) as! NSDate
-        mimeType = aDecoder.decodeObjectForKey(ResponseKeys.mimeType.rawValue) as? String
-        encoding = aDecoder.decodeObjectForKey(ResponseKeys.encoding.rawValue) as? String
-        headerFields = aDecoder.decodeObjectForKey(ResponseKeys.headerFields.rawValue) as? [NSObject: AnyObject]
-        expectedContentLength = aDecoder.decodeIntegerForKey(ResponseKeys.expectedContentLength.rawValue)
+        requestURL = aDecoder.decodeObject(forKey: ResponseKeys.requestURL.rawValue) as! URL
+        httpMethod = aDecoder.decodeObject(forKey: ResponseKeys.httpMethod.rawValue) as! String
+        statusCode = aDecoder.decodeInteger(forKey: ResponseKeys.statusCode.rawValue)
+        data = aDecoder.decodeObject(forKey: ResponseKeys.data.rawValue) as! Data
+        createdDate = aDecoder.decodeObject(forKey: ResponseKeys.createdDate.rawValue) as! Date
+        mimeType = aDecoder.decodeObject(forKey: ResponseKeys.mimeType.rawValue) as? String
+        encoding = aDecoder.decodeObject(forKey: ResponseKeys.encoding.rawValue) as? String
+        headerFields = aDecoder.decodeObject(forKey: ResponseKeys.headerFields.rawValue) as? [NSObject: AnyObject]
+        expectedContentLength = aDecoder.decodeInteger(forKey: ResponseKeys.expectedContentLength.rawValue)
     }
     
-    func encodeWithCoder(aCoder: NSCoder) {
-        aCoder.encodeObject(requestURL, forKey: ResponseKeys.requestURL.rawValue)
-        aCoder.encodeObject(httpMethod, forKey: ResponseKeys.httpMethod.rawValue)
-        aCoder.encodeInteger(statusCode, forKey: ResponseKeys.statusCode.rawValue)
-        aCoder.encodeObject(data, forKey: ResponseKeys.data.rawValue)
-        aCoder.encodeObject(createdDate, forKey: ResponseKeys.createdDate.rawValue)
-        aCoder.encodeObject(mimeType, forKey: ResponseKeys.mimeType.rawValue)
-        aCoder.encodeObject(encoding, forKey: ResponseKeys.encoding.rawValue)
-        aCoder.encodeObject(headerFields, forKey: ResponseKeys.headerFields.rawValue)
-        aCoder.encodeInteger(expectedContentLength, forKey: ResponseKeys.expectedContentLength.rawValue)
+    func encode(with aCoder: NSCoder) {
+        aCoder.encode(requestURL, forKey: ResponseKeys.requestURL.rawValue)
+        aCoder.encode(httpMethod, forKey: ResponseKeys.httpMethod.rawValue)
+        aCoder.encode(statusCode, forKey: ResponseKeys.statusCode.rawValue)
+        aCoder.encode(data, forKey: ResponseKeys.data.rawValue)
+        aCoder.encode(createdDate, forKey: ResponseKeys.createdDate.rawValue)
+        aCoder.encode(mimeType, forKey: ResponseKeys.mimeType.rawValue)
+        aCoder.encode(encoding, forKey: ResponseKeys.encoding.rawValue)
+        aCoder.encode(headerFields, forKey: ResponseKeys.headerFields.rawValue)
+        aCoder.encode(expectedContentLength, forKey: ResponseKeys.expectedContentLength.rawValue)
     }
 
 }
@@ -93,9 +93,9 @@ class APIResponse: NSObject, NSCoding {
 
 extension APIResponse {
     
-    override func isEqual(object: AnyObject?) -> Bool {
+    override func isEqual(_ object: AnyObject?) -> Bool {
         guard let rhs = object as? APIResponse else { return false }
-        guard let lhsURL = requestURL.normalizedURLString, rhsURL = rhs.requestURL.normalizedURLString else { return false }
+        guard let lhsURL = requestURL.normalizedURLString, let rhsURL = rhs.requestURL.normalizedURLString else { return false }
         if lhsURL == rhsURL {
             return true
         }

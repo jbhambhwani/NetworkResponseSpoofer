@@ -10,7 +10,7 @@ import Foundation
 
 // protocol composition
 // based on the UI components in the cell
-typealias SwitchWithTextViewPresentable = protocol<TextPresentable, SwitchPresentable, NavigationPresentable, DataPresentable>
+typealias SwitchWithTextViewPresentable = TextPresentable & SwitchPresentable & NavigationPresentable & DataPresentable
 
 class SwitchWithTextTableViewCell: UITableViewCell {
     
@@ -27,13 +27,13 @@ class SwitchWithTextTableViewCell: UITableViewCell {
         // configure the UI components
         titleLabel.text = presenter.title
         subtitleLabel.text = presenter.subtitle
-        switchToggle.on = presenter.switchOn
-        switchToggle.hidden = presenter.switchHidden
-        accessoryType = presenter.disclosureHidden ? .None : .DisclosureIndicator
-        selectionStyle = presenter.allowCellSelection ? .Default : .None
+        switchToggle.isOn = presenter.switchOn
+        switchToggle.isHidden = presenter.switchHidden
+        accessoryType = presenter.disclosureHidden ? .none : .disclosureIndicator
+        selectionStyle = presenter.allowCellSelection ? .default : .none
     }
     
-    @IBAction func onSwitchToggle(sender: UISwitch) {
-        presenter?.onSwitchTogleOn(sender.on)
+    @IBAction func onSwitchToggle(_ sender: UISwitch) {
+        presenter?.onSwitchTogleOn(sender.isOn)
     }
 }
