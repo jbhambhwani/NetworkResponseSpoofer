@@ -9,7 +9,7 @@
 import Foundation
 
 struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
-    var model: [SpooferConfigurationType : AnyObject]
+    var model: [SpooferConfigurationType : Any]
 }
 
 // MARK: - TextPresentable Conformance
@@ -24,17 +24,17 @@ extension SwitchWithTextViewModel {
         return configType.description
     }
     
-    private var configType: SpooferConfigurationType {
-        guard let configType = model.keys.first else { return .None }
+    fileprivate var configType: SpooferConfigurationType {
+        guard let configType = model.keys.first else { return .Blank }
         return configType
     }
     
-    private var packedData: Any {
+    fileprivate var packedData: Any {
         guard let data = model.values.first else { return "" }
         return data
     }
     
-    private var modelIsBoolean: Bool {
+    fileprivate var modelIsBoolean: Bool {
         return packedData is Bool
     }
 }
@@ -57,7 +57,7 @@ extension SwitchWithTextViewModel {
         case .acceptSelfSignedCertificate:
             Spoofer.allowSelfSignedCertificate = on
         default:
-            assert(false, "Unhandled case")
+            assertionFailure("Unhandled case")
         }
     }
 }
@@ -89,11 +89,13 @@ extension SwitchWithTextViewModel {
                 Spoofer.subDomainsToIgnore = newValue
             case .ignoredQueryParameters:
                 Spoofer.queryParametersToIgnore = newValue
+            case .ignoredPathComponents:
+                Spoofer.pathComponentsToIgnore = newValue
             default:
-                assert(false, "Unhandled case")
+                assertionFailure("Unhandled case")
             }
-            
-            model[configType] = newValue
+
+            model[configType] = newValue as AnyObject?
         }
     }
 }

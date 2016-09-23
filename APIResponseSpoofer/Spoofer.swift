@@ -202,13 +202,13 @@ public class Spoofer: NSObject {
     // MARK: - Internal variables
     
     private var config: [SpooferConfigurationType: AnyObject]? {
-        return [.queryParameterNormalization: queryParameterNormalization,
-            .acceptSelfSignedCertificate: acceptSelfSignedCertificate,
-            .spoofedHosts: spoofedHosts,
-            .ignoredHosts: ignoredHosts,
-            .ignoredSubdomains: ignoredSubdomains,
-            .ignoredQueryParameters: ignoredQueryParameters,
-            .ignoredPathComponents: ignoredPathComponents
+        return [.queryParameterNormalization: queryParameterNormalization as AnyObject,
+            .acceptSelfSignedCertificate: acceptSelfSignedCertificate as AnyObject,
+            .spoofedHosts: spoofedHosts as AnyObject,
+            .ignoredHosts: ignoredHosts as AnyObject,
+            .ignoredSubdomains: ignoredSubdomains as AnyObject,
+            .ignoredQueryParameters: ignoredQueryParameters as AnyObject,
+            .ignoredPathComponents: ignoredPathComponents as AnyObject
         ]
     }
     

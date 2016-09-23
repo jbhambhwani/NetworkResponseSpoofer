@@ -58,7 +58,7 @@ class APIResponse: NSObject, NSCoding {
         let contentLength = NSInteger(httpURLResponse.expectedContentLength)
         let statusCode = NSInteger(httpURLResponse.statusCode)
         
-        self.init(requestURL: url, httpMethod: method, statusCode: statusCode, data: data, mimeType: mimeType, encoding: encoding, headerFields: headerFields, expectedContentLength: contentLength)
+        self.init(requestURL: url, httpMethod: method, statusCode: statusCode, data: data, mimeType: mimeType, encoding: encoding, headerFields: headerFields as [NSObject : AnyObject]?, expectedContentLength: contentLength)
     }
 
     // MARK: - NSCoding
@@ -93,7 +93,7 @@ class APIResponse: NSObject, NSCoding {
 
 extension APIResponse {
     
-    override func isEqual(_ object: AnyObject?) -> Bool {
+    override func isEqual(_ object: Any?) -> Bool {
         guard let rhs = object as? APIResponse else { return false }
         guard let lhsURL = requestURL.normalizedURLString, let rhsURL = rhs.requestURL.normalizedURLString else { return false }
         if lhsURL == rhsURL {
@@ -101,7 +101,7 @@ extension APIResponse {
         }
         return false
     }
-    
+   
     override var hashValue: Int {
         return requestURL.hashValue ^ httpMethod.hashValue ^ data.hashValue
     }

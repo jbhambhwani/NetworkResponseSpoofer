@@ -15,10 +15,10 @@ class ResponseListController: UITableViewController {
     let expandText = "Expand"
     let collapseText = "Collapse"
     
-    private var allResponses = [APIResponse]()
-    private var filteredResponses = [APIResponse]()
+    fileprivate var allResponses = [APIResponse]()
+    fileprivate var filteredResponses = [APIResponse]()
     
-    private lazy var searchController: UISearchController = {
+    fileprivate lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self

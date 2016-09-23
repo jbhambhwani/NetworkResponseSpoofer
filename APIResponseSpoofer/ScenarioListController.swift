@@ -41,7 +41,7 @@ class ScenarioListController: UITableViewController {
     
     // MARK: - Navigation
     
-    override func prepare(for segue: UIStoryboardSegue, sender: AnyObject?) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let responseListController = segue.destination as? ResponseListController, let indexPath = sender as? IndexPath else { return }
         selectedScenarioName = searchController.isActive ? filteredScenarios[(indexPath as NSIndexPath).row] : scenarioNames[indexPath.row] as String
         responseListController.scenarioName = selectedScenarioName
@@ -49,14 +49,14 @@ class ScenarioListController: UITableViewController {
     
     // MARK: - Private properties
     
-    private var filteredScenarios = [String]()
-    private var selectedScenarioName = ""
+    fileprivate var filteredScenarios = [String]()
+    fileprivate var selectedScenarioName = ""
     
-    private lazy var scenarioNames: [String] = {
+    fileprivate lazy var scenarioNames: [String] = {
         return Store.allScenarioNames()
     }()
     
-    private lazy var searchController: UISearchController = {
+    fileprivate lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self

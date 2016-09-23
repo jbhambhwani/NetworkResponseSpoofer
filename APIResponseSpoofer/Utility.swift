@@ -17,8 +17,7 @@ func logFormattedSeperator(_ message: String? = "-") {
     // Print "-" character before and after the message, 100 character total. Just logging every important message nicely.
     let messageStart = 50 - (message.characters.count / 2)
     if messageStart > 0 {
-        let hyphen = Character("-")
-        let hyphenString = String(repeating: hyphen, count: messageStart)
+        let hyphenString = String(repeating: "-", count: messageStart)
         print("\(hyphenString)\(message)\(hyphenString)")
     } else {
         print("Message too long for formatting: \(message)")
@@ -38,12 +37,12 @@ func spooferStoryBoard() -> UIStoryboard {
     return storyBoard
 }
 
-@discardableResult func handleError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((error: NSError) -> Void)?) -> NSError {
+@discardableResult func handleError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
     var userInfo = [NSLocalizedFailureReasonErrorKey: reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
     if let url = url {
         userInfo[NSURLErrorFailingURLErrorKey] = url
     }
     let spooferError = NSError(domain: "APIResponseSpoofer", code: code, userInfo: userInfo)
-    errorHandler?(error: spooferError)
+    errorHandler?(spooferError)
     return spooferError
 }

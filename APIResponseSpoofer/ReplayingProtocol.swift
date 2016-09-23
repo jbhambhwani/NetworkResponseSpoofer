@@ -72,7 +72,7 @@ class ReplayingProtocol: URLProtocol, NetworkInterceptable {
             return
         }
         
-        postNotification("Serving response from cache for : \(request.url?.absoluteString)", object: self)
+        postNotification("Serving response from 💾: \(url)", object: self)
         
         client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
         client?.urlProtocol(self, didLoad: cachedResponse.data)

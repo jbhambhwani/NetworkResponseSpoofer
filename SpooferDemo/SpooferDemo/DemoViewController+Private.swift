@@ -63,7 +63,7 @@ extension DemoViewController {
         sendRequest("http://jsonplaceholder.typicode.com/posts")
     }
     
-    private func sendRequest(_ resource: String) {
+    fileprivate func sendRequest(_ resource: String) {
         guard let url = URL(string: resource) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
             // Spoofer has already intercepted the response if error was non nil. Nothing to do here.

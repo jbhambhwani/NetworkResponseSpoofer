@@ -11,7 +11,7 @@ import Foundation
 class Store {
     
     // Save a scenario to disk
-    class func saveScenario(_ scenario: Scenario, callback: ((success: Bool, savedScenario: Scenario?) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+    class func saveScenario(_ scenario: Scenario, callback: ((_ success: Bool, _ savedScenario: Scenario?) -> ())?, errorHandler: ((_ error: NSError) -> Void)?) {
         
         guard scenario.apiResponses.count > 0 else {
             handleError("Scenario was empty and hence not saved", recoveryMessage: "No responses were recorded. Make one or more HTTP requests and try saving again", code: SpooferError.emptyScenarioError.rawValue, errorHandler: errorHandler)
@@ -37,14 +37,14 @@ class Store {
         if success {
             logFormattedSeperator()
             postNotification("Saved \(scenario)\nFile: \(scenarioFileURL)", object: self)
-            callback?(success: true, savedScenario: scenario)
+            callback?(true, scenario)
         } else {
             handleError("Unable to save scenario", recoveryMessage: "Writing to disk failed. Try again", code: SpooferError.diskWriteError.rawValue, errorHandler: errorHandler)
         }
     }
     
     // Load a scenario from disk
-    class func loadScenario(_ scenarioName: String, callback: ((success: Bool, scenario: Scenario) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+    class func loadScenario(_ scenarioName: String, callback: ((_ success: Bool, _ scenario: Scenario) -> ())?, errorHandler: ((_ error: NSError) -> Void)?) {
         
         guard let scenarioFileURL = getScenarioFileURL(scenarioName) else {
             handleError("Unable to save scenario", recoveryMessage: "URL could not be created for scenario name", code: SpooferError.scenarioURLError.rawValue, errorHandler: errorHandler)
@@ -60,7 +60,7 @@ class Store {
         if let unwrappedData = scenarioData, unwrappedData.count > 0 {
             let scenario = NSKeyedUnarchiver.unarchiveObject(with: unwrappedData) as? Scenario
             if let unwrappedScenario = scenario {
-                callback?(success: true, scenario: unwrappedScenario)
+                callback?(true, unwrappedScenario)
                 postNotification("Loaded \(unwrappedScenario)\nFile: \(scenarioFileURL)", object: self)
                 logFormattedSeperator()
             }
@@ -70,12 +70,12 @@ class Store {
     }
 
     // Delete a scenario
-    class func deleteScenario(_ scenarioName: String, callback: ((success: Bool) -> ())?, errorHandler: ((error: NSError) -> Void)?) {
+    class func deleteScenario(_ scenarioName: String, callback: ((_ success: Bool) -> ())?, errorHandler: ((_ error: NSError) -> Void)?) {
         
         let scenarioFileURL = getScenarioFileURL(scenarioName)
         
         if deleteScenario(scenarioName) {
-            callback?(success: true)
+            callback?(true)
         } else {
             handleError("Unable to delete scenario at: \(scenarioFileURL)", recoveryMessage: "Retry again later", code: SpooferError.scenarioDeletionError.rawValue, errorHandler: errorHandler)
         }
@@ -93,8 +93,7 @@ class Store {
             return []
         }
         
-        let scenarioFiles: [NSString] = allFiles.flatMap{ $0.lastPathComponent }.filter{ $0.pathExtension == "scenario"}
-        let fileNames = scenarioFiles.map{ $0.deletingPathExtension }
+        let fileNames = allFiles.filter { $0.lastPathComponent.hasSuffix("scenario") }.flatMap { $0.deletingPathExtension().lastPathComponent }
         return fileNames
     }
     
