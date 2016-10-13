@@ -61,6 +61,18 @@ class APIResponseSpooferTests: XCTestCase {
         // 2: Make sure the scenario was loaded to spoofer
         if let smokeScenario = Spoofer.spoofedScenario {
             XCTAssertTrue(smokeScenario.name == smokeTest, "Smoke test scenario was not loaded correctly")
+            
+            guard let responseData = smokeScenario.apiResponses.first?.data else {
+                XCTFail("No data was found on smoke test scenario")
+                return
+            }
+            let responseDict: [String: String]? = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as! [String : String]
+            
+            guard let json = responseDict, json == ["one": "two", "key": "value"] else {
+                XCTFail("Replayed respose not same as Recorded")
+                return
+            }
+            
         } else {
             XCTFail("Smoke test scenario was not loaded")
         }
