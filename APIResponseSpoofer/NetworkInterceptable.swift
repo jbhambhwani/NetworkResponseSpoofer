@@ -18,7 +18,7 @@ extension NetworkInterceptable {
     
     static func startIntercept() -> Bool {
         let protocolRegistered = URLProtocol.registerClass(Self.self)
-        // Swizzle will only happen once due to dispatch_once block inside
+        // Swizzle will only happen once due to being a global closure
         URLSessionConfiguration.swizzleConfiguration()
         return protocolRegistered
     }

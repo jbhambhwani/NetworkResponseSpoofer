@@ -24,6 +24,10 @@ class APIResponseSpooferTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
+
+        // Enable swizzling for URLSession
+        URLSessionConfiguration.swizzleConfiguration()
+        
         // Put setup code here. This method is called before the invocation of each test method in the class.
         Spoofer.resetConfigurations()
     }
@@ -88,9 +92,12 @@ class APIResponseSpooferTests: XCTestCase {
         Spoofer.startReplaying(scenarioName: smokeTest)
         
         // 3: Fetch some data using a URL session
+        // let config = URLSessionConfiguration.default
+        // let session = URLSession(configuration: config)
+        
         let session = URLSession.shared
         session.dataTask(with: sampleURL1, completionHandler: { [weak self] data, response, error in
-            if error == nil {
+            if error == nil, let response = response, let data = data {
                 print("Cached Response : \(response) \nCached Data: \(data)")
                 Spoofer.stopReplaying()
                 self?.spoofedResponseReceived?.fulfill()

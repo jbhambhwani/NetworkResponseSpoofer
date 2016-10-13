@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Global property contains swizzle code in a call to a closure. Will be initialized only once the first time it is used
 fileprivate let swizzleURLSessionConfiguration: Void = {
     NSObject.swizzleMethod(#selector(URLSessionConfiguration.spoofedDefault),
                   withSelector: #selector(getter: URLSessionConfiguration.default))
