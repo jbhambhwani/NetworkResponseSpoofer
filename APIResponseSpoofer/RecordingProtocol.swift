@@ -8,14 +8,14 @@
 
 import Foundation
 
-class RecordingProtocol: URLProtocol, NetworkInterceptable {
+public class RecordingProtocol: URLProtocol, NetworkInterceptable {
  
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var connection: NSURLConnection?
     var response: URLResponse?
     var responseData: Data?
     
-    override class func canInit(with request: URLRequest) -> Bool {
+    override public class func canInit(with request: URLRequest) -> Bool {
         guard let url = request.url else { return false }
         
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
@@ -31,16 +31,16 @@ class RecordingProtocol: URLProtocol, NetworkInterceptable {
         return false
     }
     
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+    override public class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
     
-    override class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
+    override public class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
         // Let the super class handle it
         return super.requestIsCacheEquivalent(aRequest, to:bRequest)
     }
     
-    override func startLoading() {
+    override public func startLoading() {
         // 1: Get a copy of the original request
         guard let newRequest = request as? MutableURLRequest else { return }
         // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
@@ -49,7 +49,7 @@ class RecordingProtocol: URLProtocol, NetworkInterceptable {
         connection = NSURLConnection(request: newRequest as URLRequest, delegate: self)
     }
     
-    override func stopLoading() {
+    override public func stopLoading() {
         connection?.cancel()
         connection = nil
     }

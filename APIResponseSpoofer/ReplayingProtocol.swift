@@ -13,14 +13,14 @@ enum ReplayMethod {
     case mimeTypeAndEncoding
 }
 
-class ReplayingProtocol: URLProtocol, NetworkInterceptable {
+public class ReplayingProtocol: URLProtocol, NetworkInterceptable {
     
     private var currentReplayMethod: ReplayMethod {
         // Customization: Switch the replay method according to the one which suits your specific requirement.
         return .statusCodeAndHeader
     }
     
-    override class func canInit(with request: URLRequest) -> Bool {
+    override public class func canInit(with request: URLRequest) -> Bool {
          guard let url = request.url else { return false }
         
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
@@ -36,16 +36,16 @@ class ReplayingProtocol: URLProtocol, NetworkInterceptable {
         return false
     }
     
-    override class func canonicalRequest(for request: URLRequest) -> URLRequest {
+    override public class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
     
-    override class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
+    override public class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
         // Let the super class handle it
         return super.requestIsCacheEquivalent(aRequest, to:bRequest)
     }
     
-    override func startLoading() {
+    override public func startLoading() {
         guard let url = request.url else { return }
         
         guard let spoofedScenario = Spoofer.spoofedScenario, let cachedResponse = spoofedScenario.responseForRequest(request) else {
@@ -79,7 +79,7 @@ class ReplayingProtocol: URLProtocol, NetworkInterceptable {
         client?.urlProtocolDidFinishLoading(self)
     }
     
-    override func stopLoading() {
+    override public func stopLoading() {
         // Nothing to do here for replay
     }
     
