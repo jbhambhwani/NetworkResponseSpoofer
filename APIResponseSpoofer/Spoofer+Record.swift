@@ -42,7 +42,7 @@ public extension Spoofer {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
             setRecording = false
             spoofedScenario = nil
-            RecordingProtocol.stopIntercept()
+            SpooferRecorder.stopIntercept()
         }
         
         alertController.addTextField { (textField) in
@@ -70,7 +70,7 @@ public extension Spoofer {
         
         guard let name = name else { return false }
         
-        let protocolRegistered = RecordingProtocol.startIntercept()
+        let protocolRegistered = SpooferRecorder.startIntercept()
         
         if protocolRegistered {
             setRecording = true
@@ -89,7 +89,7 @@ public extension Spoofer {
      Stop recording the current scenario and save the .scenario file to Documents folder
      */
     class func stopRecording() {
-        RecordingProtocol.stopIntercept()
+        SpooferRecorder.stopIntercept()
         guard let scenario = sharedInstance.scenario else { return }
         Store.saveScenario(scenario, callback: { success, savedScenario in
             if success {

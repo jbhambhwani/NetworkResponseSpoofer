@@ -18,11 +18,11 @@
 		4123E81F1C9A0ED700C7FB32 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
 		412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
 		412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
-		4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */; };
+		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
 		4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EF1B6EA21C00EAFE04 /* Store.swift */; };
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
-		4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */; };
+		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
 		416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
 		416552DD1B69F922006D8EDF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DC1B69F922006D8EDF /* Scenario.swift */; };
 		416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DE1B69FA74006D8EDF /* APIResponse.swift */; };
@@ -58,14 +58,14 @@
 		4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
 		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
-		4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayingProtocol.swift; sourceTree = "<group>"; };
+		4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferReplayer.swift; sourceTree = "<group>"; };
 		4131B8EF1B6EA21C00EAFE04 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
 		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
 		4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
-		4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingProtocol.swift; sourceTree = "<group>"; };
+		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		416552DC1B69F922006D8EDF /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		416552DE1B69FA74006D8EDF /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -201,8 +201,8 @@
 			isa = PBXGroup;
 			children = (
 				411913241D2369F500D3FB6E /* NetworkInterceptable.swift */,
-				4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */,
-				4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */,
+				4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */,
+				4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */,
 			);
 			name = Networking;
 			sourceTree = "<group>";
@@ -409,7 +409,7 @@
 				4123E81F1C9A0ED700C7FB32 /* EditSettingsViewController.swift in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,
 				410489C21C99D94800E99745 /* Constants.swift in Sources */,
-				4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */,
+				4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */,
 				41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */,
 				4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */,
 				410489C91C99DD4200E99745 /* SwitchWithTextTableViewCell.swift in Sources */,
@@ -419,7 +419,7 @@
 				4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */,
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
-				4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */,
+				4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */,
 				410489C71C99DCF200E99745 /* UIProtocols.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

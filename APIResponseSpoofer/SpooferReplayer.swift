@@ -1,5 +1,5 @@
 //
-//  ReplayingProtocol.swift
+//  SpooferReplayer.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 8/1/15.
@@ -13,7 +13,7 @@ enum ReplayMethod {
     case mimeTypeAndEncoding
 }
 
-public class ReplayingProtocol: URLProtocol, NetworkInterceptable {
+public class SpooferReplayer: URLProtocol, NetworkInterceptable {
     
     private var currentReplayMethod: ReplayMethod {
         // Customization: Switch the replay method according to the one which suits your specific requirement.

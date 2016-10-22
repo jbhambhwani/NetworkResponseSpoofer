@@ -9,6 +9,26 @@ Before you start, import Spoofer framework into your project
 @import APIResponseSpoofer
 ```
 
+## Intercepting responses
+Spoofer swizzles default and ephemeral session configs to insert its protocols for network intercept. In case this does not seem to work, you can create a URLSessionConfiguration extension in your project and add code similar to below (for both default and ephemeral) to have the spoofer intercept any networking interactions that happen through NSURLSession. Then use the spoofed configuration instaed of default/ephemeral in your code. Take care not to insert Spoofer protocols in release mode.
+```swift
+extension URLSessionConfiguration {
+
+    static var spoofedDefault: URLSessionConfiguration {
+
+        let sessionConfig = URLSessionConfiguration.default
+        #if DEBUG
+            var protocolClasses = sessionConfig.protocolClasses
+            protocolClasses?.insert(SpooferRecorder.self, at: 0)
+            protocolClasses?.insert(SpooferReplayer.self, at: 0)
+            sessionConfig.protocolClasses = protocolClasses
+        #endif
+
+        return sessionConfig
+    }
+}
+```
+
 
 ###Start Recording
 ```swift

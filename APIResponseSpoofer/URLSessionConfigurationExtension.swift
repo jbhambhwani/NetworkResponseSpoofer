@@ -43,8 +43,8 @@ extension URLSessionConfiguration {
     
     private class func insertInterceptors(inConfig config: URLSessionConfiguration) {
         var protocolClasses = config.protocolClasses
-        protocolClasses?.insert(RecordingProtocol.self, at: 0)
-        protocolClasses?.insert(ReplayingProtocol.self, at: 0)
+        protocolClasses?.insert(SpooferRecorder.self, at: 0)
+        protocolClasses?.insert(SpooferReplayer.self, at: 0)
         config.protocolClasses = protocolClasses
     }
     

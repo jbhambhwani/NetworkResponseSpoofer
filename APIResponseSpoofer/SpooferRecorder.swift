@@ -1,5 +1,5 @@
 //
-//  RecordingProtocol.swift
+//  SpooferRecorder.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 7/28/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class RecordingProtocol: URLProtocol, NetworkInterceptable {
+public class SpooferRecorder: URLProtocol, NetworkInterceptable {
  
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var connection: NSURLConnection?
@@ -44,7 +44,7 @@ public class RecordingProtocol: URLProtocol, NetworkInterceptable {
         // 1: Get a copy of the original request
         guard let newRequest = request as? MutableURLRequest else { return }
         // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
-        URLProtocol.setProperty(true, forKey: RecordingProtocol.requestHandledKey , in: newRequest)
+        URLProtocol.setProperty(true, forKey: SpooferRecorder.requestHandledKey , in: newRequest)
         // 3: Start a new connection to fetch the data
         connection = NSURLConnection(request: newRequest as URLRequest, delegate: self)
     }
