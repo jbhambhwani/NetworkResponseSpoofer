@@ -54,13 +54,13 @@
 		411913241D2369F500D3FB6E /* NetworkInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterceptable.swift; sourceTree = "<group>"; };
 		411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSpooferTests.swift; sourceTree = "<group>"; };
-		411A357B1BC74A7D001D128D /* TestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = TestsInfo.plist; path = APIResponseSpooferTests/TestsInfo.plist; sourceTree = SOURCE_ROOT; };
+		411A357B1BC74A7D001D128D /* TestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
 		4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
 		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
 		4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferReplayer.swift; sourceTree = "<group>"; };
 		4131B8EF1B6EA21C00EAFE04 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
@@ -102,7 +102,7 @@
 			children = (
 				410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */,
 			);
-			name = ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		411A35781BC74A7D001D128D /* APIResponseSpooferTests */ = {
@@ -121,7 +121,7 @@
 				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
 				41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		4131B8F21B6EA6F400EAFE04 /* Protocol */ = {
@@ -130,7 +130,7 @@
 				415CB1871C9B14A600827A0B /* Networking */,
 				415CB1861C9B149F00827A0B /* UI */,
 			);
-			name = Protocol;
+			path = Protocol;
 			sourceTree = "<group>";
 		};
 		4131B8F31B6EA71800EAFE04 /* Model */ = {
@@ -140,16 +140,16 @@
 				416552DC1B69F922006D8EDF /* Scenario.swift */,
 				4131B8EF1B6EA21C00EAFE04 /* Store.swift */,
 			);
-			name = Model;
+			path = Model;
 			sourceTree = "<group>";
 		};
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
 				4147EA4F1B684D7E001DE517 /* Source */,
+				4147EA4E1B684D7E001DE517 /* Products */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
 				411A35781BC74A7D001D128D /* APIResponseSpooferTests */,
-				4147EA4E1B684D7E001DE517 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -165,29 +165,27 @@
 		4147EA4F1B684D7E001DE517 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				415CB1891C9B14EA00827A0B /* Core */,
-				4131B8F31B6EA71800EAFE04 /* Model */,
-				415CB1881C9B14C900827A0B /* View */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
-				410489C41C99DCD000E99745 /* ViewModel */,
-				4131B8F21B6EA6F400EAFE04 /* Protocol */,
+				415CB1891C9B14EA00827A0B /* Core */,
 				416453A71B7027A400615A39 /* Extension */,
 				4180391F1BCB7408004E1534 /* Miscellaneous */,
+				4131B8F31B6EA71800EAFE04 /* Model */,
+				4131B8F21B6EA6F400EAFE04 /* Protocol */,
+				415CB1881C9B14C900827A0B /* View */,
+				410489C41C99DCD000E99745 /* ViewModel */,
 			);
-			name = Source;
-			path = APIResponseSpoofer;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		4147EA501B684D7E001DE517 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				411A357B1BC74A7D001D128D /* TestsInfo.plist */,
-				4137B6111BD87837005AF53E /* README.md */,
 				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
 				4147EA511B684D7E001DE517 /* Info.plist */,
+				4137B6111BD87837005AF53E /* README.md */,
+				411A357B1BC74A7D001D128D /* TestsInfo.plist */,
 			);
-			name = "Supporting Files";
-			path = APIResponseSpoofer;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		415CB1861C9B149F00827A0B /* UI */ = {
@@ -196,7 +194,7 @@
 				410489C61C99DCF200E99745 /* UIProtocols.swift */,
 				410489CC1C99E9EC00E99745 /* UITableViewCell.swift */,
 			);
-			name = UI;
+			path = UI;
 			sourceTree = "<group>";
 		};
 		415CB1871C9B14A600827A0B /* Networking */ = {
@@ -206,7 +204,7 @@
 				4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */,
 				4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */,
 			);
-			name = Networking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		415CB1881C9B14C900827A0B /* View */ = {
@@ -215,36 +213,36 @@
 				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
 				410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		415CB1891C9B14EA00827A0B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				4147EA691B684DBD001DE517 /* Spoofer.swift */,
 				41C012C91BF3F088004E54DF /* Spoofer+Record.swift */,
 				41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */,
+				4147EA691B684DBD001DE517 /* Spoofer.swift */,
 			);
-			name = Core;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		416453A71B7027A400615A39 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */,
 				41DFB3E81B70252C00038958 /* URLExtension.swift */,
+				4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */,
 			);
-			name = Extension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		4180391F1BCB7408004E1534 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				4180391D1BCB73FE004E1534 /* Utility.swift */,
 				410489C11C99D94800E99745 /* Constants.swift */,
 				41B1D1301D2428F000CB450E /* Swizzler.swift */,
+				4180391D1BCB73FE004E1534 /* Utility.swift */,
 			);
-			name = Miscellaneous;
+			path = Miscellaneous;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -442,7 +440,7 @@
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = H898Y42WAX;
-				INFOPLIST_FILE = APIResponseSpooferTests/TestsInfo.plist;
+				INFOPLIST_FILE = "Supporting Files/TestsInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -456,7 +454,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = H898Y42WAX;
-				INFOPLIST_FILE = APIResponseSpooferTests/TestsInfo.plist;
+				INFOPLIST_FILE = "Supporting Files/TestsInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -587,7 +585,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIResponseSpoofer/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				ONLY_ACTIVE_ARCH = YES;
@@ -608,7 +606,7 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIResponseSpoofer/Info.plist;
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.apiresponsespoofer;

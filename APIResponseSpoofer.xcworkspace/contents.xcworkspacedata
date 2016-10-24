@@ -4,7 +4,4 @@
    <FileRef
       location = "group:APIResponseSpoofer.xcodeproj">
    </FileRef>
-   <FileRef
-      location = "group:SpooferDemo/SpooferDemo.xcodeproj">
-   </FileRef>
 </Workspace>
