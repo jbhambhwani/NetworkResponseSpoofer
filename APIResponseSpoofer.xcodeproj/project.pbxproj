@@ -146,7 +146,8 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				4147EA4F1B684D7E001DE517 /* APIResponseSpoofer */,
+				4147EA4F1B684D7E001DE517 /* Source */,
+				4147EA501B684D7E001DE517 /* Supporting Files */,
 				411A35781BC74A7D001D128D /* APIResponseSpooferTests */,
 				4147EA4E1B684D7E001DE517 /* Products */,
 			);
@@ -161,7 +162,7 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4147EA4F1B684D7E001DE517 /* APIResponseSpoofer */ = {
+		4147EA4F1B684D7E001DE517 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				415CB1891C9B14EA00827A0B /* Core */,
@@ -172,8 +173,8 @@
 				4131B8F21B6EA6F400EAFE04 /* Protocol */,
 				416453A71B7027A400615A39 /* Extension */,
 				4180391F1BCB7408004E1534 /* Miscellaneous */,
-				4147EA501B684D7E001DE517 /* Supporting Files */,
 			);
+			name = Source;
 			path = APIResponseSpoofer;
 			sourceTree = "<group>";
 		};
@@ -186,6 +187,7 @@
 				4147EA511B684D7E001DE517 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			path = APIResponseSpoofer;
 			sourceTree = "<group>";
 		};
 		415CB1861C9B149F00827A0B /* UI */ = {
