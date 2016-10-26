@@ -22,7 +22,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec "Realm" do |ss|
-    ss.source_files  = "Source/Realm/**/*swift"
+    # ss.source_files  = "Source/Realm/**/*swift"
     ss.dependency "RealmSwift"
   end
 
