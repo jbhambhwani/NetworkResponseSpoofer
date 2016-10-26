@@ -14,11 +14,11 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.frameworks = 'UIKit', 'Foundation'
   s.default_subspec = 'Lite'
-  s.source_files = 'Source/Core/**/*.swift'
-  s.resources = 'Source/Core/View/*.storyboard'
 
-  s.subspec "Lite" do |ss|
+  s.subspec "Lite" do |lite|
   # Leaving this empty of 3rd party dependencies so that Spoofer can work indipendently, though this goes against Cocoapods best practices of having all dependencies installed as default
+    lite.source_files = 'Source/Core/**/*.swift'
+    lite.resources = 'Source/Core/View/*.storyboard'
   end
 
   s.subspec "Realm" do |ss|
