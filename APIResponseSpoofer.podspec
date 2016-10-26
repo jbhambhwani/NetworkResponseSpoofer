@@ -17,8 +17,8 @@ Pod::Spec.new do |s|
 
   s.subspec "Lite" do |ss|
   # Leaving this empty of 3rd party dependencies so that Spoofer can work indipendently, though this goes against Cocoapods best practices of having all dependencies installed as default
-    s.source_files = 'Source/{Core}/**/*.swift'
-    s.resources = 'Source/View/*.storyboard'
+    s.source_files = 'Source/Core/**/*.swift'
+    s.resources = 'Source/Core/View/*.storyboard'
   end
 
   s.subspec "Realm" do |ss|
