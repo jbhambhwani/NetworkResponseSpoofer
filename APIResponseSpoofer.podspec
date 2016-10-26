@@ -1,9 +1,9 @@
 Pod::Spec.new do |s|
   s.name = 'APIResponseSpoofer'
-  s.version = '2.0.1'
+  s.version = '2.0.2'
   s.summary = 'Network request-response recording and replaying library for iOS.'
   s.description = <<-EOS
-  APIResponseSpoofer is a Network request-response spoofer
+  APIResponseSpoofer is a network request-response recording and replaying library for iOS. It’s built on top of the Foundation URL Loading System to make recording and replaying network requests really simple.
   EOS
   s.homepage = 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer'
   s.license = 'MIT'
