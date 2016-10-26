@@ -13,8 +13,7 @@
 		412A7B9B1BC9D441002E9FF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B991BC9D441002E9FF2 /* Main.storyboard */; };
 		412A7B9D1BC9D441002E9FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */; };
 		412A7BA01BC9D441002E9FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B9E1BC9D441002E9FF2 /* LaunchScreen.storyboard */; };
-		41E42D511D6EAB7600A9721B /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 41E42D501D6EAB7600A9721B /* APIResponseSpoofer.framework */; };
-		41E42D521D6EAB7600A9721B /* APIResponseSpoofer.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 41E42D501D6EAB7600A9721B /* APIResponseSpoofer.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		A64561934B2BFB97AD68D09A /* Pods_SpooferDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1E9F1CF72D4B3E7DCD1798 /* Pods_SpooferDemo.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -24,7 +23,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				41E42D521D6EAB7600A9721B /* APIResponseSpoofer.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -40,7 +38,9 @@
 		412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		412A7B9F1BC9D441002E9FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		412A7BA11BC9D441002E9FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		41E42D501D6EAB7600A9721B /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = APIResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AD419F70D13F3D405227A665 /* Pods-SpooferDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo.release.xcconfig"; sourceTree = "<group>"; };
+		C857FEEF07F960F90F20D9C6 /* Pods-SpooferDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo.debug.xcconfig"; sourceTree = "<group>"; };
+		CD1E9F1CF72D4B3E7DCD1798 /* Pods_SpooferDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpooferDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -48,7 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41E42D511D6EAB7600A9721B /* APIResponseSpoofer.framework in Frameworks */,
+				A64561934B2BFB97AD68D09A /* Pods_SpooferDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -58,9 +58,10 @@
 		412A7B891BC9D441002E9FF2 = {
 			isa = PBXGroup;
 			children = (
-				41E42D501D6EAB7600A9721B /* APIResponseSpoofer.framework */,
 				412A7B941BC9D441002E9FF2 /* SpooferDemo */,
 				412A7B931BC9D441002E9FF2 /* Products */,
+				DEBCFF88906EC4F47E7E41AA /* Pods */,
+				C16485732916BEE4F7A761AF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -94,6 +95,23 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		C16485732916BEE4F7A761AF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				CD1E9F1CF72D4B3E7DCD1798 /* Pods_SpooferDemo.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		DEBCFF88906EC4F47E7E41AA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				C857FEEF07F960F90F20D9C6 /* Pods-SpooferDemo.debug.xcconfig */,
+				AD419F70D13F3D405227A665 /* Pods-SpooferDemo.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -101,10 +119,13 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 412A7BA41BC9D441002E9FF2 /* Build configuration list for PBXNativeTarget "SpooferDemo" */;
 			buildPhases = (
+				2B9BB5405776BC5D58467B90 /* [CP] Check Pods Manifest.lock */,
 				412A7B8E1BC9D441002E9FF2 /* Sources */,
 				412A7B8F1BC9D441002E9FF2 /* Frameworks */,
 				412A7B901BC9D441002E9FF2 /* Resources */,
 				41F2EB301D38248100916C44 /* Embed Frameworks */,
+				DFC3C460A22A9AFDBC9A0EA5 /* [CP] Embed Pods Frameworks */,
+				7D9A4A0649A0FD190C17A092 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -161,6 +182,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2B9BB5405776BC5D58467B90 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		7D9A4A0649A0FD190C17A092 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		DFC3C460A22A9AFDBC9A0EA5 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		412A7B8E1BC9D441002E9FF2 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		412A7BA51BC9D441002E9FF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C857FEEF07F960F90F20D9C6 /* Pods-SpooferDemo.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = H898Y42WAX;
@@ -295,6 +365,7 @@
 		};
 		412A7BA61BC9D441002E9FF2 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = AD419F70D13F3D405227A665 /* Pods-SpooferDemo.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = H898Y42WAX;
