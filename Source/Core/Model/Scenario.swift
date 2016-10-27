@@ -26,7 +26,6 @@ class Scenario: NSObject, NSCoding {
     
     func addResponse(_ response: APIResponse) {
         if let existingResponseIndex = apiResponses.index(of: response) {
-            // If a response matching the same normalized URL exists, remove and replace it with the new response (so that we keep latest)
             apiResponses.remove(at: existingResponseIndex)
         }
         apiResponses.append(response)

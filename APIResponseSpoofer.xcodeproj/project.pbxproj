@@ -14,7 +14,7 @@
 		410489CD1C99E9EC00E99745 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CC1C99E9EC00E99745 /* UITableViewCell.swift */; };
 		411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
 		411A357A1BC74A7D001D128D /* APIResponseSpooferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */; };
-		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; };
+		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		4123E81F1C9A0ED700C7FB32 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
 		412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
 		412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
@@ -23,6 +23,10 @@
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
+		415DE4931DC18D26000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		415DE4941DC18D26000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		415DE4951DC18EA7000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		415DE4961DC18EA7000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
 		416552DD1B69F922006D8EDF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DC1B69F922006D8EDF /* Scenario.swift */; };
 		416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DE1B69FA74006D8EDF /* APIResponse.swift */; };
@@ -67,6 +71,8 @@
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
 		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
+		415DE4911DC18D26000929AC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		415DE4921DC18D26000929AC /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		416552DC1B69F922006D8EDF /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		416552DE1B69FA74006D8EDF /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -85,6 +91,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415DE4951DC18EA7000929AC /* Realm.framework in Frameworks */,
+				415DE4961DC18EA7000929AC /* RealmSwift.framework in Frameworks */,
 				411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -93,6 +101,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				415DE4931DC18D26000929AC /* Realm.framework in Frameworks */,
+				415DE4941DC18D26000929AC /* RealmSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -148,10 +158,11 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				4147EA4E1B684D7E001DE517 /* Products */,
 				4147EA4F1B684D7E001DE517 /* Source */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
 				411A35781BC74A7D001D128D /* Tests */,
+				4147EA4E1B684D7E001DE517 /* Products */,
+				415DE4901DC18D25000929AC /* Dependency Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -227,6 +238,15 @@
 				4147EA691B684DBD001DE517 /* Spoofer.swift */,
 			);
 			path = Core;
+			sourceTree = "<group>";
+		};
+		415DE4901DC18D25000929AC /* Dependency Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				415DE4911DC18D26000929AC /* Realm.framework */,
+				415DE4921DC18D26000929AC /* RealmSwift.framework */,
+			);
+			name = "Dependency Frameworks";
 			sourceTree = "<group>";
 		};
 		416453A71B7027A400615A39 /* Extension */ = {
@@ -452,6 +472,10 @@
 			buildSettings = {
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = H898Y42WAX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Supporting Files/TestsInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "";
@@ -466,6 +490,10 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				DEVELOPMENT_TEAM = H898Y42WAX;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Supporting Files/TestsInfo.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_DYLIB_INSTALL_NAME = "";
@@ -597,6 +625,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
@@ -618,6 +650,10 @@
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
