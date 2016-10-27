@@ -107,12 +107,12 @@
 			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		411A35781BC74A7D001D128D /* APIResponseSpooferTests */ = {
+		411A35781BC74A7D001D128D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
 				411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */,
 			);
-			path = APIResponseSpooferTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		412A7B881BC9D20A002E9FF2 /* Controller */ = {
@@ -148,10 +148,10 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				4147EA4F1B684D7E001DE517 /* Source */,
-				411A35781BC74A7D001D128D /* APIResponseSpooferTests */,
 				4147EA4E1B684D7E001DE517 /* Products */,
+				4147EA4F1B684D7E001DE517 /* Source */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
+				411A35781BC74A7D001D128D /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
