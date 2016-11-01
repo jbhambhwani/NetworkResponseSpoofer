@@ -25,9 +25,7 @@ class Scenario: NSObject, NSCoding {
     // MARK: - Managing responses
     
     func addResponse(_ response: APIResponse) {
-        if let existingResponseIndex = apiResponses.index(of: response) {
-            apiResponses.remove(at: existingResponseIndex)
-        }
+        apiResponses = apiResponses.filter { $0.requestURL != response.requestURL }
         apiResponses.append(response)
         postNotification("Response received:\n\(response)", object: self)
     }

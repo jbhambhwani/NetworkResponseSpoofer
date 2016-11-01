@@ -1,5 +1,5 @@
 //
-//  Spoofer+Realm.swift
+//  APIResponseV2.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 10/26/16.
@@ -7,14 +7,12 @@
 //
 
 import Foundation
-#if !COCOAPODS
-    import RealmSwift
-#endif
+import RealmSwift
 
-class ScenarioV2: Object {
+class ResponseHeader: Object {
     
-    dynamic var name = "Default"
-    let apiResponses = List<APIResponseV2>()
+    dynamic var key = ""
+    dynamic var value = ""
 }
 
 class APIResponseV2: Object {
@@ -30,8 +28,4 @@ class APIResponseV2: Object {
     let headerFields = List<ResponseHeader>()
 }
 
-class ResponseHeader: Object {
 
-    dynamic var key = ""
-    dynamic var value = ""
-}
