@@ -48,21 +48,25 @@ public extension Spoofer {
         guard let name = name else { return false }
         
         let protocolRegistered = SpooferReplayer.startIntercept()
-        Store.loadScenario(name, callback: { success, scenario in
-            if success {
-                setReplaying = true
-                spoofedScenario = scenario
-                // Inform the delegate that spoofer started replay
-                Spoofer.delegate?.spooferDidStartReplaying(name, success: true)
-                // Post a state change notification for interested parties
-                NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStartedReplayingNotification), object: sharedInstance, userInfo: ["scenario": name, "success": true])
-            }
-            }, errorHandler: { error in
-                // Inform the delegate that spoofer could not start replay
-                Spoofer.delegate?.spooferDidStartReplaying(name, success: false)
-                // Post a state change notification for interested parties
-                NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedReplayingNotification), object: sharedInstance)
-        })
+        
+        let loadResult = DataStore.load(scenarioName: name)
+        
+        switch loadResult {
+        case .success(let scenario):
+            setReplaying = true
+            spoofedScenario = scenario
+            // Inform the delegate that spoofer started replay
+            Spoofer.delegate?.spooferDidStartReplaying(name, success: true)
+            // Post a state change notification for interested parties
+            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStartedReplayingNotification), object: sharedInstance, userInfo: ["scenario": name, "success": true])
+            
+        case .failure(_):
+            // Inform the delegate that spoofer could not start replay
+            Spoofer.delegate?.spooferDidStartReplaying(name, success: false)
+            // Post a state change notification for interested parties
+            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedReplayingNotification), object: sharedInstance)
+        }
+        
         return protocolRegistered
     }
     

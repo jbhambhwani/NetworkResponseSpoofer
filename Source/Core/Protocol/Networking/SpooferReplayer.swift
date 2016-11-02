@@ -48,7 +48,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
     override public func startLoading() {
         guard let url = request.url else { return }
         
-        guard let spoofedScenario = Spoofer.spoofedScenario, let cachedResponse = spoofedScenario.responseForRequest(request) else {
+        guard let spoofedScenario = Spoofer.spoofedScenario, let cachedResponse = spoofedScenario.responseForRequest(request), let cachedURL = URL(string: cachedResponse.requestURL) else {
             // Throw an error in case we are unable to load a response
             let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
             client?.urlProtocol(self, didFailWithError: httpError)
@@ -60,9 +60,9 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         switch currentReplayMethod {
             case .statusCodeAndHeader:
                 let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
-                httpResponse = HTTPURLResponse(url: cachedResponse.requestURL, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
+                httpResponse = HTTPURLResponse(url: cachedURL, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
             case .mimeTypeAndEncoding:
-                httpResponse = HTTPURLResponse(url: cachedResponse.requestURL, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
+                httpResponse = HTTPURLResponse(url: cachedURL, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
         }
 
         guard let spoofedResponse = httpResponse else {

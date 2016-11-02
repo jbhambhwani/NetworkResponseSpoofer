@@ -39,6 +39,9 @@
 		41D4AF301C98EAF00086AEB2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
 		41E04BB41DC41F3900AD8261 /* ScenarioV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */; };
+		41F879FD1DC96B5800B457F4 /* RealmStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FC1DC96B5800B457F4 /* RealmStore.swift */; };
+		41F879FF1DC96BE900B457F4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
+		41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -86,6 +89,9 @@
 		41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioV2.swift; sourceTree = "<group>"; };
+		41F879FC1DC96B5800B457F4 /* RealmStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RealmStore.swift; sourceTree = "<group>"; };
+		41F879FE1DC96BE900B457F4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHeaderItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +161,16 @@
 				4131B8EF1B6EA21C00EAFE04 /* Store.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		413D55EA1DCA8CDB00A5E084 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				41AA10EB1DC1358000860295 /* APIResponseV2.swift */,
+				41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */,
+				41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */,
+			);
+			name = Models;
 			sourceTree = "<group>";
 		};
 		4147EA431B684D7E001DE517 = {
@@ -266,6 +282,7 @@
 				410489C11C99D94800E99745 /* Constants.swift */,
 				41B1D1301D2428F000CB450E /* Swizzler.swift */,
 				4180391D1BCB73FE004E1534 /* Utility.swift */,
+				41F879FE1DC96BE900B457F4 /* Result.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -273,8 +290,8 @@
 		41BFEC881DC1142C006DC5D4 /* Realm */ = {
 			isa = PBXGroup;
 			children = (
-				41AA10EB1DC1358000860295 /* APIResponseV2.swift */,
-				41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */,
+				413D55EA1DCA8CDB00A5E084 /* Models */,
+				41F879FC1DC96B5800B457F4 /* RealmStore.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -434,6 +451,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */,
+				41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */,
 				41D4AF301C98EAF00086AEB2 /* SettingsViewController.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				410489CB1C99DDA100E99745 /* SwitchWithTextViewModel.swift in Sources */,
@@ -443,9 +461,11 @@
 				4123E81F1C9A0ED700C7FB32 /* EditSettingsViewController.swift in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,
 				410489C21C99D94800E99745 /* Constants.swift in Sources */,
+				41F879FD1DC96B5800B457F4 /* RealmStore.swift in Sources */,
 				4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */,
 				41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */,
 				4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */,
+				41F879FF1DC96BE900B457F4 /* Result.swift in Sources */,
 				410489C91C99DD4200E99745 /* SwitchWithTextTableViewCell.swift in Sources */,
 				412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */,
 				416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */,

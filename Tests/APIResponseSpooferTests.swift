@@ -151,7 +151,7 @@ class APIResponseSpooferTests: XCTestCase {
     }
     
     func testLoadAllScenarios() {
-        let allScenarios = Store.allScenarioNames()
+        let allScenarios = DataStore.allScenarioNames()
         print("All Scenarios:\n\(allScenarios)")
     }
     

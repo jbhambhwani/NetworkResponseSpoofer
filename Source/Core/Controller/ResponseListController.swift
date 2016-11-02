@@ -15,8 +15,8 @@ class ResponseListController: UITableViewController {
     let expandText = "Expand"
     let collapseText = "Collapse"
     
-    fileprivate var allResponses = [APIResponse]()
-    fileprivate var filteredResponses = [APIResponse]()
+    fileprivate var allResponses = [APIResponseV2]()
+    fileprivate var filteredResponses = [APIResponseV2]()
     
     fileprivate lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
@@ -54,14 +54,14 @@ class ResponseListController: UITableViewController {
     // MARK: Utility methods
     
     func loadScenario() {
-        Store.loadScenario(scenarioName, callback: { [weak self] success, scenario in
-            if success {
-                self?.allResponses = scenario.apiResponses
-                self?.tableView.reloadData()
-            }
-            }, errorHandler: { error in
-                
-        })
+        let loadResult = DataStore.load(scenarioName: scenarioName)
+        switch loadResult {
+        case .success(let scenario):
+            allResponses = Array(scenario.apiResponses)
+            tableView.reloadData()
+        case .failure(_):
+            break
+        }
     }
     
     func toggleRowHeight(_ sender: UIBarButtonItem) {
@@ -89,7 +89,7 @@ extension ResponseListController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RequestURLCell", for: indexPath)
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
-        cell.textLabel?.text = response.requestURL.absoluteString
+        cell.textLabel?.text = response.requestURL
         return cell
     }
     
@@ -112,26 +112,33 @@ extension ResponseListController {
         switch editingStyle {
             case .delete:
                 // Remove the response from local array
-                allResponses.remove(at: (indexPath as NSIndexPath).row)
+                allResponses.remove(at: indexPath.row)
                 // Create a new scenario based on the responses and save it to disk
-                let scenario = Scenario(name: scenarioName)
-                scenario.apiResponses = allResponses
-                Store.saveScenario(scenario, callback: { [weak tableView] success, savedScenario in
-                        DispatchQueue.main.async(execute: {
-                            // Update the tableview upon succesful scenario updation
-                            tableView?.deleteRows(at: [indexPath], with: .automatic)
-                            // If Spoofer was already in replay mode, update the scenario with the updated version
-                            if Spoofer.spoofedScenario != nil {
-                                Spoofer.spoofedScenario = savedScenario
-                            }
-                        })
-                    }, errorHandler: { [weak tableView] error in
-                        // Cause a tableview reload if scenario creation failed due to some reason
-                        tableView?.reloadData()
-                })
-            
-            case .insert: break
-            case .none: break
+                let scenario = ScenarioV2()
+                scenario.name = scenarioName
+                
+                // TODO
+                // scenario.apiResponses = allResponses
+                
+                let saveResult = DataStore.save(scenario: scenario)
+                
+                switch saveResult {
+                case .success(let savedScenario):
+                    DispatchQueue.main.async(execute: {
+                        // Update the tableview upon succesful scenario updation
+                        tableView.deleteRows(at: [indexPath], with: .automatic)
+                        // If Spoofer was already in replay mode, update the scenario with the updated version
+                        if Spoofer.spoofedScenario != nil {
+                            Spoofer.spoofedScenario = savedScenario
+                        }
+                    })
+
+                case .failure(_):
+                    // Cause a tableview reload if scenario creation failed due to some reason
+                    tableView.reloadData()
+                }
+                
+            default: break
         }
     }
     
@@ -152,7 +159,7 @@ extension ResponseListController: UISearchResultsUpdating, UISearchControllerDel
         }
         
         filteredResponses = allResponses.filter {
-            return $0.requestURL.absoluteString.contains(searchText.lowercased())
+            return $0.requestURL.contains(searchText.lowercased())
         }
     }
     

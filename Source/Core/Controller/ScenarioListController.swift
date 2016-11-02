@@ -53,7 +53,7 @@ class ScenarioListController: UITableViewController {
     fileprivate var selectedScenarioName = ""
     
     fileprivate lazy var scenarioNames: [String] = {
-        return Store.allScenarioNames()
+        return DataStore.allScenarioNames()
     }()
     
     fileprivate lazy var searchController: UISearchController = {
@@ -106,17 +106,19 @@ extension ScenarioListController {
         switch editingStyle {
         case .delete:
             // Remove response from local array
-            let scenarioToDelete = scenarioNames.remove(at: (indexPath as NSIndexPath).row)
-            Store.deleteScenario(scenarioToDelete, callback: { success in
-                    // Update the tableview upon succesful scenario deletion
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                }, errorHandler: { error in
-                     // Cause a tableview reload if scenario creation failed due to some reason
-                    tableView.reloadData()
-            })
+            let scenarioToDelete = scenarioNames.remove(at: indexPath.row)
             
-        case .insert: break
-        case .none: break
+            let deletionResult = DataStore.delete(scenarioName: scenarioToDelete)
+            switch deletionResult {
+            case .success(_):
+                // Update the tableview upon succesful scenario deletion
+                tableView.deleteRows(at: [indexPath], with: .automatic)
+            case .failure(_):
+                // Cause a tableview reload if scenario creation failed due to some reason
+                tableView.reloadData()
+            }
+            
+        default: break
         }
     }
     

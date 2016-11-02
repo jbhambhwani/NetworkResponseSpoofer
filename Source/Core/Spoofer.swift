@@ -154,7 +154,7 @@ public class Spoofer: NSObject {
         return false
     }
     
-    class var spoofedScenario: Scenario? {
+    class var spoofedScenario: ScenarioV2? {
         get { return sharedInstance.scenario }
         set { sharedInstance.scenario = newValue }
     }
@@ -213,7 +213,7 @@ public class Spoofer: NSObject {
     }()
     
     static let sharedInstance = Spoofer()
-    var scenario: Scenario? = nil
+    var scenario: ScenarioV2? = nil
     var recording: Bool = false
     var replaying: Bool = false
     private var spoofedHosts = [String]()

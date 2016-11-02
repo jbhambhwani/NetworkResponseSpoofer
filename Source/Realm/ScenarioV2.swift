@@ -18,7 +18,7 @@ class ScenarioV2: Object {
 extension ScenarioV2 {
     
     func addResponse(_ response: APIResponseV2) {
-        // apiResponses = apiResponses.filter { $0.requestURL != response.requestURL }
+        // apiResponses = apiResponses.filter("requestURL != %@", response.requestURL)
         apiResponses.append(response)
         postNotification("Response received:\n\(response)", object: self)
     }
@@ -38,6 +38,7 @@ extension ScenarioV2 {
 }
 
 // MARK: Helper methods for debugging
+
 extension ScenarioV2 {
     override var description: String { return "Scenario: \(name)"}
     override var debugDescription: String { return "Scenario: \(name)\nResponses: \(apiResponses)\n"}

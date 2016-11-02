@@ -108,7 +108,7 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
         guard let scenario = Spoofer.spoofedScenario, let httpResponse = response else { return }
         
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        guard let currentResponse = APIResponse(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
+        guard let currentResponse = APIResponseV2.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
         
         // Save the response
         scenario.addResponse(currentResponse)
