@@ -195,22 +195,22 @@ public class Spoofer: NSObject {
         sharedInstance.queryParameterNormalization = false
     }
     
-    class var configurations: [SpooferConfigurationType : AnyObject]? {
+    class var configurations: [SpooferConfigurationType : Any]? {
         return sharedInstance.config
     }
     
     // MARK: - Internal variables
     
-    private var config: [SpooferConfigurationType: AnyObject]? {
-        return [.queryParameterNormalization: queryParameterNormalization as AnyObject,
-            .acceptSelfSignedCertificate: acceptSelfSignedCertificate as AnyObject,
-            .spoofedHosts: spoofedHosts as AnyObject,
-            .ignoredHosts: ignoredHosts as AnyObject,
-            .ignoredSubdomains: ignoredSubdomains as AnyObject,
-            .ignoredQueryParameters: ignoredQueryParameters as AnyObject,
-            .ignoredPathComponents: ignoredPathComponents as AnyObject
+    private lazy var config: [SpooferConfigurationType: Any] = {
+        return [.queryParameterNormalization: sharedInstance.queryParameterNormalization as Any,
+            .acceptSelfSignedCertificate: sharedInstance.acceptSelfSignedCertificate as Any,
+            .spoofedHosts: sharedInstance.spoofedHosts as Any,
+            .ignoredHosts: sharedInstance.ignoredHosts as Any,
+            .ignoredSubdomains: sharedInstance.ignoredSubdomains as Any,
+            .ignoredQueryParameters: sharedInstance.ignoredQueryParameters as Any,
+            .ignoredPathComponents: sharedInstance.ignoredPathComponents as Any
         ]
-    }
+    }()
     
     static let sharedInstance = Spoofer()
     var scenario: Scenario? = nil
