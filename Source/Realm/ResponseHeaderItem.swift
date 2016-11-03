@@ -26,9 +26,10 @@ class ResponseHeaderItem: Object {
     }
     
     class func deSerialize(headerItems: [ResponseHeaderItem]) -> [String: String] {
-        return ["":""]
-        let dict = headerItems.map { item -> [String: String] in
-            
+        var resultDict = [String: String]()
+        for item in headerItems {
+            resultDict[item.key] = item.value
         }
+        return resultDict
     }
 }
