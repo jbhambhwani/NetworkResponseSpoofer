@@ -6,6 +6,8 @@
 //  Copyright (c) 2015 Hotwire. All rights reserved.
 //
 
+/*
+
 import Foundation
 
 struct ScenarioFields {
@@ -62,3 +64,5 @@ extension Scenario {
     override var description: String { return "Scenario: \(name)"}
     override var debugDescription: String { return "Scenario: \(name)\nResponses: \(apiResponses)\n"}
 }
+
+ */

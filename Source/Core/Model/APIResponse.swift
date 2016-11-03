@@ -6,6 +6,7 @@
 //  Copyright (c) 2015 Hotwire. All rights reserved.
 //
 
+/*
 import Foundation
 
 private enum ResponseKeys: String {
@@ -114,3 +115,5 @@ extension APIResponse {
     override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)"}
     override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(mimeType)\nEncoding: \(encoding)\nHeaderFields: \(headerFields)\n"}
 }
+ 
+ */

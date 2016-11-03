@@ -7,7 +7,9 @@
 //
 
 import Foundation
+
 /*
+ 
 class Store {
     
     // Save a scenario to disk
