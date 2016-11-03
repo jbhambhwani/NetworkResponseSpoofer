@@ -13,6 +13,14 @@ class ScenarioV2: Object {
     
     dynamic var name = "Default"
     let apiResponses = List<APIResponseV2>()
+    
+    override static func primaryKey() -> String {
+        return "name"
+    }
+    
+    override static func indexedProperties() -> [String] {
+        return ["name"]
+    }
 }
 
 extension ScenarioV2 {
