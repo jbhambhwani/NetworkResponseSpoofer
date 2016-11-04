@@ -317,6 +317,7 @@
 				411A35731BC74A7D001D128D /* Sources */,
 				411A35741BC74A7D001D128D /* Frameworks */,
 				411A35751BC74A7D001D128D /* Resources */,
+				41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,6 +339,7 @@
 				4147EA491B684D7E001DE517 /* Frameworks */,
 				4147EA4A1B684D7E001DE517 /* Headers */,
 				4147EA4B1B684D7E001DE517 /* Resources */,
+				41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -434,6 +436,38 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "# Elevate all TODO's and FIXME's in project to warnings\n${SRCROOT}/scripts/elevate-todos.sh";
+		};
+		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 

@@ -153,6 +153,7 @@ class APIResponseSpooferTests: XCTestCase {
     func testLoadAllScenarios() {
         let allScenarios = DataStore.allScenarioNames()
         print("All Scenarios:\n\(allScenarios)")
+        XCTAssert(allScenarios.count > 0, "Stored scenarios should be loaded")
     }
     
     func testFormattedSeperator() {

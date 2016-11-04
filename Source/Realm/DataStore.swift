@@ -48,6 +48,10 @@ fileprivate struct RealmStore: Store {
 
     static let sharedInstance = RealmStore()
     
+    init() {
+        print("DataStore Path: \(realm.configuration.fileURL)")
+    }
+    
     func allScenarioNames() -> [String]  {
         let allScenarios = realm.objects(ScenarioV2.self)
         return allScenarios.flatMap { $0.name }
@@ -56,7 +60,7 @@ fileprivate struct RealmStore: Store {
     func save(scenario: ScenarioV2) -> Result<ScenarioV2> {
         do {
             try realm.write {
-                realm.add(scenario)
+                realm.add(scenario, update: true)
             }
             return .success(scenario)
         } catch {
