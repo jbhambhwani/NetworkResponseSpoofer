@@ -60,7 +60,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         switch currentReplayMethod {
             case .statusCodeAndHeader:
                 let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
-                httpResponse = HTTPURLResponse(url: cachedURL, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: cachedResponse.headerFields as? [String : String])
+                httpResponse = HTTPURLResponse(url: cachedURL, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: ResponseHeaderItem.deSerialize(headerItems: Array(cachedResponse.headerFields)))
             case .mimeTypeAndEncoding:
                 httpResponse = HTTPURLResponse(url: cachedURL, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
         }

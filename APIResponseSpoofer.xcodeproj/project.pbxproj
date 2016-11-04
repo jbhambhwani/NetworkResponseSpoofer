@@ -23,8 +23,8 @@
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
-		415DE4931DC18D26000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		415DE4941DC18D26000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
+		415DE4931DC18D26000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		415DE4941DC18D26000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		415DE4951DC18EA7000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		415DE4961DC18EA7000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
@@ -439,7 +439,7 @@
 		};
 		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -449,13 +449,13 @@
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputPaths = (
@@ -465,7 +465,7 @@
 			name = "Carthage Copy Frameworks";
 			outputPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};

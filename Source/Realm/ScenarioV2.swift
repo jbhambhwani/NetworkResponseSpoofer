@@ -26,6 +26,7 @@ class ScenarioV2: Object {
 extension ScenarioV2 {
     
     func addResponse(_ response: APIResponseV2) {
+        // TODO:
         // apiResponses = apiResponses.filter("requestURL != %@", response.requestURL)
         apiResponses.append(response)
         postNotification("Response received:\n\(response)", object: self)

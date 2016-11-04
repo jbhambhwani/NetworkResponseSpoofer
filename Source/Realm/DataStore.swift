@@ -49,7 +49,7 @@ fileprivate struct RealmStore: Store {
     static let sharedInstance = RealmStore()
     
     init() {
-        print("DataStore Path: \(realm.configuration.fileURL)")
+        print("\nDataStore Path: \(realm.configuration.fileURL)\n")
     }
     
     func allScenarioNames() -> [String]  {
