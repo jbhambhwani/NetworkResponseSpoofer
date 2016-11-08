@@ -63,20 +63,27 @@ class APIResponseSpooferTests: XCTestCase {
         // 1: Start replaying the smoke test scenario
         Spoofer.startReplaying(scenarioName: smokeTest)
         // 2: Make sure the scenario was loaded to spoofer
-        if let smokeScenario = Spoofer.spoofedScenario {
-            XCTAssertTrue(smokeScenario.name == smokeTest, "Smoke test scenario was not loaded correctly")
+        if Spoofer.scenarioName.isEmpty == false {
+            XCTAssertTrue(Spoofer.scenarioName == smokeTest, "Smoke test scenario was not loaded correctly")
             
-            guard let responseData = smokeScenario.apiResponses.first?.data else {
-                XCTFail("No data was found on smoke test scenario")
-                return
+            let loadResult = DataStore.load(scenarioName: smokeTest)
+            switch loadResult {
+            case .success(let scenario):
+                guard let responseData = scenario.apiResponses.first?.data else {
+                    XCTFail("No data was found on smoke test scenario")
+                    return
+                }
+                let responseDict: [String: String]? = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as! [String : String]
+                
+                guard let json = responseDict, json == ["one": "two", "key": "value"] else {
+                    XCTFail("Replayed respose not same as Recorded")
+                    return
+                }
+        
+            case .failure(_): break
+
             }
-            let responseDict: [String: String]? = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as! [String : String]
-            
-            guard let json = responseDict, json == ["one": "two", "key": "value"] else {
-                XCTFail("Replayed respose not same as Recorded")
-                return
-            }
-            
+
         } else {
             XCTFail("Smoke test scenario was not loaded")
         }

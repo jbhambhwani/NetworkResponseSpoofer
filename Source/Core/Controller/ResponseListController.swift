@@ -127,10 +127,6 @@ extension ResponseListController {
                     DispatchQueue.main.async(execute: {
                         // Update the tableview upon succesful scenario updation
                         tableView.deleteRows(at: [indexPath], with: .automatic)
-                        // If Spoofer was already in replay mode, update the scenario with the updated version
-                        if Spoofer.spoofedScenario != nil {
-                            Spoofer.spoofedScenario = savedScenario
-                        }
                     })
 
                 case .failure(_):

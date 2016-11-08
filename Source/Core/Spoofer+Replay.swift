@@ -53,8 +53,7 @@ public extension Spoofer {
         
         switch loadResult {
         case .success(let scenario):
-            setReplaying = true
-            spoofedScenario = scenario
+            scenarioName = scenario.name
             // Inform the delegate that spoofer started replay
             Spoofer.delegate?.spooferDidStartReplaying(name, success: true)
             // Post a state change notification for interested parties
@@ -75,13 +74,13 @@ public extension Spoofer {
      */
     class func stopReplaying() {
         SpooferReplayer.stopIntercept()
-        setReplaying = false
-        if let scenarioName = spoofedScenario?.name {
+        guard scenarioName.isEmpty == false else {
             // Inform the delegate that spoofer stopped replay
             Spoofer.delegate?.spooferDidStopReplaying(scenarioName)
             // Post a state change notification for interested parties
             NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedReplayingNotification), object: sharedInstance)
+            return
         }
-        spoofedScenario = nil
+        
     }
 }

@@ -56,8 +56,8 @@ public class Spoofer: NSObject {
     
     /// The scenario name being recorded or replayed. Returns empty when the Spoofer is not active
     public class var scenarioName: String {
-        guard let scenario = spoofedScenario else { return String() }
-        return scenario.name
+        get { return sharedInstance.scenarioName }
+        set { sharedInstance.scenarioName = newValue }
     }
     
     /// White list of host names the Spoofer would intercept. If set, only whitelist host names would be recorded
@@ -154,11 +154,6 @@ public class Spoofer: NSObject {
         return false
     }
     
-    class var spoofedScenario: ScenarioV2? {
-        get { return sharedInstance.scenario }
-        set { sharedInstance.scenario = newValue }
-    }
-    
     class var setRecording: Bool {
         get { return sharedInstance.recording }
         
@@ -213,7 +208,7 @@ public class Spoofer: NSObject {
     }()
     
     static let sharedInstance = Spoofer()
-    var scenario: ScenarioV2? = nil
+    var scenarioName: String = ""
     var recording: Bool = false
     var replaying: Bool = false
     private var spoofedHosts = [String]()

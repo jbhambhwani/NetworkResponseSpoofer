@@ -9,17 +9,20 @@
 import Foundation
 import RealmSwift
 
-enum DataStoreError: Error {
-    case notFound
+enum StoreError: Error {
+    case scenarioNotFound
     case unableToSave
     case unableToDelete
 }
 
 protocol Store {
+    // Scenario
     func allScenarioNames() -> [String]
     func save(scenario: ScenarioV2) -> Result<ScenarioV2>
     func load(scenarioName: String) -> Result<ScenarioV2>
     func delete(scenarioName: String) -> Result<ScenarioV2>
+    // Response
+    func save(scenarioName: String, response: APIResponseV2) -> Result<APIResponseV2>
 }
 
 
@@ -31,6 +34,11 @@ enum DataStore {
     
     static func save(scenario: ScenarioV2) -> Result<ScenarioV2> {
         return RealmStore.sharedInstance.save(scenario: scenario)
+    }
+
+    // TODO: Does not need to be discardable
+    @discardableResult static func save(scenarioName: String, response: APIResponseV2) -> Result<APIResponseV2> {
+        return RealmStore.sharedInstance.save(scenarioName: scenarioName, response: response)
     }
     
     static func load(scenarioName: String) -> Result<ScenarioV2> {
@@ -44,17 +52,24 @@ enum DataStore {
 }
 
 
-fileprivate struct RealmStore: Store {
+fileprivate struct RealmStore {
 
     static let sharedInstance = RealmStore()
+    var realm: Realm { return try! Realm() }
     
     init() {
-        print("\nDataStore Path: \(realm.configuration.fileURL)\n")
+        print("\nDataStore Path: \(Realm.Configuration.defaultConfiguration.fileURL)\n")
+    }
+}
+
+extension RealmStore: Store {
+    
+    private func getScenario(_ name: String) -> ScenarioV2? {
+        return realm.objects(ScenarioV2.self).filter("name == %@", name).first
     }
     
     func allScenarioNames() -> [String]  {
-        let allScenarios = realm.objects(ScenarioV2.self)
-        return allScenarios.flatMap { $0.name }
+        return realm.objects(ScenarioV2.self).flatMap { $0.name }
     }
     
     func save(scenario: ScenarioV2) -> Result<ScenarioV2> {
@@ -64,31 +79,42 @@ fileprivate struct RealmStore: Store {
             }
             return .success(scenario)
         } catch {
-            return .failure(DataStoreError.unableToSave)
+            return .failure(StoreError.unableToSave)
         }
     }
     
+    // Rename - since this is not loading to memory
     func load(scenarioName: String) -> Result<ScenarioV2> {
-        let allScenarios = realm.objects(ScenarioV2.self)
-        guard let scenario = allScenarios.filter("name == %@",scenarioName).first else {
-            return .failure(DataStoreError.notFound)
-        }
+        guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
         return .success(scenario)
     }
     
     func delete(scenarioName: String) -> Result<ScenarioV2> {
-        let allScenarios = realm.objects(ScenarioV2.self)
-        let scenario = allScenarios.filter("name == %@",scenarioName).first
-        guard let scenarioToDelete = scenario else { return .failure(DataStoreError.notFound) }
+        guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
+        
         do {
             try realm.write {
-                realm.delete(scenarioToDelete)
+                realm.delete(scenario)
             }
-            return .success(scenarioToDelete)
+            return .success(scenario)
         } catch {
-            return .failure(DataStoreError.unableToDelete)
+            return .failure(StoreError.unableToDelete)
         }
     }
     
-    let realm = try! Realm()
+    func save(scenarioName: String, response: APIResponseV2) -> Result<APIResponseV2> {
+        
+        guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
+        scenario.apiResponses.append(response)
+        
+        do {
+            try realm.write {
+                realm.add(scenario, update: true)
+            }
+            return .success(response)
+        } catch {
+            return .failure(StoreError.unableToDelete)
+        }
+    }
+    
 }

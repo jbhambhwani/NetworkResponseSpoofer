@@ -28,7 +28,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         // 2: Check if the request is to be handled or not based on a whitelist. If no whitelist is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(url)
         // 3: Check if we have a scenario loaded in memory
-        let hasSavedScenario = (Spoofer.spoofedScenario != nil) ? true : false
+        let hasSavedScenario = Spoofer.scenarioName.isEmpty == false
         
         if Spoofer.isReplaying && isHTTP && shouldHandleURL && hasSavedScenario {
             return true
@@ -48,35 +48,48 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
     override public func startLoading() {
         guard let url = request.url else { return }
         
-        guard let spoofedScenario = Spoofer.spoofedScenario, let cachedResponse = spoofedScenario.responseForRequest(request), let cachedURL = URL(string: cachedResponse.requestURL) else {
-            // Throw an error in case we are unable to load a response
-            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
-            client?.urlProtocol(self, didFailWithError: httpError)
-            return
-        }
+        let loadResult = DataStore.load(scenarioName: Spoofer.scenarioName)
         
-        var httpResponse: HTTPURLResponse?
-        
-        switch currentReplayMethod {
+        switch loadResult {
+        case .success(let scenario):
+            
+            guard let cachedResponse = scenario.responseForRequest(request), let cachedURL = URL(string: cachedResponse.requestURL) else {
+                // Throw an error in case we are unable to load a response
+                let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
+                client?.urlProtocol(self, didFailWithError: httpError)
+                return
+            }
+
+            var httpResponse: HTTPURLResponse?
+            
+            switch currentReplayMethod {
             case .statusCodeAndHeader:
                 let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
                 httpResponse = HTTPURLResponse(url: cachedURL, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: ResponseHeaderItem.deSerialize(headerItems: Array(cachedResponse.headerFields)))
             case .mimeTypeAndEncoding:
                 httpResponse = HTTPURLResponse(url: cachedURL, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
-        }
-
-        guard let spoofedResponse = httpResponse else {
-            // Throw an error in case we are unable to serialize a response
+            }
+            
+            guard let spoofedResponse = httpResponse else {
+                // Throw an error in case we are unable to serialize a response
+                let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
+                client?.urlProtocol(self, didFailWithError: httpError)
+                return
+            }
+            
+            postNotification("Serving response from 💾: \(url)", object: self)
+            
+            client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
+            client?.urlProtocol(self, didLoad: cachedResponse.data)
+            client?.urlProtocolDidFinishLoading(self)
+            
+        case .failure(_):
+        
+            // Throw an error in case we are unable to load a response
             let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
             client?.urlProtocol(self, didFailWithError: httpError)
-            return
         }
         
-        postNotification("Serving response from 💾: \(url)", object: self)
-        
-        client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
-        client?.urlProtocol(self, didLoad: cachedResponse.data)
-        client?.urlProtocolDidFinishLoading(self)
     }
     
     override public func stopLoading() {

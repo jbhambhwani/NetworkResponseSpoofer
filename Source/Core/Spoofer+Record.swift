@@ -40,8 +40,7 @@ public extension Spoofer {
         createAction.isEnabled = false
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            setRecording = false
-            spoofedScenario = nil
+            scenarioName = ""
             SpooferRecorder.stopIntercept()
         }
         
@@ -73,46 +72,45 @@ public extension Spoofer {
         let protocolRegistered = SpooferRecorder.startIntercept()
         
         if protocolRegistered {
-            setRecording = true
             // Create a fresh scenario based on the named passed in
-            spoofedScenario = ScenarioV2()
-            spoofedScenario?.name = name
-            // Inform the delegate that spoofer started recording
-            Spoofer.delegate?.spooferDidStartRecording(name)
-            // Post a state change notification for interested parties
-            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStartedRecordingNotification), object: sharedInstance, userInfo: ["scenario": name])
+            let spoofedScenario = ScenarioV2()
+            spoofedScenario.name = name
+            let saveResult = DataStore.save(scenario: spoofedScenario)
+            
+            switch saveResult {
+            case .success(let scenario):
+                // Save the name (key) for retrieval later
+                scenarioName = scenario.name
+                // Inform the delegate that spoofer started recording
+                Spoofer.delegate?.spooferDidStartRecording(scenario.name)
+                // Post a state change notification for interested parties
+                NotificationCenter.default.post(name:
+                    Notification.Name(rawValue: spooferStartedRecordingNotification),
+                                                object: sharedInstance,
+                                                userInfo: ["scenario": scenario.name])
+                
+            case .failure(_):
+                return false
+            }
         }
         
         return protocolRegistered
     }
     
     /**
-     Stop recording the current scenario and save the .scenario file to Documents folder
+     Stop recording the current scenario
      */
     class func stopRecording() {
+
         SpooferRecorder.stopIntercept()
-        guard let scenario = sharedInstance.scenario else { return }
-        
-        let saveResult = DataStore.save(scenario: scenario)
-        
-        switch saveResult {
-        case .success(let savedScenario):
-            setRecording = false
-            spoofedScenario = nil
-            // Inform the delegate of successful save
-            Spoofer.delegate?.spooferDidStopRecording(savedScenario.name, success: true)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedRecordingNotification), object: sharedInstance, userInfo: ["scenario": savedScenario.name, "success": true])
-            
-        case .failure(_):
-            if let scenarioName = spoofedScenario?.name {
-                setRecording = false
-                spoofedScenario = nil
-                // Inform the delegate that saving scenario failed
-                Spoofer.delegate?.spooferDidStopRecording(scenarioName, success: false)
-                // Post a state change notification for interested parties
-                NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedRecordingNotification), object: sharedInstance, userInfo: ["scenario": scenarioName])
-            }
-        }
+
+        let success = scenarioName.isEmpty == false
+        // Post a notification and Inform the delegate
+        NotificationCenter.default.post(name:
+            Notification.Name(rawValue: spooferStoppedRecordingNotification),
+                                        object: sharedInstance,
+                                        userInfo: ["scenario": scenarioName, "success": success])
+        Spoofer.delegate?.spooferDidStopRecording(scenarioName, success: success)
     }
     
 }
