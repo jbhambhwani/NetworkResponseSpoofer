@@ -24,7 +24,7 @@ func logFormattedSeperator(_ message: String? = "-") {
     }
 }
 
-func postNotification(_ message: String, object: AnyObject? = nil) {
+func postNotification(_ message: String, object: Any? = nil) {
     // Print to console
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
