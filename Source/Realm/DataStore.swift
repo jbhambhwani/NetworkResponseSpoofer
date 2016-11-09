@@ -11,8 +11,9 @@ import RealmSwift
 
 enum StoreError: Error {
     case scenarioNotFound
-    case unableToSave
-    case unableToDelete
+    case unableToSaveScenario
+    case unableToSaveResponse
+    case unableToDeleteScenario
 }
 
 protocol Store {
@@ -22,7 +23,7 @@ protocol Store {
     func load(scenarioName: String) -> Result<ScenarioV2>
     func delete(scenarioName: String) -> Result<ScenarioV2>
     // Response
-    func save(scenarioName: String, response: APIResponseV2) -> Result<APIResponseV2>
+    func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2>
 }
 
 
@@ -37,8 +38,8 @@ enum DataStore {
     }
 
     // TODO: Does not need to be discardable
-    @discardableResult static func save(scenarioName: String, response: APIResponseV2) -> Result<APIResponseV2> {
-        return RealmStore.sharedInstance.save(scenarioName: scenarioName, response: response)
+    @discardableResult static func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2> {
+        return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName)
     }
     
     static func load(scenarioName: String) -> Result<ScenarioV2> {
@@ -79,7 +80,7 @@ extension RealmStore: Store {
             }
             return .success(scenario)
         } catch {
-            return .failure(StoreError.unableToSave)
+            return .failure(StoreError.unableToSaveScenario)
         }
     }
     
@@ -98,11 +99,11 @@ extension RealmStore: Store {
             }
             return .success(scenario)
         } catch {
-            return .failure(StoreError.unableToDelete)
+            return .failure(StoreError.unableToDeleteScenario)
         }
     }
     
-    func save(scenarioName: String, response: APIResponseV2) -> Result<APIResponseV2> {
+    func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2> {
         
         guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
         scenario.apiResponses.append(response)
@@ -113,7 +114,7 @@ extension RealmStore: Store {
             }
             return .success(response)
         } catch {
-            return .failure(StoreError.unableToDelete)
+            return .failure(StoreError.unableToSaveResponse)
         }
     }
     

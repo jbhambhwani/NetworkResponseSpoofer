@@ -50,14 +50,12 @@ public extension Spoofer {
         let protocolRegistered = SpooferReplayer.startIntercept()
         
         let loadResult = DataStore.load(scenarioName: name)
-        
         switch loadResult {
         case .success(let scenario):
             Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name))
             
         case .failure(_):
-            // TODO: State change
-            break
+            return false
         }
         
         return protocolRegistered
@@ -68,13 +66,7 @@ public extension Spoofer {
      */
     class func stopReplaying() {
         SpooferReplayer.stopIntercept()
-        guard scenarioName.isEmpty == false else {
-            // Inform the delegate that spoofer stopped replay
-            Spoofer.delegate?.spooferDidStopReplaying(scenarioName)
-            // Post a state change notification for interested parties
-            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedReplayingNotification), object: sharedInstance)
-            return
-        }
-        
+        Spoofer.sharedInstance.stateManager.transformState(networkAction: .stopIntercept)
     }
+    
 }

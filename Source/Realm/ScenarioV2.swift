@@ -25,13 +25,6 @@ class ScenarioV2: Object {
 
 extension ScenarioV2 {
     
-    func addResponse(_ response: APIResponseV2) {
-        // TODO:
-        // apiResponses = apiResponses.filter("requestURL != %@", response.requestURL)
-        apiResponses.append(response)
-        postNotification("Response received:\n\(response)", object: self)
-    }
-    
     func responseForRequest(_ urlRequest: URLRequest) -> APIResponseV2? {
         guard let requestURLString = urlRequest.url?.normalizedURLString else { return nil }
         let response = apiResponses.filter { savedResponse in

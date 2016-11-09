@@ -93,16 +93,8 @@ public extension Spoofer {
      Stop recording the current scenario
      */
     class func stopRecording() {
-
         SpooferRecorder.stopIntercept()
-
-        let success = scenarioName.isEmpty == false
-        // Post a notification and Inform the delegate
-        NotificationCenter.default.post(name:
-            Notification.Name(rawValue: spooferStoppedRecordingNotification),
-                                        object: sharedInstance,
-                                        userInfo: ["scenario": scenarioName, "success": success])
-        Spoofer.delegate?.spooferDidStopRecording(scenarioName)
+        Spoofer.sharedInstance.stateManager.transformState(networkAction: .stopIntercept)
     }
     
 }
