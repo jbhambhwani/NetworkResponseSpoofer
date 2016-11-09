@@ -111,19 +111,15 @@ extension ResponseListController {
         
         switch editingStyle {
             case .delete:
-                // Remove the response from local array
-                allResponses.remove(at: indexPath.row)
-                // Create a new scenario based on the responses and save it to disk
+                // TODO: Fix all this logic Remove the response from local array
                 let scenario = ScenarioV2()
                 scenario.name = scenarioName
-                
-                // TODO:
-                // scenario.apiResponses = allResponses
+                scenario.apiResponses.remove(objectAtIndex: indexPath.row)
                 
                 let saveResult = DataStore.save(scenario: scenario)
                 
                 switch saveResult {
-                case .success(let savedScenario):
+                case .success(_):
                     DispatchQueue.main.async(execute: {
                         // Update the tableview upon succesful scenario updation
                         tableView.deleteRows(at: [indexPath], with: .automatic)

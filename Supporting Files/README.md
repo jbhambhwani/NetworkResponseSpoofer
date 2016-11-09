@@ -130,8 +130,8 @@ class MyClass: SpooferDelegate {
 And then implement the below methods
 ```swift
 func spooferDidStartRecording(scenarioName: String)
-func spooferDidStopRecording(scenarioName: String, success: Bool)
-func spooferDidStartReplaying(scenarioName: String, success: Bool)
+func spooferDidStopRecording(scenarioName: String)
+func spooferDidStartReplaying(scenarioName: String)
 func spooferDidStopReplaying(scenarioName: String)
 ```
 

@@ -15,7 +15,7 @@ public extension Spoofer {
     
     /// Returns true if the Spoofer is recording a scenario
     class var isRecording: Bool {
-        return sharedInstance.recording
+        return sharedInstance.stateManager.state.isRecording
     }
     
     /**
@@ -40,7 +40,6 @@ public extension Spoofer {
         createAction.isEnabled = false
         
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            scenarioName = ""
             SpooferRecorder.stopIntercept()
         }
         
@@ -79,15 +78,8 @@ public extension Spoofer {
             
             switch saveResult {
             case .success(let scenario):
-                // Save the name (key) for retrieval later
-                scenarioName = scenario.name
-                // Inform the delegate that spoofer started recording
-                Spoofer.delegate?.spooferDidStartRecording(scenario.name)
-                // Post a state change notification for interested parties
-                NotificationCenter.default.post(name:
-                    Notification.Name(rawValue: spooferStartedRecordingNotification),
-                                                object: sharedInstance,
-                                                userInfo: ["scenario": scenario.name])
+                // Transform state to recording
+                Spoofer.sharedInstance.stateManager.transformState(networkAction: .record(scenarioName: scenario.name))
                 
             case .failure(_):
                 return false
@@ -110,7 +102,7 @@ public extension Spoofer {
             Notification.Name(rawValue: spooferStoppedRecordingNotification),
                                         object: sharedInstance,
                                         userInfo: ["scenario": scenarioName, "success": success])
-        Spoofer.delegate?.spooferDidStopRecording(scenarioName, success: success)
+        Spoofer.delegate?.spooferDidStopRecording(scenarioName)
     }
     
 }

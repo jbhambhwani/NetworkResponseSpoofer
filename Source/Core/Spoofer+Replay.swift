@@ -15,7 +15,7 @@ public extension Spoofer {
 
     /// Returns true if the Spoofer is replaying a scenario
     class var isReplaying: Bool {
-        return sharedInstance.replaying
+        return sharedInstance.stateManager.state.isReplaying
     }
     
     /**
@@ -53,17 +53,11 @@ public extension Spoofer {
         
         switch loadResult {
         case .success(let scenario):
-            scenarioName = scenario.name
-            // Inform the delegate that spoofer started replay
-            Spoofer.delegate?.spooferDidStartReplaying(name, success: true)
-            // Post a state change notification for interested parties
-            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStartedReplayingNotification), object: sharedInstance, userInfo: ["scenario": name, "success": true])
+            Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name))
             
         case .failure(_):
-            // Inform the delegate that spoofer could not start replay
-            Spoofer.delegate?.spooferDidStartReplaying(name, success: false)
-            // Post a state change notification for interested parties
-            NotificationCenter.default.post(name: Notification.Name(rawValue: spooferStoppedReplayingNotification), object: sharedInstance)
+            // TODO: State change
+            break
         }
         
         return protocolRegistered

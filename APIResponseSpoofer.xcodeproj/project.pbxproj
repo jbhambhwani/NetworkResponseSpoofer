@@ -23,6 +23,7 @@
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
+		4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
 		415DE4931DC18D26000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		415DE4941DC18D26000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		415DE4951DC18EA7000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
@@ -39,6 +40,7 @@
 		41D4AF301C98EAF00086AEB2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
 		41E04BB41DC41F3900AD8261 /* ScenarioV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */; };
+		41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
 		41F879FD1DC96B5800B457F4 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FC1DC96B5800B457F4 /* DataStore.swift */; };
 		41F879FF1DC96BE900B457F4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
 		41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */; };
@@ -75,6 +77,7 @@
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
 		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
+		4157440E1DD2426F000F4571 /* SpooferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpooferState.swift; path = Model/SpooferState.swift; sourceTree = "<group>"; };
 		415DE4911DC18D26000929AC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
 		415DE4921DC18D26000929AC /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
@@ -89,6 +92,7 @@
 		41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioV2.swift; sourceTree = "<group>"; };
+		41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferStateManager.swift; sourceTree = "<group>"; };
 		41F879FC1DC96B5800B457F4 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		41F879FE1DC96BE900B457F4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHeaderItem.swift; sourceTree = "<group>"; };
@@ -244,6 +248,7 @@
 		415CB1891C9B14EA00827A0B /* Core */ = {
 			isa = PBXGroup;
 			children = (
+				41E62FE21DD2AC8D00ECC06F /* StateManagement */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
 				416453A71B7027A400615A39 /* Extension */,
 				4180391F1BCB7408004E1534 /* Miscellaneous */,
@@ -294,6 +299,15 @@
 				41F879FC1DC96B5800B457F4 /* DataStore.swift */,
 			);
 			path = Realm;
+			sourceTree = "<group>";
+		};
+		41E62FE21DD2AC8D00ECC06F /* StateManagement */ = {
+			isa = PBXGroup;
+			children = (
+				4157440E1DD2426F000F4571 /* SpooferState.swift */,
+				41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */,
+			);
+			name = StateManagement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -484,6 +498,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */,
 				416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */,
 				41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */,
 				41D4AF301C98EAF00086AEB2 /* SettingsViewController.swift in Sources */,
@@ -506,6 +521,7 @@
 				416552DD1B69F922006D8EDF /* Scenario.swift in Sources */,
 				4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */,
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
+				41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
 				41AA10EC1DC1358000860295 /* APIResponseV2.swift in Sources */,
 				41E04BB41DC41F3900AD8261 /* ScenarioV2.swift in Sources */,

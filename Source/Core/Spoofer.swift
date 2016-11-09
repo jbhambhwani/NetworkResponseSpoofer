@@ -24,14 +24,14 @@ import Foundation
      - parameter scenarioName: The scenario name under which all the responses were captured
      - parameter success: Boolean indicating if recording was successful
      */
-    func spooferDidStopRecording(_ scenarioName: String, success: Bool)
+    func spooferDidStopRecording(_ scenarioName: String)
     /**
      Method invoked on the delegate when the spoofer starts replaying a pre-recorded scenario
      
      - parameter scenarioName: The scenario name being replayed
      - parameter success: Boolean indicating successful replay start
      */
-    func spooferDidStartReplaying(_ scenarioName: String, success: Bool)
+    func spooferDidStartReplaying(_ scenarioName: String)
     /**
      Method invoked on the delegate when the spoofer stops replay of a given scenario
      
@@ -56,8 +56,7 @@ public class Spoofer: NSObject {
     
     /// The scenario name being recorded or replayed. Returns empty when the Spoofer is not active
     public class var scenarioName: String {
-        get { return sharedInstance.scenarioName }
-        set { sharedInstance.scenarioName = newValue }
+        return sharedInstance.stateManager.state.scenarioName
     }
     
     /// White list of host names the Spoofer would intercept. If set, only whitelist host names would be recorded
@@ -112,7 +111,7 @@ public class Spoofer: NSObject {
         set { sharedInstance.acceptSelfSignedCertificate = newValue }
     }
     
-    // MARK - Notifications
+    // MARK: - Notifications
     
     /**
      Fired whenever the Spoofer logs some meaningful output, as in request intercept, record start/stop etc
@@ -154,32 +153,6 @@ public class Spoofer: NSObject {
         return false
     }
     
-    class var setRecording: Bool {
-        get { return sharedInstance.recording }
-        
-        set {
-            sharedInstance.recording = newValue
-            if newValue {
-                logFormattedSeperator("Spoofer Recording Started")
-            } else {
-                logFormattedSeperator("Spoofer Recording Ended")
-            }
-        }
-    }
-    
-    class var setReplaying: Bool {
-        get { return sharedInstance.replaying }
-        
-        set {
-            sharedInstance.replaying = newValue
-            if newValue {
-                logFormattedSeperator("Spoofer Replay Started")
-            } else {
-                logFormattedSeperator("Spoofer Replay Ended")
-            }
-        }
-    }
-    
     class func resetConfigurations() {
         sharedInstance.spoofedHosts = [String]()
         sharedInstance.ignoredHosts = [String]()
@@ -208,9 +181,8 @@ public class Spoofer: NSObject {
     }()
     
     static let sharedInstance = Spoofer()
-    var scenarioName: String = ""
-    var recording: Bool = false
-    var replaying: Bool = false
+    let stateManager = SpooferStateManager()
+    
     private var spoofedHosts = [String]()
     private var ignoredHosts = [String]()
     private var ignoredSubdomains = [String]()
