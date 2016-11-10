@@ -13,8 +13,9 @@ final class SpooferStateManager {
     private(set) var state = SpooferState()
     
     @discardableResult func transformState(networkAction: NetworkAction) -> SpooferState {
-        let newState = state.transformState(networkAction: networkAction)
+        let newState = state.transformedState(networkAction: networkAction)
         broadcastStateChange(oldState: state, newState: newState)
+        state = newState
         return newState
     }
 }

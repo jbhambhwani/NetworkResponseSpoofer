@@ -20,7 +20,7 @@ struct SpooferState: Equatable {
     var isReplaying = false
     var scenarioName = ""
     
-    @discardableResult func transformState(networkAction: NetworkAction) -> SpooferState {
+    @discardableResult func transformedState(networkAction: NetworkAction) -> SpooferState {
         
         switch networkAction {
         
