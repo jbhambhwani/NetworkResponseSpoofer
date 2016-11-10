@@ -106,11 +106,10 @@ extension RealmStore: Store {
     func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2> {
         
         guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
-        scenario.apiResponses.append(response)
         
         do {
             try realm.write {
-                realm.add(scenario, update: true)
+                scenario.apiResponses.append(response)
             }
             return .success(response)
         } catch {
