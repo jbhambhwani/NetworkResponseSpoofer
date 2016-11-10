@@ -20,14 +20,12 @@
 		412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
 		4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EF1B6EA21C00EAFE04 /* Store.swift */; };
+		4135D0801DD3F9D200C20BD4 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4135D07E1DD3F9D200C20BD4 /* Realm.framework */; };
+		4135D0831DD3F9EB00C20BD4 /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4135D0821DD3F9EB00C20BD4 /* RealmSwift.framework */; };
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
 		4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
-		415DE4931DC18D26000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		415DE4941DC18D26000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		415DE4951DC18EA7000929AC /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4911DC18D26000929AC /* Realm.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		415DE4961DC18EA7000929AC /* RealmSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 415DE4921DC18D26000929AC /* RealmSwift.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
 		416552DD1B69F922006D8EDF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DC1B69F922006D8EDF /* Scenario.swift */; };
 		416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DE1B69FA74006D8EDF /* APIResponse.swift */; };
@@ -71,15 +69,15 @@
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
 		4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferReplayer.swift; sourceTree = "<group>"; };
 		4131B8EF1B6EA21C00EAFE04 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
+		4135D07E1DD3F9D200C20BD4 /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
+		4135D0821DD3F9EB00C20BD4 /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
 		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
 		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
-		4157440E1DD2426F000F4571 /* SpooferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpooferState.swift; path = SpooferState.swift; sourceTree = "<group>"; };
-		415DE4911DC18D26000929AC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Realm.framework; sourceTree = "<group>"; };
-		415DE4921DC18D26000929AC /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
+		4157440E1DD2426F000F4571 /* SpooferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferState.swift; sourceTree = "<group>"; };
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		416552DC1B69F922006D8EDF /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		416552DE1B69FA74006D8EDF /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -103,8 +101,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				415DE4951DC18EA7000929AC /* Realm.framework in Frameworks */,
-				415DE4961DC18EA7000929AC /* RealmSwift.framework in Frameworks */,
 				411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -113,8 +109,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				415DE4931DC18D26000929AC /* Realm.framework in Frameworks */,
-				415DE4941DC18D26000929AC /* RealmSwift.framework in Frameworks */,
+				4135D0831DD3F9EB00C20BD4 /* RealmSwift.framework in Frameworks */,
+				4135D0801DD3F9D200C20BD4 /* Realm.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -167,6 +163,15 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
+		4135D0791DD3F91900C20BD4 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4135D0821DD3F9EB00C20BD4 /* RealmSwift.framework */,
+				4135D07E1DD3F9D200C20BD4 /* Realm.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		413D55EA1DCA8CDB00A5E084 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -174,18 +179,17 @@
 				41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */,
 				41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */,
 			);
-			name = Models;
 			path = Models;
 			sourceTree = "<group>";
 		};
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				415DE4901DC18D25000929AC /* Dependency Frameworks */,
 				4147EA4E1B684D7E001DE517 /* Products */,
 				4147EA4F1B684D7E001DE517 /* Source */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
 				411A35781BC74A7D001D128D /* Tests */,
+				4135D0791DD3F91900C20BD4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -264,16 +268,6 @@
 			path = Core;
 			sourceTree = "<group>";
 		};
-		415DE4901DC18D25000929AC /* Dependency Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				415DE4911DC18D26000929AC /* Realm.framework */,
-				415DE4921DC18D26000929AC /* RealmSwift.framework */,
-			);
-			name = "Dependency Frameworks";
-			path = "Dependency Frameworks";
-			sourceTree = "<group>";
-		};
 		416453A71B7027A400615A39 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
@@ -300,7 +294,6 @@
 				413D55EA1DCA8CDB00A5E084 /* Models */,
 				41F879FC1DC96B5800B457F4 /* DataStore.swift */,
 			);
-			name = Realm;
 			path = Realm;
 			sourceTree = "<group>";
 		};
@@ -310,7 +303,6 @@
 				4157440E1DD2426F000F4571 /* SpooferState.swift */,
 				41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */,
 			);
-			name = StateManagement;
 			path = StateManagement;
 			sourceTree = "<group>";
 		};
