@@ -57,8 +57,6 @@ extension SpooferStateManager {
                 break
             }
             
-            logFormattedSeperator("Spoofer Inactive")
-            
         default:
             break
         }

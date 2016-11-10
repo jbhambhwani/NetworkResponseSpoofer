@@ -37,7 +37,7 @@ func spooferStoryBoard() -> UIStoryboard {
     return storyBoard
 }
 
-@discardableResult func handleError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
+@discardableResult func generateError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
     var userInfo = [NSLocalizedFailureReasonErrorKey: reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
     if let url = url {
         userInfo[NSURLErrorFailingURLErrorKey] = url

@@ -48,6 +48,8 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
     override public func startLoading() {
         guard let url = request.url else { return }
         
+        let httpError = generateError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
+
         let loadResult = DataStore.load(scenarioName: Spoofer.scenarioName)
         
         switch loadResult {
@@ -55,7 +57,6 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
             
             guard let cachedResponse = scenario.responseForRequest(request), let cachedURL = URL(string: cachedResponse.requestURL) else {
                 // Throw an error in case we are unable to load a response
-                let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
             }
@@ -72,7 +73,6 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
             
             guard let spoofedResponse = httpResponse else {
                 // Throw an error in case we are unable to serialize a response
-                let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
             }
@@ -86,7 +86,6 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         case .failure(_):
         
             // Throw an error in case we are unable to load a response
-            let httpError = handleError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
             client?.urlProtocol(self, didFailWithError: httpError)
         }
         
