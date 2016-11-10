@@ -1,8 +1,5 @@
 PODS:
   - APIResponseSpoofer (2.0.3):
-    - APIResponseSpoofer/Lite (= 2.0.3)
-  - APIResponseSpoofer/Lite (2.0.3)
-  - APIResponseSpoofer/Realm (2.0.3):
     - RealmSwift
   - Realm (2.0.3):
     - Realm/Headers (= 2.0.3)
@@ -12,17 +9,16 @@ PODS:
 
 DEPENDENCIES:
   - APIResponseSpoofer (from `../`)
-  - APIResponseSpoofer/Realm (from `../`)
 
 EXTERNAL SOURCES:
   APIResponseSpoofer:
     :path: "../"
 
 SPEC CHECKSUMS:
-  APIResponseSpoofer: e9365c207827cf7a64a858d222f098b8445864b5
+  APIResponseSpoofer: 24f75e1f61d0932048c1d3f3206fef864230f56e
   Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
   RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
 
-PODFILE CHECKSUM: '009ca7799f6626fbc7ab32a8ed4f0359fe259e2f'
+PODFILE CHECKSUM: f473a984759f95ff16aa1b237bb04ff9720cb665
 
 COCOAPODS: 1.1.1
