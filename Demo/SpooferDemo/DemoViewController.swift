@@ -151,11 +151,11 @@ extension DemoViewController: SpooferDelegate {
         executeActionsForRecording(recordingState: true)
     }
     
-    func spooferDidStopRecording(_ scenarioName: String, success: Bool) {
+    func spooferDidStopRecording(_ scenarioName: String) {
         executeActionsForRecording(recordingState: false)
     }
     
-    func spooferDidStartReplaying(_ scenarioName: String, success: Bool) {
+    func spooferDidStartReplaying(_ scenarioName: String) {
         executeActionsForReplaying(replayingState: true)
     }
     
