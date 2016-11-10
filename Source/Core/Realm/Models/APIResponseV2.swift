@@ -27,7 +27,7 @@ class APIResponseV2: Object {
      */
     dynamic var data: Data {
         get {
-            guard let dataFromString = jsonRepresentation.data(using: .utf8) else {
+            guard jsonRepresentation.isEmpty == false, let dataFromString = jsonRepresentation.data(using: .utf8) else {
                 return backupData ?? Data()
             }
             return dataFromString
@@ -68,7 +68,7 @@ extension APIResponseV2 {
         let statusCode = NSInteger(httpURLResponse.statusCode)
         
         let response = APIResponseV2()
-        response.requestURL = url.absoluteString
+        response.requestURL = url.absoluteString.lowercased()
         response.httpMethod = method
         response.statusCode = statusCode
         response.mimeType = mimeType
