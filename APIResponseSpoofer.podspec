@@ -13,17 +13,7 @@ Pod::Spec.new do |s|
   s.source = { :git => 'https://stash/scm/hotwire/apiresponsespoofer.git', :tag => s.version.to_s }
   s.requires_arc = true
   s.frameworks = 'UIKit', 'Foundation'
-  s.default_subspec = 'Lite'
-
-  s.subspec "Lite" do |lite|
-  # Leaving this empty of 3rd party dependencies so that Spoofer can work indipendently, though this goes against Cocoapods best practices of having all dependencies installed as default
-    lite.source_files = 'Source/Core/**/*.swift'
-    lite.resources = 'Source/Core/View/*.storyboard'
-  end
-
-  s.subspec "Realm" do |ss|
-    # ss.source_files  = "Source/Realm/**/*swift"
-    ss.dependency "RealmSwift"
-  end
-
+  s.source_files = 'Source/Core/**/*.swift'
+  s.resources = 'Source/Core/View/*.storyboard'
+  s.dependency "RealmSwift"
 end

@@ -77,9 +77,9 @@
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
 		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
-		4157440E1DD2426F000F4571 /* SpooferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpooferState.swift; path = Model/SpooferState.swift; sourceTree = "<group>"; };
-		415DE4911DC18D26000929AC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Carthage/Build/iOS/Realm.framework; sourceTree = "<group>"; };
-		415DE4921DC18D26000929AC /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = Carthage/Build/iOS/RealmSwift.framework; sourceTree = "<group>"; };
+		4157440E1DD2426F000F4571 /* SpooferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SpooferState.swift; path = SpooferState.swift; sourceTree = "<group>"; };
+		415DE4911DC18D26000929AC /* Realm.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Realm.framework; path = Realm.framework; sourceTree = "<group>"; };
+		415DE4921DC18D26000929AC /* RealmSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = RealmSwift.framework; path = RealmSwift.framework; sourceTree = "<group>"; };
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		416552DC1B69F922006D8EDF /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		416552DE1B69FA74006D8EDF /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
@@ -175,16 +175,17 @@
 				41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */,
 			);
 			name = Models;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
+				415DE4901DC18D25000929AC /* Dependency Frameworks */,
+				4147EA4E1B684D7E001DE517 /* Products */,
 				4147EA4F1B684D7E001DE517 /* Source */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
 				411A35781BC74A7D001D128D /* Tests */,
-				4147EA4E1B684D7E001DE517 /* Products */,
-				415DE4901DC18D25000929AC /* Dependency Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -201,7 +202,6 @@
 			isa = PBXGroup;
 			children = (
 				415CB1891C9B14EA00827A0B /* Core */,
-				41BFEC881DC1142C006DC5D4 /* Realm */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -248,12 +248,13 @@
 		415CB1891C9B14EA00827A0B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				41E62FE21DD2AC8D00ECC06F /* StateManagement */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
 				416453A71B7027A400615A39 /* Extension */,
 				4180391F1BCB7408004E1534 /* Miscellaneous */,
 				4131B8F31B6EA71800EAFE04 /* Model */,
 				4131B8F21B6EA6F400EAFE04 /* Protocol */,
+				41BFEC881DC1142C006DC5D4 /* Realm */,
+				41E62FE21DD2AC8D00ECC06F /* StateManagement */,
 				415CB1881C9B14C900827A0B /* View */,
 				410489C41C99DCD000E99745 /* ViewModel */,
 				41C012C91BF3F088004E54DF /* Spoofer+Record.swift */,
@@ -270,6 +271,7 @@
 				415DE4921DC18D26000929AC /* RealmSwift.framework */,
 			);
 			name = "Dependency Frameworks";
+			path = "Dependency Frameworks";
 			sourceTree = "<group>";
 		};
 		416453A71B7027A400615A39 /* Extension */ = {
@@ -285,9 +287,9 @@
 			isa = PBXGroup;
 			children = (
 				410489C11C99D94800E99745 /* Constants.swift */,
+				41F879FE1DC96BE900B457F4 /* Result.swift */,
 				41B1D1301D2428F000CB450E /* Swizzler.swift */,
 				4180391D1BCB73FE004E1534 /* Utility.swift */,
-				41F879FE1DC96BE900B457F4 /* Result.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -298,6 +300,7 @@
 				413D55EA1DCA8CDB00A5E084 /* Models */,
 				41F879FC1DC96B5800B457F4 /* DataStore.swift */,
 			);
+			name = Realm;
 			path = Realm;
 			sourceTree = "<group>";
 		};
@@ -308,6 +311,7 @@
 				41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */,
 			);
 			name = StateManagement;
+			path = StateManagement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

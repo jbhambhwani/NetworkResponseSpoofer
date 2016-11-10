@@ -4,11 +4,11 @@ PODS:
   - APIResponseSpoofer/Lite (2.0.3)
   - APIResponseSpoofer/Realm (2.0.3):
     - RealmSwift
-  - Realm (2.0.2):
-    - Realm/Headers (= 2.0.2)
-  - Realm/Headers (2.0.2)
-  - RealmSwift (2.0.2):
-    - Realm (= 2.0.2)
+  - Realm (2.0.3):
+    - Realm/Headers (= 2.0.3)
+  - Realm/Headers (2.0.3)
+  - RealmSwift (2.0.3):
+    - Realm (= 2.0.3)
 
 DEPENDENCIES:
   - APIResponseSpoofer (from `../`)
@@ -20,8 +20,8 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   APIResponseSpoofer: e9365c207827cf7a64a858d222f098b8445864b5
-  Realm: 0f5a194af0b7e6158b83db41b4ee1a00be7ddf1a
-  RealmSwift: 0eb5070d851cba7c66e841ca756d83609dc78bc8
+  Realm: 5f008bfe3c8c47142eddfc30b8c1584cde22db24
+  RealmSwift: 5afb451f65b682242f272dbb52d5c6f6e343c980
 
 PODFILE CHECKSUM: '009ca7799f6626fbc7ab32a8ed4f0359fe259e2f'
 
