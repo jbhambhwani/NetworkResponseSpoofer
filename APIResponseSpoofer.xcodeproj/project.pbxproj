@@ -185,10 +185,10 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				4147EA4E1B684D7E001DE517 /* Products */,
 				4147EA4F1B684D7E001DE517 /* Source */,
-				4147EA501B684D7E001DE517 /* Supporting Files */,
 				411A35781BC74A7D001D128D /* Tests */,
+				4147EA501B684D7E001DE517 /* Supporting Files */,
+				4147EA4E1B684D7E001DE517 /* Products */,
 				4135D0791DD3F91900C20BD4 /* Frameworks */,
 			);
 			sourceTree = "<group>";
