@@ -85,6 +85,8 @@ extension SwitchWithTextViewModel {
                 Spoofer.hostNamesToSpoof = newValue
             case .ignoredHosts:
                 Spoofer.hostNamesToIgnore = newValue
+            case .ignoredPaths:
+                Spoofer.pathsToIgnore = newValue
             case .normalizedSubdomains:
                 Spoofer.subDomainsToNormalize = newValue
             case .normalizedQueryParameters:
@@ -95,7 +97,7 @@ extension SwitchWithTextViewModel {
                 assertionFailure("Unhandled case")
             }
 
-            model[configType] = newValue as AnyObject?
+            model[configType] = newValue as Any?
         }
     }
 }

@@ -158,12 +158,12 @@ public class Spoofer: NSObject {
     }
     
     class func resetConfigurations() {
-        sharedInstance.spoofedHosts = []
-        sharedInstance.ignoredHosts = []
-        sharedInstance.ignoredPaths = []
-        sharedInstance.normalizedSubdomains = []
-        sharedInstance.normalizedQueryParameters = []
-        sharedInstance.normalizedPathComponents = []
+        sharedInstance.spoofedHosts = [String]()
+        sharedInstance.ignoredHosts = [String]()
+        sharedInstance.ignoredPaths = [String]()
+        sharedInstance.normalizedSubdomains = [String]()
+        sharedInstance.normalizedQueryParameters = [String]()
+        sharedInstance.normalizedPathComponents = [String]()
         sharedInstance.acceptSelfSignedCertificate = false
         sharedInstance.queryValueNormalization = false
     }
