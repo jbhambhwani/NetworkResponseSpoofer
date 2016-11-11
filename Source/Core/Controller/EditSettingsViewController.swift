@@ -85,7 +85,7 @@ extension EditSettingsViewController {
         
         switch editingStyle {
             case .delete:
-                presenter?.configurations.remove(at: (indexPath as NSIndexPath).row)
+                presenter?.configurations.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .automatic)
             case .insert: break
             case .none: break

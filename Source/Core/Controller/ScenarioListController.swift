@@ -43,7 +43,7 @@ class ScenarioListController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let responseListController = segue.destination as? ResponseListController, let indexPath = sender as? IndexPath else { return }
-        selectedScenarioName = searchController.isActive ? filteredScenarios[(indexPath as NSIndexPath).row] : scenarioNames[indexPath.row] as String
+        selectedScenarioName = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
         responseListController.scenarioName = selectedScenarioName
     }
     

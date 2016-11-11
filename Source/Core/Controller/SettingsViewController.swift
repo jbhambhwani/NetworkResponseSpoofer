@@ -57,7 +57,7 @@ extension SettingsViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: SwitchWithTextTableViewCell.defaultReuseIdentifier, for: indexPath) as! SwitchWithTextTableViewCell
-        let viewModel = SwitchWithTextViewModel(model: allSettings[(indexPath as NSIndexPath).row])
+        let viewModel = SwitchWithTextViewModel(model: allSettings[indexPath.row])
         cell.configure(withPresenter: viewModel)
         return cell
     }
