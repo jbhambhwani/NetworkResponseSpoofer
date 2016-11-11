@@ -71,6 +71,12 @@ public class Spoofer: NSObject {
         set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercased() } }
     }
     
+    /// Blacklist of Path's. If set, these path names would be ignored from recording
+    public class var pathsToIgnore: [String] {
+        get { return sharedInstance.ignoredPaths }
+        set { sharedInstance.ignoredPaths = newValue.flatMap { $0.lowercased() } }
+    }
+    
     /// Subdomains to normalize. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.
     public class var subDomainsToNormalize: [String] {
         get { return sharedInstance.normalizedSubdomains }
@@ -152,11 +158,12 @@ public class Spoofer: NSObject {
     }
     
     class func resetConfigurations() {
-        sharedInstance.spoofedHosts = [String]()
-        sharedInstance.ignoredHosts = [String]()
-        sharedInstance.normalizedSubdomains = [String]()
-        sharedInstance.normalizedQueryParameters = [String]()
-        sharedInstance.normalizedPathComponents = [String]()
+        sharedInstance.spoofedHosts = []
+        sharedInstance.ignoredHosts = []
+        sharedInstance.ignoredPaths = []
+        sharedInstance.normalizedSubdomains = []
+        sharedInstance.normalizedQueryParameters = []
+        sharedInstance.normalizedPathComponents = []
         sharedInstance.acceptSelfSignedCertificate = false
         sharedInstance.queryValueNormalization = false
     }
@@ -172,6 +179,7 @@ public class Spoofer: NSObject {
             .acceptSelfSignedCertificate: sharedInstance.acceptSelfSignedCertificate as Any,
             .spoofedHosts: sharedInstance.spoofedHosts as Any,
             .ignoredHosts: sharedInstance.ignoredHosts as Any,
+            .ignoredPaths: sharedInstance.ignoredPaths as Any,
             .normalizedSubdomains: sharedInstance.normalizedSubdomains as Any,
             .normalizedQueryParameters: sharedInstance.normalizedQueryParameters as Any,
             .normalizedPathComponents: sharedInstance.normalizedPathComponents as Any
@@ -183,6 +191,7 @@ public class Spoofer: NSObject {
     
     private var spoofedHosts = [String]()
     private var ignoredHosts = [String]()
+    private var ignoredPaths = [String]()
     private var normalizedSubdomains = [String]()
     private var normalizedQueryParameters = [String]()
     private var normalizedPathComponents = [String]()

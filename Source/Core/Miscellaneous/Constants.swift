@@ -36,7 +36,8 @@ enum SpooferConfigurationType: String {
     case queryValueNormalization = "Query Value Normalization"
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
     case spoofedHosts = "Hostnames to Spoof"
-    case ignoredHosts = "Hostnames to Ignore"
+    case ignoredHosts = "Ignored Host Names"
+    case ignoredPaths = "Ignored Paths"
     case normalizedSubdomains = "Normalized Subdomains"
     case normalizedQueryParameters = "Normalized Query Parameters"
     case normalizedPathComponents = "Normalized Path Components"
@@ -55,10 +56,13 @@ enum SpooferConfigurationType: String {
             return "Allows spoofer to proceed recording even when the certificate is not from a trusted authority"
             
         case .spoofedHosts:
-            return "Whitelist for hostnames to be Spoofed"
+            return "Whitelist of hostnames to be Spoofed"
             
         case .ignoredHosts:
-            return "Blacklist for hostnames to be ignored"
+            return "Blacklist of hostnames to be ignored"
+            
+        case .ignoredPaths:
+            return "Blacklist of path's to be ignored"
             
         case .normalizedSubdomains:
             return "A general use case would be to normalize environments like QA, DEV, Staging etc which appear as part of the url. Causes URL hostnames to match production by removing these entries. \ne.g., api.qa.example.com becomes api.example.com"
