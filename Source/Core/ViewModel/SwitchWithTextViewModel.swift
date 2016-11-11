@@ -52,8 +52,8 @@ extension SwitchWithTextViewModel {
     
     func onSwitchTogleOn(_ on: Bool) {
         switch configType {
-        case .queryParameterNormalization:
-            Spoofer.normalizeQueryParameters = on
+        case .queryValueNormalization:
+            Spoofer.normalizeQueryValues = on
         case .acceptSelfSignedCertificate:
             Spoofer.allowSelfSignedCertificate = on
         default:

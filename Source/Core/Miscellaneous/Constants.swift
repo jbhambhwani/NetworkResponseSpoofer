@@ -33,23 +33,24 @@ public enum SpooferError: Int, Error {
 // MARK: Internal
 
 enum SpooferConfigurationType: String {
-    case queryParameterNormalization = "Query Parameter Normalization"
+    case queryValueNormalization = "Query Value Normalization"
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
     case spoofedHosts = "Hostnames to Spoof"
     case ignoredHosts = "Hostnames to Ignore"
-    case ignoredSubdomains = "Subdomains to Ignore"
-    case ignoredQueryParameters = "Query Parameters to Ignore"
-    case ignoredPathComponents = "Path Components to Ignore"
+    
+    case ignoredSubdomains = "Normalized Subdomains"
+    case ignoredQueryParameters = "Normalized Query Parameters"
+    case ignoredPathComponents = "Normalized Path Components"
     case Blank = ""
     
     var allTypes: [SpooferConfigurationType] {
-        return [.queryParameterNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .ignoredSubdomains, .ignoredQueryParameters, .ignoredPathComponents, .Blank]
+        return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .ignoredSubdomains, .ignoredQueryParameters, .ignoredPathComponents, .Blank]
     }
     
     var description: String {
         switch self {
-        case .queryParameterNormalization:
-            return "Query Parameter Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are \n1. Reduced scenario file size saving some storage space. \n2. Consistent response for the same end point regardless of query parameter values"
+        case .queryValueNormalization:
+            return "Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are \n1. Reduced file size saving some storage space. \n2. Consistent response for the same end point regardless of query parameter values"
             
         case .acceptSelfSignedCertificate:
             return "Allows spoofer to proceed recording even when the certificate is not from a trusted authority"

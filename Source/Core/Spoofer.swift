@@ -92,17 +92,17 @@ public class Spoofer: NSObject {
     }
     
     /** 
-     Enable normalizing query parameters, by taking only the keys and dropping the values.
+     Enable normalizing query values, by taking only the keys and dropping the values.
      
-     - Note: Query Parameter Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
-     1. Reduced scenario file size saving some storage space.
+     - Note: Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
+     1. Reduced file size saving some storage space.
      2. Consistent response for the same end point regardless of query parameter values. 
      
      For E.g., a url such as example.com/api?key1=value1&key2=value2 becomes example.com/api?key1&key2. This allows the Spoofer to record and replay the same reponse for all calls to the end point with similar key-value query parameters.
      */
-    public class var normalizeQueryParameters: Bool {
-        get { return sharedInstance.queryParameterNormalization }
-        set { sharedInstance.queryParameterNormalization = newValue }
+    public class var normalizeQueryValues: Bool {
+        get { return sharedInstance.queryValueNormalization }
+        set { sharedInstance.queryValueNormalization = newValue }
     }
     
     /// Allows toggling accepting of self signed certificates
@@ -160,7 +160,7 @@ public class Spoofer: NSObject {
         sharedInstance.ignoredQueryParameters = [String]()
         sharedInstance.ignoredPathComponents = [String]()
         sharedInstance.acceptSelfSignedCertificate = false
-        sharedInstance.queryParameterNormalization = false
+        sharedInstance.queryValueNormalization = false
     }
     
     class var configurations: [SpooferConfigurationType : Any]? {
@@ -170,7 +170,7 @@ public class Spoofer: NSObject {
     // MARK: - Internal variables
     
     private lazy var config: [SpooferConfigurationType: Any] = {
-        return [.queryParameterNormalization: sharedInstance.queryParameterNormalization as Any,
+        return [.queryValueNormalization: sharedInstance.queryValueNormalization as Any,
             .acceptSelfSignedCertificate: sharedInstance.acceptSelfSignedCertificate as Any,
             .spoofedHosts: sharedInstance.spoofedHosts as Any,
             .ignoredHosts: sharedInstance.ignoredHosts as Any,
@@ -189,6 +189,6 @@ public class Spoofer: NSObject {
     private var ignoredQueryParameters = [String]()
     private var ignoredPathComponents = [String]()
     private var acceptSelfSignedCertificate = false
-    private var queryParameterNormalization = false
+    private var queryValueNormalization = false
     private weak var delegate: SpooferDelegate?
 }

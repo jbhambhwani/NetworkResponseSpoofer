@@ -71,7 +71,7 @@ extension URL {
         guard let query = query else { return normalizedString.lowercased() }
         
         // Normalize and append query parameter names (ignore values if normalization is requested)
-        if let queryItemNames = normalizedQueryItemNames, Spoofer.normalizeQueryParameters == true {
+        if let queryItemNames = normalizedQueryItemNames, Spoofer.normalizeQueryValues == true {
             normalizedString += queryItemNames
         } else {
             if let fragment = fragment {
