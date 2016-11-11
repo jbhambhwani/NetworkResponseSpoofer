@@ -90,6 +90,14 @@ extension ResponseListController {
         let cell = tableView.dequeueReusableCell(withIdentifier: "RequestURLCell", for: indexPath)
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
         cell.textLabel?.text = response.requestURL
+        
+        if [".png", ".jpg", ".jpeg", ".tiff", ".tif", ".gif", ".bmp", ".ico"]
+            .filter({ response.requestURL.hasSuffix($0) }).count == 1 {
+            cell.imageView?.image = UIImage(data: response.data)
+        } else {
+            cell.imageView?.image = nil
+        }
+        
         return cell
     }
     
