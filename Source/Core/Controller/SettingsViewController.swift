@@ -11,7 +11,7 @@ import UIKit
 
 class SettingsViewController: UITableViewController {
     
-    // Array of dictionaries of Spoofer Configuration Type: AnyObject
+    // Array of dictionaries of Spoofer Configuration Type: Any
     var allSettings = [[SpooferConfigurationType: Any]]()
     
     // MARK: - Lifecycle

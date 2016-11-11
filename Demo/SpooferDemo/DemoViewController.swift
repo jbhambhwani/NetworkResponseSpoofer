@@ -34,7 +34,9 @@ class DemoViewController: UIViewController {
                                                object: nil)
         Spoofer.delegate = self
         
-        // Sample configurations
+        // Sample configurations (not exhaustive)
+        Spoofer.hostNamesToIgnore = ["example.com", "somehosttobeignored.com"]
+        Spoofer.subDomainsToNormalize = ["qa", "dev", "preprod"]
         Spoofer.queryParametersToNormalize = ["authtoken", "swarm", "cluster", "node"]
     }
     
