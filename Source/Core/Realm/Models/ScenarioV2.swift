@@ -28,8 +28,10 @@ extension ScenarioV2 {
     func responseForRequest(_ urlRequest: URLRequest) -> APIResponseV2? {
         guard let requestURLString = urlRequest.url?.normalizedURLString else { return nil }
         let response = apiResponses.filter { savedResponse in
-            return savedResponse.requestURL.contains(requestURLString)
-            }.first
+            guard let savedURL = URL(string: savedResponse.requestURL),
+                let normalizedSavedURL = savedURL.normalizedURLString else { return false }
+            return normalizedSavedURL.contains(requestURLString)
+        }.first
         return response
     }
     
