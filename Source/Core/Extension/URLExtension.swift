@@ -21,7 +21,7 @@ extension URL {
         guard let queryItems = allQueryItems else { return nil }
         // Normalization strips the values from query paramaters and only uses query item names (also filter ignored params)
         let allQueryItemsNames = queryItems.map{ $0.name }.filter{ element in
-            !Spoofer.queryParametersToIgnore.contains(element)
+            !Spoofer.queryParametersToNormalize.contains(element)
         }
         let normalizedNames = "?" + allQueryItemsNames.joined(separator: "&")
         return normalizedNames
@@ -42,12 +42,12 @@ extension URL {
         // Lower case the string to avoid euality check issues
         normalizedString = normalizedString.lowercased()
         
-        // Remove sub domains which are to be ignored from the host name part. e.g. DEV, QA, PREPROD etc.
-        for subDomainToIgnore in Spoofer.subDomainsToIgnore {
-            if let ignoredRange = normalizedString.range(of: subDomainToIgnore + ".") {
+        // Remove sub domains which are to be normalized from the host name part. e.g. DEV, QA, PREPROD etc.
+        for subDomainsToNormalize in Spoofer.subDomainsToNormalize {
+            if let ignoredRange = normalizedString.range(of: subDomainsToNormalize + ".") {
                 normalizedString.removeSubrange(ignoredRange)
             }
-            if let ignoredRange = normalizedString.range(of: subDomainToIgnore) {
+            if let ignoredRange = normalizedString.range(of: subDomainsToNormalize) {
                 normalizedString.removeSubrange(ignoredRange)
             }
         }
@@ -61,7 +61,7 @@ extension URL {
         normalizedString += path
         
         // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
-        for pathComponent in Spoofer.pathComponentsToIgnore {
+        for pathComponent in Spoofer.pathComponentsToNormalize {
             if let pathComponentRange = normalizedString.range(of: "/" + pathComponent) {
                 normalizedString.removeSubrange(pathComponentRange)
             }

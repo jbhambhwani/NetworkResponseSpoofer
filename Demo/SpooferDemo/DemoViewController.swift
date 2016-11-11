@@ -35,7 +35,7 @@ class DemoViewController: UIViewController {
         Spoofer.delegate = self
         
         // Sample configurations
-        Spoofer.queryParametersToIgnore = ["authtoken", "swarm", "cluster", "node"]
+        Spoofer.queryParametersToNormalize = ["authtoken", "swarm", "cluster", "node"]
     }
     
     deinit {

@@ -71,24 +71,22 @@ public class Spoofer: NSObject {
         set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercased() } }
     }
     
-    /// Subdomains to ignore via URL normalization. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.
-    public class var subDomainsToIgnore: [String] {
-        get { return sharedInstance.ignoredSubdomains }
-        set { sharedInstance.ignoredSubdomains = newValue.flatMap { $0.lowercased() } }
+    /// Subdomains to normalize. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.
+    public class var subDomainsToNormalize: [String] {
+        get { return sharedInstance.normalizedSubdomains }
+        set { sharedInstance.normalizedSubdomains = newValue.flatMap { $0.lowercased() } }
     }
     
-    /// Query parameters that should be ignored via URL normalization. Useful when query parameters are dynamic causing URL's to mismatch.
-    public class var queryParametersToIgnore: [String] {
-        get { return sharedInstance.ignoredQueryParameters }
-        set { sharedInstance.ignoredQueryParameters = newValue.flatMap { $0.lowercased() } }
+    /// Query parameters to normalize. Useful when query parameters are dynamic causing URL's to mismatch.
+    public class var queryParametersToNormalize: [String] {
+        get { return sharedInstance.normalizedQueryParameters }
+        set { sharedInstance.normalizedQueryParameters = newValue.flatMap { $0.lowercased() } }
     }
 
-    /** Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions.
-        E.g. v1, v1.1, v2 etc
-    */
-    public class var pathComponentsToIgnore: [String] {
-        get { return sharedInstance.ignoredPathComponents }
-        set { sharedInstance.ignoredPathComponents = newValue.flatMap { $0.lowercased() } }
+    /// Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions. e.g., v1, v1.1, v2 etc
+    public class var pathComponentsToNormalize: [String] {
+        get { return sharedInstance.normalizedPathComponents }
+        set { sharedInstance.normalizedPathComponents = newValue.flatMap { $0.lowercased() } }
     }
     
     /** 
@@ -156,9 +154,9 @@ public class Spoofer: NSObject {
     class func resetConfigurations() {
         sharedInstance.spoofedHosts = [String]()
         sharedInstance.ignoredHosts = [String]()
-        sharedInstance.ignoredSubdomains = [String]()
-        sharedInstance.ignoredQueryParameters = [String]()
-        sharedInstance.ignoredPathComponents = [String]()
+        sharedInstance.normalizedSubdomains = [String]()
+        sharedInstance.normalizedQueryParameters = [String]()
+        sharedInstance.normalizedPathComponents = [String]()
         sharedInstance.acceptSelfSignedCertificate = false
         sharedInstance.queryValueNormalization = false
     }
@@ -174,9 +172,9 @@ public class Spoofer: NSObject {
             .acceptSelfSignedCertificate: sharedInstance.acceptSelfSignedCertificate as Any,
             .spoofedHosts: sharedInstance.spoofedHosts as Any,
             .ignoredHosts: sharedInstance.ignoredHosts as Any,
-            .ignoredSubdomains: sharedInstance.ignoredSubdomains as Any,
-            .ignoredQueryParameters: sharedInstance.ignoredQueryParameters as Any,
-            .ignoredPathComponents: sharedInstance.ignoredPathComponents as Any
+            .normalizedSubdomains: sharedInstance.normalizedSubdomains as Any,
+            .normalizedQueryParameters: sharedInstance.normalizedQueryParameters as Any,
+            .normalizedPathComponents: sharedInstance.normalizedPathComponents as Any
         ]
     }()
     
@@ -185,9 +183,9 @@ public class Spoofer: NSObject {
     
     private var spoofedHosts = [String]()
     private var ignoredHosts = [String]()
-    private var ignoredSubdomains = [String]()
-    private var ignoredQueryParameters = [String]()
-    private var ignoredPathComponents = [String]()
+    private var normalizedSubdomains = [String]()
+    private var normalizedQueryParameters = [String]()
+    private var normalizedPathComponents = [String]()
     private var acceptSelfSignedCertificate = false
     private var queryValueNormalization = false
     private weak var delegate: SpooferDelegate?

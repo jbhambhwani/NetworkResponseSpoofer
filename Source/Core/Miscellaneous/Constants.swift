@@ -37,14 +37,13 @@ enum SpooferConfigurationType: String {
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
     case spoofedHosts = "Hostnames to Spoof"
     case ignoredHosts = "Hostnames to Ignore"
-    
-    case ignoredSubdomains = "Normalized Subdomains"
-    case ignoredQueryParameters = "Normalized Query Parameters"
-    case ignoredPathComponents = "Normalized Path Components"
+    case normalizedSubdomains = "Normalized Subdomains"
+    case normalizedQueryParameters = "Normalized Query Parameters"
+    case normalizedPathComponents = "Normalized Path Components"
     case Blank = ""
     
     var allTypes: [SpooferConfigurationType] {
-        return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .ignoredSubdomains, .ignoredQueryParameters, .ignoredPathComponents, .Blank]
+        return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .normalizedSubdomains, .normalizedQueryParameters, .normalizedPathComponents, .Blank]
     }
     
     var description: String {
@@ -61,14 +60,14 @@ enum SpooferConfigurationType: String {
         case .ignoredHosts:
             return "Blacklist for hostnames to be ignored"
             
-        case .ignoredSubdomains:
-            return "A general use case would be to ignore environments like QA, DEV, Staging etc which appear as part of the url. Causes URL hostnames to match production by removing these entries"
+        case .normalizedSubdomains:
+            return "A general use case would be to normalize environments like QA, DEV, Staging etc which appear as part of the url. Causes URL hostnames to match production by removing these entries. \ne.g., api.qa.example.com becomes api.example.com"
             
-        case .ignoredQueryParameters:
-            return "Use this when there are dynamic query parameter keys with each request which might cause lookup failure during replay"
+        case .normalizedQueryParameters:
+            return "Use this when there are dynamic query parameter keys with each request which might cause lookup failure during replay. if a parameter appears/disappears while making multiple requests and can be safely ignored, add that here. \ne.g., example.com/path?cluster=1&apikey=aa223 & example.com/path?apikey=aa223 will always be resolved to example.com/path?apikey=aa223"
             
-        case .ignoredPathComponents:
-            return "Use this setting when there are specific path components to be ignored during comparing URL's"
+        case .normalizedPathComponents:
+            return "Use this setting when there are specific path components to be ignored during comparing URL's. \ne.g., api.example.com/path1/path2/path3.html becomes api.example.com/path2/path3.html if path1 is added here"
             
         case .Blank:
             return ""
