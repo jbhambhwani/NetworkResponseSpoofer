@@ -38,7 +38,7 @@ class ResponseListController: UITableViewController {
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .plain, target: self, action: #selector(ResponseListController.toggleRowHeight(_:)))
         // Load the responses for the passed in scenario
         if scenarioName.characters.count > 0 {
-            loadScenario()
+            loadResponses()
         }
     }
     
@@ -53,7 +53,7 @@ class ResponseListController: UITableViewController {
     
     // MARK: Utility methods
     
-    func loadScenario() {
+    func loadResponses() {
         let loadResult = DataStore.load(scenarioName: scenarioName)
         switch loadResult {
         case .success(let scenario):
@@ -111,22 +111,17 @@ extension ResponseListController {
         
         switch editingStyle {
             case .delete:
-                // TODO: Fix all this logic Remove the response from local array
-                let scenario = ScenarioV2()
-                scenario.name = scenarioName
-                scenario.apiResponses.remove(objectAtIndex: indexPath.row)
+                allResponses.remove(at: indexPath.row)
+                let deleteResult = DataStore.delete(responseIndex: indexPath.row, scenarioName: scenarioName)
                 
-                let saveResult = DataStore.save(scenario: scenario)
-                
-                switch saveResult {
+                switch deleteResult {
                 case .success(_):
                     DispatchQueue.main.async(execute: {
-                        // Update the tableview upon succesful scenario updation
                         tableView.deleteRows(at: [indexPath], with: .automatic)
                     })
 
                 case .failure(_):
-                    // Cause a tableview reload if scenario creation failed due to some reason
+                    // Cause a tableview reload if deletion failed due to some reason
                     tableView.reloadData()
                 }
                 

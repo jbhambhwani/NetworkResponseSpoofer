@@ -105,10 +105,9 @@ extension ScenarioListController {
         
         switch editingStyle {
         case .delete:
-            // Remove response from local array
             let scenarioToDelete = scenarioNames.remove(at: indexPath.row)
-            
             let deletionResult = DataStore.delete(scenarioName: scenarioToDelete)
+
             switch deletionResult {
             case .success(_):
                 // Update the tableview upon succesful scenario deletion

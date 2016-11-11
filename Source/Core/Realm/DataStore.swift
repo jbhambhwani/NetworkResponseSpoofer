@@ -24,6 +24,7 @@ protocol Store {
     func delete(scenarioName: String) -> Result<ScenarioV2>
     // Response
     func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2>
+    func delete(responseIndex: Int, scenarioName: String) -> Result<Bool>
 }
 
 
@@ -50,6 +51,10 @@ enum DataStore {
         return RealmStore.sharedInstance.delete(scenarioName: scenarioName)
     }
     
+    static func delete(responseIndex: Int, scenarioName: String) -> Result<Bool> {
+        return RealmStore.sharedInstance.delete(responseIndex: responseIndex, scenarioName: scenarioName)
+    }
+
 }
 
 
@@ -64,6 +69,8 @@ fileprivate struct RealmStore {
 }
 
 extension RealmStore: Store {
+    
+    // MARK: - Scenario Management
     
     private func getScenario(_ name: String) -> ScenarioV2? {
         return realm.objects(ScenarioV2.self).filter("name == %@", name).first
@@ -84,7 +91,8 @@ extension RealmStore: Store {
         }
     }
     
-    // Rename - since this is not loading to memory
+    // TODO: Rename - since this is not loading to memory
+    
     func load(scenarioName: String) -> Result<ScenarioV2> {
         guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
         return .success(scenario)
@@ -103,6 +111,8 @@ extension RealmStore: Store {
         }
     }
     
+    // MARK: - Response Management
+    
     func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2> {
         
         guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
@@ -117,4 +127,18 @@ extension RealmStore: Store {
         }
     }
     
+    func delete(responseIndex: Int, scenarioName: String) -> Result<Bool> {
+
+        guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
+        
+        do {
+            try realm.write {
+                scenario.apiResponses.remove(objectAtIndex: responseIndex)
+            }
+            return .success(true)
+        } catch {
+            return .failure(StoreError.unableToSaveResponse)
+        }
+    }
+
 }
