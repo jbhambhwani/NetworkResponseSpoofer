@@ -1,5 +1,5 @@
 //
-//  APIResponseSpooferTests.swift
+//  DataTests.swift
 //  APIResponseSpooferTests
 //
 //  Created by Deepu Mukundan on 7/28/15.
@@ -9,19 +9,12 @@
 import XCTest
 import UIKit
 import RealmSwift
-
 @testable import APIResponseSpoofer
 
-class APIResponseSpooferTests: XCTestCase {
+class DataTests: XCTestCase {
     
     var responseReceived: XCTestExpectation?
     var spoofedResponseReceived: XCTestExpectation?
-    
-    let smokeTest = "Smoke Test Spoofer"
-    let sampleURL1 = URL(string: "http://echo.jsontest.com/key/value/one/two")!
-    let sampleURL2 = URL(string: "http://jsonplaceholder.typicode.com/users")!
-    let allCapsURL = URL(string: "HTTP://JSONPLACEHOLDER.TYPICODE.COM/USERS")!
-    let complexURL = URL(string: "http://www.example.com:8042/over/there/index.html?class=vehicle&type=2wheeler&name=ferrari#red")!
     
     override func setUp() {
         super.setUp()
@@ -114,61 +107,10 @@ class APIResponseSpooferTests: XCTestCase {
         })
     }
     
-    func test04SimpleURLNormalization() {
-        Spoofer.normalizeQueryValues = true
-        let normalizedSmokeURL = "echo.jsontest.com/key/value/one/two"
-        XCTAssertTrue(sampleURL1.normalizedURLString == normalizedSmokeURL, "Normalized version has to have the host and query parameters values stipped away")
-    }
-    
-    func test05ComplexURLNormalization() {
-        Spoofer.normalizeQueryValues = true
-        let normalizedComplexURL = "example.com:8042/over/there/index.html?class&type&name#red"
-        XCTAssertTrue(complexURL.normalizedURLString == normalizedComplexURL, "Normalized version must match")
-    }
-    
-    func test06NoURLNormalization() {
-        Spoofer.normalizeQueryValues = false
-        guard let normalized = complexURL.normalizedURLString, normalized.characters.count > 0 else {
-            XCTFail("Normalization failed")
-            return
-        }
-        print(normalized)
-        XCTAssertTrue(complexURL.absoluteString.contains(normalized), "Non Normalized version must match original version")
-    }
-    
-    func test07ParameterIgnoreURLNormalization() {
-        Spoofer.normalizeQueryValues = true
-        Spoofer.queryParametersToNormalize = ["class", "name", "somerandom"]
-        let normalizedComplexURLIgnoringParameters = "example.com:8042/over/there/index.html?type#red"
-        XCTAssertTrue(complexURL.normalizedURLString == normalizedComplexURLIgnoringParameters, "Normalized version must match & must ignore specified params")
-    }
-    
-    func test08CapitalURLNormalization() {
-        Spoofer.normalizeQueryValues = true
-        let normalizedAllCapsURL = "jsonplaceholder.typicode.com/users"
-        XCTAssertTrue(allCapsURL.normalizedURLString == normalizedAllCapsURL, "After normalization, all URL's should be lower case")
-    }
-
-    func test09PathIgnoreRules() {
-        Spoofer.normalizeQueryValues = true
-        Spoofer.pathComponentsToNormalize = ["over", "there"]
-        let normalizedPathIgnoredURL = "example.com:8042/index.html?class&type&name#red"
-        XCTAssertTrue(complexURL.normalizedURLString == normalizedPathIgnoredURL, "After normalization, path componets should be ignored if specified")
-    }
-    
     func testLoadAllScenarios() {
         let allScenarios = DataStore.allScenarioNames()
         print("All Scenarios:\n\(allScenarios)")
         XCTAssert(allScenarios.count > 0, "Stored scenarios should be loaded")
     }
     
-    func testFormattedSeperator() {
-        logFormattedSeperator("Scenario Loaded Succesfully 👍")
-        logFormattedSeperator("")
-        logFormattedSeperator("-")
-        logFormattedSeperator("+")
-        logFormattedSeperator("@")
-        logFormattedSeperator("This string is 100 characters plus to that it breaks the formated seperator logic. Yes. Break the logic. That's the test. The method should just print this string as it is.")
-    }
-
 }
