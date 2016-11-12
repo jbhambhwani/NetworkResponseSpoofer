@@ -10,78 +10,40 @@ import Foundation
 
 extension URL {
     
-    // MARK: - Private properties
-    private var allQueryItems: [URLQueryItem]? {
-        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return nil }
-        guard let queryItems = components.queryItems else { return nil }
-        return queryItems
-    }
-    
-    private var normalizedQueryItemNames: String? {
-        guard let queryItems = allQueryItems else { return nil }
-        // Normalization strips the values from query paramaters and only uses query item names (also filter ignored params)
-        let allQueryItemsNames = queryItems.map{ $0.name }.filter{ element in
-            !Spoofer.queryParametersToNormalize.contains(element)
-        }
-        let normalizedNames = "?" + allQueryItemsNames.joined(separator: "&")
-        return normalizedNames
-    }
-    
     // MARK:- Public properties
     
     var normalizedURLString: String? {
         
         // If the host is empty, take an early exit
-        guard var normalizedString = host else { return nil }
-        
-        if normalizedString.hasPrefix("www.") {
-            let wwwIndex = normalizedString.index(normalizedString.startIndex, offsetBy: 4)
-            normalizedString = normalizedString.substring(from: wwwIndex)
-        }
+        guard var result = host else { return nil }
         
         // Lower case the string to avoid euality check issues
-        normalizedString = normalizedString.lowercased()
+        result = result.lowercased()
         
-        // Remove sub domains which are to be normalized from the host name part. e.g. DEV, QA, PREPROD etc.
-        for subDomainsToNormalize in Spoofer.subDomainsToNormalize {
-            if let ignoredRange = normalizedString.range(of: subDomainsToNormalize + ".") {
-                normalizedString.removeSubrange(ignoredRange)
-            }
-            if let ignoredRange = normalizedString.range(of: subDomainsToNormalize) {
-                normalizedString.removeSubrange(ignoredRange)
-            }
-        }
+        result.removeWeb()
+        result.normalizeSubDomains()
         
         // Set the port if one existed
         if let port = port {
-            normalizedString += ":" + String(port)
+            result += ":" + String(port)
         }
         
-        // Set the path
-        normalizedString += path
-        
-        // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
-        for pathComponent in Spoofer.pathComponentsToNormalize {
-            if let pathComponentRange = normalizedString.range(of: "/" + pathComponent) {
-                normalizedString.removeSubrange(pathComponentRange)
-            }
-        }
+        // Set the path & normalize
+        result += path
+        result.normalizePathComponents()
         
         // Return current processed URL if there are no query items
-        guard let query = query else { return normalizedString.lowercased() }
+        guard let query = query else { return result.lowercased() }
         
-        // Normalize and append query parameter names (ignore values if normalization is requested)
-        if let queryItemNames = normalizedQueryItemNames, Spoofer.normalizeQueryValues == true {
-            normalizedString += queryItemNames
-        } else {
-            if let fragment = fragment {
-                normalizedString += "?" + query + "#" + fragment
-            } else {
-                normalizedString += "?" + query
-            }
+        // Normalize Query Parameters
+        let normalizedQueryItems = allQueryItems.filter({ Spoofer.queryParametersToNormalize.contains($0.name) == false })
+        result.normalizeQuery(items: normalizedQueryItems)
+        
+        if let fragment = fragment {
+            result += "#" + fragment
         }
         
-        return normalizedString.lowercased()
+        return result.lowercased()
     }
     
     var isHTTP: Bool {
@@ -89,4 +51,74 @@ extension URL {
         return ["http", "https"].contains(scheme)
     }
     
+}
+
+// MARK: - Private properties
+
+fileprivate extension URL {
+    
+    var allQueryItems: [URLQueryItem] {
+        guard let components = URLComponents(url: self, resolvingAgainstBaseURL: false) else { return [] }
+        guard let queryItems = components.queryItems else { return [] }
+        return queryItems
+    }
+    
+}
+
+fileprivate extension String {
+    
+    // Remove www prefix
+    mutating func removeWeb() {
+        if self.hasPrefix("www.") {
+            let wwwIndex = self.index(self.startIndex, offsetBy: 4)
+            self = self.substring(from: wwwIndex)
+        }
+    }
+    
+    // Remove sub domains which are to be normalized from the host name part. e.g. DEV, QA, PREPROD etc.
+    mutating func normalizeSubDomains() {
+        for subDomainToNormalize in Spoofer.subDomainsToNormalize {
+            if let ignoredRange = self.range(of: subDomainToNormalize + ".") {
+                self.removeSubrange(ignoredRange)
+            }
+            if let ignoredRange = self.range(of: subDomainToNormalize) {
+                self.removeSubrange(ignoredRange)
+            }
+        }
+    }
+    
+    // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
+    mutating func normalizePathComponents() {
+        for pathComponent in Spoofer.pathComponentsToNormalize {
+            if let pathComponentRange = self.range(of: "/" + pathComponent) {
+                self.removeSubrange(pathComponentRange)
+            }
+        }
+    }
+    
+    // Normalize the query parameters
+    mutating func normalizeQuery(items: [URLQueryItem]) {
+        if Spoofer.normalizeQueryValues {
+            let queryItemNames = normalizedQueryItemNames(items)
+            if queryItemNames.characters.count > 0 {
+                self += "?" + queryItemNames
+            }
+        } else {
+            let combinedQueryItems = items.reduce(""){
+                guard let value = $1.value else { return $0 }
+                if $0.characters.count > 0 {
+                    return $0 + "&" + $1.name + "=" + value
+                } else {
+                    return $0 + $1.name + "=" + value
+                }
+            }
+            if combinedQueryItems.characters.count > 0 {
+                self += "?" + combinedQueryItems
+            }
+        }
+    }
+
+    func normalizedQueryItemNames(_ queryItems: [URLQueryItem]) -> String {
+        return queryItems.flatMap({ $0.name }).joined(separator: "&")
+    }
 }
