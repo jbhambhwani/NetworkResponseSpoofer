@@ -153,6 +153,11 @@ public class Spoofer: NSObject {
         if !domainIsWhitelisted && !domainIsBlacklisted && hostNamesToSpoof.isEmpty {
             return true
         }
+        
+        // Ignore the url if it has a black listed path component
+        if url.pathComponents.filter({ pathsToIgnore.contains($0) }).count > 0 {
+            return false
+        }
 
         return false
     }
