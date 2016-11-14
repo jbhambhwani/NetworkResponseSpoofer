@@ -13,9 +13,12 @@ final class SpooferStateManager {
     private(set) var state = SpooferState()
     
     @discardableResult func transformState(networkAction: NetworkAction) -> SpooferState {
+        let oldState = state
         let newState = state.transformedState(networkAction: networkAction)
-        broadcastStateChange(oldState: state, newState: newState)
+        // Update to the new state
         state = newState
+        // Boradcast state change to all listeners
+        broadcastStateChange(oldState: oldState, newState: newState)
         return newState
     }
 }
