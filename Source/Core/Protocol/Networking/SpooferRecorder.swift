@@ -111,7 +111,7 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
         guard let currentResponse = APIResponseV2.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
         
         postNotification("Response received 📡\n\(currentResponse)", object: self)
-        DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName)
+        _ = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName)
     }
     
 }

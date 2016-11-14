@@ -55,7 +55,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         switch loadResult {
         case .success(let scenario):
             
-            guard let cachedResponse = scenario.responseForRequest(request), let cachedURL = URL(string: cachedResponse.requestURL) else {
+            guard let cachedResponse = scenario.responseForRequest(request), let _ = URL(string: cachedResponse.requestURL) else {
                 // Throw an error in case we are unable to load a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return

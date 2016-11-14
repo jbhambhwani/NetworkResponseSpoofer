@@ -33,7 +33,7 @@ extension URL {
         result.normalizePathComponents()
         
         // Return current processed URL if there are no query items
-        guard let query = query else { return result.lowercased() }
+        guard let _ = query else { return result.lowercased() }
         
         // Normalize Query Parameters
         let normalizedQueryItems = allQueryItems.filter({ Spoofer.queryParametersToNormalize.contains($0.name.lowercased()) == false })
