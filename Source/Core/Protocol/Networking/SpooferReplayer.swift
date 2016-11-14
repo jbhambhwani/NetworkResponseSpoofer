@@ -66,9 +66,9 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
             switch currentReplayMethod {
             case .statusCodeAndHeader:
                 let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
-                httpResponse = HTTPURLResponse(url: cachedURL, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: ResponseHeaderItem.deSerialize(headerItems: Array(cachedResponse.headerFields)))
+                httpResponse = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: ResponseHeaderItem.deSerialize(headerItems: Array(cachedResponse.headerFields)))
             case .mimeTypeAndEncoding:
-                httpResponse = HTTPURLResponse(url: cachedURL, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
+                httpResponse = HTTPURLResponse(url: url, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
             }
             
             guard let spoofedResponse = httpResponse else {
