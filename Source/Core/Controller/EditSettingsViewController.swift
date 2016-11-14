@@ -71,7 +71,7 @@ extension EditSettingsViewController {
         guard let configurations = presenter?.configurations else { return UITableViewCell() }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
-        cell.textLabel?.text = configurations[(indexPath as IndexPath).row]
+        cell.textLabel?.text = configurations[indexPath.row]
         return cell
     }
     

@@ -97,7 +97,7 @@ extension SwitchWithTextViewModel {
                 assertionFailure("Unhandled case")
             }
 
-            model[configType] = newValue as Any?
+            model[configType] = newValue
         }
     }
 }

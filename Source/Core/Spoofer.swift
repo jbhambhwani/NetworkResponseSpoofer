@@ -173,15 +173,15 @@ public class Spoofer: NSObject {
         sharedInstance.queryValueNormalization = false
     }
     
-    class var configurations: [SpooferConfigurationType : Any]? {
-        return [.queryValueNormalization: Spoofer.normalizeQueryValues as Any,
-                .acceptSelfSignedCertificate: Spoofer.allowSelfSignedCertificate as Any,
-                .spoofedHosts: Spoofer.hostNamesToSpoof as Any,
-                .ignoredHosts: Spoofer.hostNamesToIgnore as Any,
-                .ignoredPaths: Spoofer.pathsToIgnore as Any,
-                .normalizedSubdomains: Spoofer.subDomainsToNormalize as Any,
-                .normalizedQueryParameters: Spoofer.queryParametersToNormalize as Any,
-                .normalizedPathComponents: Spoofer.pathComponentsToNormalize as Any
+    class var configurations: [SpooferConfigurationType: Any]? {
+        return [.queryValueNormalization: Spoofer.normalizeQueryValues,
+                .acceptSelfSignedCertificate: Spoofer.allowSelfSignedCertificate,
+                .spoofedHosts: Spoofer.hostNamesToSpoof,
+                .ignoredHosts: Spoofer.hostNamesToIgnore,
+                .ignoredPaths: Spoofer.pathsToIgnore,
+                .normalizedSubdomains: Spoofer.subDomainsToNormalize,
+                .normalizedQueryParameters: Spoofer.queryParametersToNormalize,
+                .normalizedPathComponents: Spoofer.pathComponentsToNormalize
         ]
     }
     

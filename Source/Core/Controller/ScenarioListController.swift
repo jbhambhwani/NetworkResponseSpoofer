@@ -43,7 +43,7 @@ class ScenarioListController: UITableViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let responseListController = segue.destination as? ResponseListController, let indexPath = sender as? IndexPath else { return }
-        selectedScenarioName = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+        selectedScenarioName = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         responseListController.scenarioName = selectedScenarioName
     }
     
@@ -78,7 +78,7 @@ extension ScenarioListController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "ScenarioCell", for: indexPath)
-        let scenario: String = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+        let scenario: String = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         cell.textLabel?.text = scenario
         cell.accessibilityIdentifier = scenario
         return cell
@@ -91,7 +91,7 @@ extension ScenarioListController {
 extension ScenarioListController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let scenario = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row] as String
+        let scenario = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         Spoofer.startReplaying(scenarioName: scenario)
         searchController.isActive = false
         navigationController?.dismiss(animated: true, completion: nil)

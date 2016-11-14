@@ -30,17 +30,13 @@ protocol Store {
 
 enum DataStore {
     
+    //
     static func allScenarioNames() -> [String]  {
         return RealmStore.sharedInstance.allScenarioNames()
     }
     
     static func save(scenario: ScenarioV2) -> Result<ScenarioV2> {
         return RealmStore.sharedInstance.save(scenario: scenario)
-    }
-
-    // TODO: Does not need to be discardable
-    @discardableResult static func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2> {
-        return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName)
     }
     
     static func load(scenarioName: String) -> Result<ScenarioV2> {
@@ -50,7 +46,11 @@ enum DataStore {
     static func delete(scenarioName: String) -> Result<ScenarioV2> {
         return RealmStore.sharedInstance.delete(scenarioName: scenarioName)
     }
-    
+
+    static func save(response: APIResponseV2, scenarioName: String) -> Result<APIResponseV2> {
+        return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName)
+    }
+
     static func delete(responseIndex: Int, scenarioName: String) -> Result<Bool> {
         return RealmStore.sharedInstance.delete(responseIndex: responseIndex, scenarioName: scenarioName)
     }
@@ -90,8 +90,6 @@ extension RealmStore: Store {
             return .failure(StoreError.unableToSaveScenario)
         }
     }
-    
-    // TODO: Rename - since this is not loading to memory
     
     func load(scenarioName: String) -> Result<ScenarioV2> {
         guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
