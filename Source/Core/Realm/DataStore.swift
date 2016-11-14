@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-enum StoreError: Error {
+public enum StoreError: Int, Error {
     case scenarioNotFound
     case unableToSaveScenario
     case unableToSaveResponse
