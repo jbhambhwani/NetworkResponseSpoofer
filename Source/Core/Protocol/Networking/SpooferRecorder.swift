@@ -23,7 +23,7 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
         // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(url)
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
-        let isHandled = (URLProtocol.property(forKey: requestHandledKey, in: request) != nil) ? true : false
+        let isHandled = (request.value(forHTTPHeaderField: requestHandledKey) ?? "").characters.count > 0
         
         if Spoofer.isRecording && isHTTP && !isHandled && shouldHandleURL {
             return true
@@ -42,11 +42,11 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
     
     override public func startLoading() {
         // 1: Get a copy of the original request
-        guard let newRequest = request as? MutableURLRequest else { return }
+        var newRequest = request
         // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
-        URLProtocol.setProperty(true, forKey: SpooferRecorder.requestHandledKey , in: newRequest)
+        newRequest.setValue("yes", forHTTPHeaderField: SpooferRecorder.requestHandledKey)
         // 3: Start a new connection to fetch the data
-        connection = NSURLConnection(request: newRequest as URLRequest, delegate: self)
+        connection = NSURLConnection(request: newRequest, delegate: self)
     }
     
     override public func stopLoading() {
