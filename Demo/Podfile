@@ -9,5 +9,6 @@ target 'SpooferDemo' do
 
   # Pods for SpooferDemo
   pod 'APIResponseSpoofer', :path => "../"
+  pod 'APIResponseSpoofer/iOS-UI', :path => "../"
 
 end
