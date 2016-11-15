@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 public extension Spoofer {
 
@@ -16,45 +15,6 @@ public extension Spoofer {
     /// Returns true if the Spoofer is recording a scenario
     class var isRecording: Bool {
         return sharedInstance.stateManager.state.isRecording
-    }
-    
-    /**
-     Starts recording a new scenario from a specific view controller.
-     
-     - parameter sourceViewController: The view controller from which the record popup UI will be presented from
-     
-     - Note: A popup will appear asking the user to name the scenario, before recording starts. Use this method if you need to manually provide the scenario name
-     */
-    class func startRecording(inViewController sourceViewController: UIViewController?) {
-        
-        guard let sourceViewController = sourceViewController else { return }
-        
-        // When a view controller was passed in, use it to display an alert controller asking for a scenario name
-        let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .alert)
-        
-        let createAction = UIAlertAction(title: "Create", style: .default) { [unowned alertController](_) in
-            if let textField = alertController.textFields?.first, let scenarioName = textField.text {
-                _ = startRecording(scenarioName: scenarioName)
-            }
-        }
-        createAction.isEnabled = false
-        
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { (_) in
-            SpooferRecorder.stopIntercept()
-        }
-        
-        alertController.addTextField { (textField) in
-            textField.placeholder = "Enter scenario name"
-            textField.autocapitalizationType = .sentences
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { (notification) in
-                createAction.isEnabled = textField.text != ""
-            }
-        }
-        
-        alertController.addAction(createAction)
-        alertController.addAction(cancelAction)
-        
-        sourceViewController.present(alertController, animated: true, completion: nil)
     }
     
     /**

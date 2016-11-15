@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import UIKit
 
 func logFormattedSeperator(_ message: String? = "-") {
     guard let message = message else { return }
@@ -29,12 +28,6 @@ func postNotification(_ message: String, object: Any? = nil) {
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
     NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferLogNotification), object: object, userInfo: ["message": message])
-}
-
-func spooferStoryBoard() -> UIStoryboard {
-    let frameworkBundle = Bundle(for: Spoofer.self)
-    let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
-    return storyBoard
 }
 
 @discardableResult func generateError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
