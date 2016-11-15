@@ -26,7 +26,7 @@ Pod::Spec.new do |s|
 
   s.subspec 'iOS-UI' do |ss|
     ss.source_files = 'Source/iOS UI/**/*.swift'
-    s.resources = 'Source/iOS UI/View/*.storyboard'
+    ss.resources = 'Source/iOS UI/View/*.storyboard'
     ss.framework = 'UIKit'
   end
 
