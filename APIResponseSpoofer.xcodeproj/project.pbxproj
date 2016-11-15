@@ -11,7 +11,7 @@
 		411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
 		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
 		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
+		411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
 		4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EF1B6EA21C00EAFE04 /* Store.swift */; };
 		4135D0801DD3F9D200C20BD4 /* Realm.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4135D07E1DD3F9D200C20BD4 /* Realm.framework */; };
@@ -113,8 +113,8 @@
 		419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APIResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
 		419430B11DDA96E700DA65AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		419430C01DDAA21E00DA65AF /* SpooferUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferUI.swift; sourceTree = "<group>"; };
-		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UIProtocols.swift; path = Core/Protocol/UI/UIProtocols.swift; sourceTree = "<group>"; };
-		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UITableViewCell.swift; path = Core/Protocol/UI/UITableViewCell.swift; sourceTree = "<group>"; };
+		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
+		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		41AA10EB1DC1358000860295 /* APIResponseV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponseV2.swift; sourceTree = "<group>"; };
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
@@ -163,17 +163,16 @@
 			children = (
 				410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */,
 			);
-			name = ViewModel;
-			path = Core/ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
 		411A35781BC74A7D001D128D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */,
 				411A35791BC74A7D001D128D /* DataTests.swift */,
-				41570A7A1DD6F5290098C2FF /* URLTests.swift */,
 				41570A7F1DD6F6570098C2FF /* MiscTests.swift */,
+				41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */,
+				41570A7A1DD6F5290098C2FF /* URLTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -186,8 +185,7 @@
 				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
 				41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */,
 			);
-			name = Controller;
-			path = Core/Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		4131B8F21B6EA6F400EAFE04 /* Protocol */ = {
@@ -230,12 +228,12 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				4147EA4F1B684D7E001DE517 /* Source */,
-				411A35781BC74A7D001D128D /* Tests */,
-				4147EA501B684D7E001DE517 /* Supporting Files */,
 				419430AF1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */,
-				4147EA4E1B684D7E001DE517 /* Products */,
 				4135D0791DD3F91900C20BD4 /* Frameworks */,
+				4147EA4E1B684D7E001DE517 /* Products */,
+				4147EA4F1B684D7E001DE517 /* Source */,
+				4147EA501B684D7E001DE517 /* Supporting Files */,
+				411A35781BC74A7D001D128D /* Tests */,
 			);
 			sourceTree = "<group>";
 		};
@@ -252,8 +250,8 @@
 		4147EA4F1B684D7E001DE517 /* Source */ = {
 			isa = PBXGroup;
 			children = (
-				419430BE1DDAA10800DA65AF /* iOS UI */,
 				415CB1891C9B14EA00827A0B /* Core */,
+				419430BE1DDAA10800DA65AF /* iOS UI */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -285,8 +283,7 @@
 				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
 				410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */,
 			);
-			name = View;
-			path = Core/View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		415CB1891C9B14EA00827A0B /* Core */ = {
@@ -337,13 +334,13 @@
 		419430BE1DDAA10800DA65AF /* iOS UI */ = {
 			isa = PBXGroup;
 			children = (
-				410489C41C99DCD000E99745 /* ViewModel */,
-				415CB1881C9B14C900827A0B /* View */,
-				419430BF1DDAA19F00DA65AF /* Protocols */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
+				419430BF1DDAA19F00DA65AF /* Protocols */,
+				415CB1881C9B14C900827A0B /* View */,
+				410489C41C99DCD000E99745 /* ViewModel */,
 				419430C01DDAA21E00DA65AF /* SpooferUI.swift */,
 			);
-			name = "iOS UI";
+			path = "iOS UI";
 			sourceTree = "<group>";
 		};
 		419430BF1DDAA19F00DA65AF /* Protocols */ = {
@@ -352,7 +349,7 @@
 				419430D81DDAA67B00DA65AF /* UIProtocols.swift */,
 				419430D91DDAA67B00DA65AF /* UITableViewCell.swift */,
 			);
-			name = Protocols;
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		41BFEC881DC1142C006DC5D4 /* Realm */ = {
@@ -443,6 +440,7 @@
 				419430AA1DDA96E700DA65AF /* Frameworks */,
 				419430AB1DDA96E700DA65AF /* Headers */,
 				419430AC1DDA96E700DA65AF /* Resources */,
+				411E3DF41DDAA7DE00686BA2 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -461,7 +459,7 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = Hotwire;
 				TargetAttributes = {
 					411A35761BC74A7D001D128D = {
@@ -511,7 +509,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -519,12 +516,29 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		411E3DF41DDAA7DE00686BA2 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 		415CB18B1C9B39D200827A0B /* Swift Clean Code Cleanup */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -877,7 +891,7 @@
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_SUSPICIOUS_MOVES = YES;
 				CODE_SIGN_IDENTITY = "";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = H898Y42WAX;
@@ -967,6 +981,7 @@
 				419430B41DDA96E700DA65AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
