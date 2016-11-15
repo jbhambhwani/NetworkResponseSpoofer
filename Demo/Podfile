@@ -1,14 +1,16 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
-# Uncomment the next line to define a global platform for your project
-platform :ios, '9.0'
-
 target 'SpooferDemo' do
-  # Comment the next line if you're not using Swift and don't want to use dynamic frameworks
+  platform :ios, '9.0'
   use_frameworks!
 
-  # Pods for SpooferDemo
   pod 'APIResponseSpoofer', :path => "../"
   pod 'APIResponseSpoofer/iOS-UI', :path => "../"
+end
 
+target 'SpooferDemo_Mac' do
+  platform :osx, '10.11'
+  use_frameworks!
+
+  pod 'APIResponseSpoofer', :path => "../"
 end

@@ -7,7 +7,6 @@
 //
 
 import XCTest
-import UIKit
 import RealmSwift
 @testable import APIResponseSpoofer
 
