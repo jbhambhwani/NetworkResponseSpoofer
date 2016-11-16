@@ -8,6 +8,7 @@
 
 import Cocoa
 import WebKit
+import APIResponseSpoofer
 
 class ViewController: NSViewController {
 
@@ -15,7 +16,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
     
     @IBAction func goPressed(_ sender: NSButton) {
-        print(textField.stringValue)
+        Spoofer.startRecording(scenarioName: "MacApp")
+        webView.mainFrameURL = textField.stringValue
+        webView.reload(nil)
     }
     
     override var representedObject: Any? {
