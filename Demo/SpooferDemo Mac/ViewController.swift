@@ -16,9 +16,9 @@ class ViewController: NSViewController {
     @IBOutlet weak var textField: NSTextField!
     
     @IBAction func goPressed(_ sender: NSButton) {
-        Spoofer.startRecording(scenarioName: "MacApp")
+        // Spoofer.startRecording(scenarioName: "MacApp")
+        Spoofer.startReplaying(scenarioName: "MacApp")
         webView.mainFrameURL = textField.stringValue
-        webView.reload(nil)
     }
     
     override var representedObject: Any? {
