@@ -197,13 +197,6 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		4135D0791DD3F91900C20BD4 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
 		413D55EA1DCA8CDB00A5E084 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,7 +211,6 @@
 			isa = PBXGroup;
 			children = (
 				419430AF1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */,
-				4135D0791DD3F91900C20BD4 /* Frameworks */,
 				4147EA4E1B684D7E001DE517 /* Products */,
 				4147EA4F1B684D7E001DE517 /* Source */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,

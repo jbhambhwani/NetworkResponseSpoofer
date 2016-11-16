@@ -11,7 +11,8 @@ import Foundation
 public class SpooferRecorder: URLProtocol, NetworkInterceptable {
  
     static let requestHandledKey = "RecorderProtocolHandledKey"
-    var connection: NSURLConnection?
+    var session: URLSession?
+    var dataTask: URLSessionDataTask?
     var response: URLResponse?
     var responseData: Data?
     
@@ -45,64 +46,78 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
         var newRequest = request
         // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
         newRequest.setValue("yes", forHTTPHeaderField: SpooferRecorder.requestHandledKey)
-        // 3: Start a new connection to fetch the data
-        connection = NSURLConnection(request: newRequest, delegate: self)
+        // 3: Start a new session to fetch the data
+        session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        dataTask = session?.dataTask(with: newRequest)
+        dataTask?.resume()
     }
     
     override public func stopLoading() {
-        connection?.cancel()
-        connection = nil
+        dataTask?.cancel()
+        session?.invalidateAndCancel()
+        session = nil
+        dataTask = nil
+        response = nil
+        responseData = nil
     }
     
-    func connection(_ connection: NSURLConnection, canAuthenticateAgainstProtectionSpace protectionSpace: URLProtectionSpace?) -> Bool {
-        return protectionSpace?.authenticationMethod == NSURLAuthenticationMethodServerTrust
-    }
+}
+
+// MARK: - Networking Delegates
+
+extension SpooferRecorder:  URLSessionDataDelegate, URLSessionTaskDelegate {
     
-    func connection(_ connection: NSURLConnection, didReceiveAuthenticationChallenge challenge: URLAuthenticationChallenge?) {
+    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         
-        guard let challenge = challenge, let sender = challenge.sender else { return }
-        
-        if challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust {
-            if Spoofer.allowSelfSignedCertificate {
-                if let serverTrust = challenge.protectionSpace.serverTrust {
-                    let credentials = URLCredential(trust: serverTrust)
-                    sender.use(credentials, for: challenge)
-                }
-            }
+        guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
+            Spoofer.allowSelfSignedCertificate == true,
+            let serverTrust = challenge.protectionSpace.serverTrust else {
+                completionHandler(.performDefaultHandling, nil)
+                return
         }
         
-        sender.continueWithoutCredential(for: challenge)
+        let credentials = URLCredential(trust: serverTrust)
+        completionHandler(.performDefaultHandling, credentials)
     }
     
-    func connection(_ connection: NSURLConnection, didReceiveResponse response: URLResponse) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+
         // Send the received response to the client
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         // Save / Initialize local structures
         self.response = response
         responseData = Data()
+
+        completionHandler(.allow)
     }
     
-    func connection(_ connection: NSURLConnection, didReceiveData data: Data) {
+    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
         // Send the received data to the client
         client?.urlProtocol(self, didLoad: data)
         // Save all packets received
         responseData?.append(data)
     }
     
-    func connectionDidFinishLoading(_ connection: NSURLConnection) {
-        // Let know the client that we completed loading the request
-        client?.urlProtocolDidFinishLoading(self)
-        // Save the response and data received as part of this request
-        saveResponse()
-    }
+    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
     
-    func connection(_ connection: NSURLConnection, didFailWithError error: NSError) {
-        // Pass error back to client
-        client?.urlProtocol(self, didFailWithError: error)
-        // Reset internal data structures
-        response = nil
-        responseData = nil
+        if error == nil {
+            // Let know the client that we completed loading the request
+            client?.urlProtocolDidFinishLoading(self)
+            // Save the response and data received as part of this request
+            saveResponse()
+        } else {
+            // Pass error back to client
+            client?.urlProtocol(self, didFailWithError: error!)
+            // Reset internal data structures
+            response = nil
+            responseData = nil
+        }
     }
+}
+
+// MARK: - Response Persistance
+
+fileprivate extension SpooferRecorder {
     
     func saveResponse() {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
@@ -115,3 +130,4 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
     }
     
 }
+

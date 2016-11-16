@@ -76,7 +76,7 @@ extension APIResponseV2 {
         response.headerFields.append(objectsIn: ResponseHeaderItem.serialize(fromArray: headerFields))
         response.expectedContentLength = contentLength
         response.data = data
-
+        
         return response
     }
     
