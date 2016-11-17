@@ -40,9 +40,9 @@
 		419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
 		419430CD1DDAA4F300DA65AF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
 		419430CE1DDAA50A00DA65AF /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
-		419430CF1DDAA51A00DA65AF /* APIResponseV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponseV2.swift */; };
+		419430CF1DDAA51A00DA65AF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponse.swift */; };
 		419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */; };
-		419430D11DDAA52000DA65AF /* ScenarioV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */; };
+		419430D11DDAA52000DA65AF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* Scenario.swift */; };
 		419430D21DDAA53400DA65AF /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
 		419430D31DDAA54200DA65AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
 		419430D41DDAA56100DA65AF /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
@@ -50,12 +50,12 @@
 		419430D61DDAA59200DA65AF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
 		419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D81DDAA67B00DA65AF /* UIProtocols.swift */; };
 		419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D91DDAA67B00DA65AF /* UITableViewCell.swift */; };
-		41AA10EC1DC1358000860295 /* APIResponseV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponseV2.swift */; };
+		41AA10EC1DC1358000860295 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponse.swift */; };
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
-		41E04BB41DC41F3900AD8261 /* ScenarioV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */; };
+		41E04BB41DC41F3900AD8261 /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* Scenario.swift */; };
 		41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
 		41F879FD1DC96B5800B457F4 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FC1DC96B5800B457F4 /* DataStore.swift */; };
 		41F879FF1DC96BE900B457F4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
@@ -104,13 +104,13 @@
 		419430C01DDAA21E00DA65AF /* SpooferUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferUI.swift; sourceTree = "<group>"; };
 		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
-		41AA10EB1DC1358000860295 /* APIResponseV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponseV2.swift; sourceTree = "<group>"; };
+		41AA10EB1DC1358000860295 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
 		41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
-		41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioV2.swift; sourceTree = "<group>"; };
+		41E04BB31DC41F3900AD8261 /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
 		41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferStateManager.swift; sourceTree = "<group>"; };
 		41F879FC1DC96B5800B457F4 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
 		41F879FE1DC96BE900B457F4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -184,9 +184,9 @@
 		413D55EA1DCA8CDB00A5E084 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				41AA10EB1DC1358000860295 /* APIResponseV2.swift */,
+				41AA10EB1DC1358000860295 /* APIResponse.swift */,
 				41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */,
-				41E04BB31DC41F3900AD8261 /* ScenarioV2.swift */,
+				41E04BB31DC41F3900AD8261 /* Scenario.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -599,8 +599,8 @@
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
 				41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
-				41AA10EC1DC1358000860295 /* APIResponseV2.swift in Sources */,
-				41E04BB41DC41F3900AD8261 /* ScenarioV2.swift in Sources */,
+				41AA10EC1DC1358000860295 /* APIResponse.swift in Sources */,
+				41E04BB41DC41F3900AD8261 /* Scenario.swift in Sources */,
 				4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -617,7 +617,7 @@
 				419430C91DDAA41E00DA65AF /* DataStore.swift in Sources */,
 				419430C51DDAA30B00DA65AF /* URLExtension.swift in Sources */,
 				419430B81DDA970800DA65AF /* ScenarioListController.swift in Sources */,
-				419430D11DDAA52000DA65AF /* ScenarioV2.swift in Sources */,
+				419430D11DDAA52000DA65AF /* Scenario.swift in Sources */,
 				419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */,
 				419430C31DDAA2E900DA65AF /* SpooferRecorder.swift in Sources */,
 				419430B71DDA970800DA65AF /* ResponseListController.swift in Sources */,
@@ -631,7 +631,7 @@
 				419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */,
 				419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */,
 				419430C71DDAA40300DA65AF /* URLSessionConfigurationExtension.swift in Sources */,
-				419430CF1DDAA51A00DA65AF /* APIResponseV2.swift in Sources */,
+				419430CF1DDAA51A00DA65AF /* APIResponse.swift in Sources */,
 				419430D31DDAA54200DA65AF /* Utility.swift in Sources */,
 				419430C61DDAA3E100DA65AF /* Constants.swift in Sources */,
 				419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */,

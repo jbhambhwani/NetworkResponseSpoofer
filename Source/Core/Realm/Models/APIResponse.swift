@@ -1,5 +1,5 @@
 //
-//  APIResponseV2.swift
+//  APIResponse.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 10/26/16.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class APIResponseV2: Object {
+class APIResponse: Object {
 
     dynamic var requestURL = ""
     dynamic var httpMethod = ""
@@ -52,9 +52,9 @@ class APIResponseV2: Object {
 
 // MARK: -
 
-extension APIResponseV2 {
+extension APIResponse {
     
-    class func responseFrom(httpRequest: URLRequest, httpResponse: URLResponse, data: Data?) -> APIResponseV2? {
+    class func responseFrom(httpRequest: URLRequest, httpResponse: URLResponse, data: Data?) -> APIResponse? {
         guard let httpURLResponse = httpResponse as? HTTPURLResponse,
             let url = httpRequest.url,
             let method = httpRequest.httpMethod,
@@ -67,7 +67,7 @@ extension APIResponseV2 {
         let contentLength = NSInteger(httpURLResponse.expectedContentLength)
         let statusCode = NSInteger(httpURLResponse.statusCode)
         
-        let response = APIResponseV2()
+        let response = APIResponse()
         response.requestURL = url.absoluteString.lowercased()
         response.httpMethod = method
         response.statusCode = statusCode
@@ -84,10 +84,10 @@ extension APIResponseV2 {
 
 // MARK: - Equatable
 
-extension APIResponseV2 {
+extension APIResponse {
     
     override func isEqual(_ object: Any?) -> Bool {
-        guard let rhs = object as? APIResponseV2,
+        guard let rhs = object as? APIResponse,
             let lhsURL = URL(string: requestURL),
             let rhsURL = URL(string: rhs.requestURL) else { return false }
         
@@ -106,7 +106,7 @@ extension APIResponseV2 {
 
 // MARK: - Helper methods for debugging
 
-extension APIResponseV2 {
+extension APIResponse {
     override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)"}
     override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(mimeType)\nEncoding: \(encoding)\nHeaderFields: \(headerFields)\n"}
 }

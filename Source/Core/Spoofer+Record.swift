@@ -32,7 +32,7 @@ public extension Spoofer {
         
         if protocolRegistered {
             // Create a fresh scenario based on the named passed in
-            let spoofedScenario = ScenarioV2()
+            let spoofedScenario = Scenario()
             spoofedScenario.name = name
             let saveResult = DataStore.save(scenario: spoofedScenario)
             

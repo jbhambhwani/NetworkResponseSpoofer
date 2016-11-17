@@ -123,7 +123,7 @@ fileprivate extension SpooferRecorder {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
         
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        guard let currentResponse = APIResponseV2.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
+        guard let currentResponse = APIResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
         
         postNotification("Response received 📡\n\(currentResponse)", object: self)
         _ = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName)

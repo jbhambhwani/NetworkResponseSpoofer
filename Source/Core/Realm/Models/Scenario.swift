@@ -1,5 +1,5 @@
 //
-//  ScenarioV2.swift
+//  Scenario.swift
 //  APIResponseSpoofer
 //
 //  Created by Deepu Mukundan on 10/28/16.
@@ -9,10 +9,10 @@
 import Foundation
 import RealmSwift
 
-class ScenarioV2: Object {
+class Scenario: Object {
     
     dynamic var name = "Default"
-    let apiResponses = List<APIResponseV2>()
+    let apiResponses = List<APIResponse>()
     
     override static func primaryKey() -> String {
         return "name"
@@ -23,9 +23,9 @@ class ScenarioV2: Object {
     }
 }
 
-extension ScenarioV2 {
+extension Scenario {
     
-    func responseForRequest(_ urlRequest: URLRequest) -> APIResponseV2? {
+    func responseForRequest(_ urlRequest: URLRequest) -> APIResponse? {
         guard let requestURLString = urlRequest.url?.normalizedURLString else { return nil }
         let response = apiResponses.filter { savedResponse in
             guard let savedURL = URL(string: savedResponse.requestURL),
@@ -35,7 +35,7 @@ extension ScenarioV2 {
         return response
     }
     
-    subscript(urlRequest: URLRequest) -> APIResponseV2? {
+    subscript(urlRequest: URLRequest) -> APIResponse? {
         return responseForRequest(urlRequest)
     }
     
@@ -43,7 +43,7 @@ extension ScenarioV2 {
 
 // MARK: Helper methods for debugging
 
-extension ScenarioV2 {
+extension Scenario {
     override var description: String { return "Scenario: \(name)"}
     override var debugDescription: String { return "Scenario: \(name)\nResponses: \(apiResponses)\n"}
 }
