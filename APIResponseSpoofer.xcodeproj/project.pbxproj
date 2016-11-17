@@ -105,8 +105,8 @@
 		4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		4180391D1BCB73FE004E1534 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
 		419430AE1DDA96E700DA65AF /* APIResponseSpoofer_iOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer_iOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APIResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
-		419430B11DDA96E700DA65AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APIResponseSpoofer iOS UI.h"; path = "../Supporting Files/iOS UI/APIResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
+		419430B11DDA96E700DA65AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Supporting Files/iOS UI/Info.plist"; sourceTree = "<group>"; };
 		419430C01DDAA21E00DA65AF /* SpooferUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferUI.swift; sourceTree = "<group>"; };
 		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -210,11 +210,10 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				419430AF1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */,
-				4147EA4E1B684D7E001DE517 /* Products */,
 				4147EA4F1B684D7E001DE517 /* Source */,
-				4147EA501B684D7E001DE517 /* Supporting Files */,
 				411A35781BC74A7D001D128D /* Tests */,
+				4147EA501B684D7E001DE517 /* Supporting Files */,
+				4147EA4E1B684D7E001DE517 /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -240,11 +239,12 @@
 		4147EA501B684D7E001DE517 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				419430AF1DDA96E700DA65AF /* iOS UI */,
 				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
+				4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */,
 				4147EA511B684D7E001DE517 /* Info.plist */,
 				4137B6111BD87837005AF53E /* README.md */,
 				411A357B1BC74A7D001D128D /* TestsInfo.plist */,
-				4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -304,13 +304,14 @@
 			path = Miscellaneous;
 			sourceTree = "<group>";
 		};
-		419430AF1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */ = {
+		419430AF1DDA96E700DA65AF /* iOS UI */ = {
 			isa = PBXGroup;
 			children = (
 				419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */,
 				419430B11DDA96E700DA65AF /* Info.plist */,
 			);
-			path = "APIResponseSpoofer iOS UI";
+			name = "iOS UI";
+			path = "../APIResponseSpoofer iOS UI";
 			sourceTree = "<group>";
 		};
 		419430BE1DDAA10800DA65AF /* iOS UI */ = {
@@ -898,7 +899,7 @@
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
 				GCC_DYNAMIC_NO_PIC = NO;
-				INFOPLIST_FILE = "APIResponseSpoofer iOS UI/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.APIResponseSpoofer-iOS-UI";
@@ -930,7 +931,7 @@
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
 				);
-				INFOPLIST_FILE = "APIResponseSpoofer iOS UI/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.APIResponseSpoofer-iOS-UI";
