@@ -76,19 +76,15 @@ class DemoViewController: UIViewController {
         // Decide on action and set state for current button press
         switch (sender, sender.title!) {
         case (recordButton, ButtonTitle.startRecording.rawValue):
-            // Start recording
             Spoofer.startRecording(inViewController: self)
             
         case (recordButton, ButtonTitle.stopRecording.rawValue):
-            // Stop Recording
             Spoofer.stopRecording()
             
         case (replayButton, ButtonTitle.startReplaying.rawValue):
-            // Start Replay
             Spoofer.showRecordedScenarios(inViewController: self)
             
         case (replayButton, ButtonTitle.stopReplaying.rawValue):
-            // Stop Replay
             Spoofer.stopReplaying()
             
         default:
@@ -96,11 +92,26 @@ class DemoViewController: UIViewController {
         }
     }
     
-    // MARK: - Helper methods
-    
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         let point = sender.translation(in: view)
         consoleHeightConstraint.constant = -point.y
+    }
+
+    // MARK: - Helper methods
+
+    func spooferLogReceived(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
+        // Marshall the UI updates to main thread
+        DispatchQueue.main.async(execute: { [weak self] in
+            guard let strongSelf = self else { return }
+            if strongSelf.consoleTextView.text.characters.count > 0 {
+                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
+                // Scroll to bottom of log
+                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.characters.count - 1, length: 1))
+            } else {
+                strongSelf.consoleTextView.text = message
+            }
+        })
     }
 
 }
@@ -127,21 +138,6 @@ extension DemoViewController: SpooferDelegate {
 }
 
 fileprivate extension DemoViewController {
-
-    func spooferLogReceived(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
-        // Marshall the UI updates to main thread
-        DispatchQueue.main.async(execute: { [weak self] in
-            guard let strongSelf = self else { return }
-            if strongSelf.consoleTextView.text.characters.count > 0 {
-                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
-                // Scroll to bottom of log
-                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.characters.count - 1, length: 1))
-            } else {
-                strongSelf.consoleTextView.text = message
-            }
-        })
-    }
 
     func executeActionsForRecording(recordingState state: Bool) {
         if state {
