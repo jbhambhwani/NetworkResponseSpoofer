@@ -101,6 +101,11 @@ extension RealmStore: Store {
         
         do {
             try realm.write {
+                // Currently realm does not have a cascade delete mechanism, so delete the sub structures before deleting the scenario
+                scenario.apiResponses.forEach( { realm.delete($0.headerFields) })
+                realm.delete(scenario.apiResponses)
+                // TODO: The above 2 lines can be deleted once cascade delete is implemented in Realm
+
                 realm.delete(scenario)
             }
             return .success(true)
