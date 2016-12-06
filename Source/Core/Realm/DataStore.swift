@@ -21,7 +21,7 @@ protocol Store {
     func allScenarioNames() -> [String]
     func save(scenario: Scenario) -> Result<Scenario>
     func load(scenarioName: String) -> Result<Scenario>
-    func delete(scenarioName: String) -> Result<Scenario>
+    func delete(scenarioName: String) -> Result<Bool>
     // Response
     func save(response: APIResponse, scenarioName: String) -> Result<APIResponse>
     func delete(responseIndex: Int, scenarioName: String) -> Result<Bool>
@@ -43,7 +43,7 @@ enum DataStore {
         return RealmStore.sharedInstance.load(scenarioName: scenarioName)
     }
     
-    static func delete(scenarioName: String) -> Result<Scenario> {
+    static func delete(scenarioName: String) -> Result<Bool> {
         return RealmStore.sharedInstance.delete(scenarioName: scenarioName)
     }
 
@@ -96,14 +96,14 @@ extension RealmStore: Store {
         return .success(scenario)
     }
     
-    func delete(scenarioName: String) -> Result<Scenario> {
+    func delete(scenarioName: String) -> Result<Bool> {
         guard let scenario = getScenario(scenarioName) else { return .failure(StoreError.scenarioNotFound) }
         
         do {
             try realm.write {
                 realm.delete(scenario)
             }
-            return .success(scenario)
+            return .success(true)
         } catch {
             return .failure(StoreError.unableToDeleteScenario)
         }
