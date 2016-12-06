@@ -26,10 +26,10 @@ class Scenario: Object {
 extension Scenario {
     
     func responseForRequest(_ urlRequest: URLRequest) -> APIResponse? {
-        guard let requestURLString = urlRequest.url?.normalizedURLString else { return nil }
+        guard let requestURLString = urlRequest.url?.normalizedString else { return nil }
         let response = apiResponses.filter { savedResponse in
             guard let savedURL = URL(string: savedResponse.requestURL),
-                let normalizedSavedURL = savedURL.normalizedURLString else { return false }
+                let normalizedSavedURL = savedURL.normalizedString else { return false }
             return normalizedSavedURL.contains(requestURLString)
         }.first
         return response

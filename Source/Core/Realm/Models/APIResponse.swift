@@ -91,7 +91,7 @@ extension APIResponse {
             let lhsURL = URL(string: requestURL),
             let rhsURL = URL(string: rhs.requestURL) else { return false }
         
-        if lhsURL.normalizedURLString == rhsURL.normalizedURLString {
+        if lhsURL.normalizedString == rhsURL.normalizedString {
             return true
         }
         return false
