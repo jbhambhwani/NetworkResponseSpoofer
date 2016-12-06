@@ -56,14 +56,14 @@ class DemoViewController: UIViewController {
         // Reset the alternate button to default state
         switch sender {
         case recordButton:
-            replayButton.title = ButtonTitle.StartReplaying.rawValue
+            replayButton.title = ButtonTitle.startReplaying.rawValue
             replayButton.tintColor = view.tintColor
             if Spoofer.isReplaying {
                 Spoofer.stopReplaying()
             }
             
         case replayButton:
-            recordButton.title = ButtonTitle.StartRecording.rawValue
+            recordButton.title = ButtonTitle.startRecording.rawValue
             recordButton.tintColor = view.tintColor
             if Spoofer.isRecording {
                 Spoofer.stopRecording()
@@ -75,19 +75,19 @@ class DemoViewController: UIViewController {
         
         // Decide on action and set state for current button press
         switch (sender, sender.title!) {
-        case (recordButton, ButtonTitle.StartRecording.rawValue):
+        case (recordButton, ButtonTitle.startRecording.rawValue):
             // Start recording
             Spoofer.startRecording(inViewController: self)
             
-        case (recordButton, ButtonTitle.StopRecording.rawValue):
+        case (recordButton, ButtonTitle.stopRecording.rawValue):
             // Stop Recording
             Spoofer.stopRecording()
             
-        case (replayButton, ButtonTitle.StartReplaying.rawValue):
+        case (replayButton, ButtonTitle.startReplaying.rawValue):
             // Start Replay
             Spoofer.showRecordedScenarios(inViewController: self)
             
-        case (replayButton, ButtonTitle.StopReplaying.rawValue):
+        case (replayButton, ButtonTitle.stopReplaying.rawValue):
             // Stop Replay
             Spoofer.stopReplaying()
             
@@ -102,53 +102,13 @@ class DemoViewController: UIViewController {
         let point = sender.translation(in: view)
         consoleHeightConstraint.constant = -point.y
     }
-    
-    func spooferLogReceived(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
-        // Marshall the UI updates to main thread
-        DispatchQueue.main.async(execute: { [weak self] in
-            guard let strongSelf = self else { return }
-            if strongSelf.consoleTextView.text.characters.count > 0 {
-                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
-                // Scroll to bottom of log
-                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.characters.count - 1, length: 1))
-            } else {
-                strongSelf.consoleTextView.text = message
-            }
-        })
-    }
-    
-    func executeActionsForRecording(recordingState state: Bool) {
-        if state {
-            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
-            searchBar.text = ""
-            recordButton.title = ButtonTitle.StopRecording.rawValue
-            recordButton.tintColor = UIColor.red
-            performSampleNetworkRequests()
-        } else {
-            recordButton.title = ButtonTitle.StartRecording.rawValue
-            recordButton.tintColor = view.tintColor
-        }
-    }
-    
-    func executeActionsForReplaying(replayingState state: Bool) {
-        if state {
-            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
-            searchBar.text = ""
-            replayButton.title = ButtonTitle.StopReplaying.rawValue
-            replayButton.tintColor = UIColor.red
-        } else {
-            replayButton.title = ButtonTitle.StartReplaying.rawValue
-            replayButton.tintColor = view.tintColor
-        }
-    }
-    
-}
 
+}
 
 // MARK: - Spoofer Delegate
 
 extension DemoViewController: SpooferDelegate {
+
     func spooferDidStartRecording(_ scenarioName: String) {
         executeActionsForRecording(recordingState: true)
     }
@@ -164,4 +124,48 @@ extension DemoViewController: SpooferDelegate {
     func spooferDidStopReplaying(_ scenarioName: String) {
         executeActionsForReplaying(replayingState: false)
     }
+}
+
+fileprivate extension DemoViewController {
+
+    func spooferLogReceived(_ notification: Notification) {
+        guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
+        // Marshall the UI updates to main thread
+        DispatchQueue.main.async(execute: { [weak self] in
+            guard let strongSelf = self else { return }
+            if strongSelf.consoleTextView.text.characters.count > 0 {
+                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
+                // Scroll to bottom of log
+                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.characters.count - 1, length: 1))
+            } else {
+                strongSelf.consoleTextView.text = message
+            }
+        })
+    }
+
+    func executeActionsForRecording(recordingState state: Bool) {
+        if state {
+            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
+            searchBar.text = ""
+            recordButton.title = ButtonTitle.stopRecording.rawValue
+            recordButton.tintColor = UIColor.red
+            performSampleNetworkRequests()
+        } else {
+            recordButton.title = ButtonTitle.startRecording.rawValue
+            recordButton.tintColor = view.tintColor
+        }
+    }
+
+    func executeActionsForReplaying(replayingState state: Bool) {
+        if state {
+            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
+            searchBar.text = ""
+            replayButton.title = ButtonTitle.stopReplaying.rawValue
+            replayButton.tintColor = UIColor.red
+        } else {
+            replayButton.title = ButtonTitle.startReplaying.rawValue
+            replayButton.tintColor = view.tintColor
+        }
+    }
+
 }

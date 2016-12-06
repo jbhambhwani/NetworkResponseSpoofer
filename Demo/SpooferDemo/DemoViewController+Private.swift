@@ -10,10 +10,10 @@ import Foundation
 import WebKit
 
 enum ButtonTitle: String {
-    case StartRecording = "Start Recording"
-    case StopRecording = "Stop Recording"
-    case StartReplaying = "Start Replaying"
-    case StopReplaying = "Stop Replaying"
+    case startRecording = "Start Recording"
+    case stopRecording = "Stop Recording"
+    case startReplaying = "Start Replaying"
+    case stopReplaying = "Stop Replaying"
 }
 
 // MARK: - Webview Delegate
