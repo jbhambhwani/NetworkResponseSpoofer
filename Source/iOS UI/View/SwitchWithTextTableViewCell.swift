@@ -14,17 +14,17 @@ import UIKit
 typealias SwitchWithTextViewPresentable = TextPresentable & SwitchPresentable & NavigationPresentable & DataPresentable
 
 class SwitchWithTextTableViewCell: UITableViewCell {
-    
+
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var subtitleLabel: UILabel!
     @IBOutlet private weak var switchToggle: UISwitch!
-    
+
     private(set) var presenter: SwitchWithTextViewPresentable?
-    
+
     // configure with something that conforms to the composed protocol
     func configure(withPresenter presenter: SwitchWithTextViewPresentable) {
         self.presenter = presenter
-        
+
         // configure the UI components
         titleLabel.text = presenter.title
         subtitleLabel.text = presenter.subtitle
@@ -33,7 +33,7 @@ class SwitchWithTextTableViewCell: UITableViewCell {
         accessoryType = presenter.disclosureHidden ? .none : .disclosureIndicator
         selectionStyle = presenter.allowCellSelection ? .default : .none
     }
-    
+
     @IBAction func onSwitchToggle(_ sender: UISwitch) {
         presenter?.onSwitchTogleOn(sender.isOn)
     }

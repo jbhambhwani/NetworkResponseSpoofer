@@ -9,31 +9,31 @@
 import Foundation
 
 struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
-    var model: [SpooferConfigurationType : Any]
+    var model: [SpooferConfigurationType: Any]
 }
 
 // MARK: - TextPresentable Conformance
 
 extension SwitchWithTextViewModel {
-    
+
     var title: String {
         return configType.rawValue
     }
-    
+
     var subtitle: String {
         return configType.description
     }
-    
+
     fileprivate var configType: SpooferConfigurationType {
         guard let configType = model.keys.first else { return .Blank }
         return configType
     }
-    
+
     fileprivate var packedData: Any {
         guard let data = model.values.first else { return "" }
         return data
     }
-    
+
     fileprivate var modelIsBoolean: Bool {
         return packedData is Bool
     }
@@ -42,14 +42,14 @@ extension SwitchWithTextViewModel {
 // MARK: - SwitchPresentable Conformance
 
 extension SwitchWithTextViewModel {
-    
+
     var switchOn: Bool {
         guard let boolValue = packedData as? Bool else { return modelIsBoolean }
         return boolValue
     }
-    
-    var switchHidden: Bool { return !modelIsBoolean}
-    
+
+    var switchHidden: Bool { return !modelIsBoolean }
+
     func onSwitchTogleOn(_ on: Bool) {
         switch configType {
         case .queryValueNormalization:
@@ -72,7 +72,7 @@ extension SwitchWithTextViewModel {
 // MARK: - DataPresentable Conformance
 
 extension SwitchWithTextViewModel {
-    
+
     var configurations: [String] {
         get {
             guard let configs = packedData as? [String] else { return [String]() }

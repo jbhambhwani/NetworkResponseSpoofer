@@ -10,9 +10,9 @@ import Foundation
 
 func logFormattedSeperator(_ message: String? = "-") {
     guard let message = message else { return }
-    
+
     postNotification(message)
-    
+
     // Print "-" character before and after the message, 100 character total. Just logging every important message nicely.
     let messageStart = 50 - (message.characters.count / 2)
     if messageStart > 0 {

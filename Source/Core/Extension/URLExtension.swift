@@ -9,8 +9,8 @@
 import Foundation
 
 extension URL {
-    
-    // MARK:- Public properties
+
+    // MARK: - Public properties
 
     var normalizedString: String? {
 
@@ -23,7 +23,6 @@ extension URL {
         guard let scheme = scheme else { return false }
         return ["http", "https"].contains(scheme)
     }
-    
 }
 
 // MARK: - Private properties
@@ -66,11 +65,10 @@ fileprivate extension URL {
         guard let queryItems = components.queryItems else { return [] }
         return queryItems
     }
-    
 }
 
 fileprivate extension String {
-    
+
     // Remove www prefix
     mutating func removeWeb() {
         if self.hasPrefix("www.") {
@@ -78,7 +76,7 @@ fileprivate extension String {
             self = self.substring(from: wwwIndex)
         }
     }
-    
+
     // Remove sub domains which are to be normalized from the host name part. e.g. DEV, QA, PREPROD etc.
     mutating func normalizeSubDomains() {
         for subDomainToNormalize in Spoofer.subDomainsToNormalize {
@@ -90,7 +88,7 @@ fileprivate extension String {
             }
         }
     }
-    
+
     // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
     mutating func normalizePathComponents() {
         for pathComponent in Spoofer.pathComponentsToNormalize {
@@ -99,7 +97,7 @@ fileprivate extension String {
             }
         }
     }
-    
+
     // Normalize the query parameters
     mutating func normalizeQuery(items: [URLQueryItem]) {
         if Spoofer.normalizeQueryValues {
@@ -108,7 +106,7 @@ fileprivate extension String {
                 self += "?" + queryItemNames
             }
         } else {
-            let combinedQueryItems = items.reduce(""){
+            let combinedQueryItems = items.reduce("") {
                 guard let value = $1.value else { return $0 }
                 if $0.characters.count > 0 {
                     return $0 + "&" + $1.name + "=" + value

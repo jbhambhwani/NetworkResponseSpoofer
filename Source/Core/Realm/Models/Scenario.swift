@@ -10,21 +10,21 @@ import Foundation
 import RealmSwift
 
 class Scenario: Object {
-    
+
     dynamic var name = "Default"
     let apiResponses = List<APIResponse>()
-    
+
     override static func primaryKey() -> String {
         return "name"
     }
-    
+
     override static func indexedProperties() -> [String] {
         return ["name"]
     }
 }
 
 extension Scenario {
-    
+
     func responseForRequest(_ urlRequest: URLRequest) -> APIResponse? {
         guard let requestURLString = urlRequest.url?.normalizedString else { return nil }
         let response = apiResponses.filter { savedResponse in
@@ -34,16 +34,15 @@ extension Scenario {
         }.first
         return response
     }
-    
+
     subscript(urlRequest: URLRequest) -> APIResponse? {
         return responseForRequest(urlRequest)
     }
-    
 }
 
 // MARK: Helper methods for debugging
 
 extension Scenario {
-    override var description: String { return "Scenario: \(name)"}
-    override var debugDescription: String { return "Scenario: \(name)\nResponses: \(apiResponses)\n"}
+    override var description: String { return "Scenario: \(name)" }
+    override var debugDescription: String { return "Scenario: \(name)\nResponses: \(apiResponses)\n" }
 }

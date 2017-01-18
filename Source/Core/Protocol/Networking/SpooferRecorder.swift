@@ -9,39 +9,39 @@
 import Foundation
 
 public class SpooferRecorder: URLProtocol, NetworkInterceptable {
- 
+
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var session: URLSession?
     var dataTask: URLSessionDataTask?
     var response: URLResponse?
     var responseData: Data?
-    
-    override public class func canInit(with request: URLRequest) -> Bool {
+
+    public override class func canInit(with request: URLRequest) -> Bool {
         guard let url = request.url else { return false }
-        
+
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
         let isHTTP = url.isHTTP
         // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(url)
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
         let isHandled = (request.value(forHTTPHeaderField: requestHandledKey) ?? "").characters.count > 0
-        
+
         if Spoofer.isRecording && isHTTP && !isHandled && shouldHandleURL {
             return true
         }
         return false
     }
-    
-    override public class func canonicalRequest(for request: URLRequest) -> URLRequest {
+
+    public override class func canonicalRequest(for request: URLRequest) -> URLRequest {
         return request
     }
-    
-    override public class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
+
+    public override class func requestIsCacheEquivalent(_ aRequest: URLRequest, to bRequest: URLRequest) -> Bool {
         // Let the super class handle it
-        return super.requestIsCacheEquivalent(aRequest, to:bRequest)
+        return super.requestIsCacheEquivalent(aRequest, to: bRequest)
     }
-    
-    override public func startLoading() {
+
+    public override func startLoading() {
         // 1: Get a copy of the original request
         var newRequest = request
         // 2: Set a custom key in the request so that we don't have to handle it again and cause an infinite loop
@@ -51,8 +51,8 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
         dataTask = session?.dataTask(with: newRequest)
         dataTask?.resume()
     }
-    
-    override public func stopLoading() {
+
+    public override func stopLoading() {
         dataTask?.cancel()
         session?.invalidateAndCancel()
         session = nil
@@ -60,27 +60,26 @@ public class SpooferRecorder: URLProtocol, NetworkInterceptable {
         response = nil
         responseData = nil
     }
-    
 }
 
 // MARK: - Networking Delegates
 
-extension SpooferRecorder:  URLSessionDataDelegate, URLSessionTaskDelegate {
-    
-    public func urlSession(_ session: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-        
+extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
+
+    public func urlSession(_: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+
         guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
             Spoofer.allowSelfSignedCertificate == true,
             let serverTrust = challenge.protectionSpace.serverTrust else {
-                completionHandler(.performDefaultHandling, nil)
-                return
+            completionHandler(.performDefaultHandling, nil)
+            return
         }
-        
+
         let credentials = URLCredential(trust: serverTrust)
         completionHandler(.performDefaultHandling, credentials)
     }
-    
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+
+    public func urlSession(_: URLSession, dataTask _: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
 
         // Send the received response to the client
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
@@ -90,16 +89,16 @@ extension SpooferRecorder:  URLSessionDataDelegate, URLSessionTaskDelegate {
 
         completionHandler(.allow)
     }
-    
-    public func urlSession(_ session: URLSession, dataTask: URLSessionDataTask, didReceive data: Data) {
+
+    public func urlSession(_: URLSession, dataTask _: URLSessionDataTask, didReceive data: Data) {
         // Send the received data to the client
         client?.urlProtocol(self, didLoad: data)
         // Save all packets received
         responseData?.append(data)
     }
-    
-    public func urlSession(_ session: URLSession, task: URLSessionTask, didCompleteWithError error: Error?) {
-    
+
+    public func urlSession(_: URLSession, task _: URLSessionTask, didCompleteWithError error: Error?) {
+
         if error == nil {
             // Let know the client that we completed loading the request
             client?.urlProtocolDidFinishLoading(self)
@@ -118,16 +117,14 @@ extension SpooferRecorder:  URLSessionDataDelegate, URLSessionTaskDelegate {
 // MARK: - Response Persistance
 
 fileprivate extension SpooferRecorder {
-    
+
     func saveResponse() {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
-        
+
         // Create the internal data structure which encapsulates all the needed data to replay this response later
         guard let currentResponse = APIResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
-        
+
         postNotification("Response received 📡\n\(currentResponse)", object: self)
         _ = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName)
     }
-    
 }
-

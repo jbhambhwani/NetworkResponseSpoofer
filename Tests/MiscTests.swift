@@ -10,7 +10,7 @@ import XCTest
 @testable import APIResponseSpoofer
 
 class MiscTests: XCTestCase {
-    
+
     func testFormattedSeperator() {
         logFormattedSeperator("Scenario Loaded Succesfully 👍")
         logFormattedSeperator("")
@@ -19,5 +19,4 @@ class MiscTests: XCTestCase {
         logFormattedSeperator("@")
         logFormattedSeperator("This string is 100 characters plus to that it breaks the formated seperator logic. Yes. Break the logic. That's the test. The method should just print this string as it is.")
     }
-
 }
