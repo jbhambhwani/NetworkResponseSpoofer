@@ -14,19 +14,41 @@ class ViewController: NSViewController {
 
     @IBOutlet weak var webView: WebView!
     @IBOutlet weak var textField: NSTextField!
-    
+    @IBOutlet weak var progressIndicator: NSProgressIndicator!
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        webView.frameLoadDelegate = self
+    }
+
     @IBAction func goPressed(_ sender: NSButton) {
-        // Spoofer.startRecording(scenarioName: "MacApp")
-        Spoofer.startReplaying(scenarioName: "MacApp")
-        webView.mainFrameURL = textField.stringValue
+        loadWebPage()
     }
-    
-    override var representedObject: Any? {
-        didSet {
-            // Update the view, if already loaded.
-        }
+
+    @IBAction func enterPressed(_ sender: NSTextField) {
+        loadWebPage()
     }
-    
+
+    func loadWebPage() {
+        let url = textField.stringValue
+        guard url.characters.count > 0 else { return }
+        Spoofer.startRecording(scenarioName: "MacApp")
+        webView.mainFrameURL = url.hasPrefix("http") ? url : "http://\(url)"
+    }
 }
 
+extension ViewController: WebFrameLoadDelegate {
+
+    func webView(_ sender: WebView!, didStartProvisionalLoadFor frame: WebFrame!) {
+        progressIndicator.startAnimation(nil)
+    }
+
+    func webView(_ sender: WebView!, didFinishLoadFor frame: WebFrame!) {
+        progressIndicator.stopAnimation(nil)
+    }
+
+    func webView(_ sender: WebView!, didFailLoadWithError error: Error!, for frame: WebFrame!) {
+        progressIndicator.stopAnimation(nil)
+    }
+}
 
