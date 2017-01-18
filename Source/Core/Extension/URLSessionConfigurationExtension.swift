@@ -16,7 +16,6 @@ fileprivate let swizzleURLSessionConfiguration: Void = {
                            withSelector: #selector(getter: URLSessionConfiguration.ephemeral))
 }()
 
-// Swizzle URLSessionConfiguration to insert our Interceptor protocols
 
 public extension URLSessionConfiguration {
 
@@ -25,22 +24,26 @@ public extension URLSessionConfiguration {
      The below implementation circumvents that issue by swizzling the default and ephemeral configurations to route through new methods, allowing us to insert the recording and replaying protocols to any such spawned session configuration.
      */
 
+    /// Spoofed Default URLSessionConfiguration (As a property)
     public static var spoofed: URLSessionConfiguration {
         let sessionConfig = URLSessionConfiguration.default
         insertInterceptors(inConfig: sessionConfig)
         return sessionConfig
     }
 
+    /// Swizzle URLSessionConfiguration to insert Spoofer Interceptor protocols
     class func swizzleConfiguration() {
         _ = swizzleURLSessionConfiguration
     }
 
+    /// Spoofed Default URLSessionConfiguration (As a method)
     class func spoofedDefault() -> URLSessionConfiguration {
         let config = spoofedDefault()
         insertInterceptors(inConfig: config)
         return config
     }
 
+    /// Spoofed Ephemeral URLSessionConfiguration
     class func spoofedEphemeral() -> URLSessionConfiguration {
         let config = spoofedEphemeral()
         insertInterceptors(inConfig: config)

@@ -8,7 +8,10 @@
 
 import Foundation
 
-public class SpooferRecorder: URLProtocol, NetworkInterceptable {
+/**
+ URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording. The methods are not to be overriden for Spoofer to work correctly.
+ */
+public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
 
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var session: URLSession?

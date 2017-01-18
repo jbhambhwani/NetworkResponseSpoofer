@@ -9,6 +9,7 @@
 import Foundation
 import RealmSwift
 
+/// Errors thrown from Realm Datastore
 public enum StoreError: Int, Error {
     case scenarioNotFound
     case unableToSaveScenario

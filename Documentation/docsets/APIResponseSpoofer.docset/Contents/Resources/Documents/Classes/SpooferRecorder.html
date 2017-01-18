@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>SpooferError Enum Reference</title>
+    <title>SpooferRecorder Class Reference</title>
     <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
     <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
     <meta charset='utf-8'>
@@ -10,8 +10,8 @@
     
   </head>
   <body>
-    <a name="//apple_ref/swift/Enum/SpooferError" class="dashAnchor"></a>
-    <a title="SpooferError Enum Reference"></a>
+    <a name="//apple_ref/swift/Class/SpooferRecorder" class="dashAnchor"></a>
+    <a title="SpooferRecorder Class Reference"></a>
     <header>
       <div class="content-wrapper">
         <p><a href="../index.html">APIResponseSpoofer Docs</a> (72% documented)</p>
@@ -22,7 +22,7 @@
       <p id="breadcrumbs">
         <a href="../index.html">APIResponseSpoofer Reference</a>
         <img id="carat" src="../img/carat.png" />
-        SpooferError Enum Reference
+        SpooferRecorder Class Reference
       </p>
     </div>
     <div class="content-wrapper">
@@ -74,14 +74,14 @@
       <article class="main-content">
         <section>
           <section class="section">
-            <h1>SpooferError</h1>
+            <h1>SpooferRecorder</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SpooferError</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Error</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
 
                 </div>
               </div>
-            <p>Errors thrown by the Spoofer</p>
+            <p>URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording. The methods are not to be overriden for Spoofer to work correctly.</p>
 
           </section>
           <section class="section task-group-section">
@@ -90,9 +90,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError13diskReadErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/diskReadError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError13diskReadErrorFMS0_S0_">diskReadError</a>
+                    <a name="/s:ZFC18APIResponseSpoofer15SpooferRecorder7canInitFT4withV10Foundation10URLRequest_Sb"></a>
+                    <a name="//apple_ref/swift/Method/canInit(with:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC18APIResponseSpoofer15SpooferRecorder7canInitFT4withV10Foundation10URLRequest_Sb">canInit(with:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -100,14 +100,122 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Error when unable to read from the scenario file on disk</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">diskReadError</span> <span class="o">=</span> <span class="mi">500</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC18APIResponseSpoofer15SpooferRecorder16canonicalRequestFT3forV10Foundation10URLRequest_S2_"></a>
+                    <a name="//apple_ref/swift/Method/canonicalRequest(for:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC18APIResponseSpoofer15SpooferRecorder16canonicalRequestFT3forV10Foundation10URLRequest_S2_">canonicalRequest(for:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZFC18APIResponseSpoofer15SpooferRecorder24requestIsCacheEquivalentFTV10Foundation10URLRequest2toS2__Sb"></a>
+                    <a name="//apple_ref/swift/Method/requestIsCacheEquivalent(_:to:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZFC18APIResponseSpoofer15SpooferRecorder24requestIsCacheEquivalentFTV10Foundation10URLRequest2toS2__Sb">requestIsCacheEquivalent(_:to:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC18APIResponseSpoofer15SpooferRecorder12startLoadingFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/startLoading()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC18APIResponseSpoofer15SpooferRecorder12startLoadingFT_T_">startLoading()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FC18APIResponseSpoofer15SpooferRecorder11stopLoadingFT_T_"></a>
+                    <a name="//apple_ref/swift/Method/stopLoading()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC18APIResponseSpoofer15SpooferRecorder11stopLoadingFT_T_">stopLoading()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Undocumented</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
 
                         </div>
                       </div>
@@ -121,9 +229,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError14diskWriteErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/diskWriteError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError14diskWriteErrorFMS0_S0_">diskWriteError</a>
+                    <a name="/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession10didReceiveCSo26URLAuthenticationChallenge17completionHandlerFTOS1_24AuthChallengeDispositionGSqCSo13URLCredential__T__T_"></a>
+                    <a name="//apple_ref/swift/Method/urlSession(_:didReceive:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession10didReceiveCSo26URLAuthenticationChallenge17completionHandlerFTOS1_24AuthChallengeDispositionGSqCSo13URLCredential__T__T_">urlSession(_:didReceive:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -131,30 +239,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Error when unable to write to a scenario file on disk</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">diskWriteError</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError16scenarioURLErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/scenarioURLError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError16scenarioURLErrorFMS0_S0_">scenarioURLError</a>
+                    <a name="/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveCSo11URLResponse17completionHandlerFOS1_19ResponseDispositionT__T_"></a>
+                    <a name="//apple_ref/swift/Method/urlSession(_:dataTask:didReceive:completionHandler:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveCSo11URLResponse17completionHandlerFOS1_19ResponseDispositionT__T_">urlSession(_:dataTask:didReceive:completionHandler:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -162,30 +266,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Error when unable to generate a scenario url</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">scenarioURLError</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError14emptyFileErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/emptyFileError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError14emptyFileErrorFMS0_S0_">emptyFileError</a>
+                    <a name="/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveV10Foundation4Data_T_"></a>
+                    <a name="//apple_ref/swift/Method/urlSession(_:dataTask:didReceive:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession8dataTaskCSo18URLSessionDataTask10didReceiveV10Foundation4Data_T_">urlSession(_:dataTask:didReceive:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -193,30 +293,26 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Error when empty scenario file is found on disk</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">emptyFileError</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
 
                         </div>
                       </div>
                     </section>
                   </div>
                 </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError20documentsAccessErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/documentsAccessError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError20documentsAccessErrorFMS0_S0_">documentsAccessError</a>
+                    <a name="/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession4taskCSo14URLSessionTask20didCompleteWithErrorGSqPs5Error___T_"></a>
+                    <a name="//apple_ref/swift/Method/urlSession(_:task:didCompleteWithError:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FC18APIResponseSpoofer15SpooferRecorder10urlSessionFTCSo10URLSession4taskCSo14URLSessionTask20didCompleteWithErrorGSqPs5Error___T_">urlSession(_:task:didCompleteWithError:)</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -224,138 +320,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Error when unable to access sandboxed documents folder of the app</p>
+                        <p>Undocumented</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">documentsAccessError</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError19folderCreationErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/folderCreationError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError19folderCreationErrorFMS0_S0_">folderCreationError</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Error when unable to create a folder inside the Documents folder</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">folderCreationError</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError18emptyScenarioErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/emptyScenarioError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError18emptyScenarioErrorFMS0_S0_">emptyScenarioError</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Error when scenario file has no APIResponses recorded</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">emptyScenarioError</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError20noSavedResponseErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/noSavedResponseError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError20noSavedResponseErrorFMS0_S0_">noSavedResponseError</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Error when no saved response is found for a particular request</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">noSavedResponseError</span></code></pre>
-
-                        </div>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-              </ul>
-            </div>
-            <div class="task-group">
-              <ul>
-                <li class="item">
-                  <div>
-                    <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError21scenarioDeletionErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/scenarioDeletionError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError21scenarioDeletionErrorFMS0_S0_">scenarioDeletionError</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Error when unable to delete a scenario from disk</p>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="n">scenarioDeletionError</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">final</span> <span class="kd">class</span> <span class="kt">SpooferRecorder</span><span class="p">:</span> <span class="kt">URLProtocol</span><span class="p">,</span> <span class="kt">NetworkInterceptable</span></code></pre>
 
                         </div>
                       </div>

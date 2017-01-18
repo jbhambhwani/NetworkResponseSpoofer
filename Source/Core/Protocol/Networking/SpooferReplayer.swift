@@ -13,6 +13,9 @@ enum ReplayMethod {
     case mimeTypeAndEncoding
 }
 
+/**
+ URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Replaying. The methods are not to be overriden for Spoofer to work correctly.
+ */
 public class SpooferReplayer: URLProtocol, NetworkInterceptable {
 
     private var currentReplayMethod: ReplayMethod {

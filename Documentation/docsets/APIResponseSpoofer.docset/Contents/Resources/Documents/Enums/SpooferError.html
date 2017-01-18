@@ -14,7 +14,7 @@
     <a title="SpooferError Enum Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">APIResponseSpoofer Docs</a> (100% documented)</p>
+        <p><a href="../index.html">APIResponseSpoofer Docs</a> (72% documented)</p>
         <p class="header-right"><a href="https://github.com/HotwireDotCom"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -34,6 +34,12 @@
               <li class="nav-group-task">
                 <a href="../Classes/Spoofer.html">Spoofer</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SpooferRecorder.html">SpooferRecorder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SpooferReplayer.html">SpooferReplayer</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -41,6 +47,17 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/SpooferError.html">SpooferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StoreError.html">StoreError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/URLSessionConfiguration.html">URLSessionConfiguration</a>
               </li>
             </ul>
           </li>
@@ -60,7 +77,7 @@
             <h1>SpooferError</h1>
               <div class="declaration">
                 <div class="language">
-                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SpooferError</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">ErrorType</span></code></pre>
+                  <pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">SpooferError</span><span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">Error</span></code></pre>
 
                 </div>
               </div>
@@ -73,9 +90,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError13DiskReadErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/DiskReadError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError13DiskReadErrorFMS0_S0_">DiskReadError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError13diskReadErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/diskReadError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError13diskReadErrorFMS0_S0_">diskReadError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -90,7 +107,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">DiskReadError</span> <span class="o">=</span> <span class="mi">500</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">diskReadError</span> <span class="o">=</span> <span class="mi">500</span></code></pre>
 
                         </div>
                       </div>
@@ -104,9 +121,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError14DiskWriteErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/DiskWriteError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError14DiskWriteErrorFMS0_S0_">DiskWriteError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError14diskWriteErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/diskWriteError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError14diskWriteErrorFMS0_S0_">diskWriteError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -121,7 +138,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">DiskWriteError</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">diskWriteError</span></code></pre>
 
                         </div>
                       </div>
@@ -135,9 +152,40 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError14EmptyFileErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/EmptyFileError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError14EmptyFileErrorFMS0_S0_">EmptyFileError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError16scenarioURLErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/scenarioURLError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError16scenarioURLErrorFMS0_S0_">scenarioURLError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Error when unable to generate a scenario url</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">scenarioURLError</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError14emptyFileErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/emptyFileError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError14emptyFileErrorFMS0_S0_">emptyFileError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -152,7 +200,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">EmptyFileError</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">emptyFileError</span></code></pre>
 
                         </div>
                       </div>
@@ -166,9 +214,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError20DocumentsAccessErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/DocumentsAccessError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError20DocumentsAccessErrorFMS0_S0_">DocumentsAccessError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError20documentsAccessErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/documentsAccessError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError20documentsAccessErrorFMS0_S0_">documentsAccessError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -183,7 +231,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">DocumentsAccessError</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">documentsAccessError</span></code></pre>
 
                         </div>
                       </div>
@@ -197,9 +245,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError19FolderCreationErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/FolderCreationError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError19FolderCreationErrorFMS0_S0_">FolderCreationError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError19folderCreationErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/folderCreationError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError19folderCreationErrorFMS0_S0_">folderCreationError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -214,7 +262,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">FolderCreationError</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">folderCreationError</span></code></pre>
 
                         </div>
                       </div>
@@ -228,9 +276,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError18EmptyScenarioErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/EmptyScenarioError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError18EmptyScenarioErrorFMS0_S0_">EmptyScenarioError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError18emptyScenarioErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/emptyScenarioError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError18emptyScenarioErrorFMS0_S0_">emptyScenarioError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -245,7 +293,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">EmptyScenarioError</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">emptyScenarioError</span></code></pre>
 
                         </div>
                       </div>
@@ -259,9 +307,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError20NoSavedResponseErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/NoSavedResponseError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError20NoSavedResponseErrorFMS0_S0_">NoSavedResponseError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError20noSavedResponseErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/noSavedResponseError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError20noSavedResponseErrorFMS0_S0_">noSavedResponseError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -276,7 +324,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">NoSavedResponseError</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">noSavedResponseError</span></code></pre>
 
                         </div>
                       </div>
@@ -290,9 +338,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:FO18APIResponseSpoofer12SpooferError21ScenarioDeletionErrorFMS0_S0_"></a>
-                    <a name="//apple_ref/swift/Element/ScenarioDeletionError" class="dashAnchor"></a>
-                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError21ScenarioDeletionErrorFMS0_S0_">ScenarioDeletionError</a>
+                    <a name="/s:FO18APIResponseSpoofer12SpooferError21scenarioDeletionErrorFMS0_S0_"></a>
+                    <a name="//apple_ref/swift/Element/scenarioDeletionError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:FO18APIResponseSpoofer12SpooferError21scenarioDeletionErrorFMS0_S0_">scenarioDeletionError</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -307,7 +355,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="k">case</span> <span class="kt">ScenarioDeletionError</span></code></pre>
+                          <pre class="highlight"><code><span class="k">case</span> <span class="n">scenarioDeletionError</span></code></pre>
 
                         </div>
                       </div>
@@ -319,8 +367,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="www.hotwire.com" target="_blank" rel="external">Hotwire</a>. All rights reserved. (Last updated: 2016-07-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="www.hotwire.com" target="_blank" rel="external">Hotwire</a>. All rights reserved. (Last updated: 2017-01-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>
