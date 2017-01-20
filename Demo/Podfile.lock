@@ -1,10 +1,10 @@
 PODS:
-  - APIResponseSpoofer (4.0.0):
-    - APIResponseSpoofer/Core (= 4.0.0)
+  - APIResponseSpoofer (4.2.0):
+    - APIResponseSpoofer/Core (= 4.2.0)
     - RealmSwift
-  - APIResponseSpoofer/Core (4.0.0):
+  - APIResponseSpoofer/Core (4.2.0):
     - RealmSwift
-  - APIResponseSpoofer/iOS-UI (4.0.0):
+  - APIResponseSpoofer/iOS-UI (4.2.0):
     - RealmSwift
   - Realm (2.0.4):
     - Realm/Headers (= 2.0.4)
@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  APIResponseSpoofer: 8aa1ae5751321d1900aa260508215ad12cdc07e6
+  APIResponseSpoofer: e7aea0a80c8f729fcd22128bd8d9c9434c624e6d
   Realm: 9da97f48365f8b99dd95c28d45ad8222d62e1775
   RealmSwift: 01e8db006035f16003e6307ae8eae1adccce68db
 

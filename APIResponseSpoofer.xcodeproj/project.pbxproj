@@ -20,6 +20,7 @@
 		41570A7E1DD6F5A20098C2FF /* TestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */; };
 		41570A801DD6F6570098C2FF /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7F1DD6F6570098C2FF /* MiscTests.swift */; };
 		4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
+		415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D253251E315A56008CD570 /* RecordTableViewController.swift */; };
 		4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
 		4180391E1BCB73FE004E1534 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
 		419430B21DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -108,6 +109,7 @@
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
+		41D253251E315A56008CD570 /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
 		41E04BB31DC41F3900AD8261 /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
@@ -169,6 +171,7 @@
 				416322321BF67E9400F9E67A /* ResponseListController.swift */,
 				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
 				41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */,
+				41D253251E315A56008CD570 /* RecordTableViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -618,6 +621,7 @@
 				419430C71DDAA40300DA65AF /* URLSessionConfigurationExtension.swift in Sources */,
 				419430CF1DDAA51A00DA65AF /* APIResponse.swift in Sources */,
 				419430D31DDAA54200DA65AF /* Utility.swift in Sources */,
+				415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */,
 				419430C61DDAA3E100DA65AF /* Constants.swift in Sources */,
 				419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */,
 				419430BD1DDA974800DA65AF /* SwitchWithTextViewModel.swift in Sources */,

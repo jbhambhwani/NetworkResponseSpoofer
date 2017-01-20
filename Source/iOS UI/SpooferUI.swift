@@ -19,35 +19,7 @@ public extension Spoofer {
      - Note: A popup will appear asking the user to name the scenario, before recording starts. Use this method if you need to manually provide the scenario name
      */
     class func startRecording(inViewController sourceViewController: UIViewController?) {
-
-        guard let sourceViewController = sourceViewController else { return }
-
-        // When a view controller was passed in, use it to display an alert controller asking for a scenario name
-        let alertController = UIAlertController(title: "Create Scenario", message: "Enter a scenario name to save the requests & responses", preferredStyle: .alert)
-
-        let createAction = UIAlertAction(title: "Create", style: .default) { [unowned alertController] _ in
-            if let textField = alertController.textFields?.first, let scenarioName = textField.text {
-                _ = startRecording(scenarioName: scenarioName)
-            }
-        }
-        createAction.isEnabled = false
-
-        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
-            SpooferRecorder.stopIntercept()
-        }
-
-        alertController.addTextField { textField in
-            textField.placeholder = "Enter scenario name"
-            textField.autocapitalizationType = .sentences
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
-                createAction.isEnabled = textField.text != ""
-            }
-        }
-
-        alertController.addAction(createAction)
-        alertController.addAction(cancelAction)
-
-        sourceViewController.present(alertController, animated: true, completion: nil)
+        presentController(with: RecordTableViewController.identifier, sourceViewController: sourceViewController)
     }
 
     /**
@@ -61,15 +33,25 @@ public extension Spoofer {
      - It allows diving deeper into the scenario by tapping the info button along the right of each scenario. This lists the url's which have recorded responses in the scenario.
      */
     class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
+        presentController(with: ScenarioListController.identifier, sourceViewController: sourceViewController)
+    }
+
+}
+
+
+fileprivate extension Spoofer {
+
+    class func presentController(with identifier: String, sourceViewController: UIViewController?) {
         guard let sourceViewController = sourceViewController else { return }
 
-        func spooferStoryBoard() -> UIStoryboard {
-            let frameworkBundle = Bundle(for: Spoofer.self)
-            let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
-            return storyBoard
-        }
-
-        let scenarioListController = spooferStoryBoard().instantiateViewController(withIdentifier: ScenarioListController.identifier)
-        sourceViewController.present(scenarioListController, animated: true, completion: nil)
+        let viewControllerToPresent = spooferStoryBoard().instantiateViewController(withIdentifier: identifier)
+        sourceViewController.present(viewControllerToPresent, animated: true, completion: nil)
     }
+
+    class func spooferStoryBoard() -> UIStoryboard {
+        let frameworkBundle = Bundle(for: Spoofer.self)
+        let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
+        return storyBoard
+    }
+
 }
