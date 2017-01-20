@@ -86,7 +86,7 @@ extension ResponseListController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RequestURLCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
         cell.textLabel?.text = response.requestURL
 
