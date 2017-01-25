@@ -54,7 +54,7 @@ class ResponseListController: UITableViewController {
     // MARK: Utility methods
 
     func loadResponses() {
-        let loadResult = DataStore.load(scenarioName: scenarioName)
+        let loadResult = DataStore.load(scenarioName: scenarioName, suite: Spoofer.suiteName)
         switch loadResult {
         case .success(let scenario):
             allResponses = Array(scenario.apiResponses)
@@ -118,7 +118,7 @@ extension ResponseListController {
         switch editingStyle {
         case .delete:
             allResponses.remove(at: indexPath.row)
-            let deleteResult = DataStore.delete(responseIndex: indexPath.row, scenarioName: scenarioName)
+            let deleteResult = DataStore.delete(responseIndex: indexPath.row, scenarioName: scenarioName, suite: Spoofer.suiteName)
 
             switch deleteResult {
             case .success:

@@ -14,6 +14,7 @@ class RecordTableViewController: UITableViewController {
 
     @IBOutlet weak var scenarioNameTextField: UITextField!
     @IBOutlet weak var startRecordingButton: UIButton!
+    @IBOutlet weak var suiteNameLabel: UILabel!
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
@@ -40,12 +41,23 @@ class RecordTableViewController: UITableViewController {
     }
 
     @IBAction func startRecordingPressed() {
-        Spoofer.startRecording(scenarioName: scenarioNameTextField.text)
+        guard let scenarioName = scenarioNameTextField.text,
+            let suiteName = suiteNameLabel.text,
+            Validator.validateNotEmpty(stringArray: [scenarioName, suiteName]) else { return }
+
+        Spoofer.startRecording(scenarioName: scenarioName, inSuite: suiteName)
         dismiss(animated: true, completion: nil)
     }
 
     @IBAction func backgroundTap(_ sender: UITapGestureRecognizer) {
         scenarioNameTextField.resignFirstResponder()
+    }
+
+    // MARK: - Navigation
+    @IBAction func unwind(toRecordViewController segue: UIStoryboardSegue) {
+        if let destination = segue.source as? SuiteListController {
+            suiteNameLabel.text = destination.suiteName
+        }
     }
 
 }

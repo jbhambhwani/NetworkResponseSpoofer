@@ -53,7 +53,7 @@ class ScenarioListController: UITableViewController {
     fileprivate var selectedScenarioName = ""
 
     fileprivate lazy var scenarioNames: [String] = {
-        return DataStore.allScenarioNames()
+        return DataStore.allScenarioNames(suite: Spoofer.suiteName)
     }()
 
     fileprivate lazy var searchController: UISearchController = {
@@ -105,7 +105,7 @@ extension ScenarioListController {
         switch editingStyle {
         case .delete:
             let scenarioToDelete = scenarioNames.remove(at: indexPath.row)
-            let deletionResult = DataStore.delete(scenarioName: scenarioToDelete)
+            let deletionResult = DataStore.delete(scenarioName: scenarioToDelete, suite: Spoofer.suiteName)
 
             switch deletionResult {
             case .success:
