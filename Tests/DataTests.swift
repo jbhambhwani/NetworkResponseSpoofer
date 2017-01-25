@@ -57,7 +57,7 @@ class DataTests: XCTestCase {
         if Spoofer.scenarioName.isEmpty == false {
             XCTAssertTrue(Spoofer.scenarioName == smokeTest, "Smoke test scenario was not loaded correctly")
 
-            let loadResult = DataStore.load(scenarioName: smokeTest)
+            let loadResult = DataStore.load(scenarioName: smokeTest, suite: defaultSuiteName)
             switch loadResult {
             case .success(let scenario):
                 guard let responseData = scenario.apiResponses.first?.data else {
@@ -107,7 +107,7 @@ class DataTests: XCTestCase {
     }
 
     func testLoadAllScenarios() {
-        let allScenarios = DataStore.allScenarioNames()
+        let allScenarios = DataStore.allScenarioNames(suite: defaultSuiteName)
         print("All Scenarios:\n\(allScenarios)")
         XCTAssert(allScenarios.count > 0, "Stored scenarios should be loaded")
     }

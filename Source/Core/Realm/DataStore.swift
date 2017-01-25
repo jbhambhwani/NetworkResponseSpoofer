@@ -21,7 +21,7 @@ public enum StoreError: Int, Error {
 
 protocol Store {
     // Scenario
-    func allScenarioNames() -> [String]
+    func allScenarioNames(suite: String) -> [String]
     func save(scenario: Scenario, suite: String) -> Result<Scenario>
     func load(scenarioName: String, suite: String) -> Result<Scenario>
     func delete(scenarioName: String, suite: String) -> Result<Bool>
@@ -32,8 +32,8 @@ protocol Store {
 
 enum DataStore {
 
-    static func allScenarioNames() -> [String] {
-        return RealmStore.sharedInstance.allScenarioNames()
+    static func allScenarioNames(suite: String) -> [String] {
+        return RealmStore.sharedInstance.allScenarioNames(suite: suite)
     }
 
     static func save(scenario: Scenario, suite: String) -> Result<Scenario> {
@@ -80,7 +80,7 @@ extension RealmStore: Store {
         return realm.objects(Scenario.self).filter("name == %@", name).first
     }
 
-    func allScenarioNames() -> [String] {
+    func allScenarioNames(suite: String) -> [String] {
         return realm.objects(Scenario.self).flatMap { $0.name }
     }
 
