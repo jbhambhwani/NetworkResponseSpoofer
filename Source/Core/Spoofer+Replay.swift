@@ -32,7 +32,7 @@ public extension Spoofer {
 
         let protocolRegistered = SpooferReplayer.startIntercept()
 
-        let loadResult = DataStore.load(scenarioName: name)
+        let loadResult = DataStore.load(scenarioName: name, suite: suite)
         switch loadResult {
         case .success(let scenario):
             Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name, suiteName: suite))

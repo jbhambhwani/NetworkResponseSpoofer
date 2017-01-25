@@ -53,7 +53,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
 
         let httpError = generateError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
 
-        let loadResult = DataStore.load(scenarioName: Spoofer.scenarioName)
+        let loadResult = DataStore.load(scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
 
         switch loadResult {
         case .success(let scenario):

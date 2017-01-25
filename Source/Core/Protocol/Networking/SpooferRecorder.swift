@@ -128,6 +128,6 @@ fileprivate extension SpooferRecorder {
         guard let currentResponse = APIResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
 
         postNotification("Response received 📡\n\(currentResponse)", object: self)
-        _ = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName)
+        _ = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
     }
 }

@@ -34,7 +34,7 @@ public extension Spoofer {
             // Create a fresh scenario based on the named passed in
             let spoofedScenario = Scenario()
             spoofedScenario.name = name
-            let saveResult = DataStore.save(scenario: spoofedScenario)
+            let saveResult = DataStore.save(scenario: spoofedScenario, suite: suite)
 
             switch saveResult {
             case .success(let scenario):
