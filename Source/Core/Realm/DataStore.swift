@@ -63,7 +63,7 @@ fileprivate struct RealmStore {
 
     var realm: Realm { return try! Realm() }
 
-    static func setDefaultRealmForSuite(suiteName: String = "Default") {
+    func setDefaultRealmForSuite(suiteName: String) {
         var config = Realm.Configuration()
         config.fileURL = FileManager.spooferDocumentsDirectory.appendingPathComponent("\(suiteName).\(realmFileExtension)")
         // Set this as the configuration used for the default Realm
@@ -77,14 +77,17 @@ extension RealmStore: Store {
     // MARK: - Scenario Management
 
     private func getScenario(_ name: String, suite: String) -> Scenario? {
+        setDefaultRealmForSuite(suiteName: suite)
         return realm.objects(Scenario.self).filter("name == %@", name).first
     }
 
     func allScenarioNames(suite: String) -> [String] {
+        setDefaultRealmForSuite(suiteName: suite)
         return realm.objects(Scenario.self).flatMap { $0.name }
     }
 
     func save(scenario: Scenario, suite: String) -> Result<Scenario> {
+        setDefaultRealmForSuite(suiteName: suite)
         do {
             try realm.write {
                 realm.add(scenario, update: true)
