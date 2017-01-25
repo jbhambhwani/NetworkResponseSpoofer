@@ -9,8 +9,8 @@
 import Foundation
 
 enum NetworkAction {
-    case record(scenarioName: String)
-    case replay(scenarioName: String)
+    case record(scenarioName: String, suiteName: String)
+    case replay(scenarioName: String, suiteName: String)
     case stopIntercept
 }
 
@@ -19,19 +19,20 @@ struct SpooferState: Equatable {
     var isRecording = false
     var isReplaying = false
     var scenarioName = ""
+    var suiteName = ""
 
     @discardableResult func transformedState(networkAction: NetworkAction) -> SpooferState {
 
         switch networkAction {
 
-        case .record(let scenarioName):
-            return SpooferState(isRecording: true, isReplaying: false, scenarioName: scenarioName)
+        case .record(let scenarioName, let suiteName):
+            return SpooferState(isRecording: true, isReplaying: false, scenarioName: scenarioName, suiteName: suiteName)
 
-        case .replay(let scenarioName):
-            return SpooferState(isRecording: false, isReplaying: true, scenarioName: scenarioName)
+        case .replay(let scenarioName, let suiteName):
+            return SpooferState(isRecording: false, isReplaying: true, scenarioName: scenarioName, suiteName: suiteName)
 
         case .stopIntercept:
-            return SpooferState(isRecording: false, isReplaying: false, scenarioName: "")
+            return SpooferState(isRecording: false, isReplaying: false, scenarioName: "", suiteName: "")
         }
     }
 }

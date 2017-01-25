@@ -21,12 +21,12 @@ public extension Spoofer {
      Start recording a new scenario
 
      - parameter name: The scenario name under which all responses will be saved
+     
+     - parameter suite: The suite under which the scenario will be saved
 
      - Returns: True if recording was started, False if not
      */
-    @discardableResult class func startRecording(scenarioName name: String?) -> Bool {
-
-        guard let name = name else { return false }
+    @discardableResult class func startRecording(scenarioName name: String, inSuite suite: String = defaultSuiteName) -> Bool {
 
         let protocolRegistered = SpooferRecorder.startIntercept()
 
@@ -39,7 +39,7 @@ public extension Spoofer {
             switch saveResult {
             case .success(let scenario):
                 // Transform state to recording
-                Spoofer.sharedInstance.stateManager.transformState(networkAction: .record(scenarioName: scenario.name))
+                Spoofer.sharedInstance.stateManager.transformState(networkAction: .record(scenarioName: scenario.name, suiteName: suite))
 
             case .failure:
                 return false

@@ -9,6 +9,8 @@
 import Foundation
 import RealmSwift
 
+let defaultSuiteName = "Default"
+
 /// Errors thrown from Realm Datastore
 public enum StoreError: Int, Error {
     case scenarioNotFound
@@ -30,7 +32,6 @@ protocol Store {
 
 enum DataStore {
 
-    //
     static func allScenarioNames() -> [String] {
         return RealmStore.sharedInstance.allScenarioNames()
     }
@@ -59,9 +60,14 @@ enum DataStore {
 fileprivate struct RealmStore {
 
     static let sharedInstance = RealmStore()
+
     var realm: Realm { return try! Realm() }
 
-    init() {
+    static func setDefaultRealmForSuite(suiteName: String = "Default") {
+        var config = Realm.Configuration()
+        config.fileURL = FileManager.spooferDocumentsDirectory.appendingPathComponent("\(suiteName).\(realmFileExtension)")
+        // Set this as the configuration used for the default Realm
+        Realm.Configuration.defaultConfiguration = config
         print("\nDataStore Path: \(Realm.Configuration.defaultConfiguration.fileURL)\n")
     }
 }

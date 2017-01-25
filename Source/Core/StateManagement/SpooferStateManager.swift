@@ -17,7 +17,7 @@ final class SpooferStateManager {
         let newState = state.transformedState(networkAction: networkAction)
         // Update to the new state
         state = newState
-        // Boradcast state change to all listeners
+        // Broadcast state change to all listeners
         broadcastStateChange(oldState: oldState, newState: newState)
         return newState
     }

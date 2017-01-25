@@ -59,6 +59,11 @@ public class Spoofer: NSObject {
         return sharedInstance.stateManager.state.scenarioName
     }
 
+    /// The suite under which the scenario is being recorded or replayed. Returns empty when the Spoofer is not active
+    public class var suiteName: String {
+        return sharedInstance.stateManager.state.suiteName
+    }
+
     /// White list of host names the Spoofer would intercept. If set, only whitelist host names would be recorded
     public class var hostNamesToSpoof: [String] {
         get { return sharedInstance.spoofedHosts }

@@ -21,6 +21,7 @@
 		41570A801DD6F6570098C2FF /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7F1DD6F6570098C2FF /* MiscTests.swift */; };
 		4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
 		415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D253251E315A56008CD570 /* RecordTableViewController.swift */; };
+		415DAEDB1E31A8CC00E6FE59 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */; };
 		4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
 		4180391E1BCB73FE004E1534 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
 		419430B21DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -96,6 +97,7 @@
 		41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingConstants.swift; sourceTree = "<group>"; };
 		41570A7F1DD6F6570098C2FF /* MiscTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscTests.swift; sourceTree = "<group>"; };
 		4157440E1DD2426F000F4571 /* SpooferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferState.swift; sourceTree = "<group>"; };
+		415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		4180391D1BCB73FE004E1534 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
@@ -326,6 +328,7 @@
 			children = (
 				413D55EA1DCA8CDB00A5E084 /* Models */,
 				41F879FC1DC96B5800B457F4 /* DataStore.swift */,
+				415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */,
 			);
 			path = Realm;
 			sourceTree = "<group>";
@@ -586,6 +589,7 @@
 				41F879FF1DC96BE900B457F4 /* Result.swift in Sources */,
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
 				41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */,
+				415DAEDB1E31A8CC00E6FE59 /* FileManagerExtension.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
 				41AA10EC1DC1358000860295 /* APIResponse.swift in Sources */,
 				41E04BB41DC41F3900AD8261 /* Scenario.swift in Sources */,
