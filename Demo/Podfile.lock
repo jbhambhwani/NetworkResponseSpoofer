@@ -21,7 +21,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  APIResponseSpoofer: 4609eaef4a0608f513dec798cf5ee6fcb25fd290
+  APIResponseSpoofer: a7ca7a1c6b0cc51e31852e65e8675027886f4738
   Realm: 69d7de9aa569a11eed490aaabc8f2109e3985ecf
   RealmSwift: dc6f99ea55e59490cec69c860f91932b6bf7efb6
 

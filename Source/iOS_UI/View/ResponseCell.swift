@@ -15,7 +15,6 @@ class ResponseCell: UITableViewCell {
 
     override func prepareForReuse() {
         reponseImageView.image = nil
-        reponseImageView.isHidden = true
         urlLabel.text = ""
     }
 }

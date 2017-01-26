@@ -12,7 +12,7 @@ class ResponseListController: UITableViewController {
 
     var suiteName = ""
     var scenarioName = ""
-    var cellHeight: CGFloat = 44.0
+    var cellHeight: CGFloat = 60.0
     let expandText = "Expand"
     let collapseText = "Collapse"
 
@@ -64,7 +64,7 @@ class ResponseListController: UITableViewController {
             cellHeight = UITableViewAutomaticDimension
         } else {
             sender.title = expandText
-            cellHeight = 44.0
+            cellHeight = 60.0
         }
         searchController.isActive = false
         tableView.reloadData()
