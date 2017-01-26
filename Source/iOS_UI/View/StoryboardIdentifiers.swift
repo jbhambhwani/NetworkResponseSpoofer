@@ -16,7 +16,6 @@ public enum StoryboardNames: String {
 }
 
 public enum TableViewCellReuseIdentifier: String {
-    case SuiteCell
     case SwitchWithTextTableViewCell
     case UITableViewCell
 }
