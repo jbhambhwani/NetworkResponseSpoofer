@@ -224,17 +224,17 @@
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HiT-h9-Wce">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HiT-h9-Wce">
+                                                    <rect key="frame" x="16" y="0.0" width="343" height="43"/>
                                                     <nil key="textColor"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                                    <textInputTraits key="textInputTraits"/>
+                                                    <textInputTraits key="textInputTraits" autocapitalizationType="words" autocorrectionType="no"/>
                                                 </textField>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="HiT-h9-Wce" secondAttribute="bottom" id="E8E-iZ-sln"/>
-                                                <constraint firstItem="HiT-h9-Wce" firstAttribute="leading" secondItem="fKC-Nt-PtU" secondAttribute="leading" id="Vmz-fD-W35"/>
-                                                <constraint firstAttribute="trailing" secondItem="HiT-h9-Wce" secondAttribute="trailing" id="iMv-Ky-65w"/>
+                                                <constraint firstItem="HiT-h9-Wce" firstAttribute="leading" secondItem="fKC-Nt-PtU" secondAttribute="leading" constant="16" id="Vmz-fD-W35"/>
+                                                <constraint firstAttribute="trailing" secondItem="HiT-h9-Wce" secondAttribute="trailing" constant="16" id="iMv-Ky-65w"/>
                                                 <constraint firstItem="HiT-h9-Wce" firstAttribute="top" secondItem="fKC-Nt-PtU" secondAttribute="top" id="vzN-Ka-Clw"/>
                                             </constraints>
                                         </tableViewCellContentView>
@@ -345,7 +345,7 @@
                                     <action selector="addSuitePressed:" destination="Yiu-Le-paM" id="32k-63-FPw"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Configure" id="GgM-NS-oyP">
+                            <barButtonItem title="Item" image="Settings" id="GgM-NS-oyP">
                                 <connections>
                                     <segue destination="21e-je-LnQ" kind="show" identifier="configureSpoofer" id="zxJ-2b-0fW"/>
                                 </connections>
@@ -418,4 +418,7 @@
             <point key="canvasLocation" x="-2158" y="-55"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="Settings" width="38" height="38"/>
+    </resources>
 </document>

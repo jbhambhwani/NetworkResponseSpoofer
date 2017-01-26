@@ -68,6 +68,10 @@ fileprivate struct RealmStore {
         config.fileURL = FileManager.spooferDocumentsDirectory.appendingPathComponent("\(suiteName).\(realmFileExtension)")
         // Set this as the configuration used for the default Realm
         Realm.Configuration.defaultConfiguration = config
+
+        if Spoofer.suiteName != suiteName {
+            print("Datastore Path: \(Realm.Configuration.defaultConfiguration.fileURL)")
+        }
     }
 }
 

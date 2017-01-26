@@ -85,6 +85,7 @@ extension ResponseListController {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
         cell.textLabel?.text = response.requestURL
+        cell.imageView?.contentMode = UIViewContentMode.redraw
 
         if [".png", ".jpg", ".jpeg", ".tiff", ".tif", ".gif", ".bmp", ".ico"]
             .filter({ response.requestURL.hasSuffix($0) }).count == 1 {
