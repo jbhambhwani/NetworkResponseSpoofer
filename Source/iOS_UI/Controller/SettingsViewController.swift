@@ -49,7 +49,7 @@ extension SettingsViewController {
 
     // MARK: - Tableview datasource
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return allSettings.count
     }
 

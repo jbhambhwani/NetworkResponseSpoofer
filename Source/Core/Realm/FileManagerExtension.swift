@@ -48,7 +48,7 @@ extension FileManager {
 
     private class func getSuiteFileURL(_ suiteName: String) -> URL {
         // Get a reference to the documents directory & Construct a file name based on the suite name
-        let suiteFileURL =  spooferDocumentsDirectory.appendingPathComponent("\(suiteName).\(realmFileExtension)")
+        let suiteFileURL = spooferDocumentsDirectory.appendingPathComponent("\(suiteName).\(realmFileExtension)")
         return suiteFileURL
     }
 
@@ -71,5 +71,4 @@ extension FileManager {
         }
         return docsDir
     }
-
 }

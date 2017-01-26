@@ -18,5 +18,4 @@ struct Validator {
         }
         return emptyStrings.count == 0
     }
-
 }

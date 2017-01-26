@@ -81,7 +81,7 @@ class ResponseListController: UITableViewController {
 
 extension ResponseListController {
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return searchController.isActive ? filteredResponses.count : allResponses.count
     }
 
@@ -105,11 +105,11 @@ extension ResponseListController {
 
 extension ResponseListController {
 
-    override func tableView(_ tableView: UITableView, estimatedHeightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
         return cellHeight
     }
 
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
         return cellHeight
     }
 

@@ -72,7 +72,7 @@ class ScenarioListController: UITableViewController {
 
 extension ScenarioListController {
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return searchController.isActive ? filteredScenarios.count : scenarioNames.count
     }
 

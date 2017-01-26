@@ -21,7 +21,7 @@ public extension Spoofer {
      Start recording a new scenario
 
      - parameter name: The scenario name under which all responses will be saved
-     
+
      - parameter suite: The suite under which the scenario will be saved
 
      - Returns: True if recording was started, False if not

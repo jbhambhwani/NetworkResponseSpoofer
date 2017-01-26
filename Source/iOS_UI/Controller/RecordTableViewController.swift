@@ -33,7 +33,7 @@ class RecordTableViewController: UITableViewController {
         NotificationCenter.default.removeObserver(scenarioNameTextField)
     }
 
-    // MARK - User Actions
+    // MARK: - User Actions
 
     @IBAction func cancelPressed() {
         SpooferRecorder.stopIntercept()
@@ -49,7 +49,7 @@ class RecordTableViewController: UITableViewController {
         dismiss(animated: true, completion: nil)
     }
 
-    @IBAction func backgroundTap(_ sender: UITapGestureRecognizer) {
+    @IBAction func backgroundTap(_: UITapGestureRecognizer) {
         scenarioNameTextField.resignFirstResponder()
     }
 
@@ -59,5 +59,4 @@ class RecordTableViewController: UITableViewController {
             suiteNameLabel.text = destination.suiteName
         }
     }
-
 }

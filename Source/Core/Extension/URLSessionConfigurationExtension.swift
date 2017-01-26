@@ -16,7 +16,6 @@ fileprivate let swizzleURLSessionConfiguration: Void = {
                            withSelector: #selector(getter: URLSessionConfiguration.ephemeral))
 }()
 
-
 public extension URLSessionConfiguration {
 
     /*  URLSessionConfiguration by default vends a new session config every time we request for one. The previous method of URLProtocol.registerClass does not work with these configs as they have an array of protocol classes that we need to add our protocols to (To the start, since we wan't the intercept to be prioritized. Also most apps spawn URLSessions and Configurations on demand, and do not dependency inject it through the stack. This creates a problem for the spoofer, which needs to intercept HTTP requests so that it can record or replay them.

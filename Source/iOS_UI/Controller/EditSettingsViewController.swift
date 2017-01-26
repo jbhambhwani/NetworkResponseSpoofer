@@ -60,7 +60,7 @@ class EditSettingsViewController: UITableViewController {
 
 extension EditSettingsViewController {
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         guard let configurations = presenter?.configurations else { return 0 }
         return configurations.count
     }

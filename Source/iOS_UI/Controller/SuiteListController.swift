@@ -11,12 +11,11 @@ import UIKit
 class SuiteListController: UITableViewController {
 
     var suiteName = defaultSuiteName
-
 }
 
 extension SuiteListController {
 
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return FileManager.allSuiteNames().count
     }
 
@@ -26,16 +25,15 @@ extension SuiteListController {
         return cell
     }
 
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         suiteName = FileManager.allSuiteNames()[indexPath.row]
         performSegue(withIdentifier: "unwindToRecordViewController", sender: self)
     }
-
 }
 
 extension SuiteListController {
 
-    @IBAction func addSuitePressed(_ sender: UIBarButtonItem) {
+    @IBAction func addSuitePressed(_: UIBarButtonItem) {
 
         let alertController = UIAlertController(title: "Create Suite", message: "Enter a suite name to save the scenarios", preferredStyle: .alert)
 
@@ -65,5 +63,4 @@ extension SuiteListController {
 
         present(alertController, animated: true, completion: nil)
     }
-
 }

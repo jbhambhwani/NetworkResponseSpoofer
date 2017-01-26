@@ -35,9 +35,7 @@ public extension Spoofer {
     class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
         presentController(with: ScenarioListController.identifier, sourceViewController: sourceViewController)
     }
-
 }
-
 
 fileprivate extension Spoofer {
 
@@ -53,5 +51,4 @@ fileprivate extension Spoofer {
         let storyBoard = UIStoryboard(name: "Spoofer", bundle: frameworkBundle)
         return storyBoard
     }
-
 }
