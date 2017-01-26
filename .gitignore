@@ -40,3 +40,6 @@ Pods/
 # Carthage
 # Ignore all carthage checkout & build products for now
 Carthage/
+
+fastlane/README.md
+fastlane/report.xml

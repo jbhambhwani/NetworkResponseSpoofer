@@ -1,4 +1,4 @@
-fastlane_version "2.10.0"
+fastlane_version "2.11.0"
 
 default_platform :ios
 platform :ios do
@@ -14,15 +14,15 @@ platform :ios do
 
   desc "Runs Swiftlint autocorrect & SwiftFormat to clean code"
   lane :lint do
-    sh "cd .. ; cd Helpsy ; swiftlint autocorrect"
-    sh "cd .. ; cd Helpsy ; swiftformat ."
+    sh "cd .. ; cd Source ; swiftlint autocorrect"
+    sh "cd .. ; cd Source ; swiftformat ."
   end
 
 #----------------------------------------------Lane Marker----------------------------------------------
 
   desc "Updates the storyboard identifier Swift values"
   lane :sbconstants do
-    view_folder = "APIResposeSpoofer/Source/iOS_UI/View"
+    view_folder = "Source/iOS_UI/View"
     sh "cd .. ; bundle exec sbconstants #{view_folder}/StoryboardIdentifiers.swift --source-dir #{view_folder} --swift"
   end
 
