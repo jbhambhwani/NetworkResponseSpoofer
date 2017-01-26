@@ -54,6 +54,13 @@ class RecordTableViewController: UITableViewController {
     }
 
     // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.destination is SuiteListController {
+            segue.destination.navigationItem.leftBarButtonItem = nil
+        }
+    }
+
     @IBAction func unwind(toRecordViewController segue: UIStoryboardSegue) {
         if let destination = segue.source as? SuiteListController {
             suiteNameLabel.text = destination.suiteName

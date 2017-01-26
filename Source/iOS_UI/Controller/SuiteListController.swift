@@ -15,6 +15,7 @@ class SuiteListController: UITableViewController {
     var suiteName = defaultSuiteName
 
     @IBOutlet weak var addSuiteButton: UIBarButtonItem!
+
 }
 
 extension SuiteListController {
@@ -33,9 +34,15 @@ extension SuiteListController {
         suiteName = FileManager.allSuiteNames()[indexPath.row]
         performSegue(withIdentifier: SegueIdentifier.unwindToRecordViewController.rawValue, sender: self)
     }
+
+
 }
 
 extension SuiteListController {
+
+    @IBAction func cancel() {
+        navigationController?.dismiss(animated: true, completion: nil)
+    }
 
     @IBAction func addSuitePressed(_: UIBarButtonItem) {
 

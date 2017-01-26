@@ -45,9 +45,12 @@ fileprivate extension Spoofer {
         var viewControllerToPresent = spooferStoryBoard().instantiateViewController(withIdentifier: identifier)
 
         // If SuiteListController was invoked directly, we are in replay mode, and so disallow suite creation and wrap the controller in a navcontroller
-        if let controller = viewControllerToPresent as? SuiteListController {
+
+        switch viewControllerToPresent {
+        case let controller as SuiteListController:
             controller.navigationItem.rightBarButtonItem = nil
             viewControllerToPresent = UINavigationController(rootViewController: controller)
+        default: break
         }
 
         sourceViewController.present(viewControllerToPresent, animated: true, completion: nil)

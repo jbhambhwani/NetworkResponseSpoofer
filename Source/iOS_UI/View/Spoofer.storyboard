@@ -47,16 +47,6 @@
                     </tableView>
                     <navigationItem key="navigationItem" title="Recorded Scenarios" prompt="Tap a scenario to start replay" id="FOd-Dt-kCQ">
                         <barButtonItem key="backBarButtonItem" title="Back" id="4fl-dr-b6I"/>
-                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="aL0-Gi-jnC">
-                            <connections>
-                                <action selector="cancel:" destination="brR-F4-4fZ" id="bOd-bj-pmr"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Configure" id="bKa-D1-lNG">
-                            <connections>
-                                <segue destination="21e-je-LnQ" kind="show" id="8vY-ff-UVw"/>
-                            </connections>
-                        </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="FXU-Kx-14D" kind="show" identifier="showResponses" id="pgP-Fl-Ofn"/>
@@ -64,7 +54,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="87O-Ph-s3Q" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1158" y="-53"/>
+            <point key="canvasLocation" x="1081" y="332"/>
         </scene>
         <!--Spoofer Configuration-->
         <scene sceneID="fBy-8d-eGX">
@@ -129,7 +119,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OXw-Dz-UXk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1951" y="-423"/>
+            <point key="canvasLocation" x="1081" y="-390"/>
         </scene>
         <!--Edit Settings View Controller-->
         <scene sceneID="0Tb-KU-P6w">
@@ -180,7 +170,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0vv-Aa-F23" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2714" y="-423"/>
+            <point key="canvasLocation" x="1905" y="-391"/>
         </scene>
         <!--Record a Scenario-->
         <scene sceneID="31c-5h-C8O">
@@ -346,11 +336,23 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Available Suites" id="HYY-IR-OwA">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="LJf-0E-G7t">
+                        <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7gv-dK-n1D">
                             <connections>
-                                <action selector="addSuitePressed:" destination="Yiu-Le-paM" id="32k-63-FPw"/>
+                                <action selector="cancel" destination="Yiu-Le-paM" id="0ea-P3-jxD"/>
                             </connections>
                         </barButtonItem>
+                        <rightBarButtonItems>
+                            <barButtonItem systemItem="add" id="LJf-0E-G7t">
+                                <connections>
+                                    <action selector="addSuitePressed:" destination="Yiu-Le-paM" id="32k-63-FPw"/>
+                                </connections>
+                            </barButtonItem>
+                            <barButtonItem title="Configure" id="GgM-NS-oyP">
+                                <connections>
+                                    <segue destination="21e-je-LnQ" kind="show" identifier="configureSpoofer" id="zxJ-2b-0fW"/>
+                                </connections>
+                            </barButtonItem>
+                        </rightBarButtonItems>
                     </navigationItem>
                     <connections>
                         <outlet property="addSuiteButton" destination="LJf-0E-G7t" id="Bn3-bY-Sk9"/>

@@ -27,11 +27,6 @@ class ScenarioListController: UITableViewController {
         searchController.loadViewIfNeeded()
     }
 
-    @IBAction func cancel(_: AnyObject) {
-        searchController.isActive = false
-        navigationController?.dismiss(animated: true, completion: nil)
-    }
-
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
