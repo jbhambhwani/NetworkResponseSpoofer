@@ -229,7 +229,7 @@
 			isa = PBXGroup;
 			children = (
 				415CB1891C9B14EA00827A0B /* Core */,
-				419430BE1DDAA10800DA65AF /* iOS UI */,
+				419430BE1DDAA10800DA65AF /* iOS_UI */,
 			);
 			path = Source;
 			sourceTree = "<group>";
@@ -313,7 +313,7 @@
 			path = "../APIResponseSpoofer iOS UI";
 			sourceTree = "<group>";
 		};
-		419430BE1DDAA10800DA65AF /* iOS UI */ = {
+		419430BE1DDAA10800DA65AF /* iOS_UI */ = {
 			isa = PBXGroup;
 			children = (
 				412A7B881BC9D20A002E9FF2 /* Controller */,
@@ -322,7 +322,7 @@
 				410489C41C99DCD000E99745 /* ViewModel */,
 				419430C01DDAA21E00DA65AF /* SpooferUI.swift */,
 			);
-			path = "iOS UI";
+			path = iOS_UI;
 			sourceTree = "<group>";
 		};
 		419430BF1DDAA19F00DA65AF /* Protocols */ = {
