@@ -200,7 +200,7 @@
                                 </button>
                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dFh-bh-WsF">
                                     <rect key="frame" x="8" y="44" width="359" height="36"/>
-                                    <color key="backgroundColor" red="0.94117647409439087" green="0.36078432202339172" blue="0.38431373238563538" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                     <state key="normal" title="Cancel">
                                         <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     </state>
@@ -325,9 +325,6 @@
                                         </label>
                                     </subviews>
                                 </tableViewCellContentView>
-                                <connections>
-                                    <segue destination="brR-F4-4fZ" kind="show" identifier="showScenarios" id="vDP-Ft-5hp"/>
-                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -336,6 +333,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Available Suites" id="HYY-IR-OwA">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="Vvc-oJ-pxU"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7gv-dK-n1D">
                             <connections>
                                 <action selector="cancel" destination="Yiu-Le-paM" id="0ea-P3-jxD"/>
@@ -357,6 +355,7 @@
                     <connections>
                         <outlet property="addSuiteButton" destination="LJf-0E-G7t" id="Bn3-bY-Sk9"/>
                         <segue destination="hBb-So-T7e" kind="unwind" identifier="unwindToRecordViewController" unwindAction="unwindToRecordViewController:" id="zdY-h4-5XJ"/>
+                        <segue destination="brR-F4-4fZ" kind="show" identifier="showScenarios" id="BEO-Nl-uxV"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ihl-oE-CaL" userLabel="First Responder" sceneMemberID="firstResponder"/>

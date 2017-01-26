@@ -31,10 +31,19 @@ extension SuiteListController {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
-        suiteName = FileManager.allSuiteNames()[indexPath.row]
-        performSegue(withIdentifier: SegueIdentifier.unwindToRecordViewController.rawValue, sender: self)
+        switch navigationController?.viewControllers.first {
+        case let controller as RecordTableViewController:
+            print("Record")
+            // Save the suite name for unwind
+            suiteName = FileManager.allSuiteNames()[indexPath.row]
+            performSegue(withIdentifier: SegueIdentifier.unwindToRecordViewController.rawValue, sender: self)
+        case let controller as SuiteListController:
+            print("Replay")
+            performSegue(withIdentifier: SegueIdentifier.showScenarios.rawValue, sender: self)
+        default:
+            break
+        }
     }
-
 
 }
 
