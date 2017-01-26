@@ -12,6 +12,8 @@ class ScenarioListController: UITableViewController {
 
     // MARK: - Lifecycle
 
+    var suiteName = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.scrollsToTop = true
@@ -21,6 +23,7 @@ class ScenarioListController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedScenarioName = ""
+        scenarioNames = DataStore.allScenarioNames(suite: suiteName)
     }
 
     deinit {
@@ -32,17 +35,15 @@ class ScenarioListController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let responseListController = segue.destination as? ResponseListController, let indexPath = sender as? IndexPath else { return }
         selectedScenarioName = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
+        responseListController.suiteName = suiteName
         responseListController.scenarioName = selectedScenarioName
     }
 
     // MARK: - Private properties
 
+    fileprivate var scenarioNames = [String]()
     fileprivate var filteredScenarios = [String]()
     fileprivate var selectedScenarioName = ""
-
-    fileprivate lazy var scenarioNames: [String] = {
-        return DataStore.allScenarioNames(suite: Spoofer.suiteName)
-    }()
 
     fileprivate lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
@@ -79,7 +80,7 @@ extension ScenarioListController {
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let scenario = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
-        Spoofer.startReplaying(scenarioName: scenario)
+        Spoofer.startReplaying(scenarioName: scenario, inSuite: suiteName)
         searchController.isActive = false
         navigationController?.dismiss(animated: true, completion: nil)
     }

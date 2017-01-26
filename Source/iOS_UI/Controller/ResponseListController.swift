@@ -10,6 +10,7 @@ import UIKit
 
 class ResponseListController: UITableViewController {
 
+    var suiteName = ""
     var scenarioName = ""
     var cellHeight: CGFloat = 44.0
     let expandText = "Expand"
@@ -49,7 +50,7 @@ class ResponseListController: UITableViewController {
     // MARK: Utility methods
 
     func loadResponses() {
-        let loadResult = DataStore.load(scenarioName: scenarioName, suite: Spoofer.suiteName)
+        let loadResult = DataStore.load(scenarioName: scenarioName, suite: suiteName)
         switch loadResult {
         case .success(let scenario):
             allResponses = Array(scenario.apiResponses)

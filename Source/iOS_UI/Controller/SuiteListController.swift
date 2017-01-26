@@ -15,7 +15,6 @@ class SuiteListController: UITableViewController {
     var suiteName = defaultSuiteName
 
     @IBOutlet weak var addSuiteButton: UIBarButtonItem!
-
 }
 
 extension SuiteListController {
@@ -31,15 +30,25 @@ extension SuiteListController {
     }
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // Save the suite name for other controllers
+        suiteName = FileManager.allSuiteNames()[indexPath.row]
+
         switch navigationController?.viewControllers.first {
-        case let controller as RecordTableViewController:
+        case is RecordTableViewController:
             print("Record")
-            // Save the suite name for unwind
-            suiteName = FileManager.allSuiteNames()[indexPath.row]
             performSegue(withIdentifier: SegueIdentifier.unwindToRecordViewController.rawValue, sender: self)
-        case let controller as SuiteListController:
+        case is SuiteListController:
             print("Replay")
             performSegue(withIdentifier: SegueIdentifier.showScenarios.rawValue, sender: self)
+        default:
+            break
+        }
+    }
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.destination {
+        case let controller as ScenarioListController:
+            controller.suiteName = suiteName
         default:
             break
         }
