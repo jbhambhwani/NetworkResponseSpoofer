@@ -1,0 +1,40 @@
+fastlane_version "2.10.0"
+
+default_platform :ios
+platform :ios do
+
+#----------------------------------------------Method Marker----------------------------------------------
+
+  before_all do
+      # Print out an overview of the lane context values.
+      debug
+  end
+
+#----------------------------------------------Lane Marker----------------------------------------------
+
+  desc "Runs Swiftlint autocorrect & SwiftFormat to clean code"
+  lane :lint do
+    sh "cd .. ; cd Helpsy ; swiftlint autocorrect"
+    sh "cd .. ; cd Helpsy ; swiftformat ."
+  end
+
+#----------------------------------------------Lane Marker----------------------------------------------
+
+  desc "Updates the storyboard identifier Swift values"
+  lane :sbconstants do
+    view_folder = "APIResposeSpoofer/Source/iOS_UI/View"
+    sh "cd .. ; bundle exec sbconstants #{view_folder}/StoryboardIdentifiers.swift --source-dir #{view_folder} --swift"
+  end
+
+#----------------------------------------------Method Marker----------------------------------------------
+
+  after_all do |lane|
+      # This block is called, only if the executed lane was successful
+  end
+
+  error do |lane, exception|
+      # If there is an error reset the git repo
+      clean_build_artifacts
+  end
+
+end
