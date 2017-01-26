@@ -31,7 +31,7 @@ extension SuiteListController {
 
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         suiteName = FileManager.allSuiteNames()[indexPath.row]
-        performSegue(withIdentifier: "unwindToRecordViewController", sender: self)
+        performSegue(withIdentifier: SegueIdentifier.unwindToRecordViewController.rawValue, sender: self)
     }
 }
 

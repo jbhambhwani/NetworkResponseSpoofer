@@ -24,12 +24,7 @@ class ScenarioListController: UITableViewController {
     }
 
     deinit {
-        if #available(iOS 9.0, *) {
-            searchController.loadViewIfNeeded()
-        } else {
-            // Fallback on earlier versions
-            searchController.view.removeFromSuperview()
-        }
+        searchController.loadViewIfNeeded()
     }
 
     @IBAction func cancel(_: AnyObject) {
@@ -95,7 +90,7 @@ extension ScenarioListController {
     }
 
     override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: "showResponses", sender: indexPath)
+        performSegue(withIdentifier: SegueIdentifier.showResponses.rawValue, sender: indexPath)
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {

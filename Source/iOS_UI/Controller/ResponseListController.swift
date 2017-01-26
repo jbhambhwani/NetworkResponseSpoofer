@@ -43,12 +43,7 @@ class ResponseListController: UITableViewController {
     }
 
     deinit {
-        if #available(iOS 9.0, *) {
-            searchController.loadViewIfNeeded()
-        } else {
-            // Fallback on earlier versions
-            searchController.view.removeFromSuperview()
-        }
+        searchController.loadViewIfNeeded()
     }
 
     // MARK: Utility methods

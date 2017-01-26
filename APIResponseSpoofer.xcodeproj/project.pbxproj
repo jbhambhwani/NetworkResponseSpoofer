@@ -11,12 +11,12 @@
 		4112276A1E39625D00E1487B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227691E39625D00E1487B /* Validator.swift */; };
 		4112276B1E39625D00E1487B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227691E39625D00E1487B /* Validator.swift */; };
 		411227701E3966C700E1487B /* SuiteListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112276E1E3966AC00E1487B /* SuiteListController.swift */; };
-		411227721E39730D00E1487B /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
 		411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
 		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
 		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
+		413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
 		4146302E1E39521900E5CADC /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */; };
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
@@ -587,7 +587,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */,
-				411227721E39730D00E1487B /* StoryboardIdentifiers.swift in Sources */,
 				41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */,
@@ -635,6 +634,7 @@
 				419430C11DDAA21E00DA65AF /* SpooferUI.swift in Sources */,
 				419430D21DDAA53400DA65AF /* SpooferReplayer.swift in Sources */,
 				419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */,
+				413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */,
 				419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */,
 				4146302E1E39521900E5CADC /* FileManagerExtension.swift in Sources */,
 				4112276B1E39625D00E1487B /* Validator.swift in Sources */,
