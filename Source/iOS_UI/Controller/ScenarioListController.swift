@@ -10,8 +10,6 @@ import UIKit
 
 class ScenarioListController: UITableViewController {
 
-    static let identifier = "ScenarioListNavController"
-
     // MARK: - Lifecycle
 
     override func viewDidLoad() {

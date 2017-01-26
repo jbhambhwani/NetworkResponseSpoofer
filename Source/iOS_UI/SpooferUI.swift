@@ -33,7 +33,7 @@ public extension Spoofer {
      - It allows diving deeper into the scenario by tapping the info button along the right of each scenario. This lists the url's which have recorded responses in the scenario.
      */
     class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
-        presentController(with: ScenarioListController.identifier, sourceViewController: sourceViewController)
+        presentController(with: SuiteListController.identifier, sourceViewController: sourceViewController)
     }
 }
 
@@ -42,7 +42,14 @@ fileprivate extension Spoofer {
     class func presentController(with identifier: String, sourceViewController: UIViewController?) {
         guard let sourceViewController = sourceViewController else { return }
 
-        let viewControllerToPresent = spooferStoryBoard().instantiateViewController(withIdentifier: identifier)
+        var viewControllerToPresent = spooferStoryBoard().instantiateViewController(withIdentifier: identifier)
+
+        // If SuiteListController was invoked directly, we are in replay mode, and so disallow suite creation and wrap the controller in a navcontroller
+        if let controller = viewControllerToPresent as? SuiteListController {
+            controller.navigationItem.rightBarButtonItem = nil
+            viewControllerToPresent = UINavigationController(rootViewController: controller)
+        }
+
         sourceViewController.present(viewControllerToPresent, animated: true, completion: nil)
     }
 
