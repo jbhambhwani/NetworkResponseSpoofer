@@ -345,7 +345,7 @@
                                     <action selector="addSuitePressed:" destination="Yiu-Le-paM" id="32k-63-FPw"/>
                                 </connections>
                             </barButtonItem>
-                            <barButtonItem title="Item" image="Settings" id="GgM-NS-oyP">
+                            <barButtonItem image="Settings" id="GgM-NS-oyP">
                                 <connections>
                                     <segue destination="21e-je-LnQ" kind="show" identifier="configureSpoofer" id="zxJ-2b-0fW"/>
                                 </connections>
@@ -372,21 +372,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="UITableViewCell" textLabel="Tan-or-0WX" style="IBUITableViewCellStyleDefault" id="BZA-R2-sby">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResponseCell" rowHeight="60" id="BZA-R2-sby" customClass="ResponseCell" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BZA-R2-sby" id="rDM-fq-5kf">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="59"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="Tan-or-0WX">
-                                            <rect key="frame" x="15" y="0.0" width="345" height="43.5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                                            <nil key="highlightedColor"/>
-                                        </label>
+                                        <stackView opaque="NO" contentMode="scaleToFill" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="thU-0B-q5V">
+                                            <rect key="frame" x="8" y="8" width="359" height="43.5"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="deu-Pe-af6">
+                                                    <rect key="frame" x="0.0" y="0.0" width="44" height="43.5"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="44" id="C6g-wr-bvs"/>
+                                                    </constraints>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="URL" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J0P-fm-reG">
+                                                    <rect key="frame" x="52" y="0.0" width="307" height="43.5"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </stackView>
                                     </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="bottomMargin" secondItem="thU-0B-q5V" secondAttribute="bottom" id="hUc-y5-lbv"/>
+                                        <constraint firstItem="thU-0B-q5V" firstAttribute="top" secondItem="rDM-fq-5kf" secondAttribute="topMargin" id="kVk-Zt-ICF"/>
+                                        <constraint firstItem="thU-0B-q5V" firstAttribute="leading" secondItem="rDM-fq-5kf" secondAttribute="leadingMargin" id="qdm-4k-CQi"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="thU-0B-q5V" secondAttribute="trailing" id="svs-ld-82L"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="reponseImageView" destination="deu-Pe-af6" id="RHQ-B8-lZh"/>
+                                    <outlet property="urlLabel" destination="J0P-fm-reG" id="MKr-K3-OwK"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>

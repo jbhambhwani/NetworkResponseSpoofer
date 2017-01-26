@@ -24,9 +24,7 @@ class ResponseListController: UITableViewController {
         controller.searchResultsUpdater = self
         controller.delegate = self
         controller.searchBar.sizeToFit()
-        controller.searchBar.barTintColor = UIColor.lightGray
-        controller.searchBar.tintColor = UIColor.black
-        controller.dimsBackgroundDuringPresentation = true
+        controller.hidesNavigationBarDuringPresentation = false
         return controller
     }()
 
@@ -82,16 +80,15 @@ extension ResponseListController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: ResponseCell.defaultReuseIdentifier, for: indexPath) as! ResponseCell
+
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
-        cell.textLabel?.text = response.requestURL
-        cell.imageView?.contentMode = UIViewContentMode.redraw
+
+        cell.urlLabel.text = response.requestURL
 
         if [".png", ".jpg", ".jpeg", ".tiff", ".tif", ".gif", ".bmp", ".ico"]
             .filter({ response.requestURL.hasSuffix($0) }).count == 1 {
-            cell.imageView?.image = UIImage(data: response.data)
-        } else {
-            cell.imageView?.image = nil
+            cell.reponseImageView.image = UIImage(data: response.data)
         }
 
         return cell
