@@ -46,7 +46,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Recorded Scenarios" prompt="Tap a scenario to start replay" id="FOd-Dt-kCQ">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="4fl-dr-b6I"/>
+                        <barButtonItem key="backBarButtonItem" id="4fl-dr-b6I"/>
                     </navigationItem>
                     <connections>
                         <segue destination="FXU-Kx-14D" kind="show" identifier="showResponses" id="pgP-Fl-Ofn"/>
@@ -286,7 +286,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Record new scenario" id="HK1-xR-ngL">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="wcB-JM-h4a"/>
+                        <barButtonItem key="backBarButtonItem" id="wcB-JM-h4a"/>
                     </navigationItem>
                     <connections>
                         <outlet property="scenarioNameTextField" destination="HiT-h9-Wce" id="NhR-nL-9M0"/>
@@ -336,7 +336,7 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Available Suites" id="HYY-IR-OwA">
-                        <barButtonItem key="backBarButtonItem" title="Back" id="Vvc-oJ-pxU"/>
+                        <barButtonItem key="backBarButtonItem" id="Vvc-oJ-pxU"/>
                         <barButtonItem key="leftBarButtonItem" systemItem="cancel" id="7gv-dK-n1D">
                             <connections>
                                 <action selector="cancel" destination="Yiu-Le-paM" id="0ea-P3-jxD"/>

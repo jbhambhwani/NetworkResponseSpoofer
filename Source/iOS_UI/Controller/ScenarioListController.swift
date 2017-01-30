@@ -49,7 +49,7 @@ class ScenarioListController: UITableViewController {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
-        controller.searchBar.sizeToFit()
+        controller.searchBar.backgroundColor = .darkGray
         controller.hidesNavigationBarDuringPresentation = false
         return controller
     }()
