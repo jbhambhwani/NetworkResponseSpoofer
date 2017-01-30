@@ -23,9 +23,6 @@
                         <subviews>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f47-Nv-bYC">
                                 <rect key="frame" x="0.0" y="623" width="375" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="5i3-CQ-LwE"/>
-                                </constraints>
                                 <items>
                                     <barButtonItem title="Start Recording" id="f06-A3-MOs">
                                         <connections>
@@ -70,20 +67,20 @@
                                         </connections>
                                     </searchBar>
                                     <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="edx-SL-7xe">
-                                        <rect key="frame" x="0.0" y="44" width="375" height="488"/>
+                                        <rect key="frame" x="0.0" y="44" width="375" height="408"/>
                                         <color key="backgroundColor" red="0.28958413004875183" green="0.31462949514389038" blue="0.32950475811958313" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <outlet property="delegate" destination="BYZ-38-t0r" id="OXO-yE-OUB"/>
                                         </connections>
                                     </webView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3Y-rQ-2Zg">
-                                        <rect key="frame" x="0.0" y="532" width="375" height="25"/>
+                                        <rect key="frame" x="0.0" y="452" width="375" height="25"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="  Console" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-44-OfY">
                                                 <rect key="frame" x="0.0" y="0.0" width="345" height="25"/>
-                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                                                <color key="backgroundColor" red="0.28627450980000002" green="0.56078431370000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                                 <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="16"/>
+                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
@@ -101,13 +98,13 @@
                                         </connections>
                                     </stackView>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="XaP-Cj-RUv">
-                                        <rect key="frame" x="0.0" y="557" width="375" height="0.0"/>
-                                        <color key="backgroundColor" red="0.2156862745" green="0.1960784314" blue="0.27058823529999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <rect key="frame" x="0.0" y="477" width="375" height="80"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
-                                            <constraint firstAttribute="height" priority="999" id="urc-bF-Do9"/>
+                                            <constraint firstAttribute="height" priority="999" constant="80" id="urc-bF-Do9"/>
                                         </constraints>
-                                        <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <color key="textColor" red="0.0" green="1" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                 </subviews>
@@ -118,7 +115,7 @@
                                     <constraint firstAttribute="width" constant="20" id="PyC-jb-UNn"/>
                                     <constraint firstAttribute="height" constant="20" id="uGm-ys-lFy"/>
                                 </constraints>
-                                <color key="color" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="color" red="0.28627450980000002" green="0.56078431370000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                             </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -169,7 +166,7 @@
                     </connections>
                 </panGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="-3207" y="-961"/>
+            <point key="canvasLocation" x="-3402" y="-1025"/>
         </scene>
     </scenes>
     <resources>

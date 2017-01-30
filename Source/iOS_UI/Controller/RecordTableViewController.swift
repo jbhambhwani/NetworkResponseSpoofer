@@ -67,3 +67,12 @@ class RecordTableViewController: UITableViewController {
         }
     }
 }
+
+extension RecordTableViewController: UITextFieldDelegate {
+
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        startRecordingPressed()
+        return true
+    }
+
+}
