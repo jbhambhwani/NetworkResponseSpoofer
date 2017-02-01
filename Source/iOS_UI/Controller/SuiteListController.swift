@@ -45,7 +45,7 @@ extension SuiteListController {
         }
     }
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         switch segue.destination {
         case let controller as ScenarioListController:
             controller.suiteName = suiteName
@@ -53,7 +53,6 @@ extension SuiteListController {
             break
         }
     }
-
 }
 
 extension SuiteListController {

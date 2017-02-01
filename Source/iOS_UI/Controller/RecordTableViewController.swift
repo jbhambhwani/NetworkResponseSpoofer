@@ -55,7 +55,7 @@ class RecordTableViewController: UITableViewController {
 
     // MARK: - Navigation
 
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+    override func prepare(for segue: UIStoryboardSegue, sender _: Any?) {
         if segue.destination is SuiteListController {
             segue.destination.navigationItem.leftBarButtonItem = nil
         }
@@ -70,9 +70,8 @@ class RecordTableViewController: UITableViewController {
 
 extension RecordTableViewController: UITextFieldDelegate {
 
-    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+    func textFieldShouldReturn(_: UITextField) -> Bool {
         startRecordingPressed()
         return true
     }
-
 }
