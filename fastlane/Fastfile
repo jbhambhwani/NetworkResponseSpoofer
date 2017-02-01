@@ -12,7 +12,7 @@ platform :ios do
 
 #----------------------------------------------Lane Marker----------------------------------------------
 
-  desc "Runs Swiftlint autocorrect & SwiftFormat to clean code"
+  desc "Runs Swiftlint & SwiftFormat to clean code"
   lane :lint do
     sh "cd .. ; cd Source ; swiftlint autocorrect"
     sh "cd .. ; cd Source ; swiftformat ."
@@ -28,13 +28,21 @@ platform :ios do
 
 #----------------------------------------------Lane Marker----------------------------------------------
 
-  desc "Increments the version and/or build number & commits the changes to the checked out branch"
-  desc "type can be patch, minor or major"
+  desc "Increments the version and build number"
+  desc "- type: can be patch, minor or major. type defaults to patch and can be ignored"
 
   lane :bump do |options|
 
     if options[:type]
+      if options[:type] != 'patch'
+        puts "Resetting build number to zero as version bump requested is not patch"
+      end
+    end
+
+    if options[:type]
       increment_version_number(bump_type: options[:type])
+    else
+      increment_version_number(bump_type: 'patch')
     end
 
     increment_build_number
