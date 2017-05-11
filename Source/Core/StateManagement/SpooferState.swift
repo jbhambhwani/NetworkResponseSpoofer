@@ -25,10 +25,10 @@ struct SpooferState: Equatable {
 
         switch networkAction {
 
-        case .record(let scenarioName, let suiteName):
+        case let .record(scenarioName, suiteName):
             return SpooferState(isRecording: true, isReplaying: false, scenarioName: scenarioName, suiteName: suiteName)
 
-        case .replay(let scenarioName, let suiteName):
+        case let .replay(scenarioName, suiteName):
             return SpooferState(isRecording: false, isReplaying: true, scenarioName: scenarioName, suiteName: suiteName)
 
         case .stopIntercept:

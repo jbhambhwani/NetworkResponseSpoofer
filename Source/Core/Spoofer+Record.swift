@@ -37,7 +37,7 @@ public extension Spoofer {
             let saveResult = DataStore.save(scenario: spoofedScenario, suite: suite)
 
             switch saveResult {
-            case .success(let scenario):
+            case let .success(scenario):
                 // Transform state to recording
                 Spoofer.sharedInstance.stateManager.transformState(networkAction: .record(scenarioName: scenario.name, suiteName: suite))
 

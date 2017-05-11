@@ -34,7 +34,7 @@ public extension Spoofer {
 
         let loadResult = DataStore.load(scenarioName: name, suite: suite)
         switch loadResult {
-        case .success(let scenario):
+        case let .success(scenario):
             Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name, suiteName: suite))
 
         case .failure:

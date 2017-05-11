@@ -16,8 +16,8 @@ enum Result<Value> {
 extension Result {
     func flatMap<U>(_ transform: (Value) -> Result<U>) -> Result<U> {
         switch self {
-        case .success(let val): return transform(val)
-        case .failure(let e): return .failure(e)
+        case let .success(val): return transform(val)
+        case let .failure(e): return .failure(e)
         }
     }
 }

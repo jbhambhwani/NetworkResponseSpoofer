@@ -50,7 +50,7 @@ class ResponseListController: UITableViewController {
     func loadResponses() {
         let loadResult = DataStore.load(scenarioName: scenarioName, suite: suiteName)
         switch loadResult {
-        case .success(let scenario):
+        case let .success(scenario):
             allResponses = Array(scenario.apiResponses)
             tableView.reloadData()
         case .failure:

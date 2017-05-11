@@ -56,7 +56,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         let loadResult = DataStore.load(scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
 
         switch loadResult {
-        case .success(let scenario):
+        case let .success(scenario):
 
             guard let cachedResponse = scenario.responseForRequest(request), let _ = URL(string: cachedResponse.requestURL) else {
                 // Throw an error in case we are unable to load a response

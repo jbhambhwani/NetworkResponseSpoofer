@@ -71,9 +71,9 @@ fileprivate extension String {
 
     // Remove www prefix
     mutating func removeWeb() {
-        if self.hasPrefix("www.") {
-            let wwwIndex = self.index(self.startIndex, offsetBy: 4)
-            self = self.substring(from: wwwIndex)
+        if hasPrefix("www.") {
+            let wwwIndex = index(startIndex, offsetBy: 4)
+            self = substring(from: wwwIndex)
         }
     }
 
@@ -81,10 +81,10 @@ fileprivate extension String {
     mutating func normalizeSubDomains() {
         for subDomainToNormalize in Spoofer.subDomainsToNormalize {
             if let ignoredRange = self.range(of: subDomainToNormalize + ".") {
-                self.removeSubrange(ignoredRange)
+                removeSubrange(ignoredRange)
             }
             if let ignoredRange = self.range(of: subDomainToNormalize) {
-                self.removeSubrange(ignoredRange)
+                removeSubrange(ignoredRange)
             }
         }
     }
@@ -93,7 +93,7 @@ fileprivate extension String {
     mutating func normalizePathComponents() {
         for pathComponent in Spoofer.pathComponentsToNormalize {
             if let pathComponentRange = self.range(of: "/" + pathComponent) {
-                self.removeSubrange(pathComponentRange)
+                removeSubrange(pathComponentRange)
             }
         }
     }

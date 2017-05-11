@@ -48,7 +48,7 @@ class EditSettingsViewController: UITableViewController {
         alertController.addAction(addAction)
         alertController.addAction(cancelAction)
 
-        self.present(alertController, animated: true, completion: nil)
+        present(alertController, animated: true, completion: nil)
     }
 
     @IBAction func editAction(_: UIBarButtonItem) {
