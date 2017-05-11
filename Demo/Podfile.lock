@@ -6,11 +6,11 @@ PODS:
     - RealmSwift
   - APIResponseSpoofer/iOS-UI (4.3.3):
     - RealmSwift
-  - Realm (2.4.1):
-    - Realm/Headers (= 2.4.1)
-  - Realm/Headers (2.4.1)
-  - RealmSwift (2.4.1):
-    - Realm (= 2.4.1)
+  - Realm (2.7.0):
+    - Realm/Headers (= 2.7.0)
+  - Realm/Headers (2.7.0)
+  - RealmSwift (2.7.0):
+    - Realm (= 2.7.0)
 
 DEPENDENCIES:
   - APIResponseSpoofer (from `../`)
@@ -22,9 +22,9 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   APIResponseSpoofer: d013e94d00d5c0c5bfd911d04f4ea3e54e252c60
-  Realm: 37a5198a197598d9ec0e4d1ae2f64924c86eeb9a
-  RealmSwift: d69e431b79a41acdf14c404b868ae1c2458916e1
+  Realm: 07e5d3a9e0e41d65fd5f9f05150ed6295d0f093b
+  RealmSwift: 6d06425d3900c86473c4f323bf6949b43fca22bc
 
 PODFILE CHECKSUM: 37dfb2af71c9e9c9def65c3c3f5d7b482551e641
 
-COCOAPODS: 1.2.0
+COCOAPODS: 1.2.1

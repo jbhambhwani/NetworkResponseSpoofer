@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="15G1217" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16E195" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
@@ -13,7 +13,7 @@
         <!--Recorded Scenarios-->
         <scene sceneID="ZK6-7R-wu2">
             <objects>
-                <tableViewController storyboardIdentifier="ScenarioListController" id="brR-F4-4fZ" customClass="ScenarioListController" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ScenarioListController" id="brR-F4-4fZ" customClass="ScenarioListController" customModule="APIResponseSpoofer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" tag="10" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2m4-an-cO2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -45,7 +45,7 @@
                             <outlet property="delegate" destination="brR-F4-4fZ" id="Z7W-rK-FaU"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Recorded Scenarios" prompt="Tap a scenario to start replay" id="FOd-Dt-kCQ">
+                    <navigationItem key="navigationItem" title="Recorded Scenarios" id="FOd-Dt-kCQ">
                         <barButtonItem key="backBarButtonItem" id="4fl-dr-b6I"/>
                     </navigationItem>
                     <connections>
@@ -59,13 +59,13 @@
         <!--Spoofer Configuration-->
         <scene sceneID="fBy-8d-eGX">
             <objects>
-                <tableViewController title="Spoofer Configuration" id="21e-je-LnQ" customClass="SettingsViewController" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Spoofer Configuration" id="21e-je-LnQ" customClass="SettingsViewController" customModule="APIResponseSpoofer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bAl-XE-t8R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SwitchWithTextTableViewCell" id="V1u-No-CWk" userLabel="SwitchWithTextTableViewCell" customClass="SwitchWithTextTableViewCell" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SwitchWithTextTableViewCell" id="V1u-No-CWk" userLabel="SwitchWithTextTableViewCell" customClass="SwitchWithTextTableViewCell" customModule="APIResponseSpoofer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V1u-No-CWk" id="YyH-t6-pQX">
@@ -124,7 +124,7 @@
         <!--Edit Settings View Controller-->
         <scene sceneID="0Tb-KU-P6w">
             <objects>
-                <tableViewController id="Emy-fH-AuI" customClass="EditSettingsViewController" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Emy-fH-AuI" customClass="EditSettingsViewController" customModule="APIResponseSpoofer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="x3U-DL-U56">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -306,7 +306,7 @@
         <!--Available Suites-->
         <scene sceneID="smy-zh-Wb7">
             <objects>
-                <tableViewController storyboardIdentifier="SuiteListController" title="Available Suites" id="Yiu-Le-paM" customClass="SuiteListController" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SuiteListController" title="Available Suites" id="Yiu-Le-paM" customClass="SuiteListController" customModule="APIResponseSpoofer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lqO-ey-5Bm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -369,13 +369,13 @@
         <!--Response List-->
         <scene sceneID="upC-Ye-yme">
             <objects>
-                <tableViewController title="Response List" id="FXU-Kx-14D" customClass="ResponseListController" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Response List" id="FXU-Kx-14D" customClass="ResponseListController" customModule="APIResponseSpoofer" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="zYq-58-taD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResponseCell" rowHeight="60" id="BZA-R2-sby" customClass="ResponseCell" customModule="APIResponseSpoofer_iOS_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResponseCell" rowHeight="60" id="BZA-R2-sby" customClass="ResponseCell" customModule="APIResponseSpoofer" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BZA-R2-sby" id="rDM-fq-5kf">
