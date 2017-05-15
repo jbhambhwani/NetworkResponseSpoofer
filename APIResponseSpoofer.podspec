@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'APIResponseSpoofer'
-  s.version = '4.4.0'
+  s.version = '4.5.0'
   s.summary = 'Network request-response recording and replaying library for iOS.'
   s.description = <<-EOS
   APIResponseSpoofer is a network request-response recording and replaying library for iOS. It’s built on top of the Foundation URL Loading System to make recording and replaying network requests really simple.

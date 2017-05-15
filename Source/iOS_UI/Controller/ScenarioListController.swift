@@ -92,7 +92,7 @@ extension ScenarioListController {
         switch editingStyle {
         case .delete:
             let scenarioToDelete = scenarioNames.remove(at: indexPath.row)
-            let deletionResult = DataStore.delete(scenarioName: scenarioToDelete, suite: Spoofer.suiteName)
+            let deletionResult = DataStore.delete(scenarioName: scenarioToDelete, suite: suiteName)
 
             switch deletionResult {
             case .success:

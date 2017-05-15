@@ -146,7 +146,13 @@ extension RealmStore: Store {
 
         do {
             try realm.write {
-                scenario.apiResponses.remove(objectAtIndex: responseIndex)
+                let responseToDelete = scenario.apiResponses[responseIndex]
+                
+                // Currently realm does not have a cascade delete mechanism, so delete the sub structures before deleting the scenario
+                realm.delete(responseToDelete.headerFields)
+                // TODO: The above 1 line can be deleted once cascade delete is implemented in Realm
+                
+                realm.delete(responseToDelete)
             }
             return .success(true)
         } catch {

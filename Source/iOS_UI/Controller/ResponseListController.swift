@@ -112,7 +112,7 @@ extension ResponseListController {
         switch editingStyle {
         case .delete:
             allResponses.remove(at: indexPath.row)
-            let deleteResult = DataStore.delete(responseIndex: indexPath.row, scenarioName: scenarioName, suite: Spoofer.suiteName)
+            let deleteResult = DataStore.delete(responseIndex: indexPath.row, scenarioName: scenarioName, suite: suiteName)
 
             switch deleteResult {
             case .success:
