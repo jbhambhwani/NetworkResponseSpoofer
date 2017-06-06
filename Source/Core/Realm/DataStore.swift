@@ -70,7 +70,7 @@ fileprivate struct RealmStore {
         Realm.Configuration.defaultConfiguration = config
 
         if Spoofer.suiteName != suiteName {
-            print("Datastore Path: \(Realm.Configuration.defaultConfiguration.fileURL)")
+            print("Datastore Path: \(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
         }
     }
 }

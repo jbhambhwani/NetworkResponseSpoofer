@@ -105,5 +105,5 @@ extension APIResponse {
 
 extension APIResponse {
     override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)" }
-    override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(mimeType)\nEncoding: \(encoding)\nHeaderFields: \(headerFields)\n" }
+    override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(String(describing: mimeType))\nEncoding: \(String(describing: encoding))\nHeaderFields: \(headerFields)\n" }
 }
