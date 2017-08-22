@@ -14,7 +14,7 @@
     <a title="Spoofer Class Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="../index.html">APIResponseSpoofer Docs</a> (100% documented)</p>
+        <p><a href="../index.html">APIResponseSpoofer Docs</a> (72% documented)</p>
         <p class="header-right"><a href="https://github.com/HotwireDotCom"><img src="../img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -34,6 +34,12 @@
               <li class="nav-group-task">
                 <a href="../Classes/Spoofer.html">Spoofer</a>
               </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SpooferRecorder.html">SpooferRecorder</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Classes/SpooferReplayer.html">SpooferReplayer</a>
+              </li>
             </ul>
           </li>
           <li class="nav-group-name">
@@ -41,6 +47,17 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="../Enums/SpooferError.html">SpooferError</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="../Enums/StoreError.html">StoreError</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a href="../Extensions.html">Extensions</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="../Extensions/URLSessionConfiguration.html">URLSessionConfiguration</a>
               </li>
             </ul>
           </li>
@@ -188,9 +205,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer18subDomainsToIgnoreGSaSS_"></a>
-                    <a name="//apple_ref/swift/Variable/subDomainsToIgnore" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer18subDomainsToIgnoreGSaSS_">subDomainsToIgnore</a>
+                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer13pathsToIgnoreGSaSS_"></a>
+                    <a name="//apple_ref/swift/Variable/pathsToIgnore" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer13pathsToIgnoreGSaSS_">pathsToIgnore</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -198,14 +215,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Subdomains to ignore via URL normalization. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.</p>
+                        <p>Blacklist of Path&rsquo;s. If set, these path names would be ignored from recording</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">subDomainsToIgnore</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">pathsToIgnore</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -215,9 +232,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer23queryParametersToIgnoreGSaSS_"></a>
-                    <a name="//apple_ref/swift/Variable/queryParametersToIgnore" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer23queryParametersToIgnoreGSaSS_">queryParametersToIgnore</a>
+                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer21subDomainsToNormalizeGSaSS_"></a>
+                    <a name="//apple_ref/swift/Variable/subDomainsToNormalize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer21subDomainsToNormalizeGSaSS_">subDomainsToNormalize</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -225,14 +242,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Query parameters that should be ignored via URL normalization. Useful when query parameters are dynamic causing URL&rsquo;s to mismatch.</p>
+                        <p>Subdomains to normalize. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">queryParametersToIgnore</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">subDomainsToNormalize</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -242,9 +259,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer22pathComponentsToIgnoreGSaSS_"></a>
-                    <a name="//apple_ref/swift/Variable/pathComponentsToIgnore" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer22pathComponentsToIgnoreGSaSS_">pathComponentsToIgnore</a>
+                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer26queryParametersToNormalizeGSaSS_"></a>
+                    <a name="//apple_ref/swift/Variable/queryParametersToNormalize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer26queryParametersToNormalizeGSaSS_">queryParametersToNormalize</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -252,15 +269,14 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions.
-    E.g. v1, v1.1, v2 etc</p>
+                        <p>Query parameters to normalize. Useful when query parameters are dynamic causing URL&rsquo;s to mismatch.</p>
 
                       </div>
                       <div class="declaration">
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">pathComponentsToIgnore</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">queryParametersToNormalize</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
 
                         </div>
                       </div>
@@ -270,9 +286,9 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer24normalizeQueryParametersSb"></a>
-                    <a name="//apple_ref/swift/Variable/normalizeQueryParameters" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer24normalizeQueryParametersSb">normalizeQueryParameters</a>
+                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer25pathComponentsToNormalizeGSaSS_"></a>
+                    <a name="//apple_ref/swift/Variable/pathComponentsToNormalize" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer25pathComponentsToNormalizeGSaSS_">pathComponentsToNormalize</a>
                     </code>
                   </div>
                   <div class="height-container">
@@ -280,15 +296,42 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Enable normalizing query parameters, by taking only the keys and dropping the values.</p>
+                        <p>Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions. e.g., v1, v1.1, v2 etc</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">pathComponentsToNormalize</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span><span class="p">]</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:ZvC18APIResponseSpoofer7Spoofer20normalizeQueryValuesSb"></a>
+                    <a name="//apple_ref/swift/Variable/normalizeQueryValues" class="dashAnchor"></a>
+                    <a class="token" href="#/s:ZvC18APIResponseSpoofer7Spoofer20normalizeQueryValuesSb">normalizeQueryValues</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Enable normalizing query values, by taking only the keys and dropping the values.</p>
 
 <div class="aside aside-note">
     <p class="aside-title">Note</p>
-    Query Parameter Normalization causes values (not keys) of the query parameters to be dropped while comparing URL&rsquo;s. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
+    Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL&rsquo;s. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
 
 </div>
 
-<p><li>Reduced scenario file size saving some storage space.</li>
+<p><li>Reduced file size saving some storage space.</li>
 <li>Consistent response for the same end point regardless of query parameter values.</li></p>
 
 <p>For E.g., a url such as example.com/api?key1=value1&amp;key2=value2 becomes example.com/api?key1&amp;key2. This allows the Spoofer to record and replay the same reponse for all calls to the end point with similar key-value query parameters.</p>
@@ -298,7 +341,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">normalizeQueryParameters</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="k">var</span> <span class="nv">normalizeQueryValues</span><span class="p">:</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -332,6 +375,17 @@
                     </section>
                   </div>
                 </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Notifications"></a>
+                <a name="//apple_ref/swift/Section/Notifications" class="dashAnchor"></a>
+                <a href="#/Notifications">
+                  <h3 class="section-name">Notifications</h3>
+                </a>
+              </div>
+              <ul>
                 <li class="item">
                   <div>
                     <code>
@@ -373,7 +427,8 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Notification fired when spoofer starts recording a scenario. Userinfo dictionary has key <q>scenario</q> which has the name of the scenario</p>
+                        <p>Notification fired when spoofer starts recording a scenario.
+ - Note: Userinfo dictionary has key <q>scenario</q> which has the name of the scenario</p>
 
                       </div>
                       <div class="declaration">
@@ -509,65 +564,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC18APIResponseSpoofer7Spoofer21showRecordedScenariosFT16inViewControllerGSqCSo16UIViewController__T_"></a>
-                    <a name="//apple_ref/swift/Method/showRecordedScenarios(inViewController:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC18APIResponseSpoofer7Spoofer21showRecordedScenariosFT16inViewControllerGSqCSo16UIViewController__T_">showRecordedScenarios(inViewController:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Show recorded scenarios in Documents folder as a list for the user to select and start replay (Replay selection UI)</p>
-
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    <p>The replay selection UI also has few other roles.</p>
-
-<ul>
-<li>It allows configuring the spoofer using a congig button the nav bar, allowing to tweak whitelist/blacklist/query parameters, normalization etc</li>
-<li>It shows the list of pre-recorded scenarios in the folder. Tapping a scenario starts replay directly and dismissed the UI</li>
-<li>It allows diving deeper into the scenario by tapping the info button along the right of each scenario. This lists the url&rsquo;s which have recorded responses in the scenario.</li>
-</ul>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">showRecordedScenarios</span><span class="p">(</span><span class="n">inViewController</span> <span class="nv">sourceViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>sourceViewController</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The view controller from which to present the replay selection UI</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:ZFC18APIResponseSpoofer7Spoofer14startReplayingFT12scenarioNameGSqSS__Sb"></a>
                     <a name="//apple_ref/swift/Method/startReplaying(scenarioName:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:ZFC18APIResponseSpoofer7Spoofer14startReplayingFT12scenarioNameGSqSS__Sb">startReplaying(scenarioName:)</a>
@@ -597,7 +593,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">startReplaying</span><span class="p">(</span><span class="n"><a href="../Classes/Spoofer.html#/s:ZvC18APIResponseSpoofer7Spoofer12scenarioNameSS">scenarioName</a></span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">public</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">startReplaying</span><span class="p">(</span><span class="n"><a href="../Classes/Spoofer.html#/s:ZvC18APIResponseSpoofer7Spoofer12scenarioNameSS">scenarioName</a></span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -697,59 +693,6 @@
                 <li class="item">
                   <div>
                     <code>
-                    <a name="/s:ZFC18APIResponseSpoofer7Spoofer14startRecordingFT16inViewControllerGSqCSo16UIViewController__T_"></a>
-                    <a name="//apple_ref/swift/Method/startRecording(inViewController:)" class="dashAnchor"></a>
-                    <a class="token" href="#/s:ZFC18APIResponseSpoofer7Spoofer14startRecordingFT16inViewControllerGSqCSo16UIViewController__T_">startRecording(inViewController:)</a>
-                    </code>
-                  </div>
-                  <div class="height-container">
-                    <div class="pointer-container"></div>
-                    <section class="section">
-                      <div class="pointer"></div>
-                      <div class="abstract">
-                        <p>Starts recording a new scenario from a specific view controller.</p>
-
-<div class="aside aside-note">
-    <p class="aside-title">Note</p>
-    <p>A popup will appear asking the user to name the scenario, before recording starts. Use this method if you need to manually provide the scenario name</p>
-
-</div>
-
-                      </div>
-                      <div class="declaration">
-                        <h4>Declaration</h4>
-                        <div class="language">
-                          <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">startRecording</span><span class="p">(</span><span class="n">inViewController</span> <span class="nv">sourceViewController</span><span class="p">:</span> <span class="kt">UIViewController</span><span class="p">?)</span></code></pre>
-
-                        </div>
-                      </div>
-                      <div>
-                        <h4>Parameters</h4>
-                        <table class="graybox">
-                          <tbody>
-                            <tr>
-                              <td>
-                                <code>
-                                <em>sourceViewController</em>
-                                </code>
-                              </td>
-                              <td>
-                                <div>
-                                  <p>The view controller from which the record popup UI will be presented from</p>
-
-                                </div>
-                              </td>
-                            </tr>
-                          </tbody>
-                        </table>
-                      </div>
-                    </section>
-                  </div>
-                </li>
-                <li class="item">
-                  <div>
-                    <code>
                     <a name="/s:ZFC18APIResponseSpoofer7Spoofer14startRecordingFT12scenarioNameGSqSS__Sb"></a>
                     <a name="//apple_ref/swift/Method/startRecording(scenarioName:)" class="dashAnchor"></a>
                     <a class="token" href="#/s:ZFC18APIResponseSpoofer7Spoofer14startRecordingFT12scenarioNameGSqSS__Sb">startRecording(scenarioName:)</a>
@@ -773,7 +716,7 @@
                         <h4>Declaration</h4>
                         <div class="language">
                           <p class="aside-title">Swift</p>
-                          <pre class="highlight"><code><span class="kd">class</span> <span class="kd">func</span> <span class="nf">startRecording</span><span class="p">(</span><span class="n"><a href="../Classes/Spoofer.html#/s:ZvC18APIResponseSpoofer7Spoofer12scenarioNameSS">scenarioName</a></span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
+                          <pre class="highlight"><code><span class="kd">@discardableResult</span> <span class="kd">class</span> <span class="kd">func</span> <span class="nf">startRecording</span><span class="p">(</span><span class="n"><a href="../Classes/Spoofer.html#/s:ZvC18APIResponseSpoofer7Spoofer12scenarioNameSS">scenarioName</a></span> <span class="nv">name</span><span class="p">:</span> <span class="kt">String</span><span class="p">?)</span> <span class="o">-&gt;</span> <span class="kt">Bool</span></code></pre>
 
                         </div>
                       </div>
@@ -818,7 +761,7 @@
                     <section class="section">
                       <div class="pointer"></div>
                       <div class="abstract">
-                        <p>Stop recording the current scenario and save the .scenario file to Documents folder</p>
+                        <p>Stop recording the current scenario</p>
 
                       </div>
                       <div class="declaration">
@@ -837,8 +780,8 @@
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2016 <a class="link" href="www.hotwire.com" target="_blank" rel="external">Hotwire</a>. All rights reserved. (Last updated: 2016-07-15)</p>
-          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.0</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+          <p>&copy; 2017 <a class="link" href="www.hotwire.com" target="_blank" rel="external">Hotwire</a>. All rights reserved. (Last updated: 2017-01-18)</p>
+          <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.7.3</a>, a <a class="link" href="http://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>
     </div>

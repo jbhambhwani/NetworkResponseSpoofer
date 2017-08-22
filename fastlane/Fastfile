@@ -1,0 +1,64 @@
+fastlane_version "2.0.0"
+
+default_platform :ios
+platform :ios do
+
+#----------------------------------------------Method Marker----------------------------------------------
+
+  before_all do
+      # Print out an overview of the lane context values.
+      debug
+  end
+
+#----------------------------------------------Lane Marker----------------------------------------------
+
+  desc "Runs Swiftlint & SwiftFormat to clean code"
+  lane :lint do
+    sh "cd .. ; cd Source ; swiftlint autocorrect"
+    sh "cd .. ; cd Source ; swiftformat ."
+  end
+
+#----------------------------------------------Lane Marker----------------------------------------------
+
+  desc "Updates the storyboard identifier Swift values"
+  lane :sbconstants do
+    view_folder = "Source/iOS_UI/View"
+    sh "cd .. ; bundle exec sbconstants #{view_folder}/StoryboardIdentifiers.swift --source-dir #{view_folder} --swift"
+  end
+
+#----------------------------------------------Lane Marker----------------------------------------------
+
+  desc "Increments the version and build number"
+  desc "- type: can be patch, minor or major. type defaults to patch and can be ignored"
+
+  lane :bump do |options|
+
+    if options[:type]
+      if options[:type] != 'patch'
+        puts "Resetting build number to zero as version bump requested is not patch"
+        increment_build_number build_number:0
+      end
+    end
+
+    if options[:type]
+      increment_version_number(bump_type: options[:type])
+    else
+      increment_version_number(bump_type: 'patch')
+    end
+
+    increment_build_number
+
+  end
+
+  #----------------------------------------------Method Marker----------------------------------------------
+
+  after_all do |lane|
+      # This block is called, only if the executed lane was successful
+  end
+
+  error do |lane, exception|
+      # If there is an error reset the git repo
+      clean_build_artifacts
+  end
+
+end

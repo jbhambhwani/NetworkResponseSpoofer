@@ -4,6 +4,11 @@
 <dict>
 	<key>SchemeUserState</key>
 	<dict>
+		<key>APIResponseSpoofer iOS UI.xcscheme_^#shared#^_</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 		<key>APIResponseSpoofer.xcscheme_^#shared#^_</key>
 		<dict>
 			<key>orderHint</key>
@@ -33,6 +38,11 @@
 			<true/>
 		</dict>
 		<key>417881951C55C77C0057B3E1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>419430AD1DDA96E700DA65AF</key>
 		<dict>
 			<key>primary</key>
 			<true/>

@@ -1,16 +1,33 @@
 Pod::Spec.new do |s|
   s.name = 'APIResponseSpoofer'
-  s.version = '2.0.1'
-  s.license = 'MIT'
+  s.version = '4.5.0'
   s.summary = 'Network request-response recording and replaying library for iOS.'
+  s.description = <<-EOS
+  APIResponseSpoofer is a network request-response recording and replaying library for iOS. It’s built on top of the Foundation URL Loading System to make recording and replaying network requests really simple.
+  EOS
   s.homepage = 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer'
+  s.license = 'MIT'
   s.authors = { 'Hotwire' => 'hotwiredevices@gmail.com' }
-  s.source = { :git => 'https://stash/scm/hotwire/apiresponsespoofer.git', :tag => s.version.to_s }
-  s.platforms = { :ios => "8.0"}
-  s.ios.deployment_target = '8.0'
-  s.source_files = 'APIResponseSpoofer/**/*.swift'
-  s.resources = 'APIResponseSpoofer/**/*.storyboard'
-  s.requires_arc = true
 
-  s.frameworks = 'UIKit', 'Foundation'
+  s.ios.deployment_target = '9.0'
+  s.osx.deployment_target = '10.11'
+  s.watchos.deployment_target = '2.0'
+  s.tvos.deployment_target = '9.0'
+
+  s.source = { :git => 'https://stash/scm/hotwire/apiresponsespoofer.git', :tag => s.version.to_s }
+  s.requires_arc = true
+  s.dependency 'RealmSwift'
+  s.default_subspec = 'Core'
+
+  s.subspec 'Core' do |ss|
+    ss.source_files = 'Source/Core/**/*.swift'
+    ss.framework  = 'Foundation'
+  end
+
+  s.subspec 'iOS-UI' do |ss|
+    ss.source_files = 'Source/iOS_UI/**/*.swift'
+    ss.resources = ['Source/iOS_UI/View/**/*.storyboard', 'Source/iOS_UI/View/**/*.xcassets']
+    ss.framework = 'UIKit'
+  end
+
 end

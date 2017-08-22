@@ -1,0 +1,16 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'SpooferDemo' do
+  platform :ios, '9.0'
+  use_frameworks!
+
+  pod 'APIResponseSpoofer', :path => "../"
+  pod 'APIResponseSpoofer/iOS-UI', :path => "../"
+end
+
+target 'SpooferDemo_Mac' do
+  platform :osx, '10.11'
+  use_frameworks!
+
+  pod 'APIResponseSpoofer', :path => "../"
+end

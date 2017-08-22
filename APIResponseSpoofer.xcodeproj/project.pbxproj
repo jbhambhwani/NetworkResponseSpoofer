@@ -8,31 +8,67 @@
 
 /* Begin PBXBuildFile section */
 		410489C21C99D94800E99745 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
-		410489C71C99DCF200E99745 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C61C99DCF200E99745 /* UIProtocols.swift */; };
-		410489C91C99DD4200E99745 /* SwitchWithTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */; };
-		410489CB1C99DDA100E99745 /* SwitchWithTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */; };
-		410489CD1C99E9EC00E99745 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CC1C99E9EC00E99745 /* UITableViewCell.swift */; };
+		4112276A1E39625D00E1487B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227691E39625D00E1487B /* Validator.swift */; };
+		4112276B1E39625D00E1487B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227691E39625D00E1487B /* Validator.swift */; };
+		411227701E3966C700E1487B /* SuiteListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112276E1E3966AC00E1487B /* SuiteListController.swift */; };
 		411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
-		411A357A1BC74A7D001D128D /* APIResponseSpooferTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */; };
-		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; };
-		4123E81F1C9A0ED700C7FB32 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
-		412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
-		412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
-		4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */; };
-		4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EF1B6EA21C00EAFE04 /* Store.swift */; };
+		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
+		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
+		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
+		413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
+		4146302E1E39521900E5CADC /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */; };
 		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
-		4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */; };
-		416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
-		416552DD1B69F922006D8EDF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DC1B69F922006D8EDF /* Scenario.swift */; };
-		416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416552DE1B69FA74006D8EDF /* APIResponse.swift */; };
+		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
+		41570A7C1DD6F57A0098C2FF /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7A1DD6F5290098C2FF /* URLTests.swift */; };
+		41570A7E1DD6F5A20098C2FF /* TestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */; };
+		41570A801DD6F6570098C2FF /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7F1DD6F6570098C2FF /* MiscTests.swift */; };
+		4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
+		415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D253251E315A56008CD570 /* RecordTableViewController.swift */; };
+		415DAEDB1E31A8CC00E6FE59 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */; };
 		4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
 		4180391E1BCB73FE004E1534 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
+		419430B21DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h in Headers */ = {isa = PBXBuildFile; fileRef = 419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		419430B61DDA970800DA65AF /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
+		419430B71DDA970800DA65AF /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
+		419430B81DDA970800DA65AF /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
+		419430B91DDA970800DA65AF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */; };
+		419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */; };
+		419430BD1DDA974800DA65AF /* SwitchWithTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */; };
+		419430C11DDAA21E00DA65AF /* SpooferUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430C01DDAA21E00DA65AF /* SpooferUI.swift */; };
+		419430C21DDAA25700DA65AF /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
+		419430C31DDAA2E900DA65AF /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
+		419430C41DDAA2F800DA65AF /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
+		419430C51DDAA30B00DA65AF /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
+		419430C61DDAA3E100DA65AF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
+		419430C71DDAA40300DA65AF /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
+		419430C91DDAA41E00DA65AF /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FC1DC96B5800B457F4 /* DataStore.swift */; };
+		419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
+		419430CD1DDAA4F300DA65AF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
+		419430CE1DDAA50A00DA65AF /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
+		419430CF1DDAA51A00DA65AF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponse.swift */; };
+		419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */; };
+		419430D11DDAA52000DA65AF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* Scenario.swift */; };
+		419430D21DDAA53400DA65AF /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
+		419430D31DDAA54200DA65AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
+		419430D41DDAA56100DA65AF /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
+		419430D51DDAA59200DA65AF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
+		419430D61DDAA59200DA65AF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
+		419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D81DDAA67B00DA65AF /* UIProtocols.swift */; };
+		419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D91DDAA67B00DA65AF /* UITableViewCell.swift */; };
+		41AA10EC1DC1358000860295 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponse.swift */; };
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
-		41D4AF301C98EAF00086AEB2 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */; };
+		41C95FFA1E3A806E00B749B0 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C95FF91E3A806E00B749B0 /* Media.xcassets */; };
+		41C95FFD1E3A87B000B749B0 /* ResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
+		41E04BB41DC41F3900AD8261 /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* Scenario.swift */; };
+		41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
+		41F879FD1DC96B5800B457F4 /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FC1DC96B5800B457F4 /* DataStore.swift */; };
+		41F879FF1DC96BE900B457F4 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
+		41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,35 +83,54 @@
 
 /* Begin PBXFileReference section */
 		410489C11C99D94800E99745 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
-		410489C61C99DCF200E99745 /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithTextTableViewCell.swift; sourceTree = "<group>"; };
 		410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithTextViewModel.swift; sourceTree = "<group>"; };
-		410489CC1C99E9EC00E99745 /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		411227691E39625D00E1487B /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
+		4112276E1E3966AC00E1487B /* SuiteListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuiteListController.swift; sourceTree = "<group>"; };
+		411227711E39730D00E1487B /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		411913241D2369F500D3FB6E /* NetworkInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterceptable.swift; sourceTree = "<group>"; };
 		411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIResponseSpooferTests.swift; sourceTree = "<group>"; };
-		411A357B1BC74A7D001D128D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = APIResponseSpooferTests/Info.plist; sourceTree = SOURCE_ROOT; };
+		411A35791BC74A7D001D128D /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
+		411A357B1BC74A7D001D128D /* TestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
 		4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
 		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
-		4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayingProtocol.swift; sourceTree = "<group>"; };
-		4131B8EF1B6EA21C00EAFE04 /* Store.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Store.swift; sourceTree = "<group>"; };
-		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferReplayer.swift; sourceTree = "<group>"; };
+		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
-		4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordingProtocol.swift; sourceTree = "<group>"; };
+		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
+		4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
+		41570A7A1DD6F5290098C2FF /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
+		41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingConstants.swift; sourceTree = "<group>"; };
+		41570A7F1DD6F6570098C2FF /* MiscTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MiscTests.swift; sourceTree = "<group>"; };
+		4157440E1DD2426F000F4571 /* SpooferState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferState.swift; sourceTree = "<group>"; };
+		415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FileManagerExtension.swift; sourceTree = "<group>"; };
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
-		416552DC1B69F922006D8EDF /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
-		416552DE1B69FA74006D8EDF /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		4180391D1BCB73FE004E1534 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
+		419430AE1DDA96E700DA65AF /* APIResponseSpoofer_iOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer_iOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "APIResponseSpoofer iOS UI.h"; path = "Supporting Files/iOS UI/APIResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
+		419430B11DDA96E700DA65AF /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; name = Info.plist; path = "Supporting Files/iOS UI/Info.plist"; sourceTree = "<group>"; };
+		419430C01DDAA21E00DA65AF /* SpooferUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferUI.swift; sourceTree = "<group>"; };
+		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
+		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
+		41AA10EB1DC1358000860295 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
+		41C95FF91E3A806E00B749B0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
+		41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCell.swift; sourceTree = "<group>"; };
+		41D253251E315A56008CD570 /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
+		41E04BB31DC41F3900AD8261 /* Scenario.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Scenario.swift; sourceTree = "<group>"; };
+		41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferStateManager.swift; sourceTree = "<group>"; };
+		41F879FC1DC96B5800B457F4 /* DataStore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DataStore.swift; sourceTree = "<group>"; };
+		41F879FE1DC96BE900B457F4 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
+		41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseHeaderItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +149,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		419430AA1DDA96E700DA65AF /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -102,52 +164,57 @@
 			children = (
 				410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */,
 			);
-			name = ViewModel;
+			path = ViewModel;
 			sourceTree = "<group>";
 		};
-		411A35781BC74A7D001D128D /* APIResponseSpooferTests */ = {
+		411A35781BC74A7D001D128D /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				411A35791BC74A7D001D128D /* APIResponseSpooferTests.swift */,
+				411A35791BC74A7D001D128D /* DataTests.swift */,
+				41570A7F1DD6F6570098C2FF /* MiscTests.swift */,
+				41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */,
+				41570A7A1DD6F5290098C2FF /* URLTests.swift */,
 			);
-			path = APIResponseSpooferTests;
+			path = Tests;
 			sourceTree = "<group>";
 		};
 		412A7B881BC9D20A002E9FF2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
 				4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */,
+				41D253251E315A56008CD570 /* RecordTableViewController.swift */,
 				416322321BF67E9400F9E67A /* ResponseListController.swift */,
 				412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */,
 				41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */,
+				4112276E1E3966AC00E1487B /* SuiteListController.swift */,
 			);
-			name = Controller;
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		4131B8F21B6EA6F400EAFE04 /* Protocol */ = {
 			isa = PBXGroup;
 			children = (
 				415CB1871C9B14A600827A0B /* Networking */,
-				415CB1861C9B149F00827A0B /* UI */,
 			);
-			name = Protocol;
+			path = Protocol;
 			sourceTree = "<group>";
 		};
-		4131B8F31B6EA71800EAFE04 /* Model */ = {
+		413D55EA1DCA8CDB00A5E084 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				416552DE1B69FA74006D8EDF /* APIResponse.swift */,
-				416552DC1B69F922006D8EDF /* Scenario.swift */,
-				4131B8EF1B6EA21C00EAFE04 /* Store.swift */,
+				41AA10EB1DC1358000860295 /* APIResponse.swift */,
+				41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */,
+				41E04BB31DC41F3900AD8261 /* Scenario.swift */,
 			);
-			name = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				4147EA4F1B684D7E001DE517 /* APIResponseSpoofer */,
-				411A35781BC74A7D001D128D /* APIResponseSpooferTests */,
+				4147EA4F1B684D7E001DE517 /* Source */,
+				411A35781BC74A7D001D128D /* Tests */,
+				4147EA501B684D7E001DE517 /* Supporting Files */,
 				4147EA4E1B684D7E001DE517 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -157,92 +224,139 @@
 			children = (
 				4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */,
 				411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */,
+				419430AE1DDA96E700DA65AF /* APIResponseSpoofer_iOS_UI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		4147EA4F1B684D7E001DE517 /* APIResponseSpoofer */ = {
+		4147EA4F1B684D7E001DE517 /* Source */ = {
 			isa = PBXGroup;
 			children = (
 				415CB1891C9B14EA00827A0B /* Core */,
-				4131B8F31B6EA71800EAFE04 /* Model */,
-				415CB1881C9B14C900827A0B /* View */,
-				412A7B881BC9D20A002E9FF2 /* Controller */,
-				410489C41C99DCD000E99745 /* ViewModel */,
-				4131B8F21B6EA6F400EAFE04 /* Protocol */,
-				416453A71B7027A400615A39 /* Extension */,
-				4180391F1BCB7408004E1534 /* Miscellaneous */,
-				4147EA501B684D7E001DE517 /* Supporting Files */,
+				419430BE1DDAA10800DA65AF /* iOS_UI */,
 			);
-			path = APIResponseSpoofer;
+			path = Source;
 			sourceTree = "<group>";
 		};
 		4147EA501B684D7E001DE517 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				411A357B1BC74A7D001D128D /* Info.plist */,
-				4137B6111BD87837005AF53E /* README.md */,
+				419430AF1DDA96E700DA65AF /* iOS UI */,
 				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
+				4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */,
 				4147EA511B684D7E001DE517 /* Info.plist */,
+				4137B6111BD87837005AF53E /* README.md */,
+				411A357B1BC74A7D001D128D /* TestsInfo.plist */,
 			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		415CB1861C9B149F00827A0B /* UI */ = {
-			isa = PBXGroup;
-			children = (
-				410489C61C99DCF200E99745 /* UIProtocols.swift */,
-				410489CC1C99E9EC00E99745 /* UITableViewCell.swift */,
-			);
-			name = UI;
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 		415CB1871C9B14A600827A0B /* Networking */ = {
 			isa = PBXGroup;
 			children = (
 				411913241D2369F500D3FB6E /* NetworkInterceptable.swift */,
-				4147EA6B1B684F15001DE517 /* RecordingProtocol.swift */,
-				4131B8EC1B6DEEB700EAFE04 /* ReplayingProtocol.swift */,
+				4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */,
+				4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */,
 			);
-			name = Networking;
+			path = Networking;
 			sourceTree = "<group>";
 		};
 		415CB1881C9B14C900827A0B /* View */ = {
 			isa = PBXGroup;
 			children = (
+				41C95FF91E3A806E00B749B0 /* Media.xcassets */,
+				41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */,
 				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
+				411227711E39730D00E1487B /* StoryboardIdentifiers.swift */,
 				410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */,
 			);
-			name = View;
+			path = View;
 			sourceTree = "<group>";
 		};
 		415CB1891C9B14EA00827A0B /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				4147EA691B684DBD001DE517 /* Spoofer.swift */,
+				416453A71B7027A400615A39 /* Extension */,
+				4180391F1BCB7408004E1534 /* Miscellaneous */,
+				4131B8F21B6EA6F400EAFE04 /* Protocol */,
+				41BFEC881DC1142C006DC5D4 /* Realm */,
+				41E62FE21DD2AC8D00ECC06F /* StateManagement */,
 				41C012C91BF3F088004E54DF /* Spoofer+Record.swift */,
 				41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */,
+				4147EA691B684DBD001DE517 /* Spoofer.swift */,
 			);
-			name = Core;
+			path = Core;
 			sourceTree = "<group>";
 		};
 		416453A71B7027A400615A39 /* Extension */ = {
 			isa = PBXGroup;
 			children = (
-				4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */,
 				41DFB3E81B70252C00038958 /* URLExtension.swift */,
+				4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */,
 			);
-			name = Extension;
+			path = Extension;
 			sourceTree = "<group>";
 		};
 		4180391F1BCB7408004E1534 /* Miscellaneous */ = {
 			isa = PBXGroup;
 			children = (
-				4180391D1BCB73FE004E1534 /* Utility.swift */,
 				410489C11C99D94800E99745 /* Constants.swift */,
+				41F879FE1DC96BE900B457F4 /* Result.swift */,
 				41B1D1301D2428F000CB450E /* Swizzler.swift */,
+				4180391D1BCB73FE004E1534 /* Utility.swift */,
+				411227691E39625D00E1487B /* Validator.swift */,
 			);
-			name = Miscellaneous;
+			path = Miscellaneous;
+			sourceTree = "<group>";
+		};
+		419430AF1DDA96E700DA65AF /* iOS UI */ = {
+			isa = PBXGroup;
+			children = (
+				419430B01DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h */,
+				419430B11DDA96E700DA65AF /* Info.plist */,
+			);
+			name = "iOS UI";
+			path = "../APIResponseSpoofer iOS UI";
+			sourceTree = "<group>";
+		};
+		419430BE1DDAA10800DA65AF /* iOS_UI */ = {
+			isa = PBXGroup;
+			children = (
+				412A7B881BC9D20A002E9FF2 /* Controller */,
+				419430BF1DDAA19F00DA65AF /* Protocols */,
+				415CB1881C9B14C900827A0B /* View */,
+				410489C41C99DCD000E99745 /* ViewModel */,
+				419430C01DDAA21E00DA65AF /* SpooferUI.swift */,
+			);
+			path = iOS_UI;
+			sourceTree = "<group>";
+		};
+		419430BF1DDAA19F00DA65AF /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				419430D81DDAA67B00DA65AF /* UIProtocols.swift */,
+				419430D91DDAA67B00DA65AF /* UITableViewCell.swift */,
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		41BFEC881DC1142C006DC5D4 /* Realm */ = {
+			isa = PBXGroup;
+			children = (
+				413D55EA1DCA8CDB00A5E084 /* Models */,
+				41F879FC1DC96B5800B457F4 /* DataStore.swift */,
+				415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */,
+			);
+			path = Realm;
+			sourceTree = "<group>";
+		};
+		41E62FE21DD2AC8D00ECC06F /* StateManagement */ = {
+			isa = PBXGroup;
+			children = (
+				4157440E1DD2426F000F4571 /* SpooferState.swift */,
+				41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */,
+			);
+			path = StateManagement;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -256,6 +370,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		419430AB1DDA96E700DA65AF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				419430B21DDA96E700DA65AF /* APIResponseSpoofer iOS UI.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
@@ -266,6 +388,7 @@
 				411A35731BC74A7D001D128D /* Sources */,
 				411A35741BC74A7D001D128D /* Frameworks */,
 				411A35751BC74A7D001D128D /* Resources */,
+				41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -281,12 +404,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "APIResponseSpoofer" */;
 			buildPhases = (
-				415CB18B1C9B39D200827A0B /* Swift Clean Code Cleanup */,
 				415CB18D1C9B3B8E00827A0B /* Elevate TODO's to Warnings */,
 				4147EA481B684D7E001DE517 /* Sources */,
 				4147EA491B684D7E001DE517 /* Frameworks */,
 				4147EA4A1B684D7E001DE517 /* Headers */,
 				4147EA4B1B684D7E001DE517 /* Resources */,
+				41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -297,6 +420,25 @@
 			productReference = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
+		419430AD1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "APIResponseSpoofer iOS UI" */;
+			buildPhases = (
+				419430A91DDA96E700DA65AF /* Sources */,
+				419430AA1DDA96E700DA65AF /* Frameworks */,
+				419430AB1DDA96E700DA65AF /* Headers */,
+				419430AC1DDA96E700DA65AF /* Resources */,
+				411E3DF41DDAA7DE00686BA2 /* Carthage Copy Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "APIResponseSpoofer iOS UI";
+			productName = "APIResponseSpoofer iOS UI";
+			productReference = 419430AE1DDA96E700DA65AF /* APIResponseSpoofer_iOS_UI.framework */;
+			productType = "com.apple.product-type.framework";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -305,17 +447,25 @@
 			attributes = {
 				LastSwiftMigration = 0700;
 				LastSwiftUpdateCheck = 0700;
-				LastUpgradeCheck = 0800;
+				LastUpgradeCheck = 0820;
 				ORGANIZATIONNAME = Hotwire;
 				TargetAttributes = {
 					411A35761BC74A7D001D128D = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = H898Y42WAX;
+						DevelopmentTeam = TDG4P3SFHV;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
 					};
 					4147EA4C1B684D7E001DE517 = {
 						CreatedOnToolsVersion = 6.4;
+						DevelopmentTeam = H898Y42WAX;
 						LastSwiftMigration = 0800;
+						ProvisioningStyle = Automatic;
+					};
+					419430AD1DDA96E700DA65AF = {
+						CreatedOnToolsVersion = 8.1;
+						DevelopmentTeam = TDG4P3SFHV;
+						ProvisioningStyle = Automatic;
 					};
 				};
 			};
@@ -333,6 +483,7 @@
 			targets = (
 				4147EA4C1B684D7E001DE517 /* APIResponseSpoofer */,
 				411A35761BC74A7D001D128D /* APIResponseSpooferTests */,
+				419430AD1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */,
 			);
 		};
 /* End PBXProject section */
@@ -349,26 +500,36 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				412A7BB11BC9DF74002E9FF2 /* Spoofer.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		419430AC1DDA96E700DA65AF /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				41C95FFA1E3A806E00B749B0 /* Media.xcassets in Resources */,
+				411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		415CB18B1C9B39D200827A0B /* Swift Clean Code Cleanup */ = {
+		411E3DF41DDAA7DE00686BA2 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
 			);
-			name = "Swift Clean Code Cleanup";
+			name = "Carthage Copy Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Run Swift-Clean tool to warn code style issues + autocorrect\n${SRCROOT}/scripts/swift-clean.sh";
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 		415CB18D1C9B3B8E00827A0B /* Elevate TODO's to Warnings */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -384,6 +545,38 @@
 			shellPath = /bin/sh;
 			shellScript = "# Elevate all TODO's and FIXME's in project to warnings\n${SRCROOT}/scripts/elevate-todos.sh";
 		};
+		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
+		41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 12;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
+				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -391,7 +584,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				411A357A1BC74A7D001D128D /* APIResponseSpooferTests.swift in Sources */,
+				411A357A1BC74A7D001D128D /* DataTests.swift in Sources */,
+				41570A801DD6F6570098C2FF /* MiscTests.swift in Sources */,
+				41570A7C1DD6F57A0098C2FF /* URLTests.swift in Sources */,
+				41570A7E1DD6F5A20098C2FF /* TestingConstants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -399,28 +595,66 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				416552DF1B69FA74006D8EDF /* APIResponse.swift in Sources */,
-				41D4AF301C98EAF00086AEB2 /* SettingsViewController.swift in Sources */,
+				4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */,
+				41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
-				410489CB1C99DDA100E99745 /* SwitchWithTextViewModel.swift in Sources */,
 				41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */,
 				411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */,
-				410489CD1C99E9EC00E99745 /* UITableViewCell.swift in Sources */,
-				4123E81F1C9A0ED700C7FB32 /* EditSettingsViewController.swift in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,
 				410489C21C99D94800E99745 /* Constants.swift in Sources */,
-				4131B8ED1B6DEEB700EAFE04 /* ReplayingProtocol.swift in Sources */,
+				41F879FD1DC96B5800B457F4 /* DataStore.swift in Sources */,
+				4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */,
 				41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */,
 				4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */,
-				410489C91C99DD4200E99745 /* SwitchWithTextTableViewCell.swift in Sources */,
-				412A7B871BC9D1FE002E9FF2 /* ScenarioListController.swift in Sources */,
-				416322331BF67E9400F9E67A /* ResponseListController.swift in Sources */,
-				416552DD1B69F922006D8EDF /* Scenario.swift in Sources */,
-				4131B8F01B6EA21C00EAFE04 /* Store.swift in Sources */,
+				41F879FF1DC96BE900B457F4 /* Result.swift in Sources */,
+				4112276A1E39625D00E1487B /* Validator.swift in Sources */,
 				4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */,
+				41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */,
+				415DAEDB1E31A8CC00E6FE59 /* FileManagerExtension.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
-				4147EA6C1B684F15001DE517 /* RecordingProtocol.swift in Sources */,
-				410489C71C99DCF200E99745 /* UIProtocols.swift in Sources */,
+				41AA10EC1DC1358000860295 /* APIResponse.swift in Sources */,
+				41E04BB41DC41F3900AD8261 /* Scenario.swift in Sources */,
+				4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		419430A91DDA96E700DA65AF /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				419430CD1DDAA4F300DA65AF /* Result.swift in Sources */,
+				419430D61DDAA59200DA65AF /* Spoofer+Replay.swift in Sources */,
+				419430C21DDAA25700DA65AF /* Spoofer.swift in Sources */,
+				419430CE1DDAA50A00DA65AF /* SpooferState.swift in Sources */,
+				419430D51DDAA59200DA65AF /* Spoofer+Record.swift in Sources */,
+				419430C91DDAA41E00DA65AF /* DataStore.swift in Sources */,
+				419430C51DDAA30B00DA65AF /* URLExtension.swift in Sources */,
+				419430B81DDA970800DA65AF /* ScenarioListController.swift in Sources */,
+				419430D11DDAA52000DA65AF /* Scenario.swift in Sources */,
+				419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */,
+				419430C31DDAA2E900DA65AF /* SpooferRecorder.swift in Sources */,
+				419430B71DDA970800DA65AF /* ResponseListController.swift in Sources */,
+				419430C41DDAA2F800DA65AF /* NetworkInterceptable.swift in Sources */,
+				419430B61DDA970800DA65AF /* EditSettingsViewController.swift in Sources */,
+				419430B91DDA970800DA65AF /* SettingsViewController.swift in Sources */,
+				419430D41DDAA56100DA65AF /* Swizzler.swift in Sources */,
+				419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */,
+				41C95FFD1E3A87B000B749B0 /* ResponseCell.swift in Sources */,
+				411227701E3966C700E1487B /* SuiteListController.swift in Sources */,
+				419430C11DDAA21E00DA65AF /* SpooferUI.swift in Sources */,
+				419430D21DDAA53400DA65AF /* SpooferReplayer.swift in Sources */,
+				419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */,
+				413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */,
+				419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */,
+				4146302E1E39521900E5CADC /* FileManagerExtension.swift in Sources */,
+				4112276B1E39625D00E1487B /* Validator.swift in Sources */,
+				419430C71DDAA40300DA65AF /* URLSessionConfigurationExtension.swift in Sources */,
+				419430CF1DDAA51A00DA65AF /* APIResponse.swift in Sources */,
+				419430D31DDAA54200DA65AF /* Utility.swift in Sources */,
+				415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */,
+				419430C61DDAA3E100DA65AF /* Constants.swift in Sources */,
+				419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */,
+				419430BD1DDA974800DA65AF /* SwitchWithTextViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -438,12 +672,18 @@
 		411A35801BC74A7D001D128D /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H898Y42WAX;
-				INFOPLIST_FILE = APIResponseSpooferTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				DEVELOPMENT_TEAM = TDG4P3SFHV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Supporting Files/TestsInfo.plist";
 				LD_DYLIB_INSTALL_NAME = "";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.APIResponseSpooferTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -453,11 +693,17 @@
 		411A35811BC74A7D001D128D /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				DEVELOPMENT_TEAM = H898Y42WAX;
-				INFOPLIST_FILE = APIResponseSpooferTests/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				DEVELOPMENT_TEAM = TDG4P3SFHV;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Supporting Files/TestsInfo.plist";
 				LD_DYLIB_INSTALL_NAME = "";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
+				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.APIResponseSpooferTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
@@ -466,6 +712,7 @@
 		};
 		4147EA611B684D7E001DE517 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BITCODE_GENERATION_MODE = marker;
@@ -484,13 +731,9 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -508,22 +751,28 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /Library/Frameworks;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_DYLIB_INSTALL_NAME = "@rpath/APIResponseSpoofer.framework/APIResponseSpoofer";
-				MACH_O_TYPE = mh_dylib;
+				LD_DYLIB_INSTALL_NAME = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				SDKROOT = iphoneos;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=100";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = debugging;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SUPPORTED_PLATFORMS = "macosx iphoneos appletvos watchos appletvsimulator iphonesimulator watchsimulator";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
 		4147EA621B684D7E001DE517 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				BITCODE_GENERATION_MODE = bitcode;
@@ -542,16 +791,12 @@
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				ENABLE_TESTABILITY = YES;
+				ENABLE_TESTABILITY = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -562,17 +807,22 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				INSTALL_PATH = /Library/Frameworks;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_DYLIB_INSTALL_NAME = "@rpath/APIResponseSpoofer.framework/APIResponseSpoofer";
-				MACH_O_TYPE = mh_dylib;
+				LD_DYLIB_INSTALL_NAME = "@rpath";
+				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				SDKROOT = iphoneos;
+				OTHER_SWIFT_FLAGS = "-Xfrontend -warn-long-function-bodies=100";
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = debugging;
+				SUPPORTED_PLATFORMS = "macosx iphoneos appletvos watchos appletvsimulator iphonesimulator watchsimulator";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = "1,2,3,4";
+				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Release;
 		};
@@ -580,19 +830,24 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H898Y42WAX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIResponseSpoofer/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.apiresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -601,19 +856,88 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
 				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = H898Y42WAX;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				INFOPLIST_FILE = APIResponseSpoofer/Info.plist;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "Supporting Files/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.apiresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+		419430B31DDA96E700DA65AF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TDG4P3SFHV;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.APIResponseSpoofer-iOS-UI";
+				PRODUCT_NAME = APIResponseSpoofer_iOS_UI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		419430B41DDA96E700DA65AF /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_SUSPICIOUS_MOVES = YES;
+				CODE_SIGN_IDENTITY = "";
+				COPY_PHASE_STRIP = NO;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = TDG4P3SFHV;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.APIResponseSpoofer-iOS-UI";
+				PRODUCT_NAME = APIResponseSpoofer_iOS_UI;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 3.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -643,6 +967,15 @@
 			buildConfigurations = (
 				4147EA641B684D7E001DE517 /* Debug */,
 				4147EA651B684D7E001DE517 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "APIResponseSpoofer iOS UI" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				419430B31DDA96E700DA65AF /* Debug */,
+				419430B41DDA96E700DA65AF /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

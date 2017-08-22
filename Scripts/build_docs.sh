@@ -7,7 +7,6 @@ cd ..
 
 jazzy \
   --clean \
-  --swift-version 2.2 -o ./ \
   --readme README.md \
   --author 'Hotwire' \
   -u 'www.hotwire.com' \

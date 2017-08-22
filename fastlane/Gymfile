@@ -1,0 +1,11 @@
+# For more information about this configuation visit
+# https://github.com/fastlane/gym#gymfile
+
+# In general, you can use the options available
+# gym --help
+
+workspace "APIResponseSpoofer.xcworkspace"
+scheme "APIResponseSpoofer"
+output_name "APIResponseSpoofer"
+configuration "Release"
+clean true
