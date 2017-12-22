@@ -102,19 +102,19 @@ fileprivate extension String {
     mutating func normalizeQuery(items: [URLQueryItem]) {
         if Spoofer.normalizeQueryValues {
             let queryItemNames = normalizedQueryItemNames(items)
-            if queryItemNames.characters.count > 0 {
+            if queryItemNames.count > 0 {
                 self += "?" + queryItemNames
             }
         } else {
             let combinedQueryItems = items.reduce("") {
                 guard let value = $1.value else { return $0 }
-                if $0.characters.count > 0 {
+                if $0.count > 0 {
                     return $0 + "&" + $1.name + "=" + value
                 } else {
                     return $0 + $1.name + "=" + value
                 }
             }
-            if combinedQueryItems.characters.count > 0 {
+            if combinedQueryItems.count > 0 {
                 self += "?" + combinedQueryItems
             }
         }

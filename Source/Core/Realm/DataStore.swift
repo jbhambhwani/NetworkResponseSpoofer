@@ -57,7 +57,7 @@ enum DataStore {
     }
 }
 
-fileprivate struct RealmStore {
+private struct RealmStore {
 
     static let sharedInstance = RealmStore()
 
@@ -147,11 +147,11 @@ extension RealmStore: Store {
         do {
             try realm.write {
                 let responseToDelete = scenario.apiResponses[responseIndex]
-                
+
                 // Currently realm does not have a cascade delete mechanism, so delete the sub structures before deleting the scenario
                 realm.delete(responseToDelete.headerFields)
                 // TODO: The above 1 line can be deleted once cascade delete is implemented in Realm
-                
+
                 realm.delete(responseToDelete)
             }
             return .success(true)

@@ -36,7 +36,7 @@ class ResponseListController: UITableViewController {
         tableView.tableHeaderView = searchController.searchBar
         navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .plain, target: self, action: #selector(ResponseListController.toggleRowHeight(_:)))
         // Load the responses for the passed in scenario
-        if scenarioName.characters.count > 0 {
+        if scenarioName.count > 0 {
             loadResponses()
         }
     }

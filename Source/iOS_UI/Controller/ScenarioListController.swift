@@ -117,11 +117,11 @@ extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDel
             tableView.reloadData()
         }
 
-        guard let searchText = searchController.searchBar.text else {
+        guard let searchText = searchController.searchBar.text?.lowercased() else {
             filteredScenarios = scenarioNames
             return
         }
 
-        filteredScenarios = scenarioNames.filter { $0.lowercased().contains(searchText.lowercased()) }
+        filteredScenarios = scenarioNames.filter { $0.lowercased().contains(searchText) }
     }
 }
