@@ -21,7 +21,9 @@ class DemoViewController: UIViewController {
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var consoleHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var consolePanGestureRecognizer: UIPanGestureRecognizer!
-    
+
+    fileprivate var offset: CGFloat = 0
+
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -94,7 +96,15 @@ class DemoViewController: UIViewController {
     
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         let point = sender.translation(in: view)
-        consoleHeightConstraint.constant = -point.y
+
+        switch sender.state {
+        case .began:
+            offset = consoleHeightConstraint.constant
+        case .changed:
+            consoleHeightConstraint.constant = -point.y + offset
+        default:
+            break
+        }
     }
 
     // MARK: - Helper methods
