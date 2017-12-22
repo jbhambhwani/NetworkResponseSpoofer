@@ -13,7 +13,7 @@ struct Validator {
     // Validates that all strings passed in are not empty
     static func validateNotEmpty(stringArray: [String]) -> Bool {
         let emptyStrings: [String] = stringArray.filter {
-            let cleanString = $0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+            let cleanString: String = $0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
             return cleanString.count == 0
         }
         return emptyStrings.count == 0
