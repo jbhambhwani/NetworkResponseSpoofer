@@ -104,10 +104,10 @@ class DemoViewController: UIViewController {
         // Marshall the UI updates to main thread
         DispatchQueue.main.async(execute: { [weak self] in
             guard let strongSelf = self else { return }
-            if strongSelf.consoleTextView.text.characters.count > 0 {
+            if strongSelf.consoleTextView.text.count > 0 {
                 strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
                 // Scroll to bottom of log
-                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.characters.count - 1, length: 1))
+                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.count - 1, length: 1))
             } else {
                 strongSelf.consoleTextView.text = message
             }
