@@ -465,7 +465,7 @@
 				TargetAttributes = {
 					411A35761BC74A7D001D128D = {
 						CreatedOnToolsVersion = 7.0.1;
-						DevelopmentTeam = H898Y42WAX;
+						DevelopmentTeam = TDG4P3SFHV;
 						LastSwiftMigration = 0800;
 						ProvisioningStyle = Automatic;
 					};
@@ -687,7 +687,7 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = H898Y42WAX;
+				DEVELOPMENT_TEAM = TDG4P3SFHV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",
@@ -709,7 +709,7 @@
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = H898Y42WAX;
+				DEVELOPMENT_TEAM = TDG4P3SFHV;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/Carthage/Build/iOS",

@@ -36,6 +36,11 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         if Spoofer.isReplaying && isHTTP && shouldHandleURL && hasSavedScenario {
             return true
         }
+
+        if shouldHandleURL == false, let url = request.url {
+            postNotification("⏩ Skipped non-whitelisted url: \(url)")
+        }
+        
         return false
     }
 
@@ -59,6 +64,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         case let .success(scenario):
 
             guard let cachedResponse = scenario.responseForRequest(request), let _ = URL(string: cachedResponse.requestURL) else {
+                postNotification("⚠️ No saved response found: \(String(describing: request.url))", object: self)
                 // Throw an error in case we are unable to load a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
@@ -75,19 +81,20 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
             }
 
             guard let spoofedResponse = httpResponse else {
+                postNotification("⚠️ Unable to serialize response: \(String(describing: request.url))", object: self)
                 // Throw an error in case we are unable to serialize a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
             }
 
-            postNotification("Serving response from 💾: \(url)", object: self)
+            postNotification("💾 Serving response from: \(url)", object: self)
 
             client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
             client?.urlProtocol(self, didLoad: cachedResponse.data)
             client?.urlProtocolDidFinishLoading(self)
 
         case .failure:
-
+            postNotification("⚠️ Database read failure: \(String(describing: request.url))", object: self)
             // Throw an error in case we are unable to load a response
             client?.urlProtocol(self, didFailWithError: httpError)
         }

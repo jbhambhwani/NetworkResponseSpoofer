@@ -32,6 +32,11 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
         if Spoofer.isRecording && isHTTP && !isHandled && shouldHandleURL {
             return true
         }
+
+        if shouldHandleURL == false, let url = request.url {
+            postNotification("⏩ Skipped non-whitelisted url: \(url)")
+        }
+
         return false
     }
 
@@ -127,7 +132,7 @@ fileprivate extension SpooferRecorder {
         // Create the internal data structure which encapsulates all the needed data to replay this response later
         guard let currentResponse = APIResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
 
-        postNotification("Response received 📡\n\(currentResponse)", object: self)
+        postNotification("📡 Response received: \(currentResponse)", object: self)
         _ = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
     }
 }
