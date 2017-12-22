@@ -15,9 +15,9 @@ typealias SwitchWithTextViewPresentable = TextPresentable & SwitchPresentable & 
 
 class SwitchWithTextTableViewCell: UITableViewCell {
 
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var subtitleLabel: UILabel!
-    @IBOutlet private weak var switchToggle: UISwitch!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var subtitleLabel: UILabel!
+    @IBOutlet private var switchToggle: UISwitch!
 
     private(set) var presenter: SwitchWithTextViewPresentable?
 

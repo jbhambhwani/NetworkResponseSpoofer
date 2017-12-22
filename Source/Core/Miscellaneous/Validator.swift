@@ -14,7 +14,7 @@ struct Validator {
     static func validateNotEmpty(stringArray: [String]) -> Bool {
         let emptyStrings: [String] = stringArray.filter {
             let cleanString = $0.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
-            return cleanString.characters.count == 0
+            return cleanString.count == 0
         }
         return emptyStrings.count == 0
     }

@@ -27,7 +27,7 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
         // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(url)
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
-        let isHandled = (request.value(forHTTPHeaderField: requestHandledKey) ?? "").characters.count > 0
+        let isHandled = (request.value(forHTTPHeaderField: requestHandledKey) ?? "").count > 0
 
         if Spoofer.isRecording && isHTTP && !isHandled && shouldHandleURL {
             return true
