@@ -37,7 +37,7 @@ struct SpooferState: Equatable {
     }
 }
 
-func ==(lhs: SpooferState, rhs: SpooferState) -> Bool {
+func == (lhs: SpooferState, rhs: SpooferState) -> Bool {
     return lhs.isRecording == rhs.isRecording
         && lhs.isReplaying == rhs.isReplaying
         && lhs.scenarioName == rhs.scenarioName

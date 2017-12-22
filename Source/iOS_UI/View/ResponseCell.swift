@@ -10,8 +10,8 @@ import UIKit
 
 class ResponseCell: UITableViewCell {
 
-    @IBOutlet weak var reponseImageView: UIImageView!
-    @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet var reponseImageView: UIImageView!
+    @IBOutlet var urlLabel: UILabel!
 
     override func prepareForReuse() {
         reponseImageView.image = nil

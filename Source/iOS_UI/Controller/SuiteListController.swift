@@ -14,7 +14,7 @@ class SuiteListController: UITableViewController {
 
     var suiteName = defaultSuiteName
 
-    @IBOutlet weak var addSuiteButton: UIBarButtonItem!
+    @IBOutlet var addSuiteButton: UIBarButtonItem!
 }
 
 extension SuiteListController {

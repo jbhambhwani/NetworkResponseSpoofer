@@ -6,6 +6,7 @@ public enum NavigationControllerStoryboardIdentifier: String {
 
 public enum SegueIdentifier: String {
     case EditRows
+    case configureSpoofer
     case showResponses
     case showScenarios
     case unwindToRecordViewController
@@ -16,6 +17,7 @@ public enum StoryboardNames: String {
 }
 
 public enum TableViewCellReuseIdentifier: String {
+    case ResponseCell
     case SwitchWithTextTableViewCell
     case UITableViewCell
 }

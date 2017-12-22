@@ -12,9 +12,9 @@ class RecordTableViewController: UITableViewController {
 
     static let identifier = "RecordNavigationController"
 
-    @IBOutlet weak var scenarioNameTextField: UITextField!
-    @IBOutlet weak var startRecordingButton: UIButton!
-    @IBOutlet weak var suiteNameLabel: UILabel!
+    @IBOutlet var scenarioNameTextField: UITextField!
+    @IBOutlet var startRecordingButton: UIButton!
+    @IBOutlet var suiteNameLabel: UILabel!
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
