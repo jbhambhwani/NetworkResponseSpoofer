@@ -100,6 +100,23 @@ public class Spoofer: NSObject {
         set { sharedInstance.normalizedPathComponents = newValue.flatMap { $0.lowercased() } }
     }
 
+    /// Path components that need to be replaced via URL normalization. Useful when path differs due to dynamic path components but the response is similar.
+    /// For e.g. example.com/api/12?parm=value gets transformed to example.com/api/20?parm=value if this dict had an entry ["12": "20"]
+    public class var pathRangesToReplace: [String: String] {
+        get { return sharedInstance.replacePathRanges }
+
+        set {
+            let lowerCasedKeyValues = newValue.flatMap({ (key, value) -> (String, String) in
+                return (key.lowercased(), value.lowercased())
+            })
+            sharedInstance.replacePathRanges = lowerCasedKeyValues.reduce([:], {
+                var dict: [String: String] = $0
+                dict[$1.0] = $1.1
+                return dict
+            })
+        }
+    }
+
     /**
      Enable normalizing query values, by taking only the keys and dropping the values.
 
@@ -173,6 +190,7 @@ public class Spoofer: NSObject {
         sharedInstance.normalizedSubdomains = [String]()
         sharedInstance.normalizedQueryParameters = [String]()
         sharedInstance.normalizedPathComponents = [String]()
+        sharedInstance.replacePathRanges = [String: String]()
         sharedInstance.acceptSelfSignedCertificate = false
         sharedInstance.queryValueNormalization = false
     }
@@ -187,6 +205,7 @@ public class Spoofer: NSObject {
             .normalizedSubdomains: Spoofer.subDomainsToNormalize,
             .normalizedQueryParameters: Spoofer.queryParametersToNormalize,
             .normalizedPathComponents: Spoofer.pathComponentsToNormalize,
+            .replacePathRanges: Spoofer.pathRangesToReplace,
         ]
     }
 
@@ -201,6 +220,7 @@ public class Spoofer: NSObject {
     private var normalizedSubdomains = [String]()
     private var normalizedQueryParameters = [String]()
     private var normalizedPathComponents = [String]()
+    private var replacePathRanges = [String: String]()
     private var acceptSelfSignedCertificate = false
     private var queryValueNormalization = false
     private weak var delegate: SpooferDelegate?

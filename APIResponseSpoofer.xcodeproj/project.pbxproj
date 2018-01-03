@@ -493,8 +493,8 @@
 			projectRoot = "";
 			targets = (
 				4147EA4C1B684D7E001DE517 /* APIResponseSpoofer */,
-				411A35761BC74A7D001D128D /* APIResponseSpooferTests */,
 				419430AD1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */,
+				411A35761BC74A7D001D128D /* APIResponseSpooferTests */,
 			);
 		};
 /* End PBXProject section */
