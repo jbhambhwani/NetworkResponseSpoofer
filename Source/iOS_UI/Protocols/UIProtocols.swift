@@ -25,5 +25,5 @@ protocol NavigationPresentable {
 }
 
 protocol DataPresentable {
-    var configurations: [String] { get set }
+    var configurations: [Any] { get set }
 }

@@ -19,6 +19,8 @@ class EditSettingsViewController: UITableViewController {
         super.viewDidLoad()
         tableView.scrollsToTop = true
         tableView.tableFooterView = UIView()
+        tableView.estimatedRowHeight = 44.0
+        tableView.rowHeight = UITableViewAutomaticDimension
     }
 
     // MARK: - User Actions
@@ -27,8 +29,14 @@ class EditSettingsViewController: UITableViewController {
         let alertController = UIAlertController(title: title, message: "Add an entry to the list", preferredStyle: .alert)
 
         let addAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController, unowned self] _ in
-            if let textField = alertController.textFields?.first, let entry = textField.text {
-                self.presenter?.configurations.append(entry)
+            if let textFields = alertController.textFields {
+                if textFields.count > 1, let start = textFields[0].text, let end = textFields[1].text, let replacement = textFields[2].text {
+                    let prReplacement = URLPathRangeReplacement(start: start, end: end, replacement: replacement)
+                    self.presenter?.configurations.append(prReplacement)
+                } else if let entry = textFields[0].text {
+                    self.presenter?.configurations.append(entry)
+                }
+
                 self.tableView?.reloadData()
             }
         }
@@ -37,11 +45,31 @@ class EditSettingsViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
 
-        alertController.addTextField { textField in
-            textField.placeholder = "Enter here!"
-            textField.autocapitalizationType = .none
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
-                addAction.isEnabled = textField.text != ""
+        if self.title == "Replace Path Range" {
+            alertController.addTextField { textField in
+                textField.placeholder = "From"
+                textField.autocapitalizationType = .none
+                NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
+                    addAction.isEnabled = textField.text != ""
+                }
+            }
+
+            alertController.addTextField { textField in
+                textField.placeholder = "To"
+                textField.autocapitalizationType = .none
+            }
+
+            alertController.addTextField { textField in
+                textField.placeholder = "Replacement"
+                textField.autocapitalizationType = .none
+            }
+        } else {
+            alertController.addTextField { textField in
+                textField.placeholder = "Enter here!"
+                textField.autocapitalizationType = .none
+                NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
+                    addAction.isEnabled = textField.text != ""
+                }
             }
         }
 
@@ -69,7 +97,14 @@ extension EditSettingsViewController {
         guard let configurations = presenter?.configurations else { return UITableViewCell() }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
-        cell.textLabel?.text = configurations[indexPath.row]
+        let object = configurations[indexPath.row]
+        if let text = object as? String {
+            cell.textLabel?.text = text
+            cell.detailTextLabel?.text = nil
+        } else if let prr = object as? URLPathRangeReplacement {
+            cell.textLabel?.text = "FROM: " + prr.start + "     TO: " + (prr.end ?? "End")
+            cell.detailTextLabel?.text = "Replace with: " + prr.replacement
+        }
         return cell
     }
 }

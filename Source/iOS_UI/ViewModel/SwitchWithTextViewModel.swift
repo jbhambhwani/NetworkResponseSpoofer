@@ -73,26 +73,34 @@ extension SwitchWithTextViewModel {
 
 extension SwitchWithTextViewModel {
 
-    var configurations: [String] {
+    var configurations: [Any] {
         get {
-            guard let configs = packedData as? [String] else { return [String]() }
-            return configs
+            if let configs = packedData as? [String] {
+                return configs
+            } else if let configs = packedData as? [URLPathRangeReplacement] {
+                return configs
+            } else {
+                return []
+            }
         }
+
         set {
             // Based on current configuration, Update the Spoofer instance with new setting
             switch configType {
             case .spoofedHosts:
-                Spoofer.hostNamesToSpoof = newValue
+                Spoofer.hostNamesToSpoof = newValue as! [String]
             case .ignoredHosts:
-                Spoofer.hostNamesToIgnore = newValue
+                Spoofer.hostNamesToIgnore = newValue as! [String]
             case .ignoredPaths:
-                Spoofer.pathsToIgnore = newValue
+                Spoofer.pathsToIgnore = newValue as! [String]
             case .normalizedSubdomains:
-                Spoofer.subDomainsToNormalize = newValue
+                Spoofer.subDomainsToNormalize = newValue as! [String]
             case .normalizedQueryParameters:
-                Spoofer.queryParametersToNormalize = newValue
+                Spoofer.queryParametersToNormalize = newValue as! [String]
             case .normalizedPathComponents:
-                Spoofer.pathComponentsToNormalize = newValue
+                Spoofer.pathComponentsToNormalize = newValue as! [String]
+            case .replacePathRanges:
+                Spoofer.pathRangesToReplace = newValue as! [URLPathRangeReplacement]
             default:
                 assertionFailure("Unhandled case")
             }
