@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-let defaultSuiteName = "Default"
+public let defaultSuiteName = "Default"
 
 /// Errors thrown from Realm Datastore
 public enum StoreError: Int, Error {
@@ -17,6 +17,19 @@ public enum StoreError: Int, Error {
     case unableToSaveScenario
     case unableToSaveResponse
     case unableToDeleteScenario
+
+    var localizedDescription: String {
+        switch self {
+        case .scenarioNotFound:
+            return "Scenario Not Found"
+        case .unableToSaveScenario:
+            return "Unable to save scenario"
+        case .unableToSaveResponse:
+            return "Unable to save response"
+        case .unableToDeleteScenario:
+            return "Unable to delete scenario"
+        }
+    }
 }
 
 protocol Store {

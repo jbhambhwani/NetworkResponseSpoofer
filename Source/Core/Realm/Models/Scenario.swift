@@ -11,7 +11,7 @@ import RealmSwift
 
 class Scenario: Object {
 
-    dynamic var name = "Default"
+    @objc dynamic var name = "Default"
     let apiResponses = List<APIResponse>()
 
     override static func primaryKey() -> String {
@@ -27,12 +27,13 @@ extension Scenario {
 
     func responseForRequest(_ urlRequest: URLRequest) -> APIResponse? {
         guard let requestURLString = urlRequest.url?.normalizedString else { return nil }
-        let response = apiResponses.filter { savedResponse in
+        let matchingResponses = apiResponses.filter { savedResponse in
             guard let savedURL = URL(string: savedResponse.requestURL),
                 let normalizedSavedURL = savedURL.normalizedString else { return false }
             return normalizedSavedURL.contains(requestURLString)
-        }.first
-        return response
+        }
+
+        return matchingResponses.first
     }
 
     subscript(urlRequest: URLRequest) -> APIResponse? {

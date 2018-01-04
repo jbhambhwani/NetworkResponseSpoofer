@@ -58,7 +58,7 @@ class ResponseListController: UITableViewController {
         }
     }
 
-    func toggleRowHeight(_ sender: UIBarButtonItem) {
+    @objc func toggleRowHeight(_ sender: UIBarButtonItem) {
         if sender.title == expandText {
             sender.title = collapseText
             cellHeight = UITableViewAutomaticDimension

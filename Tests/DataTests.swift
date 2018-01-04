@@ -39,7 +39,6 @@ class DataTests: XCTestCase {
         let session = URLSession(configuration: URLSessionConfiguration.spoofed)
         session.dataTask(with: sampleURL1, completionHandler: { [weak self] _, _, error in
             if error == nil {
-                Spoofer.stopRecording()
                 self?.responseReceived?.fulfill()
             }
         }).resume()
@@ -77,8 +76,6 @@ class DataTests: XCTestCase {
         } else {
             XCTFail("Smoke test scenario was not loaded")
         }
-        // 3: Stop the replay
-        Spoofer.stopReplaying()
     }
 
     func test03SpooferReplay() {
@@ -95,7 +92,6 @@ class DataTests: XCTestCase {
         session.dataTask(with: sampleURL1, completionHandler: { [weak self] data, response, error in
             if error == nil, let response = response, let data = data {
                 print("Cached Response : \(response) \nCached Data: \(data)")
-                Spoofer.stopReplaying()
                 self?.spoofedResponseReceived?.fulfill()
             }
         }).resume()

@@ -72,9 +72,8 @@ fileprivate extension String {
 
     // Remove www prefix
     mutating func removeWWW() {
-        if hasPrefix("www.") {
-            let wwwIndex = index(startIndex, offsetBy: 4)
-            self = substring(from: wwwIndex)
+        if let wwwRange = range(of: "www.") {
+            replaceSubrange(wwwRange, with: "")
         }
     }
 
