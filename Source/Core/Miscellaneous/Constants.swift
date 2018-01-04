@@ -41,10 +41,11 @@ enum SpooferConfigurationType: String {
     case normalizedSubdomains = "Normalized Subdomains"
     case normalizedQueryParameters = "Normalized Query Parameters"
     case normalizedPathComponents = "Normalized Path Components"
-    case Blank = ""
+    case replacePathRanges = "Replace Path Range"
+    case blank = ""
 
     var allTypes: [SpooferConfigurationType] {
-        return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .normalizedSubdomains, .normalizedQueryParameters, .normalizedPathComponents, .Blank]
+        return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .normalizedSubdomains, .normalizedQueryParameters, .normalizedPathComponents, .replacePathRanges, .blank]
     }
 
     var description: String {
@@ -73,7 +74,10 @@ enum SpooferConfigurationType: String {
         case .normalizedPathComponents:
             return "Use this setting when there are specific path components to be ignored during comparing URL's. \ne.g., api.example.com/path1/path2/path3.html becomes api.example.com/path2/path3.html if path1 is added here"
 
-        case .Blank:
+        case .replacePathRanges:
+            return "Use this setting when there are specific path components to be replaced during comparing URL's."
+
+        case .blank:
             return ""
         }
     }

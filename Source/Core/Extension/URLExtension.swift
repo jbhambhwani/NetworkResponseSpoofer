@@ -34,7 +34,7 @@ fileprivate extension URL {
         // If the host is empty, take an early exit
         guard var result = host else { return nil }
 
-        result.removeWeb()
+        result.removeWWW()
         result.normalizeSubDomains()
 
         // Set the port if one existed
@@ -42,8 +42,9 @@ fileprivate extension URL {
             result += ":" + String(port)
         }
 
-        // Set the path & normalize
+        // Set the path, replace path ranges & normalize
         result += path
+        result.replacePathRanges()
         result.normalizePathComponents()
 
         // Return current processed URL if there are no query items
@@ -70,7 +71,7 @@ fileprivate extension URL {
 fileprivate extension String {
 
     // Remove www prefix
-    mutating func removeWeb() {
+    mutating func removeWWW() {
         if hasPrefix("www.") {
             let wwwIndex = index(startIndex, offsetBy: 4)
             self = substring(from: wwwIndex)
@@ -86,6 +87,28 @@ fileprivate extension String {
             if let ignoredRange = self.range(of: subDomainToNormalize) {
                 removeSubrange(ignoredRange)
             }
+        }
+    }
+
+    mutating func replacePathRanges() {
+        for r in Spoofer.pathRangesToReplace {
+            if let startRange = self.range(of: r.start + "/") {
+                let endRange: Range<String.Index>
+                if let end = r.end {
+                    endRange = self.range(of: "/" + end, range: startRange.upperBound..<self.endIndex) ?? self.endIndex..<self.endIndex
+                } else {
+                    endRange = self.endIndex..<self.endIndex
+                }
+                print(startRange.upperBound)
+                print(endRange.lowerBound)
+                replaceSubrange(startRange.upperBound..<endRange.lowerBound, with: r.replacement)
+            }
+        }
+
+        // Fix other anomalies as part of the replacement; double slashes and end slashes
+        self = replacingOccurrences(of: "//", with: "/")
+        if self.last == "/" {
+            self = String(self.dropLast())
         }
     }
 

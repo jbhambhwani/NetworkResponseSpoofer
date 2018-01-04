@@ -25,7 +25,7 @@ extension SwitchWithTextViewModel {
     }
 
     fileprivate var configType: SpooferConfigurationType {
-        guard let configType = model.keys.first else { return .Blank }
+        guard let configType = model.keys.first else { return .blank }
         return configType
     }
 
