@@ -107,17 +107,18 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
 
     public func urlSession(_: URLSession, task _: URLSessionTask, didCompleteWithError error: Error?) {
 
-        if error == nil {
+        if let error = error {
+            // Pass error back to client
+            client?.urlProtocol(self, didFailWithError: error)
+            postNotification("❌ Recording failure: \(error.localizedDescription)", object: self)
+            // Reset internal data structures
+            response = nil
+            responseData = nil
+        } else {
             // Let know the client that we completed loading the request
             client?.urlProtocolDidFinishLoading(self)
             // Save the response and data received as part of this request
             saveResponse()
-        } else {
-            // Pass error back to client
-            client?.urlProtocol(self, didFailWithError: error!)
-            // Reset internal data structures
-            response = nil
-            responseData = nil
         }
     }
 }
@@ -131,8 +132,12 @@ fileprivate extension SpooferRecorder {
 
         // Create the internal data structure which encapsulates all the needed data to replay this response later
         guard let currentResponse = APIResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
-
-        postNotification("📡 Response received: \(currentResponse)", object: self)
-        _ = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
+        let saveResult = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
+        switch saveResult {
+            case .success(let response):
+                postNotification("📡 Response received & saved: \(response)", object: self)
+            case .failure(let error):
+                postNotification("❌ Response not saved: \(error.localizedDescription)", object: self)
+        }
     }
 }
