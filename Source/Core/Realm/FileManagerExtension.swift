@@ -25,7 +25,7 @@ extension FileManager {
         }
 
         let fileNames = allFiles.filter { $0.lastPathComponent.hasSuffix(realmFileExtension) }.flatMap { $0.deletingPathExtension().lastPathComponent }
-        return fileNames
+        return fileNames.map { String.init($0) }
     }
 
     class var spooferDocumentsDirectory: URL {

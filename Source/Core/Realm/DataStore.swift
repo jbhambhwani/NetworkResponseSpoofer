@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-let defaultSuiteName = "Default"
+public let defaultSuiteName = "Default"
 
 /// Errors thrown from Realm Datastore
 public enum StoreError: Int, Error {

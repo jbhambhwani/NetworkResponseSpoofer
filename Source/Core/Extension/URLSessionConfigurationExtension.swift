@@ -36,14 +36,14 @@ public extension URLSessionConfiguration {
     }
 
     /// Spoofed Default URLSessionConfiguration (As a method)
-    class func spoofedDefault() -> URLSessionConfiguration {
+    @objc class func spoofedDefault() -> URLSessionConfiguration {
         let config = spoofedDefault()
         insertInterceptors(inConfig: config)
         return config
     }
 
     /// Spoofed Ephemeral URLSessionConfiguration
-    class func spoofedEphemeral() -> URLSessionConfiguration {
+    @objc class func spoofedEphemeral() -> URLSessionConfiguration {
         let config = spoofedEphemeral()
         insertInterceptors(inConfig: config)
         return config

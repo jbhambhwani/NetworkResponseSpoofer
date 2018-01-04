@@ -11,13 +11,13 @@ import RealmSwift
 
 class APIResponse: Object {
 
-    dynamic var requestURL = ""
-    dynamic var httpMethod = ""
-    dynamic var statusCode = 0
-    dynamic var createdDate = Date()
-    dynamic var mimeType: String?
-    dynamic var encoding: String?
-    dynamic var expectedContentLength = 0
+    @objc dynamic var requestURL = ""
+    @objc dynamic var httpMethod = ""
+    @objc dynamic var statusCode = 0
+    @objc dynamic var createdDate = Date()
+    @objc dynamic var mimeType: String?
+    @objc dynamic var encoding: String?
+    @objc dynamic var expectedContentLength = 0
     let headerFields = List<ResponseHeaderItem>()
 
     /* IMPORTANT: README
@@ -25,7 +25,7 @@ class APIResponse: Object {
 
      While serving the response back, first the jsonRepresentation field is checked, and data will be constructed if available. Else backupData is served back.
      */
-    dynamic var data: Data {
+    @objc dynamic var data: Data {
         get {
             guard jsonRepresentation.isEmpty == false, let dataFromString = jsonRepresentation.data(using: .utf8) else {
                 return backupData ?? Data()
@@ -42,8 +42,8 @@ class APIResponse: Object {
         }
     }
 
-    dynamic var backupData: Data?
-    dynamic var jsonRepresentation = ""
+    @objc dynamic var backupData: Data?
+    @objc dynamic var jsonRepresentation = ""
 
     override static func ignoredProperties() -> [String] {
         return ["data"]

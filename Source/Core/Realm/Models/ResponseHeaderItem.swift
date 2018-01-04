@@ -11,8 +11,8 @@ import RealmSwift
 
 class ResponseHeaderItem: Object {
 
-    dynamic var key = ""
-    dynamic var value = ""
+    @objc dynamic var key = ""
+    @objc dynamic var value = ""
 
     class func serialize(fromArray: [AnyHashable: Any]) -> [ResponseHeaderItem] {
         let headerItems = fromArray.map { key, value -> ResponseHeaderItem? in
