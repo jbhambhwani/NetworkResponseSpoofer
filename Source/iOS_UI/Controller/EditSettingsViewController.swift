@@ -123,4 +123,9 @@ extension EditSettingsViewController {
         case .none: break
         }
     }
+
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        return tableView.deselectRow(at: indexPath, animated: true)
+    }
+
 }
