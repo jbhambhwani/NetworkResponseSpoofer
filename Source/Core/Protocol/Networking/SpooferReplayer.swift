@@ -64,7 +64,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
         case let .success(scenario):
 
             guard let cachedResponse = scenario.responseForRequest(request), let _ = URL(string: cachedResponse.requestURL) else {
-                postNotification("⚠️ No saved response found: \(String(describing: request.url))", object: self)
+                postNotification("⚠️ No saved response found: \(String(describing: request.url?.absoluteString))", object: self)
                 // Throw an error in case we are unable to load a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
@@ -81,7 +81,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
             }
 
             guard let spoofedResponse = httpResponse else {
-                postNotification("⚠️ Unable to serialize response: \(String(describing: request.url))", object: self)
+                postNotification("⚠️ Unable to serialize response: \(String(describing: request.url?.absoluteString))", object: self)
                 // Throw an error in case we are unable to serialize a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
@@ -94,7 +94,7 @@ public class SpooferReplayer: URLProtocol, NetworkInterceptable {
             client?.urlProtocolDidFinishLoading(self)
 
         case .failure:
-            postNotification("⚠️ Database read failure: \(String(describing: request.url))", object: self)
+            postNotification("⚠️ Database read failure: \(String(describing: request.url?.absoluteString))", object: self)
             // Throw an error in case we are unable to load a response
             client?.urlProtocol(self, didFailWithError: httpError)
         }

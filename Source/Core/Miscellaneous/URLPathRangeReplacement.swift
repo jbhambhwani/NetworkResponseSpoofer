@@ -13,7 +13,7 @@ public struct URLPathRangeReplacement {
     let end: String?
     let replacement: String
 
-    init(start: String, end: String? = nil, replacement: String = "") {
+    public init(start: String, end: String? = nil, replacement: String = "") {
         self.start = start.lowercased()
         self.end = end?.lowercased()
         self.replacement = replacement.lowercased()
