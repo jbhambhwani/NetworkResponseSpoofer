@@ -11,9 +11,7 @@ import UIKit
 class SuiteListController: UITableViewController {
 
     static let identifier = "SuiteListController"
-
     var suiteName = defaultSuiteName
-
     @IBOutlet var addSuiteButton: UIBarButtonItem!
 }
 
