@@ -11,10 +11,10 @@ Pod::Spec.new do |s|
   It’s built on top of the Foundation URL Loading System to make recording and replaying network requests really simple.
   EOS
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '10.0'
   s.osx.deployment_target = '10.11'
-  s.watchos.deployment_target = '2.0'
-  s.tvos.deployment_target = '9.0'
+  s.watchos.deployment_target = '4.0'
+  s.tvos.deployment_target = '10.0'
 
   s.source          = { :git => 'https://stash/scm/hotwire/apiresponsespoofer.git', :tag => s.version.to_s }
   s.requires_arc    = true

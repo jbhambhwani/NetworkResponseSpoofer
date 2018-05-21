@@ -16,15 +16,17 @@ class ResponseListController: UITableViewController {
     let expandText = "Expand"
     let collapseText = "Collapse"
 
-    fileprivate var allResponses = [APIResponse]()
-    fileprivate var filteredResponses = [APIResponse]()
+    private var allResponses = [APIResponse]()
+    private var filteredResponses = [APIResponse]()
 
-    fileprivate lazy var searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
         controller.searchBar.backgroundColor = .darkGray
         controller.hidesNavigationBarDuringPresentation = false
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.definesPresentationContext = true
         return controller
     }()
 

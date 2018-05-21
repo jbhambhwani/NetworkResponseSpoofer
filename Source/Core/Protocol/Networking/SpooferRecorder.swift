@@ -125,7 +125,7 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
 
 // MARK: - Response Persistance
 
-fileprivate extension SpooferRecorder {
+private extension SpooferRecorder {
 
     func saveResponse() {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }

@@ -41,16 +41,18 @@ class ScenarioListController: UITableViewController {
 
     // MARK: - Private properties
 
-    fileprivate var scenarioNames = [String]()
-    fileprivate var filteredScenarios = [String]()
-    fileprivate var selectedScenarioName = ""
+    private var scenarioNames = [String]()
+    private var filteredScenarios = [String]()
+    private var selectedScenarioName = ""
 
-    fileprivate lazy var searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
         controller.searchBar.backgroundColor = .darkGray
         controller.hidesNavigationBarDuringPresentation = false
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.definesPresentationContext = true
         return controller
     }()
 }

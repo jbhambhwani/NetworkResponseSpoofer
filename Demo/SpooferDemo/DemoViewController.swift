@@ -22,7 +22,7 @@ class DemoViewController: UIViewController {
     @IBOutlet weak var consoleHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var consolePanGestureRecognizer: UIPanGestureRecognizer!
 
-    fileprivate var offset: CGFloat = 0
+    private var offset: CGFloat = 0
 
     // MARK: - Lifecycle
     
@@ -147,7 +147,7 @@ extension DemoViewController: SpooferDelegate {
     }
 }
 
-fileprivate extension DemoViewController {
+private extension DemoViewController {
 
     func executeActionsForRecording(recordingState state: Bool) {
         if state {

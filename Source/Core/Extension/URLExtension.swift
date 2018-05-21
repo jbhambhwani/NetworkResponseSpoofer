@@ -27,7 +27,7 @@ extension URL {
 
 // MARK: - Private properties
 
-fileprivate extension URL {
+private extension URL {
 
     var normalizedURLString: String? {
 
@@ -68,7 +68,7 @@ fileprivate extension URL {
     }
 }
 
-fileprivate extension String {
+private extension String {
 
     // Remove www prefix
     mutating func removeWWW() {

@@ -37,7 +37,7 @@ public extension Spoofer {
     }
 }
 
-fileprivate extension Spoofer {
+private extension Spoofer {
 
     class func presentController(with identifier: String, sourceViewController: UIViewController?) {
         guard let sourceViewController = sourceViewController else { return }

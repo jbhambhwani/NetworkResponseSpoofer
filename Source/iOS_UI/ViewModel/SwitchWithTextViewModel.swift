@@ -24,17 +24,17 @@ extension SwitchWithTextViewModel {
         return configType.description
     }
 
-    fileprivate var configType: SpooferConfigurationType {
+    private var configType: SpooferConfigurationType {
         guard let configType = model.keys.first else { return .blank }
         return configType
     }
 
-    fileprivate var packedData: Any {
+    private var packedData: Any {
         guard let data = model.values.first else { return "" }
         return data
     }
 
-    fileprivate var modelIsBoolean: Bool {
+    private var modelIsBoolean: Bool {
         return packedData is Bool
     }
 }
