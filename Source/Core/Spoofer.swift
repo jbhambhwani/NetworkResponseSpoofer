@@ -67,37 +67,37 @@ public class Spoofer: NSObject {
     /// White list of host names the Spoofer would intercept. If set, only whitelist host names would be recorded
     public class var hostNamesToSpoof: [String] {
         get { return sharedInstance.spoofedHosts }
-        set { sharedInstance.spoofedHosts = newValue.flatMap { $0.lowercased() } }
+        set { sharedInstance.spoofedHosts = newValue.compactMap { $0.lowercased() } }
     }
 
     /// Blacklist of hostnames. If set, these host names would be ignored from recording
     public class var hostNamesToIgnore: [String] {
         get { return sharedInstance.ignoredHosts }
-        set { sharedInstance.ignoredHosts = newValue.flatMap { $0.lowercased() } }
+        set { sharedInstance.ignoredHosts = newValue.compactMap { $0.lowercased() } }
     }
 
     /// Blacklist of Path's. If set, these path names would be ignored from recording
     public class var pathsToIgnore: [String] {
         get { return sharedInstance.ignoredPaths }
-        set { sharedInstance.ignoredPaths = newValue.flatMap { $0.lowercased() } }
+        set { sharedInstance.ignoredPaths = newValue.compactMap { $0.lowercased() } }
     }
 
     /// Subdomains to normalize. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.
     public class var subDomainsToNormalize: [String] {
         get { return sharedInstance.normalizedSubdomains }
-        set { sharedInstance.normalizedSubdomains = newValue.flatMap { $0.lowercased() } }
+        set { sharedInstance.normalizedSubdomains = newValue.compactMap { $0.lowercased() } }
     }
 
     /// Query parameters to normalize. Useful when query parameters are dynamic causing URL's to mismatch.
     public class var queryParametersToNormalize: [String] {
         get { return sharedInstance.normalizedQueryParameters }
-        set { sharedInstance.normalizedQueryParameters = newValue.flatMap { $0.lowercased() } }
+        set { sharedInstance.normalizedQueryParameters = newValue.compactMap { $0.lowercased() } }
     }
 
     /// Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions. e.g., v1, v1.1, v2 etc
     public class var pathComponentsToNormalize: [String] {
         get { return sharedInstance.normalizedPathComponents }
-        set { sharedInstance.normalizedPathComponents = newValue.flatMap { $0.lowercased() } }
+        set { sharedInstance.normalizedPathComponents = newValue.compactMap { $0.lowercased() } }
     }
 
     /// Path components that need to be replaced via URL normalization. Useful when path differs due to dynamic path components but the response is similar.

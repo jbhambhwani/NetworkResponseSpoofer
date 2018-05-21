@@ -109,7 +109,7 @@ class DemoViewController: UIViewController {
 
     // MARK: - Helper methods
 
-    func spooferLogReceived(_ notification: Notification) {
+    @objc func spooferLogReceived(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
         DispatchQueue.main.async(execute: { [weak self] in

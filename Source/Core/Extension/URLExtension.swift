@@ -143,6 +143,6 @@ fileprivate extension String {
     }
 
     func normalizedQueryItemNames(_ queryItems: [URLQueryItem]) -> String {
-        return queryItems.flatMap({ $0.name }).joined(separator: "&")
+        return queryItems.compactMap({ $0.name }).joined(separator: "&")
     }
 }

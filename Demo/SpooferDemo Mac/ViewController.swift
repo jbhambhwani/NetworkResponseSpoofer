@@ -31,7 +31,7 @@ class ViewController: NSViewController {
 
     func loadWebPage() {
         let url = textField.stringValue
-        guard url.characters.count > 0 else { return }
+        guard url.count > 0 else { return }
         Spoofer.startRecording(scenarioName: "MacApp")
         webView.mainFrameURL = url.hasPrefix("http") ? url : "http://\(url)"
     }

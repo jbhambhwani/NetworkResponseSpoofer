@@ -99,7 +99,7 @@ extension RealmStore: Store {
 
     func allScenarioNames(suite: String) -> [String] {
         setDefaultRealmForSuite(suiteName: suite)
-        return realm.objects(Scenario.self).flatMap { $0.name }
+        return realm.objects(Scenario.self).compactMap { $0.name }
     }
 
     func save(scenario: Scenario, suite: String) -> Result<Scenario> {

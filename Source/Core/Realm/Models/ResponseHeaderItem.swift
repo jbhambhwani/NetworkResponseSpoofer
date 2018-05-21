@@ -22,7 +22,7 @@ class ResponseHeaderItem: Object {
             headerItem.value = stringValue
             return headerItem
         }
-        return headerItems.flatMap { $0 }
+        return headerItems.compactMap { $0 }
     }
 
     class func deSerialize(headerItems: [ResponseHeaderItem]) -> [String: String] {
