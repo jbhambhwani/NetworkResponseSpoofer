@@ -27,7 +27,6 @@ public extension Spoofer {
      - Returns: True if recording was started, False if not
      */
     @discardableResult class func startRecording(scenarioName name: String, inSuite suite: String = defaultSuiteName) -> Bool {
-
         let protocolRegistered = SpooferRecorder.startIntercept()
 
         if protocolRegistered {

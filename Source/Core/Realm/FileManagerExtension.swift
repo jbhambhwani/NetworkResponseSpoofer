@@ -11,10 +11,8 @@ import Foundation
 let realmFileExtension = "realm"
 
 extension FileManager {
-
     // Retrieve all Realm file names from Spoofer Docs directory
     class func allSuiteNames() -> [String] {
-
         var allFiles = [URL]()
         do {
             try allFiles = FileManager.default.contentsOfDirectory(at: spooferDocumentsDirectory,
@@ -25,11 +23,10 @@ extension FileManager {
         }
 
         let fileNames = allFiles.filter { $0.lastPathComponent.hasSuffix(realmFileExtension) }.map { $0.deletingPathExtension().lastPathComponent }
-        return fileNames.map { String.init($0) }
+        return fileNames.map { String($0) }
     }
 
     class var spooferDocumentsDirectory: URL {
-
         let spooferDirectoryURL = applicationDocumentsDirectory.appendingPathComponent("Spoofer")
 
         var isDir = ObjCBool(true)
@@ -53,7 +50,6 @@ extension FileManager {
     }
 
     private class func deleteSuite(_ suiteName: String) -> Bool {
-
         // Get a reference to the documents directory & Construct a file name based on the suite file
         let suiteFileURL = getSuiteFileURL(suiteName)
         do {

@@ -44,7 +44,6 @@ protocol Store {
 }
 
 enum DataStore {
-
     static func allScenarioNames(suite: String) -> [String] {
         return RealmStore.sharedInstance.allScenarioNames(suite: suite)
     }
@@ -71,7 +70,6 @@ enum DataStore {
 }
 
 private struct RealmStore {
-
     static let sharedInstance = RealmStore()
 
     var realm: Realm { return try! Realm() }
@@ -140,7 +138,6 @@ extension RealmStore: Store {
     // MARK: - Response Management
 
     func save(response: APIResponse, scenarioName: String, suite: String) -> Result<APIResponse> {
-
         guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
 
         do {
@@ -154,7 +151,6 @@ extension RealmStore: Store {
     }
 
     func delete(responseIndex: Int, scenarioName: String, suite: String) -> Result<Bool> {
-
         guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
 
         do {

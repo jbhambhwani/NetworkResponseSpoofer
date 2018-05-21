@@ -60,7 +60,6 @@ final class ScenarioListController: UITableViewController {
 // MARK: - Tableview datasource
 
 extension ScenarioListController {
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return searchController.isActive ? filteredScenarios.count : scenarioNames.count
     }
@@ -77,7 +76,6 @@ extension ScenarioListController {
 // MARK: - Tableview delegate
 
 extension ScenarioListController {
-
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let scenario = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         Spoofer.startReplaying(scenarioName: scenario, inSuite: suiteName)
@@ -90,7 +88,6 @@ extension ScenarioListController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
         switch editingStyle {
         case .delete:
             let scenarioToDelete = scenarioNames.remove(at: indexPath.row)
@@ -113,7 +110,6 @@ extension ScenarioListController {
 // MARK: - Search controller delegate
 
 extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDelegate {
-
     func updateSearchResults(for searchController: UISearchController) {
         defer {
             tableView.reloadData()

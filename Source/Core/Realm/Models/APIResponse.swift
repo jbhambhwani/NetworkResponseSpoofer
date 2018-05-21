@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 class APIResponse: Object {
-
     @objc dynamic var requestURL = ""
     @objc dynamic var httpMethod = ""
     @objc dynamic var statusCode = 0
@@ -53,7 +52,6 @@ class APIResponse: Object {
 // MARK: -
 
 extension APIResponse {
-
     class func responseFrom(httpRequest: URLRequest, httpResponse: URLResponse, data: Data?) -> APIResponse? {
         guard let httpURLResponse = httpResponse as? HTTPURLResponse,
             let url = httpRequest.url,
@@ -84,7 +82,6 @@ extension APIResponse {
 // MARK: - Equatable
 
 extension APIResponse {
-
     override func isEqual(_ object: Any?) -> Bool {
         guard let rhs = object as? APIResponse,
             let lhsURL = URL(string: requestURL),

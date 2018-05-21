@@ -15,7 +15,6 @@ struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
 // MARK: - TextPresentable Conformance
 
 extension SwitchWithTextViewModel {
-
     var title: String {
         return configType.rawValue
     }
@@ -42,7 +41,6 @@ extension SwitchWithTextViewModel {
 // MARK: - SwitchPresentable Conformance
 
 extension SwitchWithTextViewModel {
-
     var switchOn: Bool {
         guard let boolValue = packedData as? Bool else { return modelIsBoolean }
         return boolValue
@@ -72,7 +70,6 @@ extension SwitchWithTextViewModel {
 // MARK: - DataPresentable Conformance
 
 extension SwitchWithTextViewModel {
-
     var configurations: [Any] {
         get {
             if let configs = packedData as? [String] {

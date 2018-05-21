@@ -9,7 +9,6 @@
 import UIKit
 
 final class ResponseListController: UITableViewController {
-
     var suiteName = ""
     var scenarioName = ""
     var cellHeight: CGFloat = 60.0
@@ -76,7 +75,6 @@ final class ResponseListController: UITableViewController {
 // MARK: - Tableview datasource
 
 extension ResponseListController {
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return searchController.isActive ? filteredResponses.count : allResponses.count
     }
@@ -100,7 +98,6 @@ extension ResponseListController {
 // MARK: - Tableview delegate
 
 extension ResponseListController {
-
     override func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
         return cellHeight
     }
@@ -110,7 +107,6 @@ extension ResponseListController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
         switch editingStyle {
         case .delete:
             allResponses.remove(at: indexPath.row)
@@ -135,7 +131,6 @@ extension ResponseListController {
 // MARK: - Search controller delegate
 
 extension ResponseListController: UISearchResultsUpdating, UISearchControllerDelegate {
-
     func updateSearchResults(for searchController: UISearchController) {
         defer {
             tableView.reloadData()

@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 public extension Spoofer {
-
     /**
      Starts recording a new scenario from a specific view controller.
 
@@ -38,7 +37,6 @@ public extension Spoofer {
 }
 
 private extension Spoofer {
-
     class func presentController(with identifier: String, sourceViewController: UIViewController?) {
         guard let sourceViewController = sourceViewController else { return }
 

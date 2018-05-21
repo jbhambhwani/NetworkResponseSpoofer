@@ -29,7 +29,6 @@ public extension Spoofer {
      - Returns: True if replay was started, else false
      */
     @discardableResult public class func startReplaying(scenarioName name: String, inSuite suite: String = defaultSuiteName) -> Bool {
-
         let protocolRegistered = SpooferReplayer.startIntercept()
 
         let loadResult = DataStore.load(scenarioName: name, suite: suite)

@@ -9,7 +9,6 @@
 import UIKit
 
 final class ResponseCell: UITableViewCell {
-
     @IBOutlet var reponseImageView: UIImageView!
     @IBOutlet var urlLabel: UILabel!
 

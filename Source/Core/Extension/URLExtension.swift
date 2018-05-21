@@ -13,7 +13,6 @@ extension URL {
     // MARK: - Public properties
 
     var normalizedString: String? {
-
         // Lower case the URL string to avoid euality check issues
         let lowercasedURL = URL(string: absoluteString.lowercased())
         return lowercasedURL?.normalizedURLString
@@ -28,9 +27,7 @@ extension URL {
 // MARK: - Private properties
 
 private extension URL {
-
     var normalizedURLString: String? {
-
         // If the host is empty, take an early exit
         guard var result = host else { return nil }
 
@@ -69,7 +66,6 @@ private extension URL {
 }
 
 private extension String {
-
     // Remove www prefix
     mutating func removeWWW() {
         if let wwwRange = range(of: "www.") {
@@ -94,20 +90,20 @@ private extension String {
             if let startRange = self.range(of: r.start + "/") {
                 let endRange: Range<String.Index>
                 if let end = r.end {
-                    endRange = self.range(of: "/" + end, range: startRange.upperBound..<self.endIndex) ?? self.endIndex..<self.endIndex
+                    endRange = range(of: "/" + end, range: startRange.upperBound ..< endIndex) ?? endIndex ..< endIndex
                 } else {
-                    endRange = self.endIndex..<self.endIndex
+                    endRange = endIndex ..< endIndex
                 }
                 print(startRange.upperBound)
                 print(endRange.lowerBound)
-                replaceSubrange(startRange.upperBound..<endRange.lowerBound, with: r.replacement)
+                replaceSubrange(startRange.upperBound ..< endRange.lowerBound, with: r.replacement)
             }
         }
 
         // Fix other anomalies as part of the replacement; double slashes and end slashes
         self = replacingOccurrences(of: "//", with: "/")
-        if self.last == "/" {
-            self = String(self.dropLast())
+        if last == "/" {
+            self = String(dropLast())
         }
     }
 

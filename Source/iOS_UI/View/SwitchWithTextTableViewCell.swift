@@ -14,7 +14,6 @@ import UIKit
 typealias SwitchWithTextViewPresentable = TextPresentable & SwitchPresentable & NavigationPresentable & DataPresentable
 
 final class SwitchWithTextTableViewCell: UITableViewCell {
-
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!
     @IBOutlet private var switchToggle: UISwitch!

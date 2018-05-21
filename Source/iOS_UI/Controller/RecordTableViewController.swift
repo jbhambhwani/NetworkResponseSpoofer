@@ -9,7 +9,6 @@
 import UIKit
 
 final class RecordTableViewController: UITableViewController {
-
     static let identifier = "RecordNavigationController"
 
     @IBOutlet var scenarioNameTextField: UITextField!
@@ -69,7 +68,6 @@ final class RecordTableViewController: UITableViewController {
 }
 
 extension RecordTableViewController: UITextFieldDelegate {
-
     func textFieldShouldReturn(_: UITextField) -> Bool {
         startRecordingPressed()
         return true
