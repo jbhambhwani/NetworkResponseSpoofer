@@ -10,7 +10,7 @@ import Cocoa
 import WebKit
 import APIResponseSpoofer
 
-class ViewController: NSViewController {
+final class ViewController: NSViewController {
 
     @IBOutlet weak var webView: WebView!
     @IBOutlet weak var textField: NSTextField!

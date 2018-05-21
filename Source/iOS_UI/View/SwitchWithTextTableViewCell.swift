@@ -13,7 +13,7 @@ import UIKit
 // based on the UI components in the cell
 typealias SwitchWithTextViewPresentable = TextPresentable & SwitchPresentable & NavigationPresentable & DataPresentable
 
-class SwitchWithTextTableViewCell: UITableViewCell {
+final class SwitchWithTextTableViewCell: UITableViewCell {
 
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var subtitleLabel: UILabel!

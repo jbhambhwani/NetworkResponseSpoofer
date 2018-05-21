@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScenarioListController: UITableViewController {
+final class ScenarioListController: UITableViewController {
 
     // MARK: - Lifecycle
 

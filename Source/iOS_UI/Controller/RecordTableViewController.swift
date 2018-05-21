@@ -8,7 +8,7 @@
 
 import UIKit
 
-class RecordTableViewController: UITableViewController {
+final class RecordTableViewController: UITableViewController {
 
     static let identifier = "RecordNavigationController"
 

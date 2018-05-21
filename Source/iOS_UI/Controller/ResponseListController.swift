@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ResponseListController: UITableViewController {
+final class ResponseListController: UITableViewController {
 
     var suiteName = ""
     var scenarioName = ""

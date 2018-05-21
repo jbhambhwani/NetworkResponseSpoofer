@@ -10,7 +10,7 @@ import UIKit
 import WebKit
 import APIResponseSpoofer
 
-class DemoViewController: UIViewController {
+final class DemoViewController: UIViewController {
 
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var webview: UIWebView!

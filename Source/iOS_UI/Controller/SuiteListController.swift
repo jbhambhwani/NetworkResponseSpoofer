@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SuiteListController: UITableViewController {
+final class SuiteListController: UITableViewController {
 
     static let identifier = "SuiteListController"
     var suiteName = defaultSuiteName
