@@ -8,23 +8,24 @@
 
 import UIKit
 
-class ResponseListController: UITableViewController {
-
+final class ResponseListController: UITableViewController {
     var suiteName = ""
     var scenarioName = ""
     var cellHeight: CGFloat = 60.0
     let expandText = "Expand"
     let collapseText = "Collapse"
 
-    fileprivate var allResponses = [APIResponse]()
-    fileprivate var filteredResponses = [APIResponse]()
+    private var allResponses = [APIResponse]()
+    private var filteredResponses = [APIResponse]()
 
-    fileprivate lazy var searchController: UISearchController = {
+    private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
         controller.searchBar.backgroundColor = .darkGray
         controller.hidesNavigationBarDuringPresentation = false
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.definesPresentationContext = true
         return controller
     }()
 
@@ -48,6 +49,9 @@ class ResponseListController: UITableViewController {
     // MARK: Utility methods
 
     func loadResponses() {
+        allResponses = []
+        filteredResponses = []
+        searchController.isActive = false
         let loadResult = DataStore.load(scenarioName: scenarioName, suite: suiteName)
         switch loadResult {
         case let .success(scenario):
@@ -74,7 +78,6 @@ class ResponseListController: UITableViewController {
 // MARK: - Tableview datasource
 
 extension ResponseListController {
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return searchController.isActive ? filteredResponses.count : allResponses.count
     }
@@ -98,7 +101,6 @@ extension ResponseListController {
 // MARK: - Tableview delegate
 
 extension ResponseListController {
-
     override func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
         return cellHeight
     }
@@ -108,22 +110,11 @@ extension ResponseListController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
         switch editingStyle {
         case .delete:
-            allResponses.remove(at: indexPath.row)
-            let deleteResult = DataStore.delete(responseIndex: indexPath.row, scenarioName: scenarioName, suite: suiteName)
-
-            switch deleteResult {
-            case .success:
-                DispatchQueue.main.async(execute: {
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                })
-
-            case .failure:
-                // Cause a tableview reload if deletion failed due to some reason
-                tableView.reloadData()
-            }
+            let responseToDelete = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
+            _ = DataStore.delete(response: responseToDelete, scenarioName: scenarioName, suite: suiteName)
+            loadResponses()
 
         default: break
         }
@@ -133,7 +124,6 @@ extension ResponseListController {
 // MARK: - Search controller delegate
 
 extension ResponseListController: UISearchResultsUpdating, UISearchControllerDelegate {
-
     func updateSearchResults(for searchController: UISearchController) {
         defer {
             tableView.reloadData()

@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ScenarioListController: UITableViewController {
+final class ScenarioListController: UITableViewController {
 
     // MARK: - Lifecycle
 
@@ -23,7 +23,7 @@ class ScenarioListController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedScenarioName = ""
-        scenarioNames = DataStore.allScenarioNames(suite: suiteName)
+        loadScenarios()
     }
 
     deinit {
@@ -41,16 +41,24 @@ class ScenarioListController: UITableViewController {
 
     // MARK: - Private properties
 
-    fileprivate var scenarioNames = [String]()
-    fileprivate var filteredScenarios = [String]()
-    fileprivate var selectedScenarioName = ""
+    private func loadScenarios() {
+        searchController.isActive = false
+        scenarioNames = DataStore.allScenarioNames(suite: suiteName)
+        tableView.reloadData()
+    }
 
-    fileprivate lazy var searchController: UISearchController = {
+    private var scenarioNames = [String]()
+    private var filteredScenarios = [String]()
+    private var selectedScenarioName = ""
+
+    private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
         controller.searchResultsUpdater = self
         controller.delegate = self
         controller.searchBar.backgroundColor = .darkGray
         controller.hidesNavigationBarDuringPresentation = false
+        controller.obscuresBackgroundDuringPresentation = false
+        controller.definesPresentationContext = true
         return controller
     }()
 }
@@ -58,7 +66,6 @@ class ScenarioListController: UITableViewController {
 // MARK: - Tableview datasource
 
 extension ScenarioListController {
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return searchController.isActive ? filteredScenarios.count : scenarioNames.count
     }
@@ -75,7 +82,6 @@ extension ScenarioListController {
 // MARK: - Tableview delegate
 
 extension ScenarioListController {
-
     override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
         let scenario = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         Spoofer.startReplaying(scenarioName: scenario, inSuite: suiteName)
@@ -88,20 +94,11 @@ extension ScenarioListController {
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
         switch editingStyle {
         case .delete:
-            let scenarioToDelete = scenarioNames.remove(at: indexPath.row)
-            let deletionResult = DataStore.delete(scenarioName: scenarioToDelete, suite: suiteName)
-
-            switch deletionResult {
-            case .success:
-                // Update the tableview upon succesful scenario deletion
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            case .failure:
-                // Cause a tableview reload if scenario creation failed due to some reason
-                tableView.reloadData()
-            }
+            let scenarioToDelete = scenarioNames[indexPath.row]
+            _ = DataStore.delete(scenarioName: scenarioToDelete, suite: suiteName)
+            loadScenarios()
 
         default: break
         }
@@ -111,7 +108,6 @@ extension ScenarioListController {
 // MARK: - Search controller delegate
 
 extension ScenarioListController: UISearchResultsUpdating, UISearchControllerDelegate {
-
     func updateSearchResults(for searchController: UISearchController) {
         defer {
             tableView.reloadData()

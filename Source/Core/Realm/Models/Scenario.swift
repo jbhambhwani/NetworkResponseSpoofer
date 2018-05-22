@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 class Scenario: Object {
-
     @objc dynamic var name = "Default"
     let apiResponses = List<APIResponse>()
 
@@ -24,7 +23,6 @@ class Scenario: Object {
 }
 
 extension Scenario {
-
     func responseForRequest(_ urlRequest: URLRequest) -> APIResponse? {
         guard let requestURLString = urlRequest.url?.normalizedString else { return nil }
         let matchingResponses = apiResponses.filter { savedResponse in

@@ -6,26 +6,25 @@
 //  Copyright © 2015 Hotwire. All rights reserved.
 //
 
+import APIResponseSpoofer
 import UIKit
 import WebKit
-import APIResponseSpoofer
 
-class DemoViewController: UIViewController {
+final class DemoViewController: UIViewController {
+    @IBOutlet var searchBar: UISearchBar!
+    @IBOutlet var webview: UIWebView!
+    @IBOutlet var consoleTextView: UITextView!
+    @IBOutlet var recordButton: UIBarButtonItem!
+    @IBOutlet var replayButton: UIBarButtonItem!
+    @IBOutlet var clearButton: UIBarButtonItem!
+    @IBOutlet var activityIndicator: UIActivityIndicatorView!
+    @IBOutlet var consoleHeightConstraint: NSLayoutConstraint!
+    @IBOutlet var consolePanGestureRecognizer: UIPanGestureRecognizer!
 
-    @IBOutlet weak var searchBar: UISearchBar!
-    @IBOutlet weak var webview: UIWebView!
-    @IBOutlet weak var consoleTextView: UITextView!
-    @IBOutlet weak var recordButton: UIBarButtonItem!
-    @IBOutlet weak var replayButton: UIBarButtonItem!
-    @IBOutlet weak var clearButton: UIBarButtonItem!
-    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var consoleHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var consolePanGestureRecognizer: UIPanGestureRecognizer!
-
-    fileprivate var offset: CGFloat = 0
+    private var offset: CGFloat = 0
 
     // MARK: - Lifecycle
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -35,26 +34,25 @@ class DemoViewController: UIViewController {
                                                name: NSNotification.Name(rawValue: Spoofer.spooferLogNotification),
                                                object: nil)
         Spoofer.delegate = self
-        
+
         // Sample configurations (not exhaustive)
         Spoofer.hostNamesToIgnore = ["example.com", "somehosttobeignored.com"]
         Spoofer.subDomainsToNormalize = ["qa", "dev", "preprod"]
         Spoofer.queryParametersToNormalize = ["authtoken", "swarm", "cluster", "node"]
     }
-    
+
     deinit {
-        NotificationCenter.default.removeObserver(self)        
+        NotificationCenter.default.removeObserver(self)
     }
-    
+
     // MARK: - User Actions
-    
+
     @IBAction func buttonPressed(_ sender: UIBarButtonItem) {
-        
         if sender == clearButton {
             consoleTextView.text = ""
             return
         }
-        
+
         // Reset the alternate button to default state
         switch sender {
         case recordButton:
@@ -63,37 +61,37 @@ class DemoViewController: UIViewController {
             if Spoofer.isReplaying {
                 Spoofer.stopReplaying()
             }
-            
+
         case replayButton:
             recordButton.title = ButtonTitle.startRecording.rawValue
             recordButton.tintColor = view.tintColor
             if Spoofer.isRecording {
                 Spoofer.stopRecording()
             }
-            
+
         default:
             print("Invalid button")
         }
-        
+
         // Decide on action and set state for current button press
         switch (sender, sender.title!) {
         case (recordButton, ButtonTitle.startRecording.rawValue):
             Spoofer.startRecording(inViewController: self)
-            
+
         case (recordButton, ButtonTitle.stopRecording.rawValue):
             Spoofer.stopRecording()
-            
+
         case (replayButton, ButtonTitle.startReplaying.rawValue):
             Spoofer.showRecordedScenarios(inViewController: self)
-            
+
         case (replayButton, ButtonTitle.stopReplaying.rawValue):
             Spoofer.stopReplaying()
-            
+
         default:
             print("Invalid button state")
         }
     }
-    
+
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
         let point = sender.translation(in: view)
 
@@ -109,7 +107,7 @@ class DemoViewController: UIViewController {
 
     // MARK: - Helper methods
 
-    func spooferLogReceived(_ notification: Notification) {
+    @objc func spooferLogReceived(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
         DispatchQueue.main.async(execute: { [weak self] in
@@ -123,32 +121,29 @@ class DemoViewController: UIViewController {
             }
         })
     }
-
 }
 
 // MARK: - Spoofer Delegate
 
 extension DemoViewController: SpooferDelegate {
-
-    func spooferDidStartRecording(_ scenarioName: String) {
+    func spooferDidStartRecording(_: String) {
         executeActionsForRecording(recordingState: true)
     }
-    
-    func spooferDidStopRecording(_ scenarioName: String) {
+
+    func spooferDidStopRecording(_: String) {
         executeActionsForRecording(recordingState: false)
     }
-    
-    func spooferDidStartReplaying(_ scenarioName: String) {
+
+    func spooferDidStartReplaying(_: String) {
         executeActionsForReplaying(replayingState: true)
     }
-    
-    func spooferDidStopReplaying(_ scenarioName: String) {
+
+    func spooferDidStopReplaying(_: String) {
         executeActionsForReplaying(replayingState: false)
     }
 }
 
-fileprivate extension DemoViewController {
-
+private extension DemoViewController {
     func executeActionsForRecording(recordingState state: Bool) {
         if state {
             webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
@@ -173,5 +168,4 @@ fileprivate extension DemoViewController {
             replayButton.tintColor = view.tintColor
         }
     }
-
 }

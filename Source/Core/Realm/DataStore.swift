@@ -40,11 +40,10 @@ protocol Store {
     func delete(scenarioName: String, suite: String) -> Result<Bool>
     // Response
     func save(response: APIResponse, scenarioName: String, suite: String) -> Result<APIResponse>
-    func delete(responseIndex: Int, scenarioName: String, suite: String) -> Result<Bool>
+    func delete(response: APIResponse, scenarioName: String, suite: String) -> Result<Bool>
 }
 
 enum DataStore {
-
     static func allScenarioNames(suite: String) -> [String] {
         return RealmStore.sharedInstance.allScenarioNames(suite: suite)
     }
@@ -65,13 +64,12 @@ enum DataStore {
         return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName, suite: suite)
     }
 
-    static func delete(responseIndex: Int, scenarioName: String, suite: String) -> Result<Bool> {
-        return RealmStore.sharedInstance.delete(responseIndex: responseIndex, scenarioName: scenarioName, suite: suite)
+    static func delete(response: APIResponse, scenarioName: String, suite: String) -> Result<Bool> {
+        return RealmStore.sharedInstance.delete(response: response, scenarioName: scenarioName, suite: suite)
     }
 }
 
 private struct RealmStore {
-
     static let sharedInstance = RealmStore()
 
     var realm: Realm { return try! Realm() }
@@ -99,7 +97,7 @@ extension RealmStore: Store {
 
     func allScenarioNames(suite: String) -> [String] {
         setDefaultRealmForSuite(suiteName: suite)
-        return realm.objects(Scenario.self).flatMap { $0.name }
+        return realm.objects(Scenario.self).compactMap { $0.name }
     }
 
     func save(scenario: Scenario, suite: String) -> Result<Scenario> {
@@ -140,7 +138,6 @@ extension RealmStore: Store {
     // MARK: - Response Management
 
     func save(response: APIResponse, scenarioName: String, suite: String) -> Result<APIResponse> {
-
         guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
 
         do {
@@ -153,19 +150,19 @@ extension RealmStore: Store {
         }
     }
 
-    func delete(responseIndex: Int, scenarioName: String, suite: String) -> Result<Bool> {
-
+    func delete(response: APIResponse, scenarioName: String, suite: String) -> Result<Bool> {
         guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
 
         do {
             try realm.write {
-                let responseToDelete = scenario.apiResponses[responseIndex]
+                if let responseToDelete = scenario.apiResponses.first(where: { $0 == response }) {
+                    
+                    // Currently realm does not have a cascade delete mechanism, so delete the sub structures before deleting the scenario
+                    realm.delete(responseToDelete.headerFields)
+                    // TODO: The above 1 line can be deleted once cascade delete is implemented in Realm
 
-                // Currently realm does not have a cascade delete mechanism, so delete the sub structures before deleting the scenario
-                realm.delete(responseToDelete.headerFields)
-                // TODO: The above 1 line can be deleted once cascade delete is implemented in Realm
-
-                realm.delete(responseToDelete)
+                    realm.delete(responseToDelete)
+                }
             }
             return .success(true)
         } catch {

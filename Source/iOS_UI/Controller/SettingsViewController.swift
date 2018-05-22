@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-class SettingsViewController: UITableViewController {
-
+final class SettingsViewController: UITableViewController {
     // Array of dictionaries of Spoofer Configuration Type: Any
     var allSettings = [[SpooferConfigurationType: Any]]()
 

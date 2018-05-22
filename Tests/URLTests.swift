@@ -9,7 +9,7 @@
 import XCTest
 @testable import APIResponseSpoofer
 
-class URLTests: XCTestCase {
+final class URLTests: XCTestCase {
 
     override func setUp() {
         super.setUp()

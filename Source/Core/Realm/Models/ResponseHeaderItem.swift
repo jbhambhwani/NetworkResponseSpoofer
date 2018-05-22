@@ -10,7 +10,6 @@ import Foundation
 import RealmSwift
 
 class ResponseHeaderItem: Object {
-
     @objc dynamic var key = ""
     @objc dynamic var value = ""
 
@@ -22,7 +21,7 @@ class ResponseHeaderItem: Object {
             headerItem.value = stringValue
             return headerItem
         }
-        return headerItems.flatMap { $0 }
+        return headerItems.compactMap { $0 }
     }
 
     class func deSerialize(headerItems: [ResponseHeaderItem]) -> [String: String] {

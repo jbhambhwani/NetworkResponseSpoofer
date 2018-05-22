@@ -9,7 +9,6 @@
 import Foundation
 
 final class SpooferStateManager {
-
     private(set) var state = SpooferState()
 
     @discardableResult func transformState(networkAction: NetworkAction) -> SpooferState {
@@ -24,13 +23,10 @@ final class SpooferStateManager {
 }
 
 extension SpooferStateManager {
-
     /// Broadcast spoofer activation and deactivation through all mediums
 
     func broadcastStateChange(oldState: SpooferState, newState: SpooferState) {
-
         switch (newState.isRecording, newState.isReplaying) {
-
         case (true, _):
             logFormattedSeperator("Spoofer Recording Started")
             Spoofer.delegate?.spooferDidStartRecording(newState.scenarioName)
@@ -45,7 +41,6 @@ extension SpooferStateManager {
         case (false, false):
 
             switch (oldState.isRecording, oldState.isReplaying) {
-
             case (true, _):
                 logFormattedSeperator("Spoofer Recording Stopped")
                 Spoofer.delegate?.spooferDidStopRecording(oldState.scenarioName)

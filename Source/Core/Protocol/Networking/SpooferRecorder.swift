@@ -12,7 +12,6 @@ import Foundation
  URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording. The methods are not to be overriden for Spoofer to work correctly.
  */
 public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
-
     static let requestHandledKey = "RecorderProtocolHandledKey"
     var session: URLSession?
     var dataTask: URLSessionDataTask?
@@ -73,9 +72,7 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
 // MARK: - Networking Delegates
 
 extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
-
     public func urlSession(_: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
-
         guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
             Spoofer.allowSelfSignedCertificate == true,
             let serverTrust = challenge.protectionSpace.serverTrust else {
@@ -88,7 +85,6 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
     }
 
     public func urlSession(_: URLSession, dataTask _: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
-
         // Send the received response to the client
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         // Save / Initialize local structures
@@ -106,7 +102,6 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
     }
 
     public func urlSession(_: URLSession, task _: URLSessionTask, didCompleteWithError error: Error?) {
-
         if let error = error {
             // Pass error back to client
             client?.urlProtocol(self, didFailWithError: error)
@@ -125,8 +120,7 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
 
 // MARK: - Response Persistance
 
-fileprivate extension SpooferRecorder {
-
+private extension SpooferRecorder {
     func saveResponse() {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
 
@@ -134,10 +128,10 @@ fileprivate extension SpooferRecorder {
         guard let currentResponse = APIResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
         let saveResult = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
         switch saveResult {
-            case .success(let response):
-                postNotification("📡 Response received & saved: \(response)", object: self)
-            case .failure(let error):
-                postNotification("❌ Response not saved: \(error.localizedDescription)", object: self)
+        case let .success(response):
+            postNotification("📡 Response received & saved: \(response)", object: self)
+        case let .failure(error):
+            postNotification("❌ Response not saved: \(error.localizedDescription)", object: self)
         }
     }
 }

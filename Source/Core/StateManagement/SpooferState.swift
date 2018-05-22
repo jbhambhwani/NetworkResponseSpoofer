@@ -15,16 +15,13 @@ enum NetworkAction {
 }
 
 struct SpooferState: Equatable {
-
     var isRecording = false
     var isReplaying = false
     var scenarioName = ""
     var suiteName = ""
 
     @discardableResult func transformedState(networkAction: NetworkAction) -> SpooferState {
-
         switch networkAction {
-
         case let .record(scenarioName, suiteName):
             return SpooferState(isRecording: true, isReplaying: false, scenarioName: scenarioName, suiteName: suiteName)
 

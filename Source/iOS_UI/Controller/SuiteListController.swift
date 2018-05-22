@@ -8,17 +8,13 @@
 
 import UIKit
 
-class SuiteListController: UITableViewController {
-
+final class SuiteListController: UITableViewController {
     static let identifier = "SuiteListController"
-
     var suiteName = defaultSuiteName
-
     @IBOutlet var addSuiteButton: UIBarButtonItem!
 }
 
 extension SuiteListController {
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         return FileManager.allSuiteNames().count
     }
@@ -56,13 +52,11 @@ extension SuiteListController {
 }
 
 extension SuiteListController {
-
     @IBAction func cancel() {
         navigationController?.dismiss(animated: true, completion: nil)
     }
 
     @IBAction func addSuitePressed(_: UIBarButtonItem) {
-
         let alertController = UIAlertController(title: "Create Suite", message: "Enter a suite name to save the scenarios", preferredStyle: .alert)
 
         let createAction = UIAlertAction(title: "Create", style: .default) { [unowned alertController, weak self] _ in

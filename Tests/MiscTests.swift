@@ -9,7 +9,7 @@
 import XCTest
 @testable import APIResponseSpoofer
 
-class MiscTests: XCTestCase {
+final class MiscTests: XCTestCase {
 
     func testFormattedSeperator() {
         logFormattedSeperator("Scenario Loaded Succesfully 👍")

@@ -15,7 +15,6 @@ struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
 // MARK: - TextPresentable Conformance
 
 extension SwitchWithTextViewModel {
-
     var title: String {
         return configType.rawValue
     }
@@ -24,17 +23,17 @@ extension SwitchWithTextViewModel {
         return configType.description
     }
 
-    fileprivate var configType: SpooferConfigurationType {
+    private var configType: SpooferConfigurationType {
         guard let configType = model.keys.first else { return .blank }
         return configType
     }
 
-    fileprivate var packedData: Any {
+    private var packedData: Any {
         guard let data = model.values.first else { return "" }
         return data
     }
 
-    fileprivate var modelIsBoolean: Bool {
+    private var modelIsBoolean: Bool {
         return packedData is Bool
     }
 }
@@ -42,7 +41,6 @@ extension SwitchWithTextViewModel {
 // MARK: - SwitchPresentable Conformance
 
 extension SwitchWithTextViewModel {
-
     var switchOn: Bool {
         guard let boolValue = packedData as? Bool else { return modelIsBoolean }
         return boolValue
@@ -72,7 +70,6 @@ extension SwitchWithTextViewModel {
 // MARK: - DataPresentable Conformance
 
 extension SwitchWithTextViewModel {
-
     var configurations: [Any] {
         get {
             if let configs = packedData as? [String] {

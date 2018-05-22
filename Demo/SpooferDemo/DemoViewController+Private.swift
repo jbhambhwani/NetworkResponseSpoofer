@@ -19,62 +19,55 @@ enum ButtonTitle: String {
 // MARK: - Webview Delegate
 
 extension DemoViewController: UIWebViewDelegate {
-    
-    func webViewDidStartLoad(_ webView: UIWebView) {
+    func webViewDidStartLoad(_: UIWebView) {
         activityIndicator.startAnimating()
     }
-    
-    func webViewDidFinishLoad(_ webView: UIWebView) {
-        activityIndicator.stopAnimating()
-    }
-    
-    func webView(_ webView: UIWebView, didFailLoadWithError error: Error) {
+
+    func webViewDidFinishLoad(_: UIWebView) {
         activityIndicator.stopAnimating()
     }
 
-    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+    func webView(_: UIWebView, didFailLoadWithError _: Error) {
+        activityIndicator.stopAnimating()
+    }
+
+    func webView(_: UIWebView, shouldStartLoadWith request: URLRequest, navigationType _: UIWebViewNavigationType) -> Bool {
         if let url = request.url?.absoluteString, url.count > 0 {
             searchBar.text = url
         }
         return true
     }
-    
 }
 
 // MARK: - SearchBarDelegate
 
 extension DemoViewController: UISearchBarDelegate {
-    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        
         guard var searchText = searchBar.text, searchText.count > 0 else { return }
         if searchText.hasPrefix("http") == false {
             searchText = "http://" + searchText
         }
         guard let url = URL(string: searchText) else { return }
-        
+
         let urlRequest = URLRequest(url: url)
         webview.loadRequest(urlRequest)
         searchBar.resignFirstResponder()
     }
-
 }
 
 // MARK: - Internal methods
 
 extension DemoViewController {
-    
     func performSampleNetworkRequests() {
         // Get data from a few sample end points
         sendRequest("http://jsonplaceholder.typicode.com/users")
         sendRequest("http://jsonplaceholder.typicode.com/posts")
     }
-    
-    fileprivate func sendRequest(_ resource: String) {
+
+    private func sendRequest(_ resource: String) {
         guard let url = URL(string: resource) else { return }
-        URLSession.shared.dataTask(with: url, completionHandler: { data, response, error in
+        URLSession.shared.dataTask(with: url, completionHandler: { _, _, _ in
             // Spoofer has already intercepted the response if error was non nil. Nothing to do here.
         }).resume()
     }
-
 }

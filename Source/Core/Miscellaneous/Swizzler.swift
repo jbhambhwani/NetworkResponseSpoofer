@@ -11,7 +11,6 @@ import Foundation
 // Enable Swizzling for all NSObject subclasses
 
 extension NSObject {
-
     class func swizzleMethod(_ originalSelector: Selector, withSelector: Selector) {
         let aClass: AnyClass! = object_getClass(self)
         NSObject.swizzleMethod(originalSelector, withSelector: withSelector, forClass: aClass)

@@ -8,8 +8,7 @@
 
 import UIKit
 
-class ResponseCell: UITableViewCell {
-
+final class ResponseCell: UITableViewCell {
     @IBOutlet var reponseImageView: UIImageView!
     @IBOutlet var urlLabel: UILabel!
 

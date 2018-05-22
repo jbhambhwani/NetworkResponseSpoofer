@@ -9,8 +9,7 @@
 import Foundation
 import UIKit
 
-class EditSettingsViewController: UITableViewController {
-
+final class EditSettingsViewController: UITableViewController {
     var presenter: SwitchWithTextViewPresentable?
 
     // MARK: - Lifecycle
@@ -45,7 +44,7 @@ class EditSettingsViewController: UITableViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel) { _ in
         }
 
-        if self.title == "Replace Path Range" {
+        if title == "Replace Path Range" {
             alertController.addTextField { textField in
                 textField.placeholder = "From"
                 textField.autocapitalizationType = .none
@@ -87,7 +86,6 @@ class EditSettingsViewController: UITableViewController {
 // MARK: - Tableview datasource
 
 extension EditSettingsViewController {
-
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
         guard let configurations = presenter?.configurations else { return 0 }
         return configurations.count
@@ -112,9 +110,7 @@ extension EditSettingsViewController {
 // MARK: - Tableview delegate
 
 extension EditSettingsViewController {
-
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-
         switch editingStyle {
         case .delete:
             presenter?.configurations.remove(at: indexPath.row)
@@ -127,5 +123,4 @@ extension EditSettingsViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         return tableView.deselectRow(at: indexPath, animated: true)
     }
-
 }

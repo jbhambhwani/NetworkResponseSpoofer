@@ -10,7 +10,7 @@ import XCTest
 import RealmSwift
 @testable import APIResponseSpoofer
 
-class DataTests: XCTestCase {
+final class DataTests: XCTestCase {
 
     var responseReceived: XCTestExpectation?
     var spoofedResponseReceived: XCTestExpectation?
