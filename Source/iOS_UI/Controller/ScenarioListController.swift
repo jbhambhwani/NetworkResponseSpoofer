@@ -23,7 +23,7 @@ final class ScenarioListController: UITableViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         selectedScenarioName = ""
-        scenarioNames = DataStore.allScenarioNames(suite: suiteName)
+        loadScenarios()
     }
 
     deinit {
@@ -40,6 +40,12 @@ final class ScenarioListController: UITableViewController {
     }
 
     // MARK: - Private properties
+
+    private func loadScenarios() {
+        searchController.isActive = false
+        scenarioNames = DataStore.allScenarioNames(suite: suiteName)
+        tableView.reloadData()
+    }
 
     private var scenarioNames = [String]()
     private var filteredScenarios = [String]()
@@ -90,17 +96,9 @@ extension ScenarioListController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            let scenarioToDelete = scenarioNames.remove(at: indexPath.row)
-            let deletionResult = DataStore.delete(scenarioName: scenarioToDelete, suite: suiteName)
-
-            switch deletionResult {
-            case .success:
-                // Update the tableview upon succesful scenario deletion
-                tableView.deleteRows(at: [indexPath], with: .automatic)
-            case .failure:
-                // Cause a tableview reload if scenario creation failed due to some reason
-                tableView.reloadData()
-            }
+            let scenarioToDelete = scenarioNames[indexPath.row]
+            _ = DataStore.delete(scenarioName: scenarioToDelete, suite: suiteName)
+            loadScenarios()
 
         default: break
         }

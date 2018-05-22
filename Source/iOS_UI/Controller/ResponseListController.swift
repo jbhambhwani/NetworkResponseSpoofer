@@ -49,6 +49,9 @@ final class ResponseListController: UITableViewController {
     // MARK: Utility methods
 
     func loadResponses() {
+        allResponses = []
+        filteredResponses = []
+        searchController.isActive = false
         let loadResult = DataStore.load(scenarioName: scenarioName, suite: suiteName)
         switch loadResult {
         case let .success(scenario):
@@ -109,19 +112,9 @@ extension ResponseListController {
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
-            allResponses.remove(at: indexPath.row)
-            let deleteResult = DataStore.delete(responseIndex: indexPath.row, scenarioName: scenarioName, suite: suiteName)
-
-            switch deleteResult {
-            case .success:
-                DispatchQueue.main.async(execute: {
-                    tableView.deleteRows(at: [indexPath], with: .automatic)
-                })
-
-            case .failure:
-                // Cause a tableview reload if deletion failed due to some reason
-                tableView.reloadData()
-            }
+            let responseToDelete = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
+            _ = DataStore.delete(response: responseToDelete, scenarioName: scenarioName, suite: suiteName)
+            loadResponses()
 
         default: break
         }
