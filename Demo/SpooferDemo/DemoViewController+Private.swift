@@ -31,7 +31,7 @@ extension DemoViewController: UIWebViewDelegate {
         activityIndicator.stopAnimating()
     }
 
-    func webView(_: UIWebView, shouldStartLoadWith request: URLRequest, navigationType _: UIWebViewNavigationType) -> Bool {
+    func webView(_: UIWebView, shouldStartLoadWith request: URLRequest, navigationType _: UIWebView.NavigationType) -> Bool {
         if let url = request.url?.absoluteString, url.count > 0 {
             searchBar.text = url
         }
