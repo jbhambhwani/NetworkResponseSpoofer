@@ -19,7 +19,7 @@ final class EditSettingsViewController: UITableViewController {
         tableView.scrollsToTop = true
         tableView.tableFooterView = UIView()
         tableView.estimatedRowHeight = 44.0
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
     }
 
     // MARK: - User Actions
@@ -48,7 +48,7 @@ final class EditSettingsViewController: UITableViewController {
             alertController.addTextField { textField in
                 textField.placeholder = "From"
                 textField.autocapitalizationType = .none
-                NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
+                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }
@@ -66,7 +66,7 @@ final class EditSettingsViewController: UITableViewController {
             alertController.addTextField { textField in
                 textField.placeholder = "Enter here!"
                 textField.autocapitalizationType = .none
-                NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
+                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }
@@ -110,7 +110,7 @@ extension EditSettingsViewController {
 // MARK: - Tableview delegate
 
 extension EditSettingsViewController {
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             presenter?.configurations.remove(at: indexPath.row)

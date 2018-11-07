@@ -65,7 +65,7 @@ final class ResponseListController: UITableViewController {
     @objc func toggleRowHeight(_ sender: UIBarButtonItem) {
         if sender.title == expandText {
             sender.title = collapseText
-            cellHeight = UITableViewAutomaticDimension
+            cellHeight = UITableView.automaticDimension
         } else {
             sender.title = expandText
             cellHeight = 60.0
@@ -109,7 +109,7 @@ extension ResponseListController {
         return cellHeight
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             let responseToDelete = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]

@@ -93,7 +93,7 @@ extension APIResponse {
         return false
     }
 
-    override var hashValue: Int {
+    override var hash: Int {
         return requestURL.hashValue ^ httpMethod.hashValue ^ data.hashValue
     }
 }

@@ -75,7 +75,7 @@ extension SuiteListController {
         alertController.addTextField { textField in
             textField.placeholder = "Enter suite name"
             textField.autocapitalizationType = .sentences
-            NotificationCenter.default.addObserver(forName: NSNotification.Name.UITextFieldTextDidChange, object: textField, queue: OperationQueue.main) { _ in
+            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
                 createAction.isEnabled = textField.text != ""
             }
         }
