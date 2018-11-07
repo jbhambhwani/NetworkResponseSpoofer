@@ -1,6 +1,6 @@
 //
 //  URLExtension.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 8/3/15.
 //  Copyright (c) 2015 Hotwire. All rights reserved.

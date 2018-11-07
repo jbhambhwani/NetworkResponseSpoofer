@@ -1,12 +1,12 @@
-# APIResponseSpoofer
+# NetworkResponseSpoofer
 
-APIResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
+NetworkResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
 
 
 ## Getting Started
 Before you start, import Spoofer framework into your project
 ```swift
-@import APIResponseSpoofer
+@import NetworkResponseSpoofer
 ```
 
 ## Intercepting responses
@@ -147,10 +147,10 @@ Spoofer will fire the following notifications whenever its state changes. You ca
 ###Cocoapods
 ```ruby
 platform :ios, '8.0'
-pod "APIResponseSpoofer", "~> 1.0"
+pod "NetworkResponseSpoofer", "~> 1.0"
 ```
 
 ###Carthage
 ```ruby
-github "Hotwire/APIResponseSpoofer" ~> 1.0
+github "Hotwire/NetworkResponseSpoofer" ~> 1.0
 ```

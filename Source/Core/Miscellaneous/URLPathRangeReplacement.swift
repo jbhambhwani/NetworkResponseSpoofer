@@ -1,6 +1,6 @@
 //
 //  URLPathRangeReplacement.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 1/3/18.
 //  Copyright © 2018 Hotwire. All rights reserved.

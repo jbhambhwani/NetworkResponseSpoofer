@@ -1,6 +1,6 @@
 //
 //  Spoofer+Recording.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 11/11/15.
 //  Copyright © 2015 Hotwire. All rights reserved.

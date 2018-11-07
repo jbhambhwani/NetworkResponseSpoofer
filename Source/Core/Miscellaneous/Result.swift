@@ -1,6 +1,6 @@
 //
 //  Result.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 11/1/16.
 //  Copyright © 2016 Hotwire. All rights reserved.

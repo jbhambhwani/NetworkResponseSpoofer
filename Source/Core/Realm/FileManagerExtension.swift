@@ -1,6 +1,6 @@
 //
 //  FileManagerExtension.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 1/19/17.
 //  Copyright © 2017 Hotwire. All rights reserved.

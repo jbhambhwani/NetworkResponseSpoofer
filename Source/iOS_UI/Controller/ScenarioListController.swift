@@ -1,6 +1,6 @@
 //
 //  ScenarioListController.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 10/10/15.
 //  Copyright © 2015 Hotwire. All rights reserved.

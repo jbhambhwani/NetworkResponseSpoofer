@@ -13,7 +13,7 @@
 		411227701E3966C700E1487B /* SuiteListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112276E1E3966AC00E1487B /* SuiteListController.swift */; };
 		411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
 		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
-		411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
+		411A357C1BC74A7D001D128D /* NetworkResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
 		413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
@@ -90,7 +90,7 @@
 		4112276E1E3966AC00E1487B /* SuiteListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuiteListController.swift; sourceTree = "<group>"; };
 		411227711E39730D00E1487B /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		411913241D2369F500D3FB6E /* NetworkInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterceptable.swift; sourceTree = "<group>"; };
-		411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = APIResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		411A35771BC74A7D001D128D /* NetworkResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		411A357B1BC74A7D001D128D /* TestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
 		4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +98,7 @@
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
 		4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferReplayer.swift; sourceTree = "<group>"; };
 		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
-		4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
@@ -115,7 +115,7 @@
 		4182093D1F4D14F8009E69D6 /* APIResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APIResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
 		4182093E1F4D14F8009E69D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPathRangeReplacement.swift; sourceTree = "<group>"; };
-		419430AE1DDA96E700DA65AF /* APIResponseSpoofer_iOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = APIResponseSpoofer_iOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkResponseSpoofer_iOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		419430C01DDAA21E00DA65AF /* SpooferUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferUI.swift; sourceTree = "<group>"; };
 		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				411A357C1BC74A7D001D128D /* APIResponseSpoofer.framework in Frameworks */,
+				411A357C1BC74A7D001D128D /* NetworkResponseSpoofer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -224,9 +224,9 @@
 		4147EA4E1B684D7E001DE517 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */,
-				411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */,
-				419430AE1DDA96E700DA65AF /* APIResponseSpoofer_iOS_UI.framework */,
+				4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */,
+				411A35771BC74A7D001D128D /* NetworkResponseSpooferTests.xctest */,
+				419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -398,9 +398,9 @@
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		411A35761BC74A7D001D128D /* APIResponseSpooferTests */ = {
+		411A35761BC74A7D001D128D /* NetworkResponseSpooferTests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 411A357F1BC74A7D001D128D /* Build configuration list for PBXNativeTarget "APIResponseSpooferTests" */;
+			buildConfigurationList = 411A357F1BC74A7D001D128D /* Build configuration list for PBXNativeTarget "NetworkResponseSpooferTests" */;
 			buildPhases = (
 				411A35731BC74A7D001D128D /* Sources */,
 				411A35741BC74A7D001D128D /* Frameworks */,
@@ -412,14 +412,14 @@
 			dependencies = (
 				411A357E1BC74A7D001D128D /* PBXTargetDependency */,
 			);
-			name = APIResponseSpooferTests;
+			name = NetworkResponseSpooferTests;
 			productName = APIResponseSpooferTests;
-			productReference = 411A35771BC74A7D001D128D /* APIResponseSpooferTests.xctest */;
+			productReference = 411A35771BC74A7D001D128D /* NetworkResponseSpooferTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		4147EA4C1B684D7E001DE517 /* APIResponseSpoofer */ = {
+		4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "APIResponseSpoofer" */;
+			buildConfigurationList = 4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer" */;
 			buildPhases = (
 				415CB18D1C9B3B8E00827A0B /* Elevate TODO's to Warnings */,
 				4147EA481B684D7E001DE517 /* Sources */,
@@ -432,14 +432,14 @@
 			);
 			dependencies = (
 			);
-			name = APIResponseSpoofer;
+			name = NetworkResponseSpoofer;
 			productName = APIResponseSpoofer;
-			productReference = 4147EA4D1B684D7E001DE517 /* APIResponseSpoofer.framework */;
+			productReference = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		419430AD1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */ = {
+		419430AD1DDA96E700DA65AF /* NetworkResponseSpoofer iOS UI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "APIResponseSpoofer iOS UI" */;
+			buildConfigurationList = 419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer iOS UI" */;
 			buildPhases = (
 				419430A91DDA96E700DA65AF /* Sources */,
 				419430AA1DDA96E700DA65AF /* Frameworks */,
@@ -451,9 +451,9 @@
 			);
 			dependencies = (
 			);
-			name = "APIResponseSpoofer iOS UI";
+			name = "NetworkResponseSpoofer iOS UI";
 			productName = "APIResponseSpoofer iOS UI";
-			productReference = 419430AE1DDA96E700DA65AF /* APIResponseSpoofer_iOS_UI.framework */;
+			productReference = 419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -485,7 +485,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 4147EA471B684D7E001DE517 /* Build configuration list for PBXProject "APIResponseSpoofer" */;
+			buildConfigurationList = 4147EA471B684D7E001DE517 /* Build configuration list for PBXProject "NetworkResponseSpoofer" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -497,9 +497,9 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				4147EA4C1B684D7E001DE517 /* APIResponseSpoofer */,
-				419430AD1DDA96E700DA65AF /* APIResponseSpoofer iOS UI */,
-				411A35761BC74A7D001D128D /* APIResponseSpooferTests */,
+				4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */,
+				419430AD1DDA96E700DA65AF /* NetworkResponseSpoofer iOS UI */,
+				411A35761BC74A7D001D128D /* NetworkResponseSpooferTests */,
 			);
 		};
 /* End PBXProject section */
@@ -591,7 +591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -681,7 +681,7 @@
 /* Begin PBXTargetDependency section */
 		411A357E1BC74A7D001D128D /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 4147EA4C1B684D7E001DE517 /* APIResponseSpoofer */;
+			target = 4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */;
 			targetProxy = 411A357D1BC74A7D001D128D /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -701,7 +701,7 @@
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.APIResponseSpooferTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.NetworkResponseSpooferTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -721,7 +721,7 @@
 				LD_DYLIB_INSTALL_NAME = "";
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path/Frameworks @loader_path/Frameworks";
 				"LD_RUNPATH_SEARCH_PATHS[sdk=macosx*]" = "@executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.APIResponseSpooferTests;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.NetworkResponseSpooferTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -883,7 +883,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
 				ONLY_ACTIVE_ARCH = YES;
-				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.apiresponsespoofer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.networkresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -907,7 +907,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Core/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
-				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.apiresponsespoofer;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.networkresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
@@ -931,8 +931,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.APIResponseSpoofer-iOS-UI";
-				PRODUCT_NAME = APIResponseSpoofer_iOS_UI;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.networkresponsespoofer-iOS-UI";
+				PRODUCT_NAME = NetworkResponseSpoofer_iOS_UI;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -960,8 +960,8 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.APIResponseSpoofer-iOS-UI";
-				PRODUCT_NAME = APIResponseSpoofer_iOS_UI;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.networkresponsespoofer-iOS-UI";
+				PRODUCT_NAME = NetworkResponseSpoofer_iOS_UI;
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -973,7 +973,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		411A357F1BC74A7D001D128D /* Build configuration list for PBXNativeTarget "APIResponseSpooferTests" */ = {
+		411A357F1BC74A7D001D128D /* Build configuration list for PBXNativeTarget "NetworkResponseSpooferTests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				411A35801BC74A7D001D128D /* Debug */,
@@ -982,7 +982,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4147EA471B684D7E001DE517 /* Build configuration list for PBXProject "APIResponseSpoofer" */ = {
+		4147EA471B684D7E001DE517 /* Build configuration list for PBXProject "NetworkResponseSpoofer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4147EA611B684D7E001DE517 /* Debug */,
@@ -991,7 +991,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "APIResponseSpoofer" */ = {
+		4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				4147EA641B684D7E001DE517 /* Debug */,
@@ -1000,7 +1000,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "APIResponseSpoofer iOS UI" */ = {
+		419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer iOS UI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				419430B31DDA96E700DA65AF /* Debug */,

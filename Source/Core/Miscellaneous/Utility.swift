@@ -1,6 +1,6 @@
 //
 //  Utility.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 10/11/15.
 //  Copyright © 2015 Hotwire. All rights reserved.
@@ -37,7 +37,7 @@ func postNotification(_ message: String, object: Any? = nil) {
     if let url = url {
         userInfo[NSURLErrorFailingURLErrorKey] = url
     }
-    let spooferError = NSError(domain: "APIResponseSpoofer", code: code, userInfo: userInfo)
+    let spooferError = NSError(domain: "NetworkResponseSpoofer", code: code, userInfo: userInfo)
     errorHandler?(spooferError)
     return spooferError
 }

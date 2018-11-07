@@ -1,13 +1,13 @@
 //
 //  MiscTests.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 11/11/16.
 //  Copyright © 2016 Hotwire. All rights reserved.
 //
 
 import XCTest
-@testable import APIResponseSpoofer
+@testable import NetworkResponseSpoofer
 
 final class MiscTests: XCTestCase {
 

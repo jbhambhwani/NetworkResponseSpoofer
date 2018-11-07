@@ -1,6 +1,6 @@
 //
 //  DataStore.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 11/1/16.
 //  Copyright © 2016 Hotwire. All rights reserved.
@@ -122,11 +122,8 @@ extension RealmStore: Store {
 
         do {
             try realm.write {
-                // Currently realm does not have a cascade delete mechanism, so delete the sub structures before deleting the scenario
                 scenario.apiResponses.forEach({ realm.delete($0.headerFields) })
                 realm.delete(scenario.apiResponses)
-                // TODO: The above 2 lines can be deleted once cascade delete is implemented in Realm
-
                 realm.delete(scenario)
             }
             return .success(true)
@@ -156,11 +153,7 @@ extension RealmStore: Store {
         do {
             try realm.write {
                 if let responseToDelete = scenario.apiResponses.first(where: { $0 == response }) {
-                    
-                    // Currently realm does not have a cascade delete mechanism, so delete the sub structures before deleting the scenario
                     realm.delete(responseToDelete.headerFields)
-                    // TODO: The above 1 line can be deleted once cascade delete is implemented in Realm
-
                     realm.delete(responseToDelete)
                 }
             }

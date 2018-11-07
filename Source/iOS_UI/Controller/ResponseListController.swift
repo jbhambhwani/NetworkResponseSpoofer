@@ -1,6 +1,6 @@
 //
 //  ResponseListController.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 11/13/15.
 //  Copyright © 2015 Hotwire. All rights reserved.

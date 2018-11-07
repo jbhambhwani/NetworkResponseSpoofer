@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 3/16/16.
 //  Copyright © 2016 Hotwire. All rights reserved.

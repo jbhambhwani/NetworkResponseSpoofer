@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
-  s.name            = 'APIResponseSpoofer'
+  s.name            = 'NetworkResponseSpoofer'
   s.version         = '7.2.0'
   s.swift_version   = '4.2.0'
   s.summary         = 'Network request-response recording and replaying library for iOS.'
-  s.homepage        = 'https://stash/projects/HOTWIRE/repos/apiresponsespoofer'
+  s.homepage        = 'https://stash/projects/HOTWIRE/repos/NetworkResponseSpoofer'
   s.license         = 'MIT'
   s.authors         = { 'Hotwire' => 'hotwiredevices@gmail.com' }
   s.description     = <<-EOS
-  APIResponseSpoofer is a network request-response recording and replaying library for iOS.
+  NetworkResponseSpoofer is a network request-response recording and replaying library for iOS.
   It’s built on top of the Foundation URL Loading System to make recording and replaying network requests really simple.
   EOS
 
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '4.0'
   s.tvos.deployment_target = '10.0'
 
-  s.source          = { :git => 'https://stash/scm/hotwire/apiresponsespoofer.git', :tag => s.version.to_s }
+  s.source          = { :git => 'https://stash/scm/hotwire/NetworkResponseSpoofer.git', :tag => s.version.to_s }
   s.requires_arc    = true
   s.default_subspec = 'Core'
   s.dependency 'RealmSwift'

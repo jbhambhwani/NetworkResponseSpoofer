@@ -1,6 +1,6 @@
 //
 //  DataTests.swift
-//  APIResponseSpooferTests
+//  NetworkResponseSpooferTests
 //
 //  Created by Deepu Mukundan on 7/28/15.
 //  Copyright (c) 2015 Hotwire. All rights reserved.
@@ -8,7 +8,7 @@
 
 import XCTest
 import RealmSwift
-@testable import APIResponseSpoofer
+@testable import NetworkResponseSpoofer
 
 final class DataTests: XCTestCase {
 

@@ -1,6 +1,6 @@
 //
-//  APIResponseSpoofer.swift
-//  APIResponseSpoofer
+//  NetworkResponseSpoofer.swift
+//  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 7/28/15.
 //  Copyright (c) 2015 Hotwire. All rights reserved.
@@ -41,7 +41,7 @@ import Foundation
 }
 
 /**
- APIResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
+ NetworkResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
  */
 @objcMembers
 public final class Spoofer: NSObject {
