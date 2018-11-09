@@ -2,8 +2,8 @@ Pod::Spec.new do |s|
   s.name            = 'NetworkResponseSpoofer'
   s.version         = '8.0.0'
   s.swift_version   = '4.2.0'
-  s.summary         = 'Network request-response recording and replaying library for iOS.'
-  s.homepage        = 'https://stash/projects/HOTWIRE/repos/NetworkResponseSpoofer'
+  s.summary         = 'Network response record and replay library for iOS.'
+  s.homepage        = 'https://github.com/HotwireDotCom/NetworkResponseSpoofer.git'
   s.license         = 'MIT'
   s.authors         = { 'Hotwire' => 'hotwiredevices@gmail.com' }
   s.description     = <<-EOS
@@ -16,7 +16,7 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '4.0'
   s.tvos.deployment_target = '10.0'
 
-  s.source          = { :git => 'https://stash/scm/hotwire/NetworkResponseSpoofer.git', :tag => s.version.to_s }
+  s.source          = { :git => 'https://github.com/HotwireDotCom/NetworkResponseSpoofer.git', :tag => s.version.to_s }
   s.requires_arc    = true
   s.default_subspec = 'Core'
   s.dependency 'RealmSwift'
