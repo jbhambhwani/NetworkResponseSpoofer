@@ -78,7 +78,7 @@
 			containerPortal = 4147EA441B684D7E001DE517 /* Project object */;
 			proxyType = 1;
 			remoteGlobalIDString = 4147EA4C1B684D7E001DE517;
-			remoteInfo = APIResponseSpoofer;
+			remoteInfo = NetworkResponseSpoofer;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -97,12 +97,12 @@
 		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
 		4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferReplayer.swift; sourceTree = "<group>"; };
-		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
 		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
+		4148B2852195FCF4009265EE /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
 		41570A7A1DD6F5290098C2FF /* URLTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLTests.swift; sourceTree = "<group>"; };
 		41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TestingConstants.swift; sourceTree = "<group>"; };
@@ -214,9 +214,10 @@
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
-				4147EA4E1B684D7E001DE517 /* Products */,
+				4148B2852195FCF4009265EE /* README.md */,
 				4147EA4F1B684D7E001DE517 /* Source */,
 				4147EA501B684D7E001DE517 /* Supporting Files */,
+				4147EA4E1B684D7E001DE517 /* Products */,
 				411A35781BC74A7D001D128D /* Tests */,
 			);
 			sourceTree = "<group>";
@@ -247,7 +248,6 @@
 				418209401F4D1537009E69D6 /* Tests */,
 				419430AF1DDA96E700DA65AF /* iOS UI */,
 				4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */,
-				4137B6111BD87837005AF53E /* README.md */,
 			);
 			path = "Supporting Files";
 			sourceTree = "<group>";
@@ -413,7 +413,7 @@
 				411A357E1BC74A7D001D128D /* PBXTargetDependency */,
 			);
 			name = NetworkResponseSpooferTests;
-			productName = APIResponseSpooferTests;
+			productName = NetworkResponseSpooferTests;
 			productReference = 411A35771BC74A7D001D128D /* NetworkResponseSpooferTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -433,7 +433,7 @@
 			dependencies = (
 			);
 			name = NetworkResponseSpoofer;
-			productName = APIResponseSpoofer;
+			productName = NetworkResponseSpoofer;
 			productReference = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
@@ -452,7 +452,7 @@
 			dependencies = (
 			);
 			name = "NetworkResponseSpoofer iOS UI";
-			productName = "APIResponseSpoofer iOS UI";
+			productName = "NetworkResponseSpoofer iOS UI";
 			productReference = 419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */;
 			productType = "com.apple.product-type.framework";
 		};

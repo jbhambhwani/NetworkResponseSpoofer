@@ -4,8 +4,8 @@
 # In general, you can use the options available
 # gym --help
 
-workspace "APIResponseSpoofer.xcworkspace"
-scheme "APIResponseSpoofer"
-output_name "APIResponseSpoofer"
+workspace "NetworkResponseSpoofer.xcworkspace"
+scheme "NetworkResponseSpoofer"
+output_name "NetworkResponseSpoofer"
 configuration "Release"
 clean true

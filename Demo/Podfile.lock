@@ -26,7 +26,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NetworkResponseSpoofer: 9bc92919150149cfe844de93a446f9e34b130ca9
+  NetworkResponseSpoofer: 3986b7a4d4f3858e6a986cd042cd8b3092e2c58d
   Realm: 037c5919b9ceb59d6beed5d3b031096856b119b3
   RealmSwift: c9580133e73ef40ed340401af2dbc9a5790dfea7
 

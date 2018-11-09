@@ -2,6 +2,6 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "self:APIResponseSpoofer.xcodeproj">
+      location = "self:NetworkResponseSpoofer.xcodeproj">
    </FileRef>
 </Workspace>

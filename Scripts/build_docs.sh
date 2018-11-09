@@ -9,8 +9,8 @@ jazzy \
   --clean \
   --readme README.md \
   --author 'Hotwire' \
-  -u 'www.hotwire.com' \
-  --github_url 'https://github.com/HotwireDotCom' \
+  --author_url 'www.hotwire.com' \
+  --github_url 'https://github.com/HotwireDotCom/NetworkResponseSpoofer.git' \
   --output Documentation \
-  --xcodebuild-arguments -scheme,APIResponseSpoofer \
-  --module APIResponseSpoofer
+  --xcodebuild-arguments -scheme,NetworkResponseSpoofer \
+  --module NetworkResponseSpoofer
