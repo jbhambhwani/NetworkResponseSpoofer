@@ -7,7 +7,7 @@ Pod::Spec.new do |s|
   s.license         = 'MIT'
   s.authors         = { 'Hotwire' => 'hotwiredevices@gmail.com' }
   s.description     = <<-EOS
-  NetworkResponseSpoofer is a network request-response recording and replaying library for iOS.
+  NetworkResponseSpoofer is a network response record and replay library for iOS, watchOS, tvOS and macOS.
   It’s built on top of the Foundation URL Loading System to make recording and replaying network requests really simple.
   EOS
 
