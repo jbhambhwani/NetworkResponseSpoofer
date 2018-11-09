@@ -1,6 +1,6 @@
 # NetworkResponseSpoofer
 
-NetworkResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
+NetworkResponseSpoofer is a network response record and replay library for iOS, watchOS, tvOS and macOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
 
 
 ## Getting Started
@@ -146,11 +146,10 @@ Spoofer will fire the following notifications whenever its state changes. You ca
 
 ###Cocoapods
 ```ruby
-platform :ios, '8.0'
-pod "NetworkResponseSpoofer", "~> 4.0"
+pod "NetworkResponseSpoofer"
 ```
 
 ###Carthage
 ```ruby
-github "Hotwire/NetworkResponseSpoofer" ~> 4.0
+github "HotwireDotCom/NetworkResponseSpoofer"
 ```

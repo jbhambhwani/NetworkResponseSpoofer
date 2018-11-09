@@ -1,131 +1,152 @@
 {
   "warnings": [
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 22,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/URLPathRangeReplacement.swift",
+      "line": 11,
+      "symbol": "URLPathRangeReplacement",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/URLPathRangeReplacement.swift",
+      "line": 16,
+      "symbol": "URLPathRangeReplacement.init(start:end:replacement:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 21,
       "symbol": "SpooferRecorder.canInit(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 38,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 42,
       "symbol": "SpooferRecorder.canonicalRequest(for:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 42,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 46,
       "symbol": "SpooferRecorder.requestIsCacheEquivalent(_:to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 47,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 51,
       "symbol": "SpooferRecorder.startLoading()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 58,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 62,
       "symbol": "SpooferRecorder.stopLoading()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 72,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 75,
       "symbol": "SpooferRecorder.urlSession(_:didReceive:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 85,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 87,
       "symbol": "SpooferRecorder.urlSession(_:dataTask:didReceive:completionHandler:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 96,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 97,
       "symbol": "SpooferRecorder.urlSession(_:dataTask:didReceive:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
-      "line": 103,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 104,
       "symbol": "SpooferRecorder.urlSession(_:task:didCompleteWithError:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
-      "line": 26,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
+      "line": 25,
       "symbol": "SpooferReplayer.canInit(with:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
-      "line": 42,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
+      "line": 46,
       "symbol": "SpooferReplayer.canonicalRequest(for:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
-      "line": 46,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
+      "line": 50,
       "symbol": "SpooferReplayer.requestIsCacheEquivalent(_:to:)",
       "symbol_kind": "source.lang.swift.decl.function.method.class",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
-      "line": 51,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
+      "line": 55,
       "symbol": "SpooferReplayer.startLoading()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
-      "line": 96,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
+      "line": 102,
       "symbol": "SpooferReplayer.stopLoading()",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Realm/DataStore.swift",
-      "line": 14,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 12,
+      "symbol": "defaultSuiteName",
+      "symbol_kind": "source.lang.swift.decl.var.global",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 16,
       "symbol": "StoreError.scenarioNotFound",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Realm/DataStore.swift",
-      "line": 15,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 17,
       "symbol": "StoreError.unableToSaveScenario",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Realm/DataStore.swift",
-      "line": 16,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 18,
       "symbol": "StoreError.unableToSaveResponse",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     },
     {
-      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer/Source/Core/Realm/DataStore.swift",
-      "line": 17,
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 19,
       "symbol": "StoreError.unableToDeleteScenario",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     }
   ],
-  "source_directory": "/Users/dmukundan/Documents/Workspace/Hotwire/APIResponseSpoofer"
+  "source_directory": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer"
 }
