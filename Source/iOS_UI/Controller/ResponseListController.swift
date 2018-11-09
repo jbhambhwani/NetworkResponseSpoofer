@@ -11,9 +11,6 @@ import UIKit
 final class ResponseListController: UITableViewController {
     var suiteName = ""
     var scenarioName = ""
-    var cellHeight: CGFloat = 60.0
-    let expandText = "Expand"
-    let collapseText = "Collapse"
 
     private var allResponses = [NetworkResponse]()
     private var filteredResponses = [NetworkResponse]()
@@ -33,9 +30,9 @@ final class ResponseListController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // tableView.scrollsToTop = true
+        tableView.scrollsToTop = true
+
         tableView.tableHeaderView = searchController.searchBar
-        navigationItem.rightBarButtonItem = UIBarButtonItem(title: expandText, style: .plain, target: self, action: #selector(ResponseListController.toggleRowHeight(_:)))
         // Load the responses for the passed in scenario
         if scenarioName.count > 0 {
             loadResponses()
@@ -62,17 +59,6 @@ final class ResponseListController: UITableViewController {
         }
     }
 
-    @objc func toggleRowHeight(_ sender: UIBarButtonItem) {
-        if sender.title == expandText {
-            sender.title = collapseText
-            cellHeight = UITableView.automaticDimension
-        } else {
-            sender.title = expandText
-            cellHeight = 60.0
-        }
-        searchController.isActive = false
-        tableView.reloadData()
-    }
 }
 
 // MARK: - Tableview datasource
@@ -86,13 +72,7 @@ extension ResponseListController {
         let cell = tableView.dequeueReusableCell(withIdentifier: ResponseCell.defaultReuseIdentifier, for: indexPath) as! ResponseCell
 
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
-
-        cell.urlLabel.text = response.requestURL
-
-        if [".png", ".jpg", ".jpeg", ".tiff", ".tif", ".gif", ".bmp", ".ico"]
-            .filter({ response.requestURL.hasSuffix($0) }).count == 1 {
-            cell.reponseImageView.image = UIImage(data: response.data)
-        }
+        cell.configure(with: response)
 
         return cell
     }
@@ -102,11 +82,11 @@ extension ResponseListController {
 
 extension ResponseListController {
     override func tableView(_: UITableView, estimatedHeightForRowAt _: IndexPath) -> CGFloat {
-        return cellHeight
+        return UITableView.automaticDimension
     }
 
     override func tableView(_: UITableView, heightForRowAt _: IndexPath) -> CGFloat {
-        return cellHeight
+        return UITableView.automaticDimension
     }
 
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

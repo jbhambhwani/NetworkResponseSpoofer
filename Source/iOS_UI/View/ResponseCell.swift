@@ -9,11 +9,40 @@
 import UIKit
 
 final class ResponseCell: UITableViewCell {
-    @IBOutlet var reponseImageView: UIImageView!
+    @IBOutlet var statusLabel: UILabel!
     @IBOutlet var urlLabel: UILabel!
+    @IBOutlet var sizeLabel: UILabel!
+    @IBOutlet var mimeTypeLabel: UILabel!
+
+    func configure(with response: NetworkResponse) {
+        statusLabel.text = String(response.statusCode)
+        switch response.statusCode {
+        case 200...299:
+            statusLabel.textColor = rgb(0, 144, 81)
+        case 300...399:
+            statusLabel.textColor = rgb(255, 147, 0)
+        case 400...599:
+            statusLabel.textColor = rgb(255, 38, 0)
+        default:
+            statusLabel.textColor = .black
+        }
+
+        urlLabel.text = response.requestURL
+        sizeLabel.text = ResponseCell.formatter.string(fromByteCount: Int64(response.data.count))
+        mimeTypeLabel.text = response.mimeType
+    }
 
     override func prepareForReuse() {
-        reponseImageView.image = nil
+        statusLabel.textColor = .black
+        statusLabel.text = ""
         urlLabel.text = ""
+        sizeLabel.text = ""
+        mimeTypeLabel.text = ""
     }
+
+    static let formatter = ByteCountFormatter()
+}
+
+private func rgb(_ red: Int, _ green: Int, _ blue: Int) -> UIColor {
+    return UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: 1.0)
 }
