@@ -27,7 +27,15 @@ final class ResponseCell: UITableViewCell {
             statusLabel.textColor = .black
         }
 
-        urlLabel.text = response.requestURL
+        let part1 = NSAttributedString(string: response.httpMethod, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
+        let part2 = NSAttributedString(string: response.requestURL, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        let fullText = NSMutableAttributedString()
+        fullText.append(part1)
+        fullText.append(NSAttributedString(string: "  "))
+        fullText.append(part2)
+
+        urlLabel.attributedText = fullText
+
         sizeLabel.text = ResponseCell.formatter.string(fromByteCount: Int64(response.data.count))
         mimeTypeLabel.text = response.mimeType
     }
