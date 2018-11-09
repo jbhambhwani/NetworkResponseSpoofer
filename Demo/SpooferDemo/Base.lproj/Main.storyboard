@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13771" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hbO-Rj-gdZ">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="hbO-Rj-gdZ">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13772"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -50,19 +50,12 @@
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                         <subviews>
                                             <searchBar contentMode="redraw" placeholder="Enter website url" translatesAutoresizingMaskIntoConstraints="NO" id="FTs-AG-a3O">
-                                                <rect key="frame" x="0.0" y="0.0" width="331" height="44"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
                                                 <textInputTraits key="textInputTraits" keyboardType="URL"/>
                                                 <connections>
                                                     <outlet property="delegate" destination="BYZ-38-t0r" id="LZv-r5-oTy"/>
                                                 </connections>
                                             </searchBar>
-                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="Nye-EX-Hcm">
-                                                <rect key="frame" x="331" y="0.0" width="44" height="44"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="44" id="r6a-3i-7BE"/>
-                                                </constraints>
-                                                <color key="color" red="0.28627450980000002" green="0.56078431370000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                            </activityIndicatorView>
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="44" id="cnD-hR-AIf"/>
@@ -78,16 +71,21 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="z3Y-rQ-2Zg">
                                         <rect key="frame" x="0.0" y="454" width="375" height="25"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text="  Console" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-44-OfY">
-                                                <rect key="frame" x="0.0" y="0.0" width="350" height="25"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="751" text=" Console" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5bX-44-OfY">
+                                                <rect key="frame" x="0.0" y="0.0" width="330" height="25"/>
                                                 <color key="backgroundColor" red="0.20000000300000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <gestureRecognizers/>
-                                                <fontDescription key="fontDescription" type="system" weight="thin" pointSize="15"/>
+                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="white" translatesAutoresizingMaskIntoConstraints="NO" id="O5D-Or-1Zd">
+                                                <rect key="frame" x="330" y="0.0" width="20" height="25"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
+                                            </activityIndicatorView>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Drag Reorder-100" translatesAutoresizingMaskIntoConstraints="NO" id="ib7-9O-7y5">
                                                 <rect key="frame" x="350" y="0.0" width="25" height="25"/>
+                                                <color key="backgroundColor" red="0.20000000000000001" green="0.20000000300000001" blue="0.20000000300000001" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="25" id="MkZ-1Q-jLS"/>
                                                     <constraint firstAttribute="width" constant="25" id="kgu-aC-oL4"/>
@@ -126,7 +124,7 @@
                     </view>
                     <navigationItem key="navigationItem" title="Spoofer Demo" id="Tz4-5j-4ue"/>
                     <connections>
-                        <outlet property="activityIndicator" destination="Nye-EX-Hcm" id="vuj-Fp-wGg"/>
+                        <outlet property="activityIndicatorView" destination="O5D-Or-1Zd" id="aKz-Cc-c0u"/>
                         <outlet property="clearButton" destination="R6r-af-890" id="oqt-eT-Izk"/>
                         <outlet property="consoleHeightConstraint" destination="urc-bF-Do9" id="pZT-DW-CmD"/>
                         <outlet property="consolePanGestureRecognizer" destination="9fY-K2-sz8" id="9dk-5k-L15"/>

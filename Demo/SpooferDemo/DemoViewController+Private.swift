@@ -20,15 +20,15 @@ enum ButtonTitle: String {
 
 extension DemoViewController: UIWebViewDelegate {
     func webViewDidStartLoad(_: UIWebView) {
-        activityIndicator.startAnimating()
+        activityIndicatorView.startAnimating()
     }
 
     func webViewDidFinishLoad(_: UIWebView) {
-        activityIndicator.stopAnimating()
+        activityIndicatorView.stopAnimating()
     }
 
     func webView(_: UIWebView, didFailLoadWithError _: Error) {
-        activityIndicator.stopAnimating()
+        activityIndicatorView.stopAnimating()
     }
 
     func webView(_: UIWebView, shouldStartLoadWith request: URLRequest, navigationType _: UIWebView.NavigationType) -> Bool {

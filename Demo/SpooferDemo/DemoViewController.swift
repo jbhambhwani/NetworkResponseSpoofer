@@ -13,11 +13,11 @@ import WebKit
 final class DemoViewController: UIViewController {
     @IBOutlet var searchBar: UISearchBar!
     @IBOutlet var webview: UIWebView!
+    @IBOutlet var activityIndicatorView: UIActivityIndicatorView!
     @IBOutlet var consoleTextView: UITextView!
     @IBOutlet var recordButton: UIBarButtonItem!
     @IBOutlet var replayButton: UIBarButtonItem!
     @IBOutlet var clearButton: UIBarButtonItem!
-    @IBOutlet var activityIndicator: UIActivityIndicatorView!
     @IBOutlet var consoleHeightConstraint: NSLayoutConstraint!
     @IBOutlet var consolePanGestureRecognizer: UIPanGestureRecognizer!
 
