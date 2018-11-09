@@ -39,8 +39,8 @@ protocol Store {
     func load(scenarioName: String, suite: String) -> Result<Scenario>
     func delete(scenarioName: String, suite: String) -> Result<Bool>
     // Response
-    func save(response: APIResponse, scenarioName: String, suite: String) -> Result<APIResponse>
-    func delete(response: APIResponse, scenarioName: String, suite: String) -> Result<Bool>
+    func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse>
+    func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool>
 }
 
 enum DataStore {
@@ -60,11 +60,11 @@ enum DataStore {
         return RealmStore.sharedInstance.delete(scenarioName: scenarioName, suite: suite)
     }
 
-    static func save(response: APIResponse, scenarioName: String, suite: String) -> Result<APIResponse> {
+    static func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse> {
         return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName, suite: suite)
     }
 
-    static func delete(response: APIResponse, scenarioName: String, suite: String) -> Result<Bool> {
+    static func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool> {
         return RealmStore.sharedInstance.delete(response: response, scenarioName: scenarioName, suite: suite)
     }
 }
@@ -122,8 +122,8 @@ extension RealmStore: Store {
 
         do {
             try realm.write {
-                scenario.apiResponses.forEach({ realm.delete($0.headerFields) })
-                realm.delete(scenario.apiResponses)
+                scenario.networkResponses.forEach({ realm.delete($0.headerFields) })
+                realm.delete(scenario.networkResponses)
                 realm.delete(scenario)
             }
             return .success(true)
@@ -134,12 +134,12 @@ extension RealmStore: Store {
 
     // MARK: - Response Management
 
-    func save(response: APIResponse, scenarioName: String, suite: String) -> Result<APIResponse> {
+    func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse> {
         guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
 
         do {
             try realm.write {
-                scenario.apiResponses.append(response)
+                scenario.networkResponses.append(response)
             }
             return .success(response)
         } catch {
@@ -147,12 +147,12 @@ extension RealmStore: Store {
         }
     }
 
-    func delete(response: APIResponse, scenarioName: String, suite: String) -> Result<Bool> {
+    func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool> {
         guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
 
         do {
             try realm.write {
-                if let responseToDelete = scenario.apiResponses.first(where: { $0 == response }) {
+                if let responseToDelete = scenario.networkResponses.first(where: { $0 == response }) {
                     realm.delete(responseToDelete.headerFields)
                     realm.delete(responseToDelete)
                 }

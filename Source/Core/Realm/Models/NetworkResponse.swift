@@ -1,5 +1,5 @@
 //
-//  APIResponse.swift
+//  NetworkResponse.swift
 //  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 10/26/16.
@@ -9,7 +9,7 @@
 import Foundation
 import RealmSwift
 
-class APIResponse: Object {
+class NetworkResponse: Object {
     @objc dynamic var requestURL = ""
     @objc dynamic var httpMethod = ""
     @objc dynamic var statusCode = 0
@@ -51,8 +51,8 @@ class APIResponse: Object {
 
 // MARK: -
 
-extension APIResponse {
-    class func responseFrom(httpRequest: URLRequest, httpResponse: URLResponse, data: Data?) -> APIResponse? {
+extension NetworkResponse {
+    class func responseFrom(httpRequest: URLRequest, httpResponse: URLResponse, data: Data?) -> NetworkResponse? {
         guard let httpURLResponse = httpResponse as? HTTPURLResponse,
             let url = httpRequest.url,
             let method = httpRequest.httpMethod,
@@ -65,7 +65,7 @@ extension APIResponse {
         let contentLength = NSInteger(httpURLResponse.expectedContentLength)
         let statusCode = NSInteger(httpURLResponse.statusCode)
 
-        let response = APIResponse()
+        let response = NetworkResponse()
         response.requestURL = url.absoluteString.lowercased()
         response.httpMethod = method
         response.statusCode = statusCode
@@ -81,9 +81,9 @@ extension APIResponse {
 
 // MARK: - Equatable
 
-extension APIResponse {
+extension NetworkResponse {
     override func isEqual(_ object: Any?) -> Bool {
-        guard let rhs = object as? APIResponse,
+        guard let rhs = object as? NetworkResponse,
             let lhsURL = URL(string: requestURL),
             let rhsURL = URL(string: rhs.requestURL) else { return false }
 
@@ -100,7 +100,7 @@ extension APIResponse {
 
 // MARK: - Helper methods for debugging
 
-extension APIResponse {
+extension NetworkResponse {
     override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)" }
     override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(String(describing: mimeType))\nEncoding: \(String(describing: encoding))\nHeaderFields: \(headerFields)\n" }
 }

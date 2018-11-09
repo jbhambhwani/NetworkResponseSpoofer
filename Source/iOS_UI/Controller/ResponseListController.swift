@@ -15,8 +15,8 @@ final class ResponseListController: UITableViewController {
     let expandText = "Expand"
     let collapseText = "Collapse"
 
-    private var allResponses = [APIResponse]()
-    private var filteredResponses = [APIResponse]()
+    private var allResponses = [NetworkResponse]()
+    private var filteredResponses = [NetworkResponse]()
 
     private lazy var searchController: UISearchController = {
         let controller = UISearchController(searchResultsController: nil)
@@ -55,7 +55,7 @@ final class ResponseListController: UITableViewController {
         let loadResult = DataStore.load(scenarioName: scenarioName, suite: suiteName)
         switch loadResult {
         case let .success(scenario):
-            allResponses = Array(scenario.apiResponses)
+            allResponses = Array(scenario.networkResponses)
             tableView.reloadData()
         case .failure:
             break

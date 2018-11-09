@@ -4,13 +4,13 @@ target 'SpooferDemo' do
   platform :ios, '10.0'
   use_frameworks!
 
-  pod 'APIResponseSpoofer', :path => "../"
-  pod 'APIResponseSpoofer/iOS-UI', :path => "../"
+  pod 'NetworkResponseSpoofer', :path => "../"
+  pod 'NetworkResponseSpoofer/iOS-UI', :path => "../"
 end
 
 target 'SpooferDemo_Mac' do
   platform :osx, '10.11'
   use_frameworks!
 
-  pod 'APIResponseSpoofer', :path => "../"
+  pod 'NetworkResponseSpoofer', :path => "../"
 end

@@ -59,7 +59,7 @@ final class DataTests: XCTestCase {
             let loadResult = DataStore.load(scenarioName: smokeTest, suite: defaultSuiteName)
             switch loadResult {
             case .success(let scenario):
-                guard let responseData = scenario.apiResponses.first?.data else {
+                guard let responseData = scenario.networkResponses.first?.data else {
                     XCTFail("No data was found on smoke test scenario")
                     return
                 }

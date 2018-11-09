@@ -22,7 +22,7 @@ public enum SpooferError: Int, Error {
     case documentsAccessError
     /// Error when unable to create a folder inside the Documents folder
     case folderCreationError
-    /// Error when scenario file has no APIResponses recorded
+    /// Error when scenario file has no NetworkResponses recorded
     case emptyScenarioError
     /// Error when no saved response is found for a particular request
     case noSavedResponseError

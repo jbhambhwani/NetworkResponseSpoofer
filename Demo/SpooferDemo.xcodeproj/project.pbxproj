@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1A03B4D21FB3E42D191450DA /* Pods_SpooferDemo_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5C413A0760FE300622D92AE6 /* Pods_SpooferDemo_Mac.framework */; };
 		4107EC631D371AA900C49F68 /* DemoViewController+Private.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4107EC621D371AA900C49F68 /* DemoViewController+Private.swift */; };
 		410FA4ED1DDAABAB00478DA7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FA4EC1DDAABAB00478DA7 /* AppDelegate.swift */; };
 		410FA4EF1DDAABAB00478DA7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410FA4EE1DDAABAB00478DA7 /* ViewController.swift */; };
@@ -18,7 +17,8 @@
 		412A7B9B1BC9D441002E9FF2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B991BC9D441002E9FF2 /* Main.storyboard */; };
 		412A7B9D1BC9D441002E9FF2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */; };
 		412A7BA01BC9D441002E9FF2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7B9E1BC9D441002E9FF2 /* LaunchScreen.storyboard */; };
-		A64561934B2BFB97AD68D09A /* Pods_SpooferDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CD1E9F1CF72D4B3E7DCD1798 /* Pods_SpooferDemo.framework */; };
+		5D573EBEEC42A308AFEC1867 /* Pods_SpooferDemo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A2C276A77F8268FA6DD7B93B /* Pods_SpooferDemo.framework */; };
+		FC1A2422E5613B798DD9E4C3 /* Pods_SpooferDemo_Mac.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE38FF816FA241BD06B2E870 /* Pods_SpooferDemo_Mac.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -35,6 +35,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		1AA66CA9AA42FA4D36B07DA6 /* Pods-SpooferDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo.release.xcconfig"; sourceTree = "<group>"; };
 		4107EC621D371AA900C49F68 /* DemoViewController+Private.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "DemoViewController+Private.swift"; sourceTree = "<group>"; };
 		410FA4EA1DDAABAB00478DA7 /* SpooferDemo_Mac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SpooferDemo_Mac.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		410FA4EC1DDAABAB00478DA7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -49,14 +50,11 @@
 		412A7B9C1BC9D441002E9FF2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		412A7B9F1BC9D441002E9FF2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		412A7BA11BC9D441002E9FF2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		5C413A0760FE300622D92AE6 /* Pods_SpooferDemo_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpooferDemo_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		651A01C503F6DD189BE8B855 /* Pods-SpooferDemo_Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo_Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac.release.xcconfig"; sourceTree = "<group>"; };
-		8D06C23B95B55F5731AF727A /* Pods-SpooferDemo_Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo_Mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac.debug.xcconfig"; sourceTree = "<group>"; };
-		AD419F70D13F3D405227A665 /* Pods-SpooferDemo.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo.release.xcconfig"; sourceTree = "<group>"; };
-		C857FEEF07F960F90F20D9C6 /* Pods-SpooferDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo.debug.xcconfig"; sourceTree = "<group>"; };
-		C9C814ACA93D39CC86FA52B9 /* Pods-SpooferDemo Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo Mac/Pods-SpooferDemo Mac.release.xcconfig"; sourceTree = "<group>"; };
-		CD1E9F1CF72D4B3E7DCD1798 /* Pods_SpooferDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpooferDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F3CAE2BC061D1E6EF35E0901 /* Pods-SpooferDemo Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo Mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo Mac/Pods-SpooferDemo Mac.debug.xcconfig"; sourceTree = "<group>"; };
+		A2C276A77F8268FA6DD7B93B /* Pods_SpooferDemo.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpooferDemo.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		A574C60A9B0B067E52DB65F0 /* Pods-SpooferDemo_Mac.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo_Mac.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac.debug.xcconfig"; sourceTree = "<group>"; };
+		BE38FF816FA241BD06B2E870 /* Pods_SpooferDemo_Mac.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SpooferDemo_Mac.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CAF38B6D87022A2A8F088B9B /* Pods-SpooferDemo_Mac.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo_Mac.release.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac.release.xcconfig"; sourceTree = "<group>"; };
+		FD57C2E25CD75BF0579139E2 /* Pods-SpooferDemo.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SpooferDemo.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,7 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1A03B4D21FB3E42D191450DA /* Pods_SpooferDemo_Mac.framework in Frameworks */,
+				FC1A2422E5613B798DD9E4C3 /* Pods_SpooferDemo_Mac.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,7 +70,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A64561934B2BFB97AD68D09A /* Pods_SpooferDemo.framework in Frameworks */,
+				5D573EBEEC42A308AFEC1867 /* Pods_SpooferDemo.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -97,8 +95,8 @@
 				412A7B941BC9D441002E9FF2 /* SpooferDemo */,
 				410FA4EB1DDAABAB00478DA7 /* SpooferDemo Mac */,
 				412A7B931BC9D441002E9FF2 /* Products */,
-				DEBCFF88906EC4F47E7E41AA /* Pods */,
-				C16485732916BEE4F7A761AF /* Frameworks */,
+				D7A869EA1023A10794C11264 /* Pods */,
+				5537607DD533A80A5C9DAA58 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -133,24 +131,22 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		C16485732916BEE4F7A761AF /* Frameworks */ = {
+		5537607DD533A80A5C9DAA58 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				CD1E9F1CF72D4B3E7DCD1798 /* Pods_SpooferDemo.framework */,
-				5C413A0760FE300622D92AE6 /* Pods_SpooferDemo_Mac.framework */,
+				A2C276A77F8268FA6DD7B93B /* Pods_SpooferDemo.framework */,
+				BE38FF816FA241BD06B2E870 /* Pods_SpooferDemo_Mac.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		DEBCFF88906EC4F47E7E41AA /* Pods */ = {
+		D7A869EA1023A10794C11264 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				C857FEEF07F960F90F20D9C6 /* Pods-SpooferDemo.debug.xcconfig */,
-				AD419F70D13F3D405227A665 /* Pods-SpooferDemo.release.xcconfig */,
-				F3CAE2BC061D1E6EF35E0901 /* Pods-SpooferDemo Mac.debug.xcconfig */,
-				C9C814ACA93D39CC86FA52B9 /* Pods-SpooferDemo Mac.release.xcconfig */,
-				8D06C23B95B55F5731AF727A /* Pods-SpooferDemo_Mac.debug.xcconfig */,
-				651A01C503F6DD189BE8B855 /* Pods-SpooferDemo_Mac.release.xcconfig */,
+				FD57C2E25CD75BF0579139E2 /* Pods-SpooferDemo.debug.xcconfig */,
+				1AA66CA9AA42FA4D36B07DA6 /* Pods-SpooferDemo.release.xcconfig */,
+				A574C60A9B0B067E52DB65F0 /* Pods-SpooferDemo_Mac.debug.xcconfig */,
+				CAF38B6D87022A2A8F088B9B /* Pods-SpooferDemo_Mac.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -162,11 +158,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 410FA4F81DDAABAB00478DA7 /* Build configuration list for PBXNativeTarget "SpooferDemo_Mac" */;
 			buildPhases = (
-				76D6C608A798991C7A23AFF7 /* [CP] Check Pods Manifest.lock */,
+				025CF54852B3DF00514654EA /* [CP] Check Pods Manifest.lock */,
 				410FA4E61DDAABAB00478DA7 /* Sources */,
 				410FA4E71DDAABAB00478DA7 /* Frameworks */,
 				410FA4E81DDAABAB00478DA7 /* Resources */,
-				E3C2F459F4960B5E34650B7E /* [CP] Embed Pods Frameworks */,
+				8C7DE32E8FACCC2FFF918AB8 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -181,12 +177,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 412A7BA41BC9D441002E9FF2 /* Build configuration list for PBXNativeTarget "SpooferDemo" */;
 			buildPhases = (
-				2B9BB5405776BC5D58467B90 /* [CP] Check Pods Manifest.lock */,
+				16E72D3284215854728FF443 /* [CP] Check Pods Manifest.lock */,
 				412A7B8E1BC9D441002E9FF2 /* Sources */,
 				412A7B8F1BC9D441002E9FF2 /* Frameworks */,
 				412A7B901BC9D441002E9FF2 /* Resources */,
 				41F2EB301D38248100916C44 /* Embed Frameworks */,
-				DFC3C460A22A9AFDBC9A0EA5 /* [CP] Embed Pods Frameworks */,
+				085434ED731CCE038EDB2932 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -262,34 +258,20 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		2B9BB5405776BC5D58467B90 /* [CP] Check Pods Manifest.lock */ = {
+		025CF54852B3DF00514654EA /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+			);
+			inputFileListPaths = (
 			);
 			inputPaths = (
 				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
 				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SpooferDemo-checkManifestLockResult.txt",
+			outputFileListPaths = (
 			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		76D6C608A798991C7A23AFF7 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-SpooferDemo_Mac-checkManifestLockResult.txt",
 			);
@@ -298,20 +280,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		DFC3C460A22A9AFDBC9A0EA5 /* [CP] Embed Pods Frameworks */ = {
+		085434ED731CCE038EDB2932 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/APIResponseSpoofer.default-iOS-UI/APIResponseSpoofer.framework",
+				"${BUILT_PRODUCTS_DIR}/NetworkResponseSpoofer.default-iOS-UI/NetworkResponseSpoofer.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APIResponseSpoofer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NetworkResponseSpoofer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -320,20 +306,46 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E3C2F459F4960B5E34650B7E /* [CP] Embed Pods Frameworks */ = {
+		16E72D3284215854728FF443 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-SpooferDemo-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		8C7DE32E8FACCC2FFF918AB8 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/APIResponseSpoofer/APIResponseSpoofer.framework",
+				"${BUILT_PRODUCTS_DIR}/NetworkResponseSpoofer/NetworkResponseSpoofer.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-macOS/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-macOS/RealmSwift.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
 			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/APIResponseSpoofer.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/NetworkResponseSpoofer.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RealmSwift.framework",
 			);
@@ -396,7 +408,7 @@
 /* Begin XCBuildConfiguration section */
 		410FA4F61DDAABAB00478DA7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 8D06C23B95B55F5731AF727A /* Pods-SpooferDemo_Mac.debug.xcconfig */;
+			baseConfigurationReference = A574C60A9B0B067E52DB65F0 /* Pods-SpooferDemo_Mac.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -420,7 +432,7 @@
 		};
 		410FA4F71DDAABAB00478DA7 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 651A01C503F6DD189BE8B855 /* Pods-SpooferDemo_Mac.release.xcconfig */;
+			baseConfigurationReference = CAF38B6D87022A2A8F088B9B /* Pods-SpooferDemo_Mac.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -545,7 +557,7 @@
 		};
 		412A7BA51BC9D441002E9FF2 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = C857FEEF07F960F90F20D9C6 /* Pods-SpooferDemo.debug.xcconfig */;
+			baseConfigurationReference = FD57C2E25CD75BF0579139E2 /* Pods-SpooferDemo.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -560,7 +572,7 @@
 		};
 		412A7BA61BC9D441002E9FF2 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = AD419F70D13F3D405227A665 /* Pods-SpooferDemo.release.xcconfig */;
+			baseConfigurationReference = 1AA66CA9AA42FA4D36B07DA6 /* Pods-SpooferDemo.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = "$(inherited)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;

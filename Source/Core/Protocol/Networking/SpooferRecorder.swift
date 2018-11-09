@@ -125,7 +125,7 @@ private extension SpooferRecorder {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
 
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        guard let currentResponse = APIResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
+        guard let currentResponse = NetworkResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
         let saveResult = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
         switch saveResult {
         case let .success(response):

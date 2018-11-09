@@ -6,7 +6,7 @@
 //  Copyright © 2016 Hotwire. All rights reserved.
 //
 
-import APIResponseSpoofer
+import NetworkResponseSpoofer
 import Cocoa
 import WebKit
 
@@ -31,7 +31,7 @@ final class ViewController: NSViewController {
     func loadWebPage() {
         let url = textField.stringValue
         guard url.count > 0 else { return }
-        Spoofer.startRecording(scenarioName: "MacApp")
+        Spoofer.startReplaying(scenarioName: "MacApp")
         webView.mainFrameURL = url.hasPrefix("http") ? url : "https://\(url)"
     }
 }

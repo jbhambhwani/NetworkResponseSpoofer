@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>
-	<string>APIResponseSpoofer-iOS-UI</string>
+	<string>NetworkResponseSpoofer-iOS-UI</string>
 	<key>CFBundleIdentifier</key>
 	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
@@ -15,7 +15,7 @@
 	<key>CFBundlePackageType</key>
 	<string>FMWK</string>
 	<key>CFBundleShortVersionString</key>
-	<string>7.2.0</string>
+	<string>8.0.0</string>
 	<key>CFBundleVersion</key>
 	<string>0</string>
 	<key>NSPrincipalClass</key>

@@ -18,7 +18,7 @@
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
 		413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
 		4146302E1E39521900E5CADC /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */; };
-		4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		4147EA531B684D7E001DE517 /* NetworkResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
 		41570A7C1DD6F57A0098C2FF /* URLTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7A1DD6F5290098C2FF /* URLTests.swift */; };
@@ -48,7 +48,7 @@
 		419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
 		419430CD1DDAA4F300DA65AF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
 		419430CE1DDAA50A00DA65AF /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
-		419430CF1DDAA51A00DA65AF /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponse.swift */; };
+		419430CF1DDAA51A00DA65AF /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* NetworkResponse.swift */; };
 		419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */; };
 		419430D11DDAA52000DA65AF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* Scenario.swift */; };
 		419430D21DDAA53400DA65AF /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
@@ -58,7 +58,7 @@
 		419430D61DDAA59200DA65AF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
 		419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D81DDAA67B00DA65AF /* UIProtocols.swift */; };
 		419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D91DDAA67B00DA65AF /* UITableViewCell.swift */; };
-		41AA10EC1DC1358000860295 /* APIResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* APIResponse.swift */; };
+		41AA10EC1DC1358000860295 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* NetworkResponse.swift */; };
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
@@ -100,7 +100,7 @@
 		4137B6111BD87837005AF53E /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = APIResponseSpoofer.h; sourceTree = "<group>"; };
+		4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkResponseSpoofer.h; sourceTree = "<group>"; };
 		4147EA691B684DBD001DE517 /* Spoofer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Spoofer.swift; sourceTree = "<group>"; };
 		4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferRecorder.swift; sourceTree = "<group>"; };
 		4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Carthage.xcconfig; sourceTree = "<group>"; };
@@ -112,14 +112,14 @@
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		4180391D1BCB73FE004E1534 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		4182093D1F4D14F8009E69D6 /* APIResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "APIResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
+		4182093D1F4D14F8009E69D6 /* NetworkResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NetworkResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
 		4182093E1F4D14F8009E69D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPathRangeReplacement.swift; sourceTree = "<group>"; };
 		419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkResponseSpoofer_iOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		419430C01DDAA21E00DA65AF /* SpooferUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferUI.swift; sourceTree = "<group>"; };
 		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
-		41AA10EB1DC1358000860295 /* APIResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIResponse.swift; sourceTree = "<group>"; };
+		41AA10EB1DC1358000860295 /* NetworkResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
@@ -204,7 +204,7 @@
 		413D55EA1DCA8CDB00A5E084 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				41AA10EB1DC1358000860295 /* APIResponse.swift */,
+				41AA10EB1DC1358000860295 /* NetworkResponse.swift */,
 				41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */,
 				41E04BB31DC41F3900AD8261 /* Scenario.swift */,
 			);
@@ -314,7 +314,7 @@
 		4182093F1F4D1514009E69D6 /* Core */ = {
 			isa = PBXGroup;
 			children = (
-				4147EA521B684D7E001DE517 /* APIResponseSpoofer.h */,
+				4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */,
 				4147EA511B684D7E001DE517 /* Info.plist */,
 			);
 			path = Core;
@@ -331,7 +331,7 @@
 		419430AF1DDA96E700DA65AF /* iOS UI */ = {
 			isa = PBXGroup;
 			children = (
-				4182093D1F4D14F8009E69D6 /* APIResponseSpoofer iOS UI.h */,
+				4182093D1F4D14F8009E69D6 /* NetworkResponseSpoofer iOS UI.h */,
 				4182093E1F4D14F8009E69D6 /* Info.plist */,
 			);
 			path = "iOS UI";
@@ -384,7 +384,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4147EA531B684D7E001DE517 /* APIResponseSpoofer.h in Headers */,
+				4147EA531B684D7E001DE517 /* NetworkResponseSpoofer.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -629,7 +629,7 @@
 				41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */,
 				415DAEDB1E31A8CC00E6FE59 /* FileManagerExtension.swift in Sources */,
 				41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */,
-				41AA10EC1DC1358000860295 /* APIResponse.swift in Sources */,
+				41AA10EC1DC1358000860295 /* NetworkResponse.swift in Sources */,
 				41E04BB41DC41F3900AD8261 /* Scenario.swift in Sources */,
 				4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */,
 			);
@@ -667,7 +667,7 @@
 				4112276B1E39625D00E1487B /* Validator.swift in Sources */,
 				419430C71DDAA40300DA65AF /* URLSessionConfigurationExtension.swift in Sources */,
 				419178811FFD9A450071CFA2 /* URLPathRangeReplacement.swift in Sources */,
-				419430CF1DDAA51A00DA65AF /* APIResponse.swift in Sources */,
+				419430CF1DDAA51A00DA65AF /* NetworkResponse.swift in Sources */,
 				419430D31DDAA54200DA65AF /* Utility.swift in Sources */,
 				415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */,
 				419430C61DDAA3E100DA65AF /* Constants.swift in Sources */,
