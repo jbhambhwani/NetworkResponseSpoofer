@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
     var model: [SpooferConfigurationType: Any]

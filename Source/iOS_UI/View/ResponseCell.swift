@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 final class ResponseCell: UITableViewCell {
     @IBOutlet var statusLabel: UILabel!

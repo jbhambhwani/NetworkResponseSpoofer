@@ -62,6 +62,7 @@
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
+		41C2F9EB21966A1900FD492B /* NetworkResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */; };
 		41C95FFA1E3A806E00B749B0 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C95FF91E3A806E00B749B0 /* Media.xcassets */; };
 		41C95FFD1E3A87B000B749B0 /* ResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
@@ -74,6 +75,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		411A357D1BC74A7D001D128D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4147EA441B684D7E001DE517 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4147EA4C1B684D7E001DE517;
+			remoteInfo = NetworkResponseSpoofer;
+		};
+		41C2F9E8219669CC00FD492B /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4147EA441B684D7E001DE517 /* Project object */;
 			proxyType = 1;
@@ -155,6 +163,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41C2F9EB21966A1900FD492B /* NetworkResponseSpoofer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,6 +228,7 @@
 				4147EA501B684D7E001DE517 /* Supporting Files */,
 				4147EA4E1B684D7E001DE517 /* Products */,
 				411A35781BC74A7D001D128D /* Tests */,
+				41C2F9EA21966A1900FD492B /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -368,6 +378,13 @@
 			path = Realm;
 			sourceTree = "<group>";
 		};
+		41C2F9EA21966A1900FD492B /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		41E62FE21DD2AC8D00ECC06F /* StateManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -421,7 +438,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer" */;
 			buildPhases = (
-				415CB18D1C9B3B8E00827A0B /* Elevate TODO's to Warnings */,
 				4147EA481B684D7E001DE517 /* Sources */,
 				4147EA491B684D7E001DE517 /* Frameworks */,
 				4147EA4A1B684D7E001DE517 /* Headers */,
@@ -450,6 +466,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				41C2F9E9219669CC00FD492B /* PBXTargetDependency */,
 			);
 			name = "NetworkResponseSpoofer iOS UI";
 			productName = "NetworkResponseSpoofer iOS UI";
@@ -545,21 +562,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
-		};
-		415CB18D1C9B3B8E00827A0B /* Elevate TODO's to Warnings */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "Elevate TODO's to Warnings";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Elevate all TODO's and FIXME's in project to warnings\n${SRCROOT}/scripts/elevate-todos.sh";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -575,7 +578,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks";
+			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
 		41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -683,6 +686,11 @@
 			isa = PBXTargetDependency;
 			target = 4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */;
 			targetProxy = 411A357D1BC74A7D001D128D /* PBXContainerItemProxy */;
+		};
+		41C2F9E9219669CC00FD492B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */;
+			targetProxy = 41C2F9E8219669CC00FD492B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -882,7 +890,6 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Core/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
-				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.networkresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

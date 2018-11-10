@@ -6,6 +6,7 @@
 //  Copyright © 2017 Hotwire. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 final class RecordTableViewController: UITableViewController {
