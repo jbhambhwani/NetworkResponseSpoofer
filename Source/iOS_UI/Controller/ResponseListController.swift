@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NetworkResponseSpoofer
 
 final class ResponseListController: UITableViewController {
     var suiteName = ""
