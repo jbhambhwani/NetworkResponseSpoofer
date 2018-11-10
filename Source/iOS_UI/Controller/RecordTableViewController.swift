@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import NetworkResponseSpoofer
 
 final class RecordTableViewController: UITableViewController {
     static let identifier = "RecordNavigationController"

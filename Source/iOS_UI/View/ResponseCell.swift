@@ -8,7 +8,6 @@
 
 import UIKit
 import Foundation
-import NetworkResponseSpoofer
 
 final class ResponseCell: UITableViewCell {
     @IBOutlet var statusLabel: UILabel!

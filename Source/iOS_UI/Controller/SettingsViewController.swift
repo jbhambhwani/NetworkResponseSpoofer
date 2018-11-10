@@ -8,7 +8,6 @@
 
 import Foundation
 import UIKit
-import NetworkResponseSpoofer
 
 final class SettingsViewController: UITableViewController {
     // Array of dictionaries of Spoofer Configuration Type: Any
