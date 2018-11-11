@@ -120,8 +120,8 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
 
 // MARK: - Response Persistance
 
-private extension SpooferRecorder {
-    func saveResponse() {
+extension SpooferRecorder {
+    public func saveResponse() {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
 
         // Create the internal data structure which encapsulates all the needed data to replay this response later

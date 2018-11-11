@@ -9,15 +9,15 @@
 import Foundation
 import RealmSwift
 
-class Scenario: Object {
-    @objc dynamic var name = "Default"
-    let networkResponses = List<NetworkResponse>()
+public class Scenario: Object {
+    @objc public dynamic var name = "Default"
+    public let networkResponses = List<NetworkResponse>()
 
-    override static func primaryKey() -> String {
+    public override static func primaryKey() -> String {
         return "name"
     }
 
-    override static func indexedProperties() -> [String] {
+    public override static func indexedProperties() -> [String] {
         return ["name"]
     }
 }
@@ -42,6 +42,6 @@ extension Scenario {
 // MARK: Helper methods for debugging
 
 extension Scenario {
-    override var description: String { return "Scenario: \(name)" }
-    override var debugDescription: String { return "Scenario: \(name)\nResponses: \(networkResponses)\n" }
+    public override var description: String { return "Scenario: \(name)" }
+    public override var debugDescription: String { return "Scenario: \(name)\nResponses: \(networkResponses)\n" }
 }

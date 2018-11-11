@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum NetworkAction {
+public enum NetworkAction {
     case record(scenarioName: String, suiteName: String)
     case replay(scenarioName: String, suiteName: String)
     case stopIntercept

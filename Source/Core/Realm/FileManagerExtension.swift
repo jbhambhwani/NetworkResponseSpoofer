@@ -12,7 +12,7 @@ let realmFileExtension = "realm"
 
 extension FileManager {
     // Retrieve all Realm file names from Spoofer Docs directory
-    class func allSuiteNames() -> [String] {
+    public class func allSuiteNames() -> [String] {
         var allFiles = [URL]()
         do {
             try allFiles = FileManager.default.contentsOfDirectory(at: spooferDocumentsDirectory,

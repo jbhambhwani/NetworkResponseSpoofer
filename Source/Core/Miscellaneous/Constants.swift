@@ -32,7 +32,7 @@ public enum SpooferError: Int, Error {
 
 // MARK: Internal
 
-enum SpooferConfigurationType: String {
+public enum SpooferConfigurationType: String {
     case queryValueNormalization = "Query Value Normalization"
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
     case spoofedHosts = "Hostnames to Spoof"
@@ -44,11 +44,11 @@ enum SpooferConfigurationType: String {
     case replacePathRanges = "Replace Path Range"
     case blank = ""
 
-    var allTypes: [SpooferConfigurationType] {
+    public var allTypes: [SpooferConfigurationType] {
         return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .normalizedSubdomains, .normalizedQueryParameters, .normalizedPathComponents, .replacePathRanges, .blank]
     }
 
-    var description: String {
+    public var description: String {
         switch self {
         case .queryValueNormalization:
             return "Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are \n1. Reduced file size saving some storage space. \n2. Consistent response for the same end point regardless of query parameter values"

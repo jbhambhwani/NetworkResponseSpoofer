@@ -9,9 +9,9 @@
 import Foundation
 
 public struct URLPathRangeReplacement {
-    let start: String
-    let end: String?
-    let replacement: String
+    public let start: String
+    public let end: String?
+    public let replacement: String
 
     public init(start: String, end: String? = nil, replacement: String = "") {
         self.start = start.lowercased()

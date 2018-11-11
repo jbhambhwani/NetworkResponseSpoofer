@@ -9,12 +9,12 @@
 import Foundation
 
 /// Protocol to be adopted by NSURLProtocol adopters to simplify the intercept setup process
-protocol NetworkInterceptable: class {
+public protocol NetworkInterceptable: class {
     static func startIntercept() -> Bool
     static func stopIntercept()
 }
 
-extension NetworkInterceptable {
+public extension NetworkInterceptable {
     static func startIntercept() -> Bool {
         let protocolRegistered = URLProtocol.registerClass(Self.self)
         // Swizzle will only happen once due to being a global closure

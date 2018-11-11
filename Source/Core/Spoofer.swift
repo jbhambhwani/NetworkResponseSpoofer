@@ -185,7 +185,7 @@ public final class Spoofer: NSObject {
         sharedInstance.queryValueNormalization = false
     }
 
-    class var configurations: [SpooferConfigurationType: Any]? {
+    public class var configurations: [SpooferConfigurationType: Any]? {
         return [
             .queryValueNormalization: Spoofer.normalizeQueryValues,
             .acceptSelfSignedCertificate: Spoofer.allowSelfSignedCertificate,

@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		410489C21C99D94800E99745 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
 		4112276A1E39625D00E1487B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227691E39625D00E1487B /* Validator.swift */; };
-		4112276B1E39625D00E1487B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227691E39625D00E1487B /* Validator.swift */; };
 		411227701E3966C700E1487B /* SuiteListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112276E1E3966AC00E1487B /* SuiteListController.swift */; };
 		411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
 		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
@@ -17,7 +16,6 @@
 		411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
 		413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
-		4146302E1E39521900E5CADC /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */; };
 		4147EA531B684D7E001DE517 /* NetworkResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
@@ -30,7 +28,6 @@
 		4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
 		4180391E1BCB73FE004E1534 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
 		419178801FFD99750071CFA2 /* URLPathRangeReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */; };
-		419178811FFD9A450071CFA2 /* URLPathRangeReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */; };
 		419430B61DDA970800DA65AF /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
 		419430B71DDA970800DA65AF /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
 		419430B81DDA970800DA65AF /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
@@ -38,24 +35,6 @@
 		419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */; };
 		419430BD1DDA974800DA65AF /* SwitchWithTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */; };
 		419430C11DDAA21E00DA65AF /* SpooferUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430C01DDAA21E00DA65AF /* SpooferUI.swift */; };
-		419430C21DDAA25700DA65AF /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
-		419430C31DDAA2E900DA65AF /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
-		419430C41DDAA2F800DA65AF /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
-		419430C51DDAA30B00DA65AF /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
-		419430C61DDAA3E100DA65AF /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
-		419430C71DDAA40300DA65AF /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
-		419430C91DDAA41E00DA65AF /* DataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FC1DC96B5800B457F4 /* DataStore.swift */; };
-		419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
-		419430CD1DDAA4F300DA65AF /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F879FE1DC96BE900B457F4 /* Result.swift */; };
-		419430CE1DDAA50A00DA65AF /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
-		419430CF1DDAA51A00DA65AF /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* NetworkResponse.swift */; };
-		419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41F87A001DCA547A00B457F4 /* ResponseHeaderItem.swift */; };
-		419430D11DDAA52000DA65AF /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* Scenario.swift */; };
-		419430D21DDAA53400DA65AF /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
-		419430D31DDAA54200DA65AF /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
-		419430D41DDAA56100DA65AF /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
-		419430D51DDAA59200DA65AF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
-		419430D61DDAA59200DA65AF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
 		419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D81DDAA67B00DA65AF /* UIProtocols.swift */; };
 		419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D91DDAA67B00DA65AF /* UITableViewCell.swift */; };
 		41AA10EC1DC1358000860295 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* NetworkResponse.swift */; };
@@ -642,38 +621,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				419430CD1DDAA4F300DA65AF /* Result.swift in Sources */,
-				419430D61DDAA59200DA65AF /* Spoofer+Replay.swift in Sources */,
-				419430C21DDAA25700DA65AF /* Spoofer.swift in Sources */,
-				419430CE1DDAA50A00DA65AF /* SpooferState.swift in Sources */,
-				419430D51DDAA59200DA65AF /* Spoofer+Record.swift in Sources */,
-				419430C91DDAA41E00DA65AF /* DataStore.swift in Sources */,
-				419430C51DDAA30B00DA65AF /* URLExtension.swift in Sources */,
 				419430B81DDA970800DA65AF /* ScenarioListController.swift in Sources */,
-				419430D11DDAA52000DA65AF /* Scenario.swift in Sources */,
 				419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */,
-				419430C31DDAA2E900DA65AF /* SpooferRecorder.swift in Sources */,
 				419430B71DDA970800DA65AF /* ResponseListController.swift in Sources */,
-				419430C41DDAA2F800DA65AF /* NetworkInterceptable.swift in Sources */,
 				419430B61DDA970800DA65AF /* EditSettingsViewController.swift in Sources */,
 				419430B91DDA970800DA65AF /* SettingsViewController.swift in Sources */,
-				419430D41DDAA56100DA65AF /* Swizzler.swift in Sources */,
 				419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */,
 				41C95FFD1E3A87B000B749B0 /* ResponseCell.swift in Sources */,
 				411227701E3966C700E1487B /* SuiteListController.swift in Sources */,
 				419430C11DDAA21E00DA65AF /* SpooferUI.swift in Sources */,
-				419430D21DDAA53400DA65AF /* SpooferReplayer.swift in Sources */,
-				419430D01DDAA51D00DA65AF /* ResponseHeaderItem.swift in Sources */,
 				413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */,
-				419430CC1DDAA4DE00DA65AF /* SpooferStateManager.swift in Sources */,
-				4146302E1E39521900E5CADC /* FileManagerExtension.swift in Sources */,
-				4112276B1E39625D00E1487B /* Validator.swift in Sources */,
-				419430C71DDAA40300DA65AF /* URLSessionConfigurationExtension.swift in Sources */,
-				419178811FFD9A450071CFA2 /* URLPathRangeReplacement.swift in Sources */,
-				419430CF1DDAA51A00DA65AF /* NetworkResponse.swift in Sources */,
-				419430D31DDAA54200DA65AF /* Utility.swift in Sources */,
 				415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */,
-				419430C61DDAA3E100DA65AF /* Constants.swift in Sources */,
 				419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */,
 				419430BD1DDA974800DA65AF /* SwitchWithTextViewModel.swift in Sources */,
 			);

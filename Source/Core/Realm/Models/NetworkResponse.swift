@@ -9,22 +9,22 @@
 import Foundation
 import RealmSwift
 
-class NetworkResponse: Object {
-    @objc dynamic var requestURL = ""
-    @objc dynamic var httpMethod = ""
-    @objc dynamic var statusCode = 0
-    @objc dynamic var createdDate = Date()
-    @objc dynamic var mimeType: String?
-    @objc dynamic var encoding: String?
-    @objc dynamic var expectedContentLength = 0
-    let headerFields = List<ResponseHeaderItem>()
+public class NetworkResponse: Object {
+    @objc public dynamic var requestURL = ""
+    @objc public dynamic var httpMethod = ""
+    @objc public dynamic var statusCode = 0
+    @objc public dynamic var createdDate = Date()
+    @objc public dynamic var mimeType: String?
+    @objc public dynamic var encoding: String?
+    @objc public dynamic var expectedContentLength = 0
+    public let headerFields = List<ResponseHeaderItem>()
 
     /* IMPORTANT: README
      We run the received data through JSONSerialization, and if its JSON Convertible, save it under jsonRepresentation variable, and if not under backkupData. This allows JSON responses to be edited if needed using RealmBrowser. In case serialization fails, the data is saved as is under 'backupData'. This would be the fallback for any response object which is not JSON type.
 
      While serving the response back, first the jsonRepresentation field is checked, and data will be constructed if available. Else backupData is served back.
      */
-    @objc dynamic var data: Data {
+    @objc public dynamic var data: Data {
         get {
             guard jsonRepresentation.isEmpty == false, let dataFromString = jsonRepresentation.data(using: .utf8) else {
                 return backupData ?? Data()
@@ -44,7 +44,7 @@ class NetworkResponse: Object {
     @objc dynamic var backupData: Data?
     @objc dynamic var jsonRepresentation = ""
 
-    override static func ignoredProperties() -> [String] {
+    override public static func ignoredProperties() -> [String] {
         return ["data"]
     }
 }
@@ -82,7 +82,7 @@ extension NetworkResponse {
 // MARK: - Equatable
 
 extension NetworkResponse {
-    override func isEqual(_ object: Any?) -> Bool {
+    public override func isEqual(_ object: Any?) -> Bool {
         guard let rhs = object as? NetworkResponse,
             let lhsURL = URL(string: requestURL),
             let rhsURL = URL(string: rhs.requestURL) else { return false }
@@ -93,7 +93,7 @@ extension NetworkResponse {
         return false
     }
 
-    override var hash: Int {
+    public override var hash: Int {
         return requestURL.hashValue ^ httpMethod.hashValue ^ data.hashValue
     }
 }
@@ -101,6 +101,6 @@ extension NetworkResponse {
 // MARK: - Helper methods for debugging
 
 extension NetworkResponse {
-    override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)" }
-    override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(String(describing: mimeType))\nEncoding: \(String(describing: encoding))\nHeaderFields: \(headerFields)\n" }
+    public override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)" }
+    public override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(String(describing: mimeType))\nEncoding: \(String(describing: encoding))\nHeaderFields: \(headerFields)\n" }
 }

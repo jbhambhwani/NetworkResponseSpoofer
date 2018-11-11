@@ -8,12 +8,12 @@
 
 import Foundation
 
-enum Result<Value> {
+public enum Result<Value> {
     case success(Value)
     case failure(Error)
 }
 
-extension Result {
+public extension Result {
     func flatMap<U>(_ transform: (Value) -> Result<U>) -> Result<U> {
         switch self {
         case let .success(val): return transform(val)

@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import NetworkResponseSpoofer
 
 struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
     var model: [SpooferConfigurationType: Any]
@@ -71,7 +72,7 @@ extension SwitchWithTextViewModel {
 // MARK: - DataPresentable Conformance
 
 extension SwitchWithTextViewModel {
-    var configurations: [Any] {
+    public var configurations: [Any] {
         get {
             if let configs = packedData as? [String] {
                 return configs

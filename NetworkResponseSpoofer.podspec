@@ -16,6 +16,10 @@ Pod::Spec.new do |s|
   s.default_subspec = 'Core'
   s.dependency 'RealmSwift'
   s.ios.deployment_target = '10.0'
+  s.ios.deployment_target = '10.0'
+  s.osx.deployment_target = '10.11'
+  s.watchos.deployment_target = '4.0'
+  s.tvos.deployment_target = '10.0'
 
   s.subspec 'Core' do |ss|
     ss.source_files = 'Source/Core/**/*.swift'

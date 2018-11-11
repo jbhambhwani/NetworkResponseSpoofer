@@ -32,7 +32,7 @@ public enum StoreError: Int, Error {
     }
 }
 
-protocol Store {
+public protocol Store {
     // Scenario
     func allScenarioNames(suite: String) -> [String]
     func save(scenario: Scenario, suite: String) -> Result<Scenario>
@@ -43,28 +43,28 @@ protocol Store {
     func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool>
 }
 
-enum DataStore {
-    static func allScenarioNames(suite: String) -> [String] {
+public enum DataStore {
+    public static func allScenarioNames(suite: String) -> [String] {
         return RealmStore.sharedInstance.allScenarioNames(suite: suite)
     }
 
-    static func save(scenario: Scenario, suite: String) -> Result<Scenario> {
+    public static func save(scenario: Scenario, suite: String) -> Result<Scenario> {
         return RealmStore.sharedInstance.save(scenario: scenario, suite: suite)
     }
 
-    static func load(scenarioName: String, suite: String) -> Result<Scenario> {
+    public static func load(scenarioName: String, suite: String) -> Result<Scenario> {
         return RealmStore.sharedInstance.load(scenarioName: scenarioName, suite: suite)
     }
 
-    static func delete(scenarioName: String, suite: String) -> Result<Bool> {
+    public static func delete(scenarioName: String, suite: String) -> Result<Bool> {
         return RealmStore.sharedInstance.delete(scenarioName: scenarioName, suite: suite)
     }
 
-    static func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse> {
+    public static func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse> {
         return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName, suite: suite)
     }
 
-    static func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool> {
+    public static func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool> {
         return RealmStore.sharedInstance.delete(response: response, scenarioName: scenarioName, suite: suite)
     }
 }
@@ -95,7 +95,7 @@ extension RealmStore: Store {
         return realm.objects(Scenario.self).filter("name == %@", name).first
     }
 
-    func allScenarioNames(suite: String) -> [String] {
+    public func allScenarioNames(suite: String) -> [String] {
         setDefaultRealmForSuite(suiteName: suite)
         return realm.objects(Scenario.self).compactMap { $0.name }
     }
