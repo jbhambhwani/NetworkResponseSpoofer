@@ -113,7 +113,7 @@ final class DemoViewController: UIViewController {
         DispatchQueue.main.async(execute: { [weak self] in
             guard let strongSelf = self else { return }
             if strongSelf.consoleTextView.text.count > 0 {
-                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n" + message
+                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n\n" + message
                 // Scroll to bottom of log
                 strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.count - 1, length: 1))
             } else {
@@ -150,7 +150,6 @@ private extension DemoViewController {
             searchBar.text = ""
             recordButton.title = ButtonTitle.stopRecording.rawValue
             recordButton.tintColor = UIColor.red
-            performSampleNetworkRequests()
         } else {
             recordButton.title = ButtonTitle.startRecording.rawValue
             recordButton.tintColor = view.tintColor

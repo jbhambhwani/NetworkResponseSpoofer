@@ -58,11 +58,6 @@ extension DemoViewController: UISearchBarDelegate {
 // MARK: - Internal methods
 
 extension DemoViewController {
-    func performSampleNetworkRequests() {
-        // Get data from a few sample end points
-        sendRequest("http://jsonplaceholder.typicode.com/users")
-        sendRequest("http://jsonplaceholder.typicode.com/posts")
-    }
 
     private func sendRequest(_ resource: String) {
         guard let url = URL(string: resource) else { return }
