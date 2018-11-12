@@ -9,13 +9,10 @@
 /* Begin PBXBuildFile section */
 		410489C21C99D94800E99745 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C11C99D94800E99745 /* Constants.swift */; };
 		4112276A1E39625D00E1487B /* Validator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227691E39625D00E1487B /* Validator.swift */; };
-		411227701E3966C700E1487B /* SuiteListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112276E1E3966AC00E1487B /* SuiteListController.swift */; };
 		411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411913241D2369F500D3FB6E /* NetworkInterceptable.swift */; };
 		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
 		411A357C1BC74A7D001D128D /* NetworkResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
-		411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
-		413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
 		4147EA531B684D7E001DE517 /* NetworkResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
@@ -23,27 +20,31 @@
 		41570A7E1DD6F5A20098C2FF /* TestingConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7D1DD6F5A20098C2FF /* TestingConstants.swift */; };
 		41570A801DD6F6570098C2FF /* MiscTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41570A7F1DD6F6570098C2FF /* MiscTests.swift */; };
 		4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4157440E1DD2426F000F4571 /* SpooferState.swift */; };
-		415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D253251E315A56008CD570 /* RecordTableViewController.swift */; };
 		415DAEDB1E31A8CC00E6FE59 /* FileManagerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 415DAEDA1E31A8CC00E6FE59 /* FileManagerExtension.swift */; };
 		4172EF2C1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */; };
 		4180391E1BCB73FE004E1534 /* Utility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4180391D1BCB73FE004E1534 /* Utility.swift */; };
 		419178801FFD99750071CFA2 /* URLPathRangeReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */; };
-		419430B61DDA970800DA65AF /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
-		419430B71DDA970800DA65AF /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
-		419430B81DDA970800DA65AF /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
-		419430B91DDA970800DA65AF /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */; };
-		419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */; };
-		419430BD1DDA974800DA65AF /* SwitchWithTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */; };
-		419430C11DDAA21E00DA65AF /* SpooferUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430C01DDAA21E00DA65AF /* SpooferUI.swift */; };
-		419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D81DDAA67B00DA65AF /* UIProtocols.swift */; };
-		419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D91DDAA67B00DA65AF /* UITableViewCell.swift */; };
 		41AA10EC1DC1358000860295 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* NetworkResponse.swift */; };
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
-		41C2F9EB21966A1900FD492B /* NetworkResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */; };
-		41C95FFA1E3A806E00B749B0 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C95FF91E3A806E00B749B0 /* Media.xcassets */; };
-		41C95FFD1E3A87B000B749B0 /* ResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */; };
+		41D2445C2198F6A400E38D25 /* SpooferUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 41D2445A2198F6A400E38D25 /* SpooferUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		41D244602198F6EB00E38D25 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
+		41D244612198F6EB00E38D25 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D253251E315A56008CD570 /* RecordTableViewController.swift */; };
+		41D244622198F6EB00E38D25 /* ResponseListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 416322321BF67E9400F9E67A /* ResponseListController.swift */; };
+		41D244632198F6EB00E38D25 /* ScenarioListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */; };
+		41D244642198F6EB00E38D25 /* SettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */; };
+		41D244652198F6EB00E38D25 /* SuiteListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4112276E1E3966AC00E1487B /* SuiteListController.swift */; };
+		41D244662198F6EB00E38D25 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D81DDAA67B00DA65AF /* UIProtocols.swift */; };
+		41D244672198F6EB00E38D25 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D91DDAA67B00DA65AF /* UITableViewCell.swift */; };
+		41D244682198F6EB00E38D25 /* ResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */; };
+		41D244692198F6EB00E38D25 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
+		41D2446A2198F6EB00E38D25 /* SwitchWithTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */; };
+		41D2446B2198F6EB00E38D25 /* SwitchWithTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */; };
+		41D2446C2198F6EB00E38D25 /* SpooferUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430C01DDAA21E00DA65AF /* SpooferUI.swift */; };
+		41D2446D2198F6EF00E38D25 /* Media.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 41C95FF91E3A806E00B749B0 /* Media.xcassets */; };
+		41D2446E2198F6F500E38D25 /* Spoofer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */; };
+		41D244712198F7BE00E38D25 /* NetworkResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */; };
 		41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41DFB3E81B70252C00038958 /* URLExtension.swift */; };
 		41E04BB41DC41F3900AD8261 /* Scenario.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E04BB31DC41F3900AD8261 /* Scenario.swift */; };
 		41E62FE41DD2ACA500ECC06F /* SpooferStateManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E62FE31DD2ACA500ECC06F /* SpooferStateManager.swift */; };
@@ -60,7 +61,7 @@
 			remoteGlobalIDString = 4147EA4C1B684D7E001DE517;
 			remoteInfo = NetworkResponseSpoofer;
 		};
-		41C2F9E8219669CC00FD492B /* PBXContainerItemProxy */ = {
+		41D2446F2198F7BA00E38D25 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4147EA441B684D7E001DE517 /* Project object */;
 			proxyType = 1;
@@ -99,10 +100,7 @@
 		416322321BF67E9400F9E67A /* ResponseListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseListController.swift; sourceTree = "<group>"; };
 		4172EF2B1D24C2D4006E44C9 /* URLSessionConfigurationExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLSessionConfigurationExtension.swift; sourceTree = "<group>"; };
 		4180391D1BCB73FE004E1534 /* Utility.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Utility.swift; sourceTree = "<group>"; };
-		4182093D1F4D14F8009E69D6 /* NetworkResponseSpoofer iOS UI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NetworkResponseSpoofer iOS UI.h"; sourceTree = "<group>"; };
-		4182093E1F4D14F8009E69D6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLPathRangeReplacement.swift; sourceTree = "<group>"; };
-		419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkResponseSpoofer_iOS_UI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		419430C01DDAA21E00DA65AF /* SpooferUI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferUI.swift; sourceTree = "<group>"; };
 		419430D81DDAA67B00DA65AF /* UIProtocols.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIProtocols.swift; sourceTree = "<group>"; };
 		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
@@ -112,6 +110,9 @@
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
 		41C95FF91E3A806E00B749B0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
 		41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResponseCell.swift; sourceTree = "<group>"; };
+		41D244582198F6A400E38D25 /* SpooferUI.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = SpooferUI.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		41D2445A2198F6A400E38D25 /* SpooferUI.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SpooferUI.h; sourceTree = "<group>"; };
+		41D2445B2198F6A400E38D25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		41D253251E315A56008CD570 /* RecordTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecordTableViewController.swift; sourceTree = "<group>"; };
 		41D4AF2F1C98EAF00086AEB2 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		41DFB3E81B70252C00038958 /* URLExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLExtension.swift; sourceTree = "<group>"; };
@@ -138,11 +139,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		419430AA1DDA96E700DA65AF /* Frameworks */ = {
+		41D244552198F6A400E38D25 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41C2F9EB21966A1900FD492B /* NetworkResponseSpoofer.framework in Frameworks */,
+				41D244712198F7BE00E38D25 /* NetworkResponseSpoofer.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +217,7 @@
 			children = (
 				4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */,
 				411A35771BC74A7D001D128D /* NetworkResponseSpooferTests.xctest */,
-				419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */,
+				41D244582198F6A400E38D25 /* SpooferUI.framework */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -233,9 +234,9 @@
 		4147EA501B684D7E001DE517 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				41D244592198F6A400E38D25 /* SpooferUI */,
 				4182093F1F4D1514009E69D6 /* Core */,
 				418209401F4D1537009E69D6 /* Tests */,
-				419430AF1DDA96E700DA65AF /* iOS UI */,
 				4150B4A91DDAEAF2001A168C /* Carthage.xcconfig */,
 			);
 			path = "Supporting Files";
@@ -317,15 +318,6 @@
 			path = Tests;
 			sourceTree = "<group>";
 		};
-		419430AF1DDA96E700DA65AF /* iOS UI */ = {
-			isa = PBXGroup;
-			children = (
-				4182093D1F4D14F8009E69D6 /* NetworkResponseSpoofer iOS UI.h */,
-				4182093E1F4D14F8009E69D6 /* Info.plist */,
-			);
-			path = "iOS UI";
-			sourceTree = "<group>";
-		};
 		419430BE1DDAA10800DA65AF /* iOS_UI */ = {
 			isa = PBXGroup;
 			children = (
@@ -364,6 +356,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		41D244592198F6A400E38D25 /* SpooferUI */ = {
+			isa = PBXGroup;
+			children = (
+				41D2445A2198F6A400E38D25 /* SpooferUI.h */,
+				41D2445B2198F6A400E38D25 /* Info.plist */,
+			);
+			path = SpooferUI;
+			sourceTree = "<group>";
+		};
 		41E62FE21DD2AC8D00ECC06F /* StateManagement */ = {
 			isa = PBXGroup;
 			children = (
@@ -384,10 +385,11 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		419430AB1DDA96E700DA65AF /* Headers */ = {
+		41D244532198F6A400E38D25 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				41D2445C2198F6A400E38D25 /* SpooferUI.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -432,24 +434,23 @@
 			productReference = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		419430AD1DDA96E700DA65AF /* NetworkResponseSpoofer iOS UI */ = {
+		41D244572198F6A400E38D25 /* SpooferUI */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer iOS UI" */;
+			buildConfigurationList = 41D2445D2198F6A400E38D25 /* Build configuration list for PBXNativeTarget "SpooferUI" */;
 			buildPhases = (
-				419430A91DDA96E700DA65AF /* Sources */,
-				419430AA1DDA96E700DA65AF /* Frameworks */,
-				419430AB1DDA96E700DA65AF /* Headers */,
-				419430AC1DDA96E700DA65AF /* Resources */,
-				411E3DF41DDAA7DE00686BA2 /* Carthage Copy Frameworks */,
+				41D244532198F6A400E38D25 /* Headers */,
+				41D244542198F6A400E38D25 /* Sources */,
+				41D244552198F6A400E38D25 /* Frameworks */,
+				41D244562198F6A400E38D25 /* Resources */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				41C2F9E9219669CC00FD492B /* PBXTargetDependency */,
+				41D244702198F7BA00E38D25 /* PBXTargetDependency */,
 			);
-			name = "NetworkResponseSpoofer iOS UI";
-			productName = "NetworkResponseSpoofer iOS UI";
-			productReference = 419430AE1DDA96E700DA65AF /* NetworkResponseSpoofer_iOS_UI.framework */;
+			name = SpooferUI;
+			productName = SpooferUI;
+			productReference = 41D244582198F6A400E38D25 /* SpooferUI.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
@@ -474,10 +475,8 @@
 						LastSwiftMigration = "";
 						ProvisioningStyle = Manual;
 					};
-					419430AD1DDA96E700DA65AF = {
-						CreatedOnToolsVersion = 8.1;
-						LastSwiftMigration = 0920;
-						ProvisioningStyle = Manual;
+					41D244572198F6A400E38D25 = {
+						CreatedOnToolsVersion = 10.1;
 					};
 				};
 			};
@@ -494,8 +493,8 @@
 			projectRoot = "";
 			targets = (
 				4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */,
-				419430AD1DDA96E700DA65AF /* NetworkResponseSpoofer iOS UI */,
 				411A35761BC74A7D001D128D /* NetworkResponseSpooferTests */,
+				41D244572198F6A400E38D25 /* SpooferUI */,
 			);
 		};
 /* End PBXProject section */
@@ -515,34 +514,18 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		419430AC1DDA96E700DA65AF /* Resources */ = {
+		41D244562198F6A400E38D25 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				41C95FFA1E3A806E00B749B0 /* Media.xcassets in Resources */,
-				411E3DF31DDAA7B500686BA2 /* Spoofer.storyboard in Resources */,
+				41D2446D2198F6EF00E38D25 /* Media.xcassets in Resources */,
+				41D2446E2198F6F500E38D25 /* Spoofer.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		411E3DF41DDAA7DE00686BA2 /* Carthage Copy Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"$(SRCROOT)/Carthage/Build/iOS/Realm.framework",
-				"$(SRCROOT)/Carthage/Build/iOS/RealmSwift.framework",
-			);
-			name = "Carthage Copy Frameworks";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
-		};
 		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -617,23 +600,23 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		419430A91DDA96E700DA65AF /* Sources */ = {
+		41D244542198F6A400E38D25 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				419430B81DDA970800DA65AF /* ScenarioListController.swift in Sources */,
-				419430DB1DDAA67B00DA65AF /* UITableViewCell.swift in Sources */,
-				419430B71DDA970800DA65AF /* ResponseListController.swift in Sources */,
-				419430B61DDA970800DA65AF /* EditSettingsViewController.swift in Sources */,
-				419430B91DDA970800DA65AF /* SettingsViewController.swift in Sources */,
-				419430DA1DDAA67B00DA65AF /* UIProtocols.swift in Sources */,
-				41C95FFD1E3A87B000B749B0 /* ResponseCell.swift in Sources */,
-				411227701E3966C700E1487B /* SuiteListController.swift in Sources */,
-				419430C11DDAA21E00DA65AF /* SpooferUI.swift in Sources */,
-				413D92C41E398D9C00590C63 /* StoryboardIdentifiers.swift in Sources */,
-				415DAED91E31A54C00E6FE59 /* RecordTableViewController.swift in Sources */,
-				419430BA1DDA971200DA65AF /* SwitchWithTextTableViewCell.swift in Sources */,
-				419430BD1DDA974800DA65AF /* SwitchWithTextViewModel.swift in Sources */,
+				41D244622198F6EB00E38D25 /* ResponseListController.swift in Sources */,
+				41D2446A2198F6EB00E38D25 /* SwitchWithTextTableViewCell.swift in Sources */,
+				41D2446C2198F6EB00E38D25 /* SpooferUI.swift in Sources */,
+				41D244672198F6EB00E38D25 /* UITableViewCell.swift in Sources */,
+				41D2446B2198F6EB00E38D25 /* SwitchWithTextViewModel.swift in Sources */,
+				41D244612198F6EB00E38D25 /* RecordTableViewController.swift in Sources */,
+				41D244692198F6EB00E38D25 /* StoryboardIdentifiers.swift in Sources */,
+				41D244602198F6EB00E38D25 /* EditSettingsViewController.swift in Sources */,
+				41D244642198F6EB00E38D25 /* SettingsViewController.swift in Sources */,
+				41D244662198F6EB00E38D25 /* UIProtocols.swift in Sources */,
+				41D244652198F6EB00E38D25 /* SuiteListController.swift in Sources */,
+				41D244632198F6EB00E38D25 /* ScenarioListController.swift in Sources */,
+				41D244682198F6EB00E38D25 /* ResponseCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -645,10 +628,10 @@
 			target = 4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */;
 			targetProxy = 411A357D1BC74A7D001D128D /* PBXContainerItemProxy */;
 		};
-		41C2F9E9219669CC00FD492B /* PBXTargetDependency */ = {
+		41D244702198F7BA00E38D25 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4147EA4C1B684D7E001DE517 /* NetworkResponseSpoofer */;
-			targetProxy = 41C2F9E8219669CC00FD492B /* PBXContainerItemProxy */;
+			targetProxy = 41D2446F2198F7BA00E38D25 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -879,58 +862,65 @@
 			};
 			name = Release;
 		};
-		419430B31DDA96E700DA65AF /* Debug */ = {
+		41D2445E2198F6A400E38D25 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 2;
+				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/SpooferUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.networkresponsespoofer-iOS-UI";
-				PRODUCT_NAME = NetworkResponseSpoofer_iOS_UI;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.SpooferUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
-		419430B41DDA96E700DA65AF /* Release */ = {
+		41D2445F2198F6A400E38D25 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				CLANG_WARN_SUSPICIOUS_MOVES = YES;
-				CODE_SIGN_STYLE = Manual;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
 				COPY_PHASE_STRIP = NO;
+				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = "";
 				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 2;
+				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)/Carthage/Build/iOS",
-				);
-				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/iOS UI/Info.plist";
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/SpooferUI/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.networkresponsespoofer-iOS-UI";
-				PRODUCT_NAME = NetworkResponseSpoofer_iOS_UI;
-				PROVISIONING_PROFILE_SPECIFIER = "";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.SpooferUI;
+				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
@@ -965,11 +955,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		419430B51DDA96E700DA65AF /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer iOS UI" */ = {
+		41D2445D2198F6A400E38D25 /* Build configuration list for PBXNativeTarget "SpooferUI" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				419430B31DDA96E700DA65AF /* Debug */,
-				419430B41DDA96E700DA65AF /* Release */,
+				41D2445E2198F6A400E38D25 /* Debug */,
+				41D2445F2198F6A400E38D25 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

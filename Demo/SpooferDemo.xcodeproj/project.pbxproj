@@ -289,7 +289,7 @@
 			);
 			inputPaths = (
 				"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh",
-				"${BUILT_PRODUCTS_DIR}/NetworkResponseSpoofer.default-iOS-UI/NetworkResponseSpoofer.framework",
+				"${BUILT_PRODUCTS_DIR}/NetworkResponseSpoofer.default-SpooferUI/NetworkResponseSpoofer.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
 			);

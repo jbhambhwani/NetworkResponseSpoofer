@@ -5,7 +5,7 @@ target 'SpooferDemo' do
   use_frameworks!
 
   pod 'NetworkResponseSpoofer', :path => "../"
-  pod 'NetworkResponseSpoofer/iOS-UI', :path => "../"
+  pod 'NetworkResponseSpoofer/SpooferUI', :path => "../"
 end
 
 target 'SpooferDemo_Mac' do

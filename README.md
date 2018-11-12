@@ -177,6 +177,8 @@ Spoofer will fire the following notifications whenever its state changes. You ca
 #### Cocoapods
 ```ruby
 pod "NetworkResponseSpoofer"
+# or
+pod "NetworkResponseSpoofer/SpooferUI" # Only for iOS, brings in the built-in UI to manage spoofed scenarios and settings
 ```
 
 #### Carthage
