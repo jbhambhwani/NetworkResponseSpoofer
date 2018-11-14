@@ -199,6 +199,11 @@ public final class Spoofer: NSObject {
         ]
     }
 
+    /// Run migrations on the spoofer database. Call this method at the start of your apps applicationDidFinishLaunching to make sure any spoofer DB scheme changes are accounted for
+    public class func runMigrations() {
+        DataStore.runMigrations()
+    }
+
     // MARK: - Internal variables
 
     static let sharedInstance = Spoofer()

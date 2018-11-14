@@ -33,6 +33,8 @@ public enum StoreError: Int, Error {
 }
 
 public protocol Store {
+    // Migration
+    func runMigrations()
     // Scenario
     func allScenarioNames(suite: String) -> [String]
     func save(scenario: Scenario, suite: String) -> Result<Scenario>
@@ -44,6 +46,10 @@ public protocol Store {
 }
 
 public enum DataStore {
+    public static func runMigrations() {
+        return RealmStore.sharedInstance.runMigrations()
+    }
+
     public static func allScenarioNames(suite: String) -> [String] {
         return RealmStore.sharedInstance.allScenarioNames(suite: suite)
     }
@@ -75,7 +81,7 @@ private struct RealmStore {
     var realm: Realm { return try! Realm() }
 
     func setDefaultRealmForSuite(suiteName: String) {
-        var config = Realm.Configuration()
+        var config = Realm.Configuration.defaultConfiguration
         config.fileURL = FileManager.spooferDocumentsDirectory.appendingPathComponent("\(suiteName).\(realmFileExtension)")
         // Set this as the configuration used for the default Realm
         Realm.Configuration.defaultConfiguration = config
@@ -87,6 +93,33 @@ private struct RealmStore {
 }
 
 extension RealmStore: Store {
+
+    func runMigrations() {
+
+        let config = Realm.Configuration(
+            // Set the new schema version. This must be greater than the previously used
+            // version (if you've never set a schema version before, the version is 0).
+            schemaVersion: 1,
+
+            // Set the block which will be called automatically when opening a Realm with
+            // a schema version lower than the one set above
+            migrationBlock: { _, oldSchemaVersion in
+                switch oldSchemaVersion {
+                case 0:
+                    // Nothing to do!
+                    // Realm will automatically detect new properties and removed properties
+                    // And will update the schema on disk automatically
+                    // Read more about the migration process in Realm documentation
+                    break
+                default:
+                    break
+                }
+        }
+        )
+
+        // Tell Realm to use this new configuration object for the default Realm
+        Realm.Configuration.defaultConfiguration = config
+    }
 
     // MARK: - Scenario Management
 
