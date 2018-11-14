@@ -13,7 +13,7 @@
     <a title="NetworkResponseSpoofer  Reference"></a>
     <header>
       <div class="content-wrapper">
-        <p><a href="index.html">NetworkResponseSpoofer Docs</a> (70% documented)</p>
+        <p><a href="index.html">NetworkResponseSpoofer Docs</a> (38% documented)</p>
         <p class="header-right"><a href="https://github.com/HotwireDotCom/NetworkResponseSpoofer.git"><img src="img/gh.png"/>View on GitHub</a></p>
       </div>
     </header>
@@ -30,6 +30,15 @@
           <li class="nav-group-name">
             <a href="Classes.html">Classes</a>
             <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a href="Classes/NetworkResponse.html">NetworkResponse</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes.html#/c:@M@NetworkResponseSpoofer@objc(cs)ResponseHeaderItem">ResponseHeaderItem</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Classes/Scenario.html">Scenario</a>
+              </li>
               <li class="nav-group-task">
                 <a href="Classes/Spoofer.html">Spoofer</a>
               </li>
@@ -53,6 +62,18 @@
             <a href="Enums.html">Enumerations</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Enums/DataStore.html">DataStore</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/NetworkAction.html">NetworkAction</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/Result.html">Result</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Enums/SpooferConfigurationType.html">SpooferConfigurationType</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Enums/SpooferError.html">SpooferError</a>
               </li>
               <li class="nav-group-task">
@@ -64,6 +85,12 @@
             <a href="Extensions.html">Extensions</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Extensions/FileManager.html">FileManager</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Extensions/RealmStore.html">RealmStore</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Extensions/URLSessionConfiguration.html">URLSessionConfiguration</a>
               </li>
             </ul>
@@ -72,7 +99,13 @@
             <a href="Protocols.html">Protocols</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
+                <a href="Protocols/NetworkInterceptable.html">NetworkInterceptable</a>
+              </li>
+              <li class="nav-group-task">
                 <a href="Protocols/SpooferDelegate.html">SpooferDelegate</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Protocols/Store.html">Store</a>
               </li>
             </ul>
           </li>
@@ -81,6 +114,9 @@
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a href="Structs/URLPathRangeReplacement.html">URLPathRangeReplacement</a>
+              </li>
+              <li class="nav-group-task">
+                <a href="Structs/Validator.html">Validator</a>
               </li>
             </ul>
           </li>
@@ -92,15 +128,44 @@
             
             <h1 id='networkresponsespoofer' class='heading'>NetworkResponseSpoofer</h1>
 
-<p>NetworkResponseSpoofer is a network response record and replay library for iOS, watchOS, tvOS and macOS. It&rsquo;s built on top of the <a href="http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html">Foundation URL Loading System</a> to make recording and replaying network requests really simple.</p>
+<p>NetworkResponseSpoofer is a network response record and replay library for iOS, watchOS, tvOS and macOS. It&rsquo;s built on top of the <a href="https://developer.apple.com/documentation/foundation/url_loading_system">Foundation URL Loading System</a> to make recording and replaying network requests really simple.</p>
 <h2 id='getting-started' class='heading'>Getting Started</h2>
 
 <p>Before you start, import Spoofer framework into your project</p>
 <pre class="highlight swift"><code><span class="kd">@import</span> <span class="kt">NetworkResponseSpoofer</span>
 </code></pre>
-<h2 id='intercepting-responses' class='heading'>Intercepting responses</h2>
+<h4 id='start-recording' class='heading'>Start Recording</h4>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startRecording</span><span class="p">(</span><span class="nv">inViewController</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="c1">// Provide scenario name using built-in UI</span>
+<span class="o">--</span><span class="kt">OR</span><span class="o">--</span>
+<span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startRecording</span><span class="p">(</span><span class="nv">scenarioName</span><span class="p">:</span> <span class="s">"Give a name to your scenario"</span><span class="p">)</span>  <span class="c1">// Provide scenario name directly from code</span>
+</code></pre>
 
-<p>Spoofer swizzles default and ephemeral session configs to insert its protocols for network intercept. In case this does not seem to work, you can create a URLSessionConfiguration extension in your project and add code similar to below (for both default and ephemeral) to have the spoofer intercept any networking interactions that happen through NSURLSession. Then use the spoofed configuration instaed of default/ephemeral in your code. Take care not to insert Spoofer protocols in release mode.</p>
+<p>Recording can be either initiated by providing the scenario name from UI (BDD / UI Tests / Manual interaction) or from code if you prefer it that way. Each scenario needs a name. Once a cycle of recording finishes (end to end), stop the recording and this will save the requests and responses for that session under the scenario.</p>
+<h4 id='stop-recording' class='heading'>Stop Recording</h4>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">stopRecording</span><span class="p">()</span>
+</code></pre>
+
+<p>Stops recording and saves the scenario in the application&rsquo;s Documents directory (under Documents/Spoofer/). If you are using the built-in UI, you won&rsquo;t need this method.</p>
+<h4 id='start-replay' class='heading'>Start Replay</h4>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">showRecordedScenarios</span><span class="p">(</span><span class="nv">inViewController</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="c1">// Shows a list of recorded scenarios, select one to start replay</span>
+<span class="o">--</span><span class="kt">OR</span><span class="o">--</span>
+<span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startReplaying</span><span class="p">(</span><span class="nv">scenarioName</span><span class="p">:</span> <span class="s">"Scenario name to replay"</span><span class="p">)</span> <span class="c1">// Directly start replaying a recorded scenario</span>
+</code></pre>
+
+<p>The first method displays a list of recorded scenarios available in the documents directory. Tapping a scenario from the list starts replay immediately serving the responses from inside the scenario. If you know the scenario name already and do not want a selection UI, use the second method. The UI also allows configuring the Spoofer behavior and toggling a few settings, so give it a spin.</p>
+<h4 id='stop-replay' class='heading'>Stop Replay</h4>
+
+<p>Stop replaying the current scenario</p>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">stopReplaying</span><span class="p">()</span>
+</code></pre>
+
+<p>If you are using the built-in UI, you won&rsquo;t need this method.</p>
+<h2 id='exporting-and-importing-scenarios' class='heading'>Exporting and Importing scenarios</h2>
+
+<p>Spoofer uses the sandboxed documents folder of the app to save the scenario files. The file location is printed in console as well, for convenience. The application documents folder is a volatile place, since simulator reset and deletion of apps causes the folder to be deleted. So backup your Spoofer suites outside and use scripts to move them in and out of these folders for backup.</p>
+<h2 id='intercepting-responses-optional-configuration' class='heading'>Intercepting responses (optional configuration)</h2>
+
+<p>Spoofer swizzles default and ephemeral session configs to insert its protocols for network intercept. In case this does not seem to work, you can create a URLSessionConfiguration extension in your project and add code similar to below (for both default and ephemeral) to have the spoofer intercept any networking interactions that happen through URLSession. Then use the spoofed configuration instaed of default/ephemeral in your code. Take care that you insert Spoofer protocols in debug configuration only.</p>
 <pre class="highlight swift"><code><span class="kd">extension</span> <span class="kt">URLSessionConfiguration</span> <span class="p">{</span>
 
     <span class="kd">static</span> <span class="k">var</span> <span class="nv">spoofedDefault</span><span class="p">:</span> <span class="kt">URLSessionConfiguration</span> <span class="p">{</span>
@@ -117,68 +182,56 @@
     <span class="p">}</span>
 <span class="p">}</span>
 </code></pre>
-<h3 id='start-recording' class='heading'>Start Recording</h3>
-<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startRecording</span><span class="p">(</span><span class="nv">inViewController</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="c1">// Provide scenario name using popup UI</span>
-<span class="o">--</span><span class="kt">OR</span><span class="o">--</span>
-<span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startRecording</span><span class="p">(</span><span class="nv">scenarioName</span><span class="p">:</span> <span class="s">"Give a name to your scenario"</span><span class="p">)</span>  <span class="c1">// Provide scenario name directly from code</span>
-</code></pre>
-
-<p>Recording can be either initiated by providing the scenario name from UI (BDD / UI Tests / Manually) or from code if you prefer it that way. Each scenario needs a name. Preferably keep this short so that it can be displayed as a list in device/simulator without word wrap. Once a cycle of recording finishes (end to end), stop the recording and this will save the requests and responses for that session under the scenario.</p>
-<h3 id='stop-recording' class='heading'>Stop Recording</h3>
-<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">stopRecording</span><span class="p">()</span>
-</code></pre>
-
-<p>Stops recording and saves the scenario in the application&rsquo;s sandboxed Documents directory (under /Spoofer)</p>
-<h3 id='start-replay' class='heading'>Start Replay</h3>
-<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">showRecordedScenarios</span><span class="p">(</span><span class="nv">inViewController</span><span class="p">:</span> <span class="k">self</span><span class="p">)</span> <span class="c1">// Shows a list of recorded scenarios, select one to start replay</span>
-<span class="o">--</span><span class="kt">OR</span><span class="o">--</span>
-<span class="kt">Spoofer</span><span class="o">.</span><span class="nf">startReplaying</span><span class="p">(</span><span class="nv">scenarioName</span><span class="p">:</span> <span class="s">"Scenario name to replay"</span><span class="p">)</span> <span class="c1">// Directly start replaying a recorded scenario</span>
-</code></pre>
-
-<p>The first method displays a list of recorded scenarios available in the application documents directory. Tapping a scenario from the list starts replay immediately serving the responses from inside the scenario. If you know the scenario name already and do not want a selection UI, use the second method. The UI also allows configuring the Spoofer behavior and toggling a few settings, so give it a spin.</p>
-<h3 id='stop-replay' class='heading'>Stop Replay</h3>
-
-<p>Stop replaying the current scenario</p>
-<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">stopReplaying</span><span class="p">()</span>
-</code></pre>
-<h2 id='exporting-and-importing-scenarios' class='heading'>Exporting and Importing scenarios</h2>
-
-<p>Spoofer uses the sandboxed documents folder of the app to save the scenario files.</p>
 <h2 id='documentation' class='heading'>Documentation</h2>
 
-<p>Read the <a href="./Classes/Spoofer.html">docs</a>.</p>
+<p>Additional details are available in <a href="./Classes/Spoofer.html">docs</a>.</p>
 <h2 id='advanced-configuration' class='heading'>Advanced Configuration</h2>
-<h3 id='whitelisting-host-names' class='heading'>Whitelisting host names</h3>
+<h4 id='whitelisting-host-names' class='heading'>Whitelisting host names</h4>
 
 <p>By default, the spoofer will intercept and save all HTTP requests and responses originating from an app. If you need to be selective, provide an array of domains you want to record requests and responses from as below. Once domainsToSpoof is set, only the specified domain calls will be intercepted.</p>
 <pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">hostNamesToSpoof</span><span class="p">([</span><span class="s">"example1.com"</span><span class="p">,</span><span class="s">"example2.com"</span><span class="p">])</span>
 </code></pre>
-<h3 id='blacklisting-host-names' class='heading'>Blacklisting host names</h3>
+<h4 id='blacklisting-host-names' class='heading'>Blacklisting host names</h4>
 
 <p>Blacklist does the opposite of above, allowing selective domain names to be ignored while Spoofer records Network requests and responses.</p>
 <pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">hostNamesToIgnore</span><span class="p">([</span><span class="s">"example3.com"</span><span class="p">,</span><span class="s">"example4.com"</span><span class="p">])</span>
 </code></pre>
-<h3 id='ignoring-subdomains' class='heading'>Ignoring subdomains</h3>
+<h4 id='blacklisting-paths' class='heading'>Blacklisting paths</h4>
+
+<p>Blacklist specific paths that need to be ignored from recording</p>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">pathsToIgnore</span><span class="p">([</span><span class="s">"tracking"</span><span class="p">,</span><span class="s">"logging"</span><span class="p">])</span>
+</code></pre>
+<h4 id='ignoring-paths' class='heading'>Ignoring paths</h4>
 
 <p>If end points have subdomains that need to be ignored, those can be set as below. This allows responses recorded from one realm to be played back on another. Spoofer normalizes the URL so that <strong>example.qa.com</strong> becomes <strong>example.com</strong></p>
-<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">subDomainsToIgnore</span><span class="p">([</span><span class="s">"DEV"</span><span class="p">,</span><span class="s">"QA"</span><span class="p">,</span><span class="s">"PREPROD"</span><span class="p">])</span>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">subDomainsToNormalize</span><span class="p">([</span><span class="s">"DEV"</span><span class="p">,</span><span class="s">"QA"</span><span class="p">,</span><span class="s">"PREPROD"</span><span class="p">])</span>
 </code></pre>
-<h3 id='ignoring-query-parameters' class='heading'>Ignoring query parameters</h3>
+<h4 id='ignoring-query-parameters' class='heading'>Ignoring query parameters</h4>
 
 <p>If constructed URL&rsquo;s contain query parameters which appear and go away dynamically, response lookup might fail during replay. To avoid that, setup ignore rules for such query parameters so that they are removed before URL&rsquo;s are compared.</p>
-<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">queryParametersToIgnore</span><span class="p">([</span><span class="s">"node"</span><span class="p">,</span><span class="s">"swarm"</span><span class="p">,</span><span class="s">"cluster"</span><span class="p">])</span>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">queryParametersToNormalize</span><span class="p">([</span><span class="s">"node"</span><span class="p">,</span><span class="s">"swarm"</span><span class="p">,</span><span class="s">"cluster"</span><span class="p">])</span>
 </code></pre>
-<h3 id='normalize-query-parameters' class='heading'>Normalize query parameters</h3>
-<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="n">normalizeQueryParameters</span> <span class="o">=</span> <span class="kc">true</span>
+<h4 id='ignoring-path-components' class='heading'>Ignoring path components</h4>
+
+<p>If constructed URL&rsquo;s contain path components which vary between environments or so, response lookup might fail during replay. To avoid that, setup ignore rules for such path components so that they are removed before URL&rsquo;s are compared.</p>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">pathComponentsToNormalize</span><span class="p">([</span><span class="s">"v1"</span><span class="p">,</span><span class="s">"v1.1"</span><span class="p">])</span>
+</code></pre>
+<h4 id='replacing-path-ranges' class='heading'>Replacing path ranges</h4>
+
+<p>If constructed URL&rsquo;s contain path components which provide similar response and need to be interchanged or removed, a replacement can be setup. For example, in the below case, a request for a trip with id any value will be served with a saved trip response always.</p>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="nf">pathRangesToReplace</span><span class="p">([</span><span class="kt">URLPathRangeReplacement</span><span class="p">(</span><span class="nv">start</span><span class="p">:</span> <span class="s">"/trip/"</span><span class="p">,</span> <span class="nv">end</span><span class="p">:</span> <span class="kc">nil</span><span class="p">,</span> <span class="nv">replacement</span><span class="p">:</span> <span class="s">""</span><span class="p">)])</span>
+</code></pre>
+<h4 id='normalize-query-values' class='heading'>Normalize query values</h4>
+<pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="n">normalizeQueryValues</span> <span class="o">=</span> <span class="kc">true</span>
 </code></pre>
 
-<p>Query Parameter Normalization causes values (not keys) of the query parameters to be dropped while comparing URL&rsquo;s. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are</p>
+<p>Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL&rsquo;s. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are</p>
 
 <ol>
 <li>Reduced scenario file size saving some storage space.</li>
 <li>Consistent response for the same end point regardless of query parameter values</li>
 </ol>
-<h3 id='allow-self-signed-certificate' class='heading'>Allow self signed certificate</h3>
+<h4 id='allow-self-signed-certificate' class='heading'>Allow self signed certificate</h4>
 <pre class="highlight swift"><code><span class="kt">Spoofer</span><span class="o">.</span><span class="n">allowSelfSignedCertificate</span> <span class="o">=</span> <span class="kc">true</span>
 </code></pre>
 
@@ -208,25 +261,32 @@
 <h5 id='method-2' class='heading'>Method 2</h5>
 
 <p>Spoofer will fire the following notifications whenever its state changes. You can subscribe to these notifications and do any related work.</p>
+<pre class="highlight swift"><code><span class="o">-</span> <span class="n">spooferStartedRecordingNotification</span>
+<span class="o">-</span> <span class="n">spooferStoppedRecordingNotification</span>
+<span class="o">-</span> <span class="n">spooferStartedReplayingNotification</span>
+<span class="o">-</span> <span class="n">spooferStoppedReplayingNotification</span>
+</code></pre>
+<h2 id='requirements-latest-version' class='heading'>Requirements (Latest Version)</h2>
 
 <ul>
-<li>spooferStartedRecordingNotification</li>
-<li>spooferStoppedRecordingNotification</li>
-<li>spooferStartedReplayingNotification</li>
-<li>spooferStoppedReplayingNotification</li>
+<li>iOS 10+ / macOS 10.11+ / tvOS 10.0+ / watchOS 4.0+</li>
+<li>Xcode 10+</li>
+<li>Swift 4.2+</li>
 </ul>
 <h2 id='installation' class='heading'>Installation</h2>
-<h3 id='cocoapods' class='heading'>Cocoapods</h3>
+<h4 id='cocoapods' class='heading'>Cocoapods</h4>
 <pre class="highlight ruby"><code><span class="n">pod</span> <span class="s2">"NetworkResponseSpoofer"</span>
+<span class="c1"># or</span>
+<span class="n">pod</span> <span class="s2">"NetworkResponseSpoofer/SpooferUI"</span> <span class="c1"># Only for iOS, brings in the built-in UI to manage spoofed scenarios and settings</span>
 </code></pre>
-<h3 id='carthage' class='heading'>Carthage</h3>
-<pre class="highlight ruby"><code><span class="n">github</span> <span class="s2">"HotwireDotCom/NetworkResponseSpoofer"</span>
+<h4 id='carthage' class='heading'>Carthage</h4>
+<pre class="highlight swift"><code><span class="n">github</span> <span class="s">"HotwireDotCom/NetworkResponseSpoofer"</span>
 </code></pre>
 
           </section>
         </section>
         <section id="footer">
-          <p>&copy; 2018 <a class="link" href="www.hotwire.com" target="_blank" rel="external">Hotwire</a>. All rights reserved. (Last updated: 2018-11-09)</p>
+          <p>&copy; 2018 <a class="link" href="www.hotwire.com" target="_blank" rel="external">Hotwire</a>. All rights reserved. (Last updated: 2018-11-14)</p>
           <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.4</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
         </section>
       </article>

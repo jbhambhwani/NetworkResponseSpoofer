@@ -1,6 +1,132 @@
 {
   "warnings": [
     {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 35,
+      "symbol": "SpooferConfigurationType",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 36,
+      "symbol": "SpooferConfigurationType.queryValueNormalization",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 37,
+      "symbol": "SpooferConfigurationType.acceptSelfSignedCertificate",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 38,
+      "symbol": "SpooferConfigurationType.spoofedHosts",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 39,
+      "symbol": "SpooferConfigurationType.ignoredHosts",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 40,
+      "symbol": "SpooferConfigurationType.ignoredPaths",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 41,
+      "symbol": "SpooferConfigurationType.normalizedSubdomains",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 42,
+      "symbol": "SpooferConfigurationType.normalizedQueryParameters",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 43,
+      "symbol": "SpooferConfigurationType.normalizedPathComponents",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 44,
+      "symbol": "SpooferConfigurationType.replacePathRanges",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 45,
+      "symbol": "SpooferConfigurationType.blank",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 47,
+      "symbol": "SpooferConfigurationType.allTypes",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Constants.swift",
+      "line": 51,
+      "symbol": "SpooferConfigurationType.description",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Result.swift",
+      "line": null,
+      "symbol": "Result",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Result.swift",
+      "line": 11,
+      "symbol": "Result",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Result.swift",
+      "line": 12,
+      "symbol": "Result.success(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Result.swift",
+      "line": 13,
+      "symbol": "Result.failure(_:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Result.swift",
+      "line": 17,
+      "symbol": "Result.flatMap(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/URLPathRangeReplacement.swift",
       "line": 11,
       "symbol": "URLPathRangeReplacement",
@@ -9,9 +135,72 @@
     },
     {
       "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/URLPathRangeReplacement.swift",
+      "line": 12,
+      "symbol": "URLPathRangeReplacement.start",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/URLPathRangeReplacement.swift",
+      "line": 13,
+      "symbol": "URLPathRangeReplacement.end",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/URLPathRangeReplacement.swift",
+      "line": 14,
+      "symbol": "URLPathRangeReplacement.replacement",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/URLPathRangeReplacement.swift",
       "line": 16,
       "symbol": "URLPathRangeReplacement.init(start:end:replacement:)",
       "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Validator.swift",
+      "line": 11,
+      "symbol": "Validator",
+      "symbol_kind": "source.lang.swift.decl.struct",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Miscellaneous/Validator.swift",
+      "line": 13,
+      "symbol": "Validator.validateNotEmpty(stringArray:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/NetworkInterceptable.swift",
+      "line": 13,
+      "symbol": "NetworkInterceptable.startIntercept()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/NetworkInterceptable.swift",
+      "line": 14,
+      "symbol": "NetworkInterceptable.stopIntercept()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/NetworkInterceptable.swift",
+      "line": 18,
+      "symbol": "NetworkInterceptable.startIntercept()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/NetworkInterceptable.swift",
+      "line": 25,
+      "symbol": "NetworkInterceptable.stopIntercept()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
       "warning": "undocumented"
     },
     {
@@ -78,6 +267,13 @@
       "warning": "undocumented"
     },
     {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferRecorder.swift",
+      "line": 124,
+      "symbol": "SpooferRecorder.saveResponse()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
       "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Protocol/Networking/SpooferReplayer.swift",
       "line": 25,
       "symbol": "SpooferReplayer.canInit(with:)",
@@ -114,6 +310,13 @@
     },
     {
       "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": null,
+      "symbol": "RealmStore",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
       "line": 12,
       "symbol": "defaultSuiteName",
       "symbol_kind": "source.lang.swift.decl.var.global",
@@ -144,6 +347,314 @@
       "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
       "line": 19,
       "symbol": "StoreError.unableToDeleteScenario",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 35,
+      "symbol": "Store",
+      "symbol_kind": "source.lang.swift.decl.protocol",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 37,
+      "symbol": "Store.runMigrations()",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 39,
+      "symbol": "Store.allScenarioNames(suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 40,
+      "symbol": "Store.save(scenario:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 41,
+      "symbol": "Store.load(scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 42,
+      "symbol": "Store.delete(scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 44,
+      "symbol": "Store.save(response:scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 45,
+      "symbol": "Store.delete(response:scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 48,
+      "symbol": "DataStore",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 49,
+      "symbol": "DataStore.runMigrations()",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 53,
+      "symbol": "DataStore.allScenarioNames(suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 57,
+      "symbol": "DataStore.save(scenario:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 61,
+      "symbol": "DataStore.load(scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 65,
+      "symbol": "DataStore.delete(scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 69,
+      "symbol": "DataStore.save(response:scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 73,
+      "symbol": "DataStore.delete(response:scenarioName:suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.static",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/DataStore.swift",
+      "line": 131,
+      "symbol": "RealmStore.allScenarioNames(suite:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/FileManagerExtension.swift",
+      "line": 15,
+      "symbol": "FileManager.allSuiteNames()",
+      "symbol_kind": "source.lang.swift.decl.function.method.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": null,
+      "symbol": "NetworkResponse",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": null,
+      "symbol": "NetworkResponse",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 12,
+      "symbol": "NetworkResponse",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 13,
+      "symbol": "NetworkResponse.requestURL",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 14,
+      "symbol": "NetworkResponse.httpMethod",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 15,
+      "symbol": "NetworkResponse.statusCode",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 16,
+      "symbol": "NetworkResponse.createdDate",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 17,
+      "symbol": "NetworkResponse.mimeType",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 18,
+      "symbol": "NetworkResponse.encoding",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 19,
+      "symbol": "NetworkResponse.expectedContentLength",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 20,
+      "symbol": "NetworkResponse.headerFields",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 27,
+      "symbol": "NetworkResponse.data",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 85,
+      "symbol": "NetworkResponse.isEqual(_:)",
+      "symbol_kind": "source.lang.swift.decl.function.method.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 96,
+      "symbol": "NetworkResponse.hash",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/NetworkResponse.swift",
+      "line": 105,
+      "symbol": "NetworkResponse.debugDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/ResponseHeaderItem.swift",
+      "line": 12,
+      "symbol": "ResponseHeaderItem",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/Scenario.swift",
+      "line": null,
+      "symbol": "Scenario",
+      "symbol_kind": "source.lang.swift.decl.extension",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/Scenario.swift",
+      "line": 12,
+      "symbol": "Scenario",
+      "symbol_kind": "source.lang.swift.decl.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/Scenario.swift",
+      "line": 13,
+      "symbol": "Scenario.name",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/Scenario.swift",
+      "line": 14,
+      "symbol": "Scenario.networkResponses",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Realm/Models/Scenario.swift",
+      "line": 46,
+      "symbol": "Scenario.debugDescription",
+      "symbol_kind": "source.lang.swift.decl.var.instance",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/Spoofer.swift",
+      "line": 188,
+      "symbol": "Spoofer.configurations",
+      "symbol_kind": "source.lang.swift.decl.var.class",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/StateManagement/SpooferState.swift",
+      "line": 11,
+      "symbol": "NetworkAction",
+      "symbol_kind": "source.lang.swift.decl.enum",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/StateManagement/SpooferState.swift",
+      "line": 12,
+      "symbol": "NetworkAction.record(scenarioName:suiteName:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/StateManagement/SpooferState.swift",
+      "line": 13,
+      "symbol": "NetworkAction.replay(scenarioName:suiteName:)",
+      "symbol_kind": "source.lang.swift.decl.enumelement",
+      "warning": "undocumented"
+    },
+    {
+      "file": "/Users/dmukundan/Documents/Workspace/Hotwire/NetworkResponseSpoofer/Source/Core/StateManagement/SpooferState.swift",
+      "line": 14,
+      "symbol": "NetworkAction.stopIntercept",
       "symbol_kind": "source.lang.swift.decl.enumelement",
       "warning": "undocumented"
     }
