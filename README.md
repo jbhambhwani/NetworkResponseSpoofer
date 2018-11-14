@@ -4,9 +4,23 @@ NetworkResponseSpoofer is a network response record and replay library for iOS, 
 
 
 ## Getting Started
-Before you start, import Spoofer framework into your project
+Before you start, import Spoofer framework into your app delegate and call the migration method.
+This will make sure that the Spoofer DB is migrated to the latest version in case there are changes.
+Spoofer uses Realm as a DB to store all network responses, so its important that any potential future changes to the DB reflects in your app.
 ```swift
+# AppDelegate.swift
+
 @import NetworkResponseSpoofer
+
+    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        // Override point for customization after application launch.
+        // Run migrations first before accesing the Spoofer
+        Spoofer.runMigrations()
+
+        // Do other setup stuff
+
+        return true
+    }
 ```
 
 #### Start Recording
