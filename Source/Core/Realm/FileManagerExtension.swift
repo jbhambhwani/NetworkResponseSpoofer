@@ -22,7 +22,9 @@ extension FileManager {
             return []
         }
 
-        let fileNames = allFiles.filter { $0.lastPathComponent.hasSuffix(realmFileExtension) }.map { $0.deletingPathExtension().lastPathComponent }
+        let fileNames = allFiles
+            .filter { $0.lastPathComponent.hasSuffix(realmFileExtension) }
+            .map { $0.deletingPathExtension().lastPathComponent }
         return fileNames.map { String($0) }
     }
 

@@ -32,7 +32,10 @@ final class EditSettingsViewController: UITableViewController {
 
         let addAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController, unowned self] _ in
             if let textFields = alertController.textFields {
-                if textFields.count > 1, let start = textFields[0].text, let end = textFields[1].text, let replacement = textFields[2].text {
+                if textFields.count > 1,
+                    let start = textFields[0].text,
+                    let end = textFields[1].text,
+                    let replacement = textFields[2].text {
                     let prReplacement = URLPathRangeReplacement(start: start, end: end, replacement: replacement)
                     self.presenter?.configurations.append(prReplacement)
                 } else if let entry = textFields[0].text {
@@ -51,7 +54,9 @@ final class EditSettingsViewController: UITableViewController {
             alertController.addTextField { [weak self] textField in
                 textField.placeholder = "From"
                 textField.autocapitalizationType = .none
-                self?.validatorToken1 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+                self?.validatorToken1 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification,
+                                                                           object: textField,
+                                                                           queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }
@@ -69,7 +74,9 @@ final class EditSettingsViewController: UITableViewController {
             alertController.addTextField { [weak self] textField in
                 textField.placeholder = "Enter here!"
                 textField.autocapitalizationType = .none
-                self?.validatorToken2 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+                self?.validatorToken2 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification,
+                                                                           object: textField,
+                                                                           queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }

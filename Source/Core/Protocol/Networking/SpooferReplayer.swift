@@ -14,7 +14,8 @@ enum ReplayMethod {
 }
 
 /**
- URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Replaying. The methods are not to be overriden for Spoofer to work correctly.
+ URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Replaying.
+ The methods are not to be overriden for Spoofer to work correctly.
  */
 public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
     private var currentReplayMethod: ReplayMethod {
@@ -55,7 +56,11 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
     public override func startLoading() {
         guard let url = request.url else { return }
 
-        let httpError = generateError("No saved response found", recoveryMessage: "You might need to re-record the scenario", code: SpooferError.noSavedResponseError.rawValue, url: url.absoluteString, errorHandler: nil)
+        let httpError = generateError("No saved response found",
+                                      recoveryMessage: "You might need to re-record the scenario",
+                                      code: SpooferError.noSavedResponseError.rawValue,
+                                      url: url.absoluteString,
+                                      errorHandler: nil)
 
         let loadResult = DataStore.load(scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
 
@@ -74,9 +79,16 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
             switch currentReplayMethod {
             case .statusCodeAndHeader:
                 let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
-                httpResponse = HTTPURLResponse(url: url, statusCode: statusCode, httpVersion: "HTTP/1.1", headerFields: ResponseHeaderItem.deSerialize(headerItems: Array(cachedResponse.headerFields)))
+                let headers = Array(cachedResponse.headerFields)
+                httpResponse = HTTPURLResponse(url: url,
+                                               statusCode: statusCode,
+                                               httpVersion: "HTTP/1.1",
+                                               headerFields: ResponseHeaderItem.deSerialize(headerItems: headers))
             case .mimeTypeAndEncoding:
-                httpResponse = HTTPURLResponse(url: url, mimeType: cachedResponse.mimeType, expectedContentLength: cachedResponse.expectedContentLength, textEncodingName: cachedResponse.encoding)
+                httpResponse = HTTPURLResponse(url: url,
+                                               mimeType: cachedResponse.mimeType,
+                                               expectedContentLength: cachedResponse.expectedContentLength,
+                                               textEncodingName: cachedResponse.encoding)
             }
 
             guard let spoofedResponse = httpResponse else {

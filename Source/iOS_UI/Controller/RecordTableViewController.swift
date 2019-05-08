@@ -23,7 +23,9 @@ final class RecordTableViewController: UITableViewController {
 
         scenarioNameTextField.becomeFirstResponder()
 
-        validatorToken = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification, object: scenarioNameTextField, queue: OperationQueue.main) { [weak self] _ in
+        validatorToken = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification,
+                                                            object: scenarioNameTextField,
+                                                            queue: OperationQueue.main) { [weak self] _ in
             guard let self = self else { return }
             self.startRecordingButton.isEnabled = self.scenarioNameTextField.text != ""
             self.startRecordingButton.backgroundColor = self.startRecordingButton.isEnabled ? UIColor.black : UIColor.lightGray

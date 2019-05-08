@@ -72,7 +72,9 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
 // MARK: - Networking Delegates
 
 extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
-    public func urlSession(_: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func urlSession(_: URLSession,
+                           didReceive challenge: URLAuthenticationChallenge,
+                           completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
             Spoofer.allowSelfSignedCertificate == true,
             let serverTrust = challenge.protectionSpace.serverTrust else {
@@ -84,7 +86,10 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
         completionHandler(.performDefaultHandling, credentials)
     }
 
-    public func urlSession(_: URLSession, dataTask _: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+    public func urlSession(_: URLSession,
+                           dataTask _: URLSessionDataTask,
+                           didReceive response: URLResponse,
+                           completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         // Send the received response to the client
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         // Save / Initialize local structures
@@ -125,7 +130,9 @@ extension SpooferRecorder {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
 
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        guard let currentResponse = NetworkResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
+        guard let currentResponse = NetworkResponse.responseFrom(httpRequest: request,
+                                                                 httpResponse: httpResponse,
+                                                                 data: responseData) else { return }
         let saveResult = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
         switch saveResult {
         case let .success(response):

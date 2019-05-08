@@ -60,7 +60,9 @@ extension SuiteListController {
     }
 
     @IBAction func addSuitePressed(_: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Create Suite", message: "Enter a suite name to save the scenarios", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Create Suite",
+                                                message: "Enter a suite name to save the scenarios",
+                                                preferredStyle: .alert)
 
         let createAction = UIAlertAction(title: "Create", style: .default) { [unowned alertController, weak self] _ in
             if let textField = alertController.textFields?.first, let suiteName = textField.text {

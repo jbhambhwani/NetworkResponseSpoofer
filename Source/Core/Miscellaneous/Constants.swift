@@ -32,7 +32,7 @@ public enum SpooferError: Int, Error {
 
 // MARK: Internal
 
-public enum SpooferConfigurationType: String {
+public enum SpooferConfigurationType: String, CaseIterable {
     case queryValueNormalization = "Query Value Normalization"
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
     case spoofedHosts = "Hostnames to Spoof"
@@ -43,10 +43,6 @@ public enum SpooferConfigurationType: String {
     case normalizedPathComponents = "Normalized Path Components"
     case replacePathRanges = "Replace Path Range"
     case blank = ""
-
-    public var allTypes: [SpooferConfigurationType] {
-        return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .normalizedSubdomains, .normalizedQueryParameters, .normalizedPathComponents, .replacePathRanges, .blank]
-    }
 
     public var description: String {
         switch self {

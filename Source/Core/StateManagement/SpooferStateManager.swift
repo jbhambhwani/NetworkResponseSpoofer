@@ -30,12 +30,16 @@ extension SpooferStateManager {
         case (true, _):
             logFormattedSeperator("Spoofer Recording Started")
             Spoofer.delegate?.spooferDidStartRecording(newState.scenarioName)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStartedRecordingNotification), object: Spoofer.sharedInstance, userInfo: ["scenario": newState.scenarioName])
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStartedRecordingNotification),
+                                            object: Spoofer.sharedInstance,
+                                            userInfo: ["scenario": newState.scenarioName])
 
         case (_, true):
             logFormattedSeperator("Spoofer Replay Started")
             Spoofer.delegate?.spooferDidStartReplaying(newState.scenarioName)
-            NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStartedReplayingNotification), object: Spoofer.sharedInstance, userInfo: ["scenario": newState.scenarioName])
+            NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStartedReplayingNotification),
+                                            object: Spoofer.sharedInstance,
+                                            userInfo: ["scenario": newState.scenarioName])
 
         case (false, false):
 
@@ -43,12 +47,16 @@ extension SpooferStateManager {
             case (true, _):
                 logFormattedSeperator("Spoofer Recording Stopped")
                 Spoofer.delegate?.spooferDidStopRecording(oldState.scenarioName)
-                NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStoppedRecordingNotification), object: Spoofer.sharedInstance, userInfo: ["scenario": oldState.scenarioName])
+                NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStoppedRecordingNotification),
+                                                object: Spoofer.sharedInstance,
+                                                userInfo: ["scenario": oldState.scenarioName])
 
             case (_, true):
                 logFormattedSeperator("Spoofer Replay Stopped")
                 Spoofer.delegate?.spooferDidStopReplaying(oldState.scenarioName)
-                NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStoppedReplayingNotification), object: Spoofer.sharedInstance, userInfo: ["scenario": oldState.scenarioName])
+                NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStoppedReplayingNotification),
+                                                object: Spoofer.sharedInstance,
+                                                userInfo: ["scenario": oldState.scenarioName])
 
             default:
                 break

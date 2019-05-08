@@ -29,10 +29,16 @@ func postNotification(_ message: String, object: Any? = nil) {
     // Print to console
     print(message)
     // Post a notification with the message so that any receivers can listen and log it
-    NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferLogNotification), object: object, userInfo: ["message": message])
+    NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferLogNotification),
+                                    object: object,
+                                    userInfo: ["message": message])
 }
 
-@discardableResult func generateError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
+@discardableResult func generateError(_ reason: String,
+                                      recoveryMessage: String,
+                                      code: Int,
+                                      url: String? = nil,
+                                      errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
     var userInfo = [NSLocalizedFailureReasonErrorKey: reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
     if let url = url {
         userInfo[NSURLErrorFailingURLErrorKey] = url

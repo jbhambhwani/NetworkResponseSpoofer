@@ -29,8 +29,10 @@ final class ResponseCell: UITableViewCell {
             statusLabel.textColor = .black
         }
 
-        let part1 = NSAttributedString(string: response.httpMethod, attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
-        let part2 = NSAttributedString(string: response.requestURL, attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
+        let part1 = NSAttributedString(string: response.httpMethod,
+                                       attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
+        let part2 = NSAttributedString(string: response.requestURL,
+                                       attributes: [NSAttributedString.Key.font: UIFont.systemFont(ofSize: 16)])
         let fullText = NSMutableAttributedString()
         fullText.append(part1)
         fullText.append(NSAttributedString(string: "  "))
