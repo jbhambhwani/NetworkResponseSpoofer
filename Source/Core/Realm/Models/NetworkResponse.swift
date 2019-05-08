@@ -44,7 +44,7 @@ public class NetworkResponse: Object {
     @objc dynamic var backupData: Data?
     @objc dynamic var jsonRepresentation = ""
 
-    override public static func ignoredProperties() -> [String] {
+    public override static func ignoredProperties() -> [String] {
         return ["data"]
     }
 }

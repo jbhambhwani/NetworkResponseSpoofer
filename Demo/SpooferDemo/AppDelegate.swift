@@ -6,8 +6,8 @@
 //  Copyright © 2015 Hotwire. All rights reserved.
 //
 
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {

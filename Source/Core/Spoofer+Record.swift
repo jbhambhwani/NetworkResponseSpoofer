@@ -9,7 +9,6 @@
 import Foundation
 
 public extension Spoofer {
-
     // MARK: - Record
 
     /// Returns true if the Spoofer is recording a scenario

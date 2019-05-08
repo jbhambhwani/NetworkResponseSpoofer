@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class ResponseListController: UITableViewController {
     var suiteName = ""
@@ -36,7 +36,7 @@ final class ResponseListController: UITableViewController {
 
         tableView.tableHeaderView = searchController.searchBar
         // Load the responses for the passed in scenario
-        if scenarioName.count > 0 {
+        if !scenarioName.isEmpty {
             loadResponses()
         }
     }
@@ -60,7 +60,6 @@ final class ResponseListController: UITableViewController {
             break
         }
     }
-
 }
 
 // MARK: - Tableview datasource
@@ -91,7 +90,7 @@ extension ResponseListController {
         return UITableView.automaticDimension
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             let responseToDelete = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]

@@ -36,7 +36,6 @@ extension SpooferStateManager {
             logFormattedSeperator("Spoofer Replay Started")
             Spoofer.delegate?.spooferDidStartReplaying(newState.scenarioName)
             NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferStartedReplayingNotification), object: Spoofer.sharedInstance, userInfo: ["scenario": newState.scenarioName])
-            break
 
         case (false, false):
 

@@ -93,9 +93,7 @@ private struct RealmStore {
 }
 
 extension RealmStore: Store {
-
     func runMigrations() {
-
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
@@ -114,7 +112,7 @@ extension RealmStore: Store {
                 default:
                     break
                 }
-        }
+            }
         )
 
         // Tell Realm to use this new configuration object for the default Realm
@@ -155,7 +153,7 @@ extension RealmStore: Store {
 
         do {
             try realm.write {
-                scenario.networkResponses.forEach({ realm.delete($0.headerFields) })
+                scenario.networkResponses.forEach { realm.delete($0.headerFields) }
                 realm.delete(scenario.networkResponses)
                 realm.delete(scenario)
             }

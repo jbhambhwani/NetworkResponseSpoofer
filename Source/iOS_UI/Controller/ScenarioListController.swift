@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class ScenarioListController: UITableViewController {
-
     // MARK: - Lifecycle
 
     var suiteName = ""
@@ -95,7 +94,7 @@ extension ScenarioListController {
         performSegue(withIdentifier: SegueIdentifier.showResponses.rawValue, sender: indexPath)
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             let scenarioToDelete = scenarioNames[indexPath.row]

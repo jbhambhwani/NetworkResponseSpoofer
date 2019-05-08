@@ -23,7 +23,7 @@ public extension URLSessionConfiguration {
      */
 
     /// Spoofed Default URLSessionConfiguration (As a property)
-    public static var spoofed: URLSessionConfiguration {
+    static var spoofed: URLSessionConfiguration {
         let sessionConfig = URLSessionConfiguration.default
         insertInterceptors(inConfig: sessionConfig)
         return sessionConfig

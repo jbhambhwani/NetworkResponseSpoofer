@@ -6,11 +6,10 @@
 //  Copyright © 2016 Hotwire. All rights reserved.
 //
 
-import XCTest
 @testable import NetworkResponseSpoofer
+import XCTest
 
 final class URLTests: XCTestCase {
-
     override func setUp() {
         super.setUp()
 

@@ -1,5 +1,7 @@
 // Auto generated file from SBConstants - any changes may be lost
 
+// swiftlint:disable all
+
 public enum NavigationControllerStoryboardIdentifier: String {
     case RecordNavigationController
 }
@@ -27,3 +29,5 @@ public enum TableViewControllerStoryboardIdentifier: String {
     case ScenarioListController
     case SuiteListController
 }
+
+// swiftlint:enable all

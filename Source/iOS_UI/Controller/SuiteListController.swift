@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class SuiteListController: UITableViewController {
     static let identifier = "SuiteListController"

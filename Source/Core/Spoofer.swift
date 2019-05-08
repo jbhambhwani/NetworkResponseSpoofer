@@ -45,7 +45,6 @@ import Foundation
  */
 @objcMembers
 public final class Spoofer: NSObject {
-
     // MARK: - Configuration
 
     /// The delegate for the Spoofer, which will be notified whenever the Spoofer state changes
@@ -152,21 +151,21 @@ public final class Spoofer: NSObject {
         guard let currentHost = url.host?.lowercased() else { return false }
 
         // Handle all cases in case no domains are whitelisted and blacklisted
-        if hostNamesToSpoof.isEmpty && hostNamesToIgnore.isEmpty { return true }
+        if hostNamesToSpoof.isEmpty, hostNamesToIgnore.isEmpty { return true }
 
-        let domainIsWhitelisted = hostNamesToSpoof.filter { currentHost.contains($0) }.count > 0
-        let domainIsBlacklisted = hostNamesToIgnore.filter { currentHost.contains($0) }.count > 0
+        let domainIsWhitelisted = !hostNamesToSpoof.filter { currentHost.contains($0) }.isEmpty
+        let domainIsBlacklisted = !hostNamesToIgnore.filter { currentHost.contains($0) }.isEmpty
 
         if domainIsBlacklisted { return false } // If same domain is Whitelisted and Blacklisted, prefer Blacklist. Users will have to clean up their act! :)
         if domainIsWhitelisted { return true }
 
         // Handle corner case when domain is not present in either whitelist or blacklist
-        if !domainIsWhitelisted && !domainIsBlacklisted && hostNamesToSpoof.isEmpty {
+        if !domainIsWhitelisted, !domainIsBlacklisted, hostNamesToSpoof.isEmpty {
             return true
         }
 
         // Ignore the url if it has a black listed path component
-        if url.pathComponents.filter({ pathsToIgnore.contains($0) }).count > 0 {
+        if !url.pathComponents.filter({ pathsToIgnore.contains($0) }).isEmpty {
             return false
         }
 

@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {
     var model: [SpooferConfigurationType: Any]

@@ -108,18 +108,19 @@ final class DemoViewController: UIViewController {
     // MARK: - Helper methods
 
     @objc func spooferLogReceived(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
+        guard let userInfo = notification.userInfo as? [String: String],
+            let message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
-        DispatchQueue.main.async(execute: { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
-            if strongSelf.consoleTextView.text.count > 0 {
-                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n\n" + message
+            if !strongSelf.consoleTextView.text.isEmpty {
+                strongSelf.consoleTextView.text += "\n\n" + message
                 // Scroll to bottom of log
                 strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.count - 1, length: 1))
             } else {
                 strongSelf.consoleTextView.text = message
             }
-        })
+        }
     }
 }
 

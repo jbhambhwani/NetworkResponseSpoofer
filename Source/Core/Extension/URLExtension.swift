@@ -9,7 +9,6 @@
 import Foundation
 
 extension URL {
-
     // MARK: - Public properties
 
     var normalizedString: String? {
@@ -48,7 +47,7 @@ private extension URL {
         guard let _ = query else { return result }
 
         // Normalize Query Parameters
-        let normalizedQueryItems = allQueryItems.filter({ Spoofer.queryParametersToNormalize.contains($0.name) == false })
+        let normalizedQueryItems = allQueryItems.filter { Spoofer.queryParametersToNormalize.contains($0.name) == false }
         result.normalizeQuery(items: normalizedQueryItems)
 
         if let fragment = fragment {
@@ -86,17 +85,17 @@ private extension String {
     }
 
     mutating func replacePathRanges() {
-        for r in Spoofer.pathRangesToReplace {
-            if let startRange = self.range(of: r.start + "/") {
+        for pathRange in Spoofer.pathRangesToReplace {
+            if let startRange = self.range(of: pathRange.start + "/") {
                 let endRange: Range<String.Index>
-                if let end = r.end {
+                if let end = pathRange.end {
                     endRange = range(of: "/" + end, range: startRange.upperBound ..< endIndex) ?? endIndex ..< endIndex
                 } else {
                     endRange = endIndex ..< endIndex
                 }
                 print(startRange.upperBound)
                 print(endRange.lowerBound)
-                replaceSubrange(startRange.upperBound ..< endRange.lowerBound, with: r.replacement)
+                replaceSubrange(startRange.upperBound ..< endRange.lowerBound, with: pathRange.replacement)
             }
         }
 
@@ -120,25 +119,25 @@ private extension String {
     mutating func normalizeQuery(items: [URLQueryItem]) {
         if Spoofer.normalizeQueryValues {
             let queryItemNames = normalizedQueryItemNames(items)
-            if queryItemNames.count > 0 {
+            if !queryItemNames.isEmpty {
                 self += "?" + queryItemNames
             }
         } else {
             let combinedQueryItems = items.reduce("") {
                 guard let value = $1.value else { return $0 }
-                if $0.count > 0 {
+                if !$0.isEmpty {
                     return $0 + "&" + $1.name + "=" + value
                 } else {
                     return $0 + $1.name + "=" + value
                 }
             }
-            if combinedQueryItems.count > 0 {
+            if !combinedQueryItems.isEmpty {
                 self += "?" + combinedQueryItems
             }
         }
     }
 
     func normalizedQueryItemNames(_ queryItems: [URLQueryItem]) -> String {
-        return queryItems.compactMap({ $0.name }).joined(separator: "&")
+        return queryItems.compactMap { $0.name }.joined(separator: "&")
     }
 }

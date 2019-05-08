@@ -9,7 +9,7 @@
 import Foundation
 
 /// Protocol to be adopted by NSURLProtocol adopters to simplify the intercept setup process
-public protocol NetworkInterceptable: class {
+public protocol NetworkInterceptable: AnyObject {
     static func startIntercept() -> Bool
     static func stopIntercept()
 }

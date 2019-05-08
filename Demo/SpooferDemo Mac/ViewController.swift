@@ -6,8 +6,8 @@
 //  Copyright © 2016 Hotwire. All rights reserved.
 //
 
-import NetworkResponseSpoofer
 import Cocoa
+import NetworkResponseSpoofer
 import WebKit
 
 final class ViewController: NSViewController {
@@ -39,7 +39,7 @@ final class ViewController: NSViewController {
 
     func loadWebPage() {
         let url = textField.stringValue
-        guard url.count > 0 else { return }
+        guard !url.isEmpty else { return }
 
         switch recordReplaySegmentedControl.selectedSegment {
         case 0:
@@ -58,21 +58,20 @@ final class ViewController: NSViewController {
     @objc func spooferLogReceived(_ notification: Notification) {
         guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
-        DispatchQueue.main.async(execute: { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
-            if strongSelf.consoleTextView.string.count > 0 {
-                strongSelf.consoleTextView.string = strongSelf.consoleTextView.string + "\n" + message
+            if !strongSelf.consoleTextView.string.isEmpty {
+                strongSelf.consoleTextView.string += "\n" + message
                 // Scroll to bottom of log
                 strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.string.count - 1, length: 1))
             } else {
                 strongSelf.consoleTextView.string = message
             }
-        })
+        }
     }
 }
 
 extension ViewController: WebFrameLoadDelegate {
-
     func webView(_: WebView!, didStartProvisionalLoadFor _: WebFrame!) {
         progressIndicator.startAnimation(nil)
     }

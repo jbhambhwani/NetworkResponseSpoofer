@@ -32,7 +32,7 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
         // 3: Check if we have a scenario loaded in memory
         let hasSavedScenario = Spoofer.scenarioName.isEmpty == false
 
-        if Spoofer.isReplaying && isHTTP && shouldHandleURL && hasSavedScenario {
+        if Spoofer.isReplaying, isHTTP, shouldHandleURL, hasSavedScenario {
             return true
         }
 

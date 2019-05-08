@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class RecordTableViewController: UITableViewController {
     static let identifier = "RecordNavigationController"
@@ -23,7 +23,7 @@ final class RecordTableViewController: UITableViewController {
         scenarioNameTextField.becomeFirstResponder()
 
         NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: scenarioNameTextField, queue: OperationQueue.main) { [weak self] _ in
-            guard let `self` = self else { return }
+            guard let self = self else { return }
             self.startRecordingButton.isEnabled = self.scenarioNameTextField.text != ""
             self.startRecordingButton.backgroundColor = self.startRecordingButton.isEnabled ? UIColor.black : UIColor.lightGray
         }

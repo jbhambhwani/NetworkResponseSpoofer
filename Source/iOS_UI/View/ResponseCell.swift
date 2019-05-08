@@ -6,9 +6,9 @@
 //  Copyright © 2017 Hotwire. All rights reserved.
 //
 
-import UIKit
 import Foundation
 import NetworkResponseSpoofer
+import UIKit
 
 final class ResponseCell: UITableViewCell {
     @IBOutlet var statusLabel: UILabel!
@@ -19,11 +19,11 @@ final class ResponseCell: UITableViewCell {
     func configure(with response: NetworkResponse) {
         statusLabel.text = String(response.statusCode)
         switch response.statusCode {
-        case 200...299:
+        case 200 ... 299:
             statusLabel.textColor = rgb(0, 144, 81)
-        case 300...399:
+        case 300 ... 399:
             statusLabel.textColor = rgb(255, 147, 0)
-        case 400...599:
+        case 400 ... 599:
             statusLabel.textColor = rgb(255, 38, 0)
         default:
             statusLabel.textColor = .black
@@ -54,5 +54,5 @@ final class ResponseCell: UITableViewCell {
 }
 
 private func rgb(_ red: Int, _ green: Int, _ blue: Int) -> UIColor {
-    return UIColor(red: CGFloat(red)/255.0, green: CGFloat(green)/255.0, blue: CGFloat(blue)/255.0, alpha: 1.0)
+    return UIColor(red: CGFloat(red) / 255.0, green: CGFloat(green) / 255.0, blue: CGFloat(blue) / 255.0, alpha: 1.0)
 }

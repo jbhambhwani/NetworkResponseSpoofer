@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class SettingsViewController: UITableViewController {
     // Array of dictionaries of Spoofer Configuration Type: Any
@@ -31,8 +31,8 @@ final class SettingsViewController: UITableViewController {
     private func readSpooferConfiguration() {
         allSettings.removeAll(keepingCapacity: true)
         guard let config = Spoofer.configurations else { return }
-        for (k, v) in Array(config).sorted(by: { $0.0.rawValue < $1.0.rawValue }) {
-            allSettings.append([k: v])
+        for (key, value) in Array(config).sorted(by: { $0.0.rawValue < $1.0.rawValue }) {
+            allSettings.append([key: value])
         }
     }
 
@@ -46,7 +46,6 @@ final class SettingsViewController: UITableViewController {
 }
 
 extension SettingsViewController {
-
     // MARK: - Tableview datasource
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {

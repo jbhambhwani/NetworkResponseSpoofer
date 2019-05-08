@@ -419,6 +419,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer" */;
 			buildPhases = (
+				41443524228382E900CC0CA7 /* Format & Lint */,
 				4147EA481B684D7E001DE517 /* Sources */,
 				4147EA491B684D7E001DE517 /* Frameworks */,
 				4147EA4A1B684D7E001DE517 /* Headers */,
@@ -526,6 +527,24 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		41443524228382E900CC0CA7 /* Format & Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Format & Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n\nif which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n\n";
+		};
 		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
