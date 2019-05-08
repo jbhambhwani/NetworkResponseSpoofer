@@ -62,7 +62,7 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
         switch loadResult {
         case let .success(scenario):
 
-            guard let cachedResponse = scenario.responseForRequest(request), let _ = URL(string: cachedResponse.requestURL) else {
+            guard let cachedResponse = scenario.responseForRequest(request), URL(string: cachedResponse.requestURL) != nil else {
                 postNotification("⚠️ No saved response found: \(String(describing: request.url?.absoluteString))", object: self)
                 // Throw an error in case we are unable to load a response
                 client?.urlProtocol(self, didFailWithError: httpError)

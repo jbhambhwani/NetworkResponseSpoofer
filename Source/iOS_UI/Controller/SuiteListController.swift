@@ -14,6 +14,7 @@ final class SuiteListController: UITableViewController {
     static let identifier = "SuiteListController"
     var suiteName = defaultSuiteName
     @IBOutlet var addSuiteButton: UIBarButtonItem!
+    private var validatorToken: NotificationToken?
 }
 
 extension SuiteListController {
@@ -74,10 +75,12 @@ extension SuiteListController {
             // Dismiss
         }
 
-        alertController.addTextField { textField in
+        alertController.addTextField { [weak self] textField in
             textField.placeholder = "Enter suite name"
             textField.autocapitalizationType = .sentences
-            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+            self?.validatorToken = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification,
+                                                                      object: textField,
+                                                                      queue: OperationQueue.main) { _ in
                 createAction.isEnabled = textField.text != ""
             }
         }

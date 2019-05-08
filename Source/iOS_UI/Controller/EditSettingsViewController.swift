@@ -12,6 +12,8 @@ import UIKit
 
 final class EditSettingsViewController: UITableViewController {
     var presenter: SwitchWithTextViewPresentable?
+    private var validatorToken1: NotificationToken?
+    private var validatorToken2: NotificationToken?
 
     // MARK: - Lifecycle
 
@@ -46,10 +48,10 @@ final class EditSettingsViewController: UITableViewController {
         }
 
         if title == "Replace Path Range" {
-            alertController.addTextField { textField in
+            alertController.addTextField { [weak self] textField in
                 textField.placeholder = "From"
                 textField.autocapitalizationType = .none
-                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+                self?.validatorToken1 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }
@@ -64,10 +66,10 @@ final class EditSettingsViewController: UITableViewController {
                 textField.autocapitalizationType = .none
             }
         } else {
-            alertController.addTextField { textField in
+            alertController.addTextField { [weak self] textField in
                 textField.placeholder = "Enter here!"
                 textField.autocapitalizationType = .none
-                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+                self?.validatorToken2 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }

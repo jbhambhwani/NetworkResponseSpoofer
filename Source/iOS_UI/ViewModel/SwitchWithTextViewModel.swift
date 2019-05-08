@@ -50,12 +50,12 @@ extension SwitchWithTextViewModel {
 
     var switchHidden: Bool { return !modelIsBoolean }
 
-    func onSwitchTogleOn(_ on: Bool) {
+    func onSwitchToggle(_ value: Bool) {
         switch configType {
         case .queryValueNormalization:
-            Spoofer.normalizeQueryValues = on
+            Spoofer.normalizeQueryValues = value
         case .acceptSelfSignedCertificate:
-            Spoofer.allowSelfSignedCertificate = on
+            Spoofer.allowSelfSignedCertificate = value
         default:
             assertionFailure("Unhandled case")
         }
@@ -87,19 +87,19 @@ extension SwitchWithTextViewModel {
             // Based on current configuration, Update the Spoofer instance with new setting
             switch configType {
             case .spoofedHosts:
-                Spoofer.hostNamesToSpoof = newValue as! [String]
+                Spoofer.hostNamesToSpoof = newValue as? [String] ?? []
             case .ignoredHosts:
-                Spoofer.hostNamesToIgnore = newValue as! [String]
+                Spoofer.hostNamesToIgnore = newValue as? [String] ?? []
             case .ignoredPaths:
-                Spoofer.pathsToIgnore = newValue as! [String]
+                Spoofer.pathsToIgnore = newValue as? [String] ?? []
             case .normalizedSubdomains:
-                Spoofer.subDomainsToNormalize = newValue as! [String]
+                Spoofer.subDomainsToNormalize = newValue as? [String] ?? []
             case .normalizedQueryParameters:
-                Spoofer.queryParametersToNormalize = newValue as! [String]
+                Spoofer.queryParametersToNormalize = newValue as? [String] ?? []
             case .normalizedPathComponents:
-                Spoofer.pathComponentsToNormalize = newValue as! [String]
+                Spoofer.pathComponentsToNormalize = newValue as? [String] ?? []
             case .replacePathRanges:
-                Spoofer.pathRangesToReplace = newValue as! [URLPathRangeReplacement]
+                Spoofer.pathRangesToReplace = newValue as? [URLPathRangeReplacement] ?? []
             default:
                 assertionFailure("Unhandled case")
             }

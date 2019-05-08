@@ -49,18 +49,6 @@ extension FileManager {
         return suiteFileURL
     }
 
-    private class func deleteSuite(_ suiteName: String) -> Bool {
-        // Get a reference to the documents directory & Construct a file name based on the suite file
-        let suiteFileURL = getSuiteFileURL(suiteName)
-        do {
-            // TODO: Remove all associated files as well. The Realm needs to be closed as well. Needs investigation.
-            try FileManager.default.removeItem(at: suiteFileURL)
-            return true
-        } catch {
-            return false
-        }
-    }
-
     private class var applicationDocumentsDirectory: URL {
         guard let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             fatalError("Cannot proceed without application docs directory access")

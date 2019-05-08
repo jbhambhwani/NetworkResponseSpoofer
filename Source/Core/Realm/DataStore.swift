@@ -78,7 +78,13 @@ public enum DataStore {
 private struct RealmStore {
     static let sharedInstance = RealmStore()
 
-    var realm: Realm { return try! Realm() }
+    var realm: Realm {
+        do {
+            return try Realm()
+        } catch {
+            preconditionFailure("Unable to instanciate Realm store")
+        }
+    }
 
     func setDefaultRealmForSuite(suiteName: String) {
         var config = Realm.Configuration.defaultConfiguration

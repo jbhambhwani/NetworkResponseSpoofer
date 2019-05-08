@@ -16,13 +16,14 @@ final class RecordTableViewController: UITableViewController {
     @IBOutlet var scenarioNameTextField: UITextField!
     @IBOutlet var startRecordingButton: UIButton!
     @IBOutlet var suiteNameLabel: UILabel!
+    private var validatorToken: NotificationToken?
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
         scenarioNameTextField.becomeFirstResponder()
 
-        NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: scenarioNameTextField, queue: OperationQueue.main) { [weak self] _ in
+        validatorToken = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification, object: scenarioNameTextField, queue: OperationQueue.main) { [weak self] _ in
             guard let self = self else { return }
             self.startRecordingButton.isEnabled = self.scenarioNameTextField.text != ""
             self.startRecordingButton.backgroundColor = self.startRecordingButton.isEnabled ? UIColor.black : UIColor.lightGray

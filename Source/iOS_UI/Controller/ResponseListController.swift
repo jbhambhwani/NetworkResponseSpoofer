@@ -70,7 +70,8 @@ extension ResponseListController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: ResponseCell.defaultReuseIdentifier, for: indexPath) as! ResponseCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: ResponseCell.defaultReuseIdentifier,
+                                                 for: indexPath) as! ResponseCell
 
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
         cell.configure(with: response)

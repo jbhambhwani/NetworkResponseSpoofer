@@ -34,6 +34,6 @@ final class SwitchWithTextTableViewCell: UITableViewCell {
     }
 
     @IBAction func onSwitchToggle(_ sender: UISwitch) {
-        presenter?.onSwitchTogleOn(sender.isOn)
+        presenter?.onSwitchToggle(sender.isOn)
     }
 }
