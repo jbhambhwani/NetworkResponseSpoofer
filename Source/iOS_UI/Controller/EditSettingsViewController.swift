@@ -28,7 +28,9 @@ final class EditSettingsViewController: UITableViewController {
     // MARK: - User Actions
 
     @IBAction func addAction(_: UIBarButtonItem) {
-        let alertController = UIAlertController(title: title, message: "Add an entry to the list", preferredStyle: .alert)
+        let alertController = UIAlertController(title: title,
+                                                message: "Add an entry to the list",
+                                                preferredStyle: .alert)
 
         let addAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController, unowned self] _ in
             if let textFields = alertController.textFields {
@@ -120,7 +122,9 @@ extension EditSettingsViewController {
 // MARK: - Tableview delegate
 
 extension EditSettingsViewController {
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             presenter?.configurations.remove(at: indexPath.row)

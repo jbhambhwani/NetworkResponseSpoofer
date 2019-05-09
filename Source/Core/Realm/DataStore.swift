@@ -150,12 +150,16 @@ extension RealmStore: Store {
     }
 
     func load(scenarioName: String, suite: String) -> Result<Scenario> {
-        guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
+        guard let scenario = getScenario(scenarioName, suite: suite) else {
+            return .failure(StoreError.scenarioNotFound)
+        }
         return .success(scenario)
     }
 
     func delete(scenarioName: String, suite: String) -> Result<Bool> {
-        guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
+        guard let scenario = getScenario(scenarioName, suite: suite) else {
+            return .failure(StoreError.scenarioNotFound)
+        }
 
         do {
             try realm.write {

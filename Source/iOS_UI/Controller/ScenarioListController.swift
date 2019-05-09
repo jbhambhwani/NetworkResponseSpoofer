@@ -36,7 +36,8 @@ final class ScenarioListController: UITableViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         guard let responseListController = segue.destination as? ResponseListController,
             let indexPath = sender as? IndexPath else { return }
-        selectedScenarioName = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
+        selectedScenarioName = searchController.isActive ?
+            filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         responseListController.suiteName = suiteName
         responseListController.scenarioName = selectedScenarioName
     }
@@ -74,7 +75,8 @@ extension ScenarioListController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
-        let scenario: String = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
+        let scenario: String = searchController.isActive ?
+            filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         cell.textLabel?.text = scenario
         cell.accessibilityIdentifier = scenario
         return cell

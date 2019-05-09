@@ -28,7 +28,8 @@ final class RecordTableViewController: UITableViewController {
                                                             queue: OperationQueue.main) { [weak self] _ in
             guard let self = self else { return }
             self.startRecordingButton.isEnabled = self.scenarioNameTextField.text != ""
-            self.startRecordingButton.backgroundColor = self.startRecordingButton.isEnabled ? UIColor.black : UIColor.lightGray
+            self.startRecordingButton.backgroundColor = self.startRecordingButton.isEnabled ?
+                UIColor.black : UIColor.lightGray
         }
     }
 

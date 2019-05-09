@@ -34,7 +34,9 @@ extension FileManager {
         var isDir = ObjCBool(true)
         if FileManager.default.fileExists(atPath: spooferDirectoryURL.path, isDirectory: &isDir) == false {
             do {
-                try FileManager.default.createDirectory(at: spooferDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(at: spooferDirectoryURL,
+                                                        withIntermediateDirectories: true,
+                                                        attributes: nil)
             } catch {
                 fatalError("Cannot proceed without Spoofer docs directory access")
             }

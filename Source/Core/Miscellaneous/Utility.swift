@@ -13,7 +13,7 @@ func logFormattedSeperator(_ message: String? = "-") {
 
     postNotification(message)
 
-    // Print "-" character before and after the message, 100 character total. Just logging every important message nicely.
+    // Print "-" character before and after the message, 100 character total to make clean log
     let messageStart = 50 - (message.count / 2)
     if messageStart > 0 {
         let hyphenString = String(repeating: "-", count: messageStart)

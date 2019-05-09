@@ -39,7 +39,8 @@ final class SettingsViewController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let cell = sender as? SwitchWithTextTableViewCell, let editVC = segue.destination as? EditSettingsViewController else { return }
+        guard let cell = sender as? SwitchWithTextTableViewCell,
+            let editVC = segue.destination as? EditSettingsViewController else { return }
         editVC.title = cell.presenter?.title
         editVC.presenter = cell.presenter
     }

@@ -9,7 +9,8 @@
 import Foundation
 
 /**
- URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording. The methods are not to be overriden for Spoofer to work correctly.
+ URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording.
+ The methods are not to be overriden for Spoofer to work correctly.
  */
 public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
     static let requestHandledKey = "RecorderProtocolHandledKey"
@@ -23,7 +24,8 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
 
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
         let isHTTP = url.isHTTP
-        // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
+        // 2: Check if the request is to be handled or not based on a whitelist.
+        // If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(url)
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
         let isHandled = !(request.value(forHTTPHeaderField: requestHandledKey) ?? "").isEmpty
@@ -133,7 +135,9 @@ extension SpooferRecorder {
         guard let currentResponse = NetworkResponse.responseFrom(httpRequest: request,
                                                                  httpResponse: httpResponse,
                                                                  data: responseData) else { return }
-        let saveResult = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
+        let saveResult = DataStore.save(response: currentResponse,
+                                        scenarioName: Spoofer.scenarioName,
+                                        suite: Spoofer.suiteName)
         switch saveResult {
         case let .success(response):
             postNotification("📡 Response received & saved: \(response)", object: self)

@@ -63,19 +63,18 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
                                       errorHandler: nil)
 
         let loadResult = DataStore.load(scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
-
         switch loadResult {
         case let .success(scenario):
-
-            guard let cachedResponse = scenario.responseForRequest(request), URL(string: cachedResponse.requestURL) != nil else {
-                postNotification("⚠️ No saved response found: \(String(describing: request.url?.absoluteString))", object: self)
+            guard let cachedResponse = scenario.responseForRequest(request),
+                URL(string: cachedResponse.requestURL) != nil else {
+                postNotification("⚠️ No saved response found: \(String(describing: request.url?.absoluteString))",
+                                 object: self)
                 // Throw an error in case we are unable to load a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
             }
 
             var httpResponse: HTTPURLResponse?
-
             switch currentReplayMethod {
             case .statusCodeAndHeader:
                 let statusCode = (cachedResponse.statusCode >= 200) ? cachedResponse.statusCode : 200
@@ -92,7 +91,8 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
             }
 
             guard let spoofedResponse = httpResponse else {
-                postNotification("⚠️ Unable to serialize response: \(String(describing: request.url?.absoluteString))", object: self)
+                postNotification("⚠️ Unable to serialize response: \(String(describing: request.url?.absoluteString))",
+                                 object: self)
                 // Throw an error in case we are unable to serialize a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
@@ -105,7 +105,8 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
             client?.urlProtocolDidFinishLoading(self)
 
         case .failure:
-            postNotification("⚠️ Database read failure: \(String(describing: request.url?.absoluteString))", object: self)
+            postNotification("⚠️ Database read failure: \(String(describing: request.url?.absoluteString))",
+                             object: self)
             // Throw an error in case we are unable to load a response
             client?.urlProtocol(self, didFailWithError: httpError)
         }

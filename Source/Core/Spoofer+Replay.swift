@@ -27,13 +27,15 @@ public extension Spoofer {
 
      - Returns: True if replay was started, else false
      */
-    @discardableResult class func startReplaying(scenarioName name: String, inSuite suite: String = defaultSuiteName) -> Bool {
+    @discardableResult class func startReplaying(scenarioName name: String,
+                                                 inSuite suite: String = defaultSuiteName) -> Bool {
         let protocolRegistered = SpooferReplayer.startIntercept()
 
         let loadResult = DataStore.load(scenarioName: name, suite: suite)
         switch loadResult {
         case let .success(scenario):
-            Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name, suiteName: suite))
+            Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name,
+                                                                                      suiteName: suite))
 
         case .failure:
             return false
