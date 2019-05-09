@@ -24,7 +24,6 @@ func logFormattedSeperator(_ message: String? = "-") {
 }
 
 func postNotification(_ message: String, object: Any? = nil) {
-
     if #available(iOS 12.0, *) {
         // Messages are already being logged using the unified logging system
     } else {
