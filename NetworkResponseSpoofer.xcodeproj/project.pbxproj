@@ -415,6 +415,7 @@
 			buildConfigurationList = 411A357F1BC74A7D001D128D /* Build configuration list for PBXNativeTarget "NetworkResponseSpooferTests" */;
 			buildPhases = (
 				411A35731BC74A7D001D128D /* Sources */,
+				41CBFE6022848FE40026BF25 /* Lint */,
 				411A35741BC74A7D001D128D /* Frameworks */,
 				411A35751BC74A7D001D128D /* Resources */,
 				41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */,
@@ -609,6 +610,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
+		};
+		41CBFE6022848FE40026BF25 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
