@@ -36,8 +36,8 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
         }
 
         if shouldHandleURL == false, let url = request.url {
-            if #available(iOS 12.0, *) {
-                os_log(.info, log: Log.recorder, "⏩ Skipped unhandled url: %s", url.absoluteString)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("⏩ Skipped unhandled url: %s", log: Log.recorder, type: .info, url.absoluteString)
             }
             postNotification("⏩ Skipped unhandled url: \(url)")
         }
@@ -116,8 +116,8 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
         if let error = error {
             // Pass error back to client
             client?.urlProtocol(self, didFailWithError: error)
-            if #available(iOS 12.0, *) {
-                os_log(.debug, log: Log.recorder, "❌ Recording failure: %s", error.localizedDescription)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("❌ Recording failure: %s", log: Log.recorder, error.localizedDescription)
             }
             postNotification("❌ Recording failure: \(error.localizedDescription)", object: self)
             // Reset internal data structures
@@ -147,13 +147,13 @@ extension SpooferRecorder {
                                         suite: Spoofer.suiteName)
         switch saveResult {
         case let .success(response):
-            if #available(iOS 12.0, *) {
-                os_log(.debug, log: Log.recorder, "📡 Response received & saved: %@", response)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("📡 Response received & saved: %@", log: Log.recorder, response)
             }
             postNotification("📡 Response received & saved: \(response)", object: self)
         case let .failure(error):
-            if #available(iOS 12.0, *) {
-                os_log(.debug, log: Log.recorder, "❌ Response not saved: %s", error.localizedDescription)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("❌ Response not saved: %s", log: Log.recorder, error.localizedDescription)
             }
             postNotification("❌ Response not saved: \(error.localizedDescription)", object: self)
         }

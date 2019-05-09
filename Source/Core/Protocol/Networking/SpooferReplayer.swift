@@ -39,8 +39,8 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
         }
 
         if shouldHandleURL == false, let url = request.url {
-            if #available(iOS 12.0, *) {
-                os_log(.info, log: Log.replayer, "⏩ Skipped unhandled url: %s", url.absoluteString)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("⏩ Skipped unhandled url: %s", log: Log.replayer, type: .info, url.absoluteString)
             }
             postNotification("⏩ Skipped unhandled url: \(url)")
         }
@@ -90,8 +90,8 @@ private extension SpooferReplayer {
         guard let cachedResponse = cachedResponse(for: url, scenario: scenario) else { return }
         guard let spoofedResponse = httpResponse(for: url, fromResponse: cachedResponse) else { return }
 
-        if #available(iOS 12.0, *) {
-            os_log(.debug, log: Log.replayer, "💾 Serving response from: %s", urlString)
+        if #available(iOS 12.0, OSX 10.14, *) {
+            os_log("💾 Serving response from: %s", log: Log.replayer, urlString)
         }
         postNotification("💾 Serving response from: \(urlString)", object: self)
 
@@ -102,8 +102,8 @@ private extension SpooferReplayer {
 
     func loadFailure(url: URL) {
         let urlString = url.absoluteString
-        if #available(iOS 12.0, *) {
-            os_log(.debug, log: Log.replayer, "⚠️ Database read failure: %s", urlString)
+        if #available(iOS 12.0, OSX 10.14, *) {
+            os_log("⚠️ Database read failure: %s", log: Log.replayer, urlString)
         }
         postNotification("⚠️ Database read failure: \(urlString)", object: self)
         // Throw an error in case we are unable to load a response
@@ -115,8 +115,8 @@ private extension SpooferReplayer {
             URL(string: cachedResponse.requestURL) != nil else {
             let urlString = url.absoluteString
 
-            if #available(iOS 12.0, *) {
-                os_log(.debug, log: Log.replayer, "⚠️ No saved response found: %s", urlString)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("⚠️ No saved response found: %s", log: Log.replayer, urlString)
             }
             postNotification("⚠️ No saved response found: \(urlString))", object: self)
             // Throw an error in case we are unable to load a response
@@ -146,8 +146,8 @@ private extension SpooferReplayer {
 
         guard let response = httpResponse else {
             let urlString = url.absoluteString
-            if #available(iOS 12.0, *) {
-                os_log(.debug, log: Log.replayer, "⚠️ Unable to de-serialize response: %s", urlString)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("⚠️ Unable to de-serialize response: %s", log: Log.replayer, urlString)
             }
             postNotification("⚠️ Unable to de-serialize response: \(urlString)", object: self)
             // Throw an error in case we are unable to serialize a response

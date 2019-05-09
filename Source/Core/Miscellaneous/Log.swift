@@ -11,6 +11,7 @@ import os
 
 private let subsystem = "com.hotwire.networkresponsespoofer"
 
+@available(iOS 12, OSX 10.14, *)
 public struct Log {
     static let recorder = OSLog(subsystem: subsystem, category: "Spoofer Recorder")
     static let replayer = OSLog(subsystem: subsystem, category: "Spoofer Replayer")

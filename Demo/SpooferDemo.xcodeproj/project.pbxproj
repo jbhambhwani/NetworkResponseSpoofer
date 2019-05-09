@@ -288,7 +288,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/NetworkResponseSpoofer.default-SpooferUI/NetworkResponseSpoofer.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-iOS/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-iOS/RealmSwift.framework",
@@ -303,7 +303,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpooferDemo/Pods-SpooferDemo-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		16E72D3284215854728FF443 /* [CP] Check Pods Manifest.lock */ = {
@@ -336,7 +336,7 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/NetworkResponseSpoofer/NetworkResponseSpoofer.framework",
 				"${BUILT_PRODUCTS_DIR}/Realm-macOS/Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/RealmSwift-macOS/RealmSwift.framework",
@@ -351,7 +351,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -420,7 +420,7 @@
 				DEVELOPMENT_TEAM = H898Y42WAX;
 				INFOPLIST_FILE = "SpooferDemo Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.SpooferDemo-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
@@ -442,7 +442,7 @@
 				DEVELOPMENT_TEAM = H898Y42WAX;
 				INFOPLIST_FILE = "SpooferDemo Mac/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.hotwire.SpooferDemo-Mac";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
