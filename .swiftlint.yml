@@ -3,16 +3,15 @@ disabled_rules: # rule identifiers to exclude from running
 opt_in_rules: # some rules are only opt-in
   - empty_count
 included: # paths to include during linting. `--path` is ignored if present.
- - Source
+- Source
 excluded: # paths to ignore during linting. Takes precedence over `included`.
  - Carthage
  - Pods
-
+ - build
 # configurable rules can be customized from this configuration file
 # binary rules can set their severity level
 force_cast: warning
 force_try: warning
-
 line_length:
    warning: 130
 function_body_length:

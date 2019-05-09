@@ -62,9 +62,11 @@ final class DataTests: XCTestCase {
                     XCTFail("No data was found on smoke test scenario")
                     return
                 }
-                let responseDict: [String: String]? = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as! [String: String]
+                let responseDict: [String: String]? =
+                    try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as! [String: String]
 
-                guard let json = responseDict, json == ["one": "two", "key": "value"] else {
+                guard let json = responseDict,
+                    json == ["one": "two", "key": "value"] else {
                     XCTFail("Replayed respose not same as Recorded")
                     return
                 }
