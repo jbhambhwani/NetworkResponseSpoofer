@@ -63,7 +63,8 @@ final class ViewController: NSViewController {
             if !strongSelf.consoleTextView.string.isEmpty {
                 strongSelf.consoleTextView.string += "\n" + message
                 // Scroll to bottom of log
-                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.string.count - 1, length: 1))
+                let bottomRange = NSRange(location: strongSelf.consoleTextView.string.count - 1, length: 1)
+                strongSelf.consoleTextView.scrollRangeToVisible(bottomRange)
             } else {
                 strongSelf.consoleTextView.string = message
             }

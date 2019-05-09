@@ -148,7 +148,6 @@
 				E45A16FCD9F10606CF568A18 /* Pods-SpooferDemo_Mac.debug.xcconfig */,
 				AB90D1DB6756D468313CB241 /* Pods-SpooferDemo_Mac.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -161,6 +160,7 @@
 			buildPhases = (
 				FE2755EA75868123DAFCF77E /* [CP] Check Pods Manifest.lock */,
 				410FA4E61DDAABAB00478DA7 /* Sources */,
+				4153798122846B4E009E6BF2 /* Lint */,
 				410FA4E71DDAABAB00478DA7 /* Frameworks */,
 				410FA4E81DDAABAB00478DA7 /* Resources */,
 				3EFA81D9DD85D2DE4EAA3D78 /* [CP] Embed Pods Frameworks */,
@@ -180,6 +180,7 @@
 			buildPhases = (
 				A9C713167CB822E5337B0477 /* [CP] Check Pods Manifest.lock */,
 				412A7B8E1BC9D441002E9FF2 /* Sources */,
+				4153797F22846A89009E6BF2 /* Lint */,
 				412A7B8F1BC9D441002E9FF2 /* Frameworks */,
 				412A7B901BC9D441002E9FF2 /* Resources */,
 				41F2EB301D38248100916C44 /* Embed Frameworks */,
@@ -284,6 +285,42 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SpooferDemo_Mac/Pods-SpooferDemo_Mac-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		4153797F22846A89009E6BF2 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n";
+		};
+		4153798122846B4E009E6BF2 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
 		A9C713167CB822E5337B0477 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
