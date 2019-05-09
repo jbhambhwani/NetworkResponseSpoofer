@@ -117,7 +117,8 @@ extension ResponseListController: UISearchResultsUpdating, UISearchControllerDel
         }
 
         filteredResponses = allResponses.filter {
-            return $0.requestURL.contains(searchText.lowercased())
+            let url = $0.requestURL
+            return url.contains(searchText.lowercased())
         }
     }
 }

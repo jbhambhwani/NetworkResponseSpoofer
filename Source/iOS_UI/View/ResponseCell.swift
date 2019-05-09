@@ -18,16 +18,7 @@ final class ResponseCell: UITableViewCell {
 
     func configure(with response: NetworkResponse) {
         statusLabel.text = String(response.statusCode)
-        switch response.statusCode {
-        case 200 ... 299:
-            statusLabel.textColor = rgb(0, 144, 81)
-        case 300 ... 399:
-            statusLabel.textColor = rgb(255, 147, 0)
-        case 400 ... 599:
-            statusLabel.textColor = rgb(255, 38, 0)
-        default:
-            statusLabel.textColor = .black
-        }
+        mimeTypeLabel.text = response.mimeType
 
         let part1 = NSAttributedString(string: response.httpMethod,
                                        attributes: [NSAttributedString.Key.font: UIFont.boldSystemFont(ofSize: 16)])
@@ -37,11 +28,12 @@ final class ResponseCell: UITableViewCell {
         fullText.append(part1)
         fullText.append(NSAttributedString(string: "  "))
         fullText.append(part2)
-
         urlLabel.attributedText = fullText
 
-        sizeLabel.text = ResponseCell.formatter.string(fromByteCount: Int64(response.data.count))
-        mimeTypeLabel.text = response.mimeType
+        let totalBytes = Int64(response.data.count)
+        sizeLabel.text = ResponseCell.byteFormatter.string(fromByteCount: totalBytes)
+
+        updateStatusColor(response: response)
     }
 
     override func prepareForReuse() {
@@ -52,7 +44,20 @@ final class ResponseCell: UITableViewCell {
         mimeTypeLabel.text = ""
     }
 
-    static let formatter = ByteCountFormatter()
+    static let byteFormatter = ByteCountFormatter()
+
+    private func updateStatusColor(response: NetworkResponse) {
+        switch response.statusCode {
+        case 200 ... 299:
+            statusLabel.textColor = rgb(0, 144, 81)
+        case 300 ... 399:
+            statusLabel.textColor = rgb(255, 147, 0)
+        case 400 ... 599:
+            statusLabel.textColor = rgb(255, 38, 0)
+        default:
+            statusLabel.textColor = .black
+        }
+    }
 }
 
 private func rgb(_ red: Int, _ green: Int, _ blue: Int) -> UIColor {
