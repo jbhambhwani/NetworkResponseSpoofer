@@ -13,7 +13,6 @@
 		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
 		411A357C1BC74A7D001D128D /* NetworkResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
-		4144352722838E4A00CC0CA7 /* NotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4144352622838E4A00CC0CA7 /* NotificationToken.swift */; };
 		414435292283ABC600CC0CA7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414435282283ABC600CC0CA7 /* Log.swift */; };
 		4147EA531B684D7E001DE517 /* NetworkResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
@@ -30,6 +29,7 @@
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
+		41CBFE612284CBF90026BF25 /* NotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4144352622838E4A00CC0CA7 /* NotificationToken.swift */; };
 		41D2445C2198F6A400E38D25 /* SpooferUI.h in Headers */ = {isa = PBXBuildFile; fileRef = 41D2445A2198F6A400E38D25 /* SpooferUI.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		41D244602198F6EB00E38D25 /* EditSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */; };
 		41D244612198F6EB00E38D25 /* RecordTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41D253251E315A56008CD570 /* RecordTableViewController.swift */; };
@@ -652,7 +652,6 @@
 				41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */,
-				4144352722838E4A00CC0CA7 /* NotificationToken.swift in Sources */,
 				411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,
 				410489C21C99D94800E99745 /* Constants.swift in Sources */,
@@ -683,6 +682,7 @@
 				41D244672198F6EB00E38D25 /* UITableViewCell.swift in Sources */,
 				41D2446B2198F6EB00E38D25 /* SwitchWithTextViewModel.swift in Sources */,
 				41D244612198F6EB00E38D25 /* RecordTableViewController.swift in Sources */,
+				41CBFE612284CBF90026BF25 /* NotificationToken.swift in Sources */,
 				41D244692198F6EB00E38D25 /* StoryboardIdentifiers.swift in Sources */,
 				41D244602198F6EB00E38D25 /* EditSettingsViewController.swift in Sources */,
 				41D244642198F6EB00E38D25 /* SettingsViewController.swift in Sources */,
@@ -809,7 +809,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = debugging;
-				SUPPORTED_PLATFORMS = "macosx iphoneos appletvos watchos appletvsimulator iphonesimulator watchsimulator";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
@@ -875,7 +875,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = debugging;
-				SUPPORTED_PLATFORMS = "macosx iphoneos appletvos watchos appletvsimulator iphonesimulator watchsimulator";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
@@ -909,6 +909,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos macosx appletvos watchos iphonesimulator appletvsimulator watchsimulator";
 			};
 			name = Debug;
 		};
@@ -934,6 +935,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SKIP_INSTALL = YES;
+				SUPPORTED_PLATFORMS = "iphoneos macosx appletvos watchos iphonesimulator appletvsimulator watchsimulator";
 			};
 			name = Release;
 		};
@@ -963,7 +965,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -994,7 +995,6 @@
 				PRODUCT_NAME = "$(TARGET_NAME:c99extidentifier)";
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
-				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
 				SWIFT_VERSION = 4.2;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
