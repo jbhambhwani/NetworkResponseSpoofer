@@ -1,10 +1,10 @@
 PODS:
-  - NetworkResponseSpoofer (8.2.0):
-    - NetworkResponseSpoofer/Core (= 8.2.0)
+  - NetworkResponseSpoofer (8.3.0):
+    - NetworkResponseSpoofer/Core (= 8.3.0)
     - RealmSwift
-  - NetworkResponseSpoofer/Core (8.2.0):
+  - NetworkResponseSpoofer/Core (8.3.0):
     - RealmSwift
-  - NetworkResponseSpoofer/SpooferUI (8.2.0):
+  - NetworkResponseSpoofer/SpooferUI (8.3.0):
     - NetworkResponseSpoofer/Core
     - RealmSwift
   - Realm (3.15.0):
@@ -27,7 +27,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NetworkResponseSpoofer: b1d3ff1647b3d1352ee5a614f1149ceba8a75918
+  NetworkResponseSpoofer: 65c08539fdf860926fa93149949818540a6a7e8e
   Realm: 9b834e1be6062f544805252c812348872dc5d4ed
   RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
 

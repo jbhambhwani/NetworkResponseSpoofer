@@ -10,10 +10,14 @@ import Foundation
 
 // Global property contains swizzle code in a call to a closure. Will be initialized only once the first time it is used
 private let swizzleURLSessionConfiguration: Void = {
-    NSObject.swizzleMethod(#selector(URLSessionConfiguration.spoofedDefault),
-                           withSelector: #selector(getter: URLSessionConfiguration.default))
-    NSObject.swizzleMethod(#selector(URLSessionConfiguration.spoofedEphemeral),
-                           withSelector: #selector(getter: URLSessionConfiguration.ephemeral))
+    Swizzler.swizzleClassMethod(of: URLSessionConfiguration.self,
+                                from: #selector(URLSessionConfiguration.spoofedDefault),
+                                to: #selector(getter: URLSessionConfiguration.default))
+
+    Swizzler.swizzleClassMethod(of: URLSessionConfiguration.self,
+                                from: #selector(URLSessionConfiguration.spoofedEphemeral),
+                                to: #selector(getter: URLSessionConfiguration.ephemeral))
+
 }()
 
 public extension URLSessionConfiguration {
