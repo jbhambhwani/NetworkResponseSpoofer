@@ -117,9 +117,9 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
             // Pass error back to client
             client?.urlProtocol(self, didFailWithError: error)
             if #available(iOS 12.0, OSX 10.14, *) {
-                os_log("❌ Recording failure: %s", log: Log.recorder, error.localizedDescription)
+                os_log("❌ Record failure: %s", log: Log.recorder, error.localizedDescription)
             }
-            postNotification("❌ Recording failure: \(error.localizedDescription)", object: self)
+            postNotification("❌ Record failure: \(error.localizedDescription)", object: self)
             // Reset internal data structures
             response = nil
             responseData = nil
@@ -148,14 +148,14 @@ extension SpooferRecorder {
         switch saveResult {
         case let .success(response):
             if #available(iOS 12.0, OSX 10.14, *) {
-                os_log("📡 Response received & saved: %@", log: Log.recorder, response)
+                os_log("📡 Response saved: %@", log: Log.recorder, response)
             }
-            postNotification("📡 Response received & saved: \(response)", object: self)
+            postNotification("📡 Response saved: \(response)", object: self)
         case let .failure(error):
             if #available(iOS 12.0, OSX 10.14, *) {
-                os_log("❌ Response not saved: %s", log: Log.recorder, error.localizedDescription)
+                os_log("❌ Response Not saved: %s", log: Log.recorder, error.localizedDescription)
             }
-            postNotification("❌ Response not saved: \(error.localizedDescription)", object: self)
+            postNotification("❌ Response Not saved: \(error.localizedDescription)", object: self)
         }
     }
 }

@@ -91,9 +91,9 @@ private extension SpooferReplayer {
         guard let spoofedResponse = httpResponse(for: url, fromResponse: cachedResponse) else { return }
 
         if #available(iOS 12.0, OSX 10.14, *) {
-            os_log("💾 Serving response from: %s", log: Log.replayer, urlString)
+            os_log("💾 Serving response: %s", log: Log.replayer, urlString)
         }
-        postNotification("💾 Serving response from: \(urlString)", object: self)
+        postNotification("💾 Serving response: \(urlString)", object: self)
 
         client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
         client?.urlProtocol(self, didLoad: cachedResponse.data)
@@ -103,9 +103,9 @@ private extension SpooferReplayer {
     func loadFailure(url: URL) {
         let urlString = url.absoluteString
         if #available(iOS 12.0, OSX 10.14, *) {
-            os_log("⚠️ Database read failure: %s", log: Log.replayer, urlString)
+            os_log("❌ DB Read failure: %s", log: Log.replayer, urlString)
         }
-        postNotification("⚠️ Database read failure: \(urlString)", object: self)
+        postNotification("❌ DB Read failure: \(urlString)", object: self)
         // Throw an error in case we are unable to load a response
         client?.urlProtocol(self, didFailWithError: error(for: url))
     }
@@ -116,9 +116,9 @@ private extension SpooferReplayer {
             let urlString = url.absoluteString
 
             if #available(iOS 12.0, OSX 10.14, *) {
-                os_log("⚠️ No saved response found: %s", log: Log.replayer, urlString)
+                os_log("⚠️ No saved response: %s", log: Log.replayer, urlString)
             }
-            postNotification("⚠️ No saved response found: \(urlString))", object: self)
+            postNotification("⚠️ No saved response: \(urlString))", object: self)
             // Throw an error in case we are unable to load a response
             client?.urlProtocol(self, didFailWithError: error(for: url))
             return nil
@@ -147,9 +147,9 @@ private extension SpooferReplayer {
         guard let response = httpResponse else {
             let urlString = url.absoluteString
             if #available(iOS 12.0, OSX 10.14, *) {
-                os_log("⚠️ Unable to de-serialize response: %s", log: Log.replayer, urlString)
+                os_log("❌ Unable to de-serialize response: %s", log: Log.replayer, urlString)
             }
-            postNotification("⚠️ Unable to de-serialize response: \(urlString)", object: self)
+            postNotification("❌ Unable to de-serialize response: \(urlString)", object: self)
             // Throw an error in case we are unable to serialize a response
             client?.urlProtocol(self, didFailWithError: error(for: url))
             return nil
