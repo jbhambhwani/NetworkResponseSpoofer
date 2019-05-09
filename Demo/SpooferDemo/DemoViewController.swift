@@ -52,44 +52,7 @@ final class DemoViewController: UIViewController {
             consoleTextView.text = ""
             return
         }
-
-        // Reset the alternate button to default state
-        switch sender {
-        case recordButton:
-            replayButton.title = ButtonTitle.startReplaying.rawValue
-            replayButton.tintColor = view.tintColor
-            if Spoofer.isReplaying {
-                Spoofer.stopReplaying()
-            }
-
-        case replayButton:
-            recordButton.title = ButtonTitle.startRecording.rawValue
-            recordButton.tintColor = view.tintColor
-            if Spoofer.isRecording {
-                Spoofer.stopRecording()
-            }
-
-        default:
-            print("Invalid button")
-        }
-
-        // Decide on action and set state for current button press
-        switch (sender, sender.title!) {
-        case (recordButton, ButtonTitle.startRecording.rawValue):
-            Spoofer.startRecording(inViewController: self)
-
-        case (recordButton, ButtonTitle.stopRecording.rawValue):
-            Spoofer.stopRecording()
-
-        case (replayButton, ButtonTitle.startReplaying.rawValue):
-            Spoofer.showRecordedScenarios(inViewController: self)
-
-        case (replayButton, ButtonTitle.stopReplaying.rawValue):
-            Spoofer.stopReplaying()
-
-        default:
-            print("Invalid button state")
-        }
+        handleAction(button: sender)
     }
 
     @IBAction func handlePan(_ sender: UIPanGestureRecognizer) {
@@ -108,18 +71,20 @@ final class DemoViewController: UIViewController {
     // MARK: - Helper methods
 
     @objc func spooferLogReceived(_ notification: Notification) {
-        guard let userInfo = notification.userInfo as? [String: String], let message = userInfo["message"] else { return }
+        guard let userInfo = notification.userInfo as? [String: String],
+            let message = userInfo["message"] else { return }
         // Marshall the UI updates to main thread
-        DispatchQueue.main.async(execute: { [weak self] in
+        DispatchQueue.main.async { [weak self] in
             guard let strongSelf = self else { return }
-            if strongSelf.consoleTextView.text.count > 0 {
-                strongSelf.consoleTextView.text = strongSelf.consoleTextView.text + "\n\n" + message
+            if !strongSelf.consoleTextView.text.isEmpty {
+                strongSelf.consoleTextView.text += "\n\n" + message
                 // Scroll to bottom of log
-                strongSelf.consoleTextView.scrollRangeToVisible(NSRange(location: strongSelf.consoleTextView.text.count - 1, length: 1))
+                let bottomRange = NSRange(location: strongSelf.consoleTextView.text.count - 1, length: 1)
+                strongSelf.consoleTextView.scrollRangeToVisible(bottomRange)
             } else {
                 strongSelf.consoleTextView.text = message
             }
-        })
+        }
     }
 }
 
@@ -144,6 +109,46 @@ extension DemoViewController: SpooferDelegate {
 }
 
 private extension DemoViewController {
+    func handleAction(button: UIBarButtonItem) {
+        // Reset the alternate button to default state
+        switch button {
+        case recordButton:
+            replayButton.title = ButtonTitle.startReplaying.rawValue
+            replayButton.tintColor = view.tintColor
+            if Spoofer.isReplaying {
+                Spoofer.stopReplaying()
+            }
+
+        case replayButton:
+            recordButton.title = ButtonTitle.startRecording.rawValue
+            recordButton.tintColor = view.tintColor
+            if Spoofer.isRecording {
+                Spoofer.stopRecording()
+            }
+
+        default:
+            print("Invalid button")
+        }
+
+        // Decide on action and set state for current button press
+        switch (button, button.title!) {
+        case (recordButton, ButtonTitle.startRecording.rawValue):
+            Spoofer.startRecording(inViewController: self)
+
+        case (recordButton, ButtonTitle.stopRecording.rawValue):
+            Spoofer.stopRecording()
+
+        case (replayButton, ButtonTitle.startReplaying.rawValue):
+            Spoofer.showRecordedScenarios(inViewController: self)
+
+        case (replayButton, ButtonTitle.stopReplaying.rawValue):
+            Spoofer.stopReplaying()
+
+        default:
+            print("Invalid button state")
+        }
+    }
+
     func executeActionsForRecording(recordingState state: Bool) {
         if state {
             webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview

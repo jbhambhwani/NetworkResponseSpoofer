@@ -20,9 +20,13 @@ public class NetworkResponse: Object {
     public let headerFields = List<ResponseHeaderItem>()
 
     /* IMPORTANT: README
-     We run the received data through JSONSerialization, and if its JSON Convertible, save it under jsonRepresentation variable, and if not under backkupData. This allows JSON responses to be edited if needed using RealmBrowser. In case serialization fails, the data is saved as is under 'backupData'. This would be the fallback for any response object which is not JSON type.
+     We run the received data through JSONSerialization, and if its JSON Convertible, save it under jsonRepresentation variable,
+     and if not under backupData. This allows JSON responses to be edited if needed using RealmBrowser.
+     In case serialization fails, the data is saved as is under 'backupData'.
+     This would be the fallback for any response object which is not JSON type.
 
-     While serving the response back, first the jsonRepresentation field is checked, and data will be constructed if available. Else backupData is served back.
+     While serving the response back, first the jsonRepresentation field is checked,
+     and data will be constructed if available. Else backupData is served back.
      */
     @objc public dynamic var data: Data {
         get {
@@ -44,7 +48,7 @@ public class NetworkResponse: Object {
     @objc dynamic var backupData: Data?
     @objc dynamic var jsonRepresentation = ""
 
-    override public static func ignoredProperties() -> [String] {
+    public override static func ignoredProperties() -> [String] {
         return ["data"]
     }
 }
@@ -101,6 +105,21 @@ extension NetworkResponse {
 // MARK: - Helper methods for debugging
 
 extension NetworkResponse {
-    public override var description: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)" }
-    public override var debugDescription: String { return "URL: \(requestURL)\nMethod: \(httpMethod)\nStatusCode: \(statusCode)\nCreatedDate: \(createdDate)\nMIMEType: \(String(describing: mimeType))\nEncoding: \(String(describing: encoding))\nHeaderFields: \(headerFields)\n" }
+    public override var description: String { return """
+    URL: \(requestURL)\n
+    Method: \(httpMethod)\n
+    StatusCode: \(statusCode)
+    """
+    }
+
+    public override var debugDescription: String { return """
+    URL: \(requestURL)\n
+    Method: \(httpMethod)\n
+    StatusCode: \(statusCode)\n
+    CreatedDate: \(createdDate)\n
+    MIMEType: \(String(describing: mimeType))\n
+    Encoding: \(String(describing: encoding))\n
+    HeaderFields: \(headerFields)\n
+    """
+    }
 }

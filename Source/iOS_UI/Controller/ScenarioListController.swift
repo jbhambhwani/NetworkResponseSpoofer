@@ -7,11 +7,10 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class ScenarioListController: UITableViewController {
-
     // MARK: - Lifecycle
 
     var suiteName = ""
@@ -35,8 +34,10 @@ final class ScenarioListController: UITableViewController {
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let responseListController = segue.destination as? ResponseListController, let indexPath = sender as? IndexPath else { return }
-        selectedScenarioName = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
+        guard let responseListController = segue.destination as? ResponseListController,
+            let indexPath = sender as? IndexPath else { return }
+        selectedScenarioName = searchController.isActive ?
+            filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         responseListController.suiteName = suiteName
         responseListController.scenarioName = selectedScenarioName
     }
@@ -74,7 +75,8 @@ extension ScenarioListController {
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
-        let scenario: String = searchController.isActive ? filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
+        let scenario: String = searchController.isActive ?
+            filteredScenarios[indexPath.row] : scenarioNames[indexPath.row]
         cell.textLabel?.text = scenario
         cell.accessibilityIdentifier = scenario
         return cell
@@ -95,7 +97,7 @@ extension ScenarioListController {
         performSegue(withIdentifier: SegueIdentifier.showResponses.rawValue, sender: indexPath)
     }
 
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             let scenarioToDelete = scenarioNames[indexPath.row]

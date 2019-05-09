@@ -17,7 +17,7 @@ public extension Result {
     func flatMap<U>(_ transform: (Value) -> Result<U>) -> Result<U> {
         switch self {
         case let .success(val): return transform(val)
-        case let .failure(e): return .failure(e)
+        case let .failure(error): return .failure(error)
         }
     }
 }

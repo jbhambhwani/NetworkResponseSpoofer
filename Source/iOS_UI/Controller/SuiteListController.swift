@@ -7,13 +7,14 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class SuiteListController: UITableViewController {
     static let identifier = "SuiteListController"
     var suiteName = defaultSuiteName
     @IBOutlet var addSuiteButton: UIBarButtonItem!
+    private var validatorToken: NotificationToken?
 }
 
 extension SuiteListController {
@@ -33,10 +34,8 @@ extension SuiteListController {
 
         switch navigationController?.viewControllers.first {
         case is RecordTableViewController:
-            print("Record")
             performSegue(withIdentifier: SegueIdentifier.unwindToRecordViewController.rawValue, sender: self)
         case is SuiteListController:
-            print("Replay")
             performSegue(withIdentifier: SegueIdentifier.showScenarios.rawValue, sender: self)
         default:
             break
@@ -59,7 +58,9 @@ extension SuiteListController {
     }
 
     @IBAction func addSuitePressed(_: UIBarButtonItem) {
-        let alertController = UIAlertController(title: "Create Suite", message: "Enter a suite name to save the scenarios", preferredStyle: .alert)
+        let alertController = UIAlertController(title: "Create Suite",
+                                                message: "Enter a suite name to save the scenarios",
+                                                preferredStyle: .alert)
 
         let createAction = UIAlertAction(title: "Create", style: .default) { [unowned alertController, weak self] _ in
             if let textField = alertController.textFields?.first, let suiteName = textField.text {
@@ -74,10 +75,12 @@ extension SuiteListController {
             // Dismiss
         }
 
-        alertController.addTextField { textField in
+        alertController.addTextField { [weak self] textField in
             textField.placeholder = "Enter suite name"
             textField.autocapitalizationType = .sentences
-            NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+            self?.validatorToken = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification,
+                                                                      object: textField,
+                                                                      queue: OperationQueue.main) { _ in
                 createAction.isEnabled = textField.text != ""
             }
         }

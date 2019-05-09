@@ -32,7 +32,7 @@ extension DemoViewController: UIWebViewDelegate {
     }
 
     func webView(_: UIWebView, shouldStartLoadWith request: URLRequest, navigationType _: UIWebView.NavigationType) -> Bool {
-        if let url = request.url?.absoluteString, url.count > 0 {
+        if let url = request.url?.absoluteString, !url.isEmpty {
             searchBar.text = url
         }
         return true
@@ -43,7 +43,7 @@ extension DemoViewController: UIWebViewDelegate {
 
 extension DemoViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        guard var searchText = searchBar.text, searchText.count > 0 else { return }
+        guard var searchText = searchBar.text, !searchText.isEmpty else { return }
         if searchText.hasPrefix("http") == false {
             searchText = "http://" + searchText
         }
@@ -58,7 +58,6 @@ extension DemoViewController: UISearchBarDelegate {
 // MARK: - Internal methods
 
 extension DemoViewController {
-
     private func sendRequest(_ resource: String) {
         guard let url = URL(string: resource) else { return }
         URLSession.shared.dataTask(with: url, completionHandler: { _, _, _ in

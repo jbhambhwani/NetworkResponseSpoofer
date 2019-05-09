@@ -6,12 +6,11 @@
 //  Copyright (c) 2015 Hotwire. All rights reserved.
 //
 
-import XCTest
-import RealmSwift
 @testable import NetworkResponseSpoofer
+import RealmSwift
+import XCTest
 
 final class DataTests: XCTestCase {
-
     var responseReceived: XCTestExpectation?
     var spoofedResponseReceived: XCTestExpectation?
 
@@ -58,14 +57,16 @@ final class DataTests: XCTestCase {
 
             let loadResult = DataStore.load(scenarioName: smokeTest, suite: defaultSuiteName)
             switch loadResult {
-            case .success(let scenario):
+            case let .success(scenario):
                 guard let responseData = scenario.networkResponses.first?.data else {
                     XCTFail("No data was found on smoke test scenario")
                     return
                 }
-                let responseDict: [String: String]? = try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as! [String: String]
+                let responseDict: [String: String]? =
+                    try? JSONSerialization.jsonObject(with: responseData, options: .allowFragments) as! [String: String]
 
-                guard let json = responseDict, json == ["one": "two", "key": "value"] else {
+                guard let json = responseDict,
+                    json == ["one": "two", "key": "value"] else {
                     XCTFail("Replayed respose not same as Recorded")
                     return
                 }

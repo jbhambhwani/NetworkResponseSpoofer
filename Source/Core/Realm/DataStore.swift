@@ -78,7 +78,13 @@ public enum DataStore {
 private struct RealmStore {
     static let sharedInstance = RealmStore()
 
-    var realm: Realm { return try! Realm() }
+    var realm: Realm {
+        do {
+            return try Realm()
+        } catch {
+            preconditionFailure("Unable to instanciate Realm store")
+        }
+    }
 
     func setDefaultRealmForSuite(suiteName: String) {
         var config = Realm.Configuration.defaultConfiguration
@@ -93,9 +99,7 @@ private struct RealmStore {
 }
 
 extension RealmStore: Store {
-
     func runMigrations() {
-
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
@@ -114,7 +118,7 @@ extension RealmStore: Store {
                 default:
                     break
                 }
-        }
+            }
         )
 
         // Tell Realm to use this new configuration object for the default Realm
@@ -146,16 +150,20 @@ extension RealmStore: Store {
     }
 
     func load(scenarioName: String, suite: String) -> Result<Scenario> {
-        guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
+        guard let scenario = getScenario(scenarioName, suite: suite) else {
+            return .failure(StoreError.scenarioNotFound)
+        }
         return .success(scenario)
     }
 
     func delete(scenarioName: String, suite: String) -> Result<Bool> {
-        guard let scenario = getScenario(scenarioName, suite: suite) else { return .failure(StoreError.scenarioNotFound) }
+        guard let scenario = getScenario(scenarioName, suite: suite) else {
+            return .failure(StoreError.scenarioNotFound)
+        }
 
         do {
             try realm.write {
-                scenario.networkResponses.forEach({ realm.delete($0.headerFields) })
+                scenario.networkResponses.forEach { realm.delete($0.headerFields) }
                 realm.delete(scenario.networkResponses)
                 realm.delete(scenario)
             }

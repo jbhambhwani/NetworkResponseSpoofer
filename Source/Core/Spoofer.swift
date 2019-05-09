@@ -41,11 +41,13 @@ import Foundation
 }
 
 /**
- NetworkResponseSpoofer is a network request-response recording and replaying library for iOS. It's built on top of the [Foundation URL Loading System](http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html) to make recording and replaying network requests really simple.
+ NetworkResponseSpoofer is a network request-response recording and replaying library for iOS.
+ It's built on top of the [Foundation URL Loading System]
+ (http://developer.apple.com/library/mac/#documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html)
+ to make recording and replaying network requests really simple.
  */
 @objcMembers
 public final class Spoofer: NSObject {
-
     // MARK: - Configuration
 
     /// The delegate for the Spoofer, which will be notified whenever the Spoofer state changes
@@ -82,7 +84,8 @@ public final class Spoofer: NSObject {
         set { sharedInstance.ignoredPaths = newValue.compactMap { $0.lowercased() } }
     }
 
-    /// Subdomains to normalize. Useful to ignore subdomain components like example.qa.com so the final URL is example.com. This is useful to record from one environment and playback in another.
+    /// Subdomains to normalize. Useful to ignore subdomain components like example.qa.com so the final URL is example.com.
+    /// This is useful to record from one environment and playback in another.
     public class var subDomainsToNormalize: [String] {
         get { return sharedInstance.normalizedSubdomains }
         set { sharedInstance.normalizedSubdomains = newValue.compactMap { $0.lowercased() } }
@@ -94,14 +97,17 @@ public final class Spoofer: NSObject {
         set { sharedInstance.normalizedQueryParameters = newValue.compactMap { $0.lowercased() } }
     }
 
-    /// Path components that need to be ignored via URL normalization. Useful when path differs but the response is similar, as in the case of multiple API versions. e.g., v1, v1.1, v2 etc
+    /// Path components that need to be ignored via URL normalization.
+    /// Useful when path differs but the response is similar, as in the case of multiple API versions. e.g., v1, v1.1, v2 etc
     public class var pathComponentsToNormalize: [String] {
         get { return sharedInstance.normalizedPathComponents }
         set { sharedInstance.normalizedPathComponents = newValue.compactMap { $0.lowercased() } }
     }
 
-    /// Path components that need to be replaced via URL normalization. Useful when path differs due to dynamic path components but the response is similar.
-    /// For e.g. example.com/api/12?parm=value gets transformed to example.com/api/20?parm=value if this dict had an entry ["12": "20"]
+    /// Path components that need to be replaced via URL normalization.
+    /// Useful when path differs due to dynamic path components but the response is similar.
+    /// For e.g. example.com/api/12?parm=value gets transformed to
+    /// example.com/api/20?parm=value if this dict had an entry ["12": "20"]
     public class var pathRangesToReplace: [URLPathRangeReplacement] {
         get { return sharedInstance.replacePathRanges }
         set { sharedInstance.replacePathRanges = newValue }
@@ -110,11 +116,14 @@ public final class Spoofer: NSObject {
     /**
      Enable normalizing query values, by taking only the keys and dropping the values.
 
-     - Note: Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
+     - Note: Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's.
+     For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are
      1. Reduced file size saving some storage space.
      2. Consistent response for the same end point regardless of query parameter values.
 
-     For E.g., a url such as example.com/api?key1=value1&key2=value2 becomes example.com/api?key1&key2. This allows the Spoofer to record and replay the same reponse for all calls to the end point with similar key-value query parameters.
+     For E.g., a url such as example.com/api?key1=value1&key2=value2 becomes example.com/api?key1&key2.
+     This allows the Spoofer to record and replay the same reponse for all calls to the end points
+     with similar key-value query parameters.
      */
     public class var normalizeQueryValues: Bool {
         get { return sharedInstance.queryValueNormalization }
@@ -138,11 +147,14 @@ public final class Spoofer: NSObject {
      - Note: Userinfo dictionary has key "scenario" which has the name of the scenario
      */
     public static let spooferStartedRecordingNotification = "SpooferStartedRecordingNotification"
-    /// Notification fired when spoofer stops recording a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    /// Notification fired when spoofer stops recording a scenario.
+    /// Userinfo dictionary has key "scenario" which has the name of the scenario
     public static let spooferStoppedRecordingNotification = "SpooferStoppedRecordingNotification"
-    /// Notification fired when spoofer starts replaying a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    /// Notification fired when spoofer starts replaying a scenario.
+    /// Userinfo dictionary has key "scenario" which has the name of the scenario
     public static let spooferStartedReplayingNotification = "SpooferStartedReplayingNotification"
-    /// Notification fired when spoofer stops replaying a scenario. Userinfo dictionary has key "scenario" which has the name of the scenario
+    /// Notification fired when spoofer stops replaying a scenario.
+    /// Userinfo dictionary has key "scenario" which has the name of the scenario
     public static let spooferStoppedReplayingNotification = "SpooferStoppedReplayingNotification"
 
     // MARK: - Internal methods and properties
@@ -152,21 +164,21 @@ public final class Spoofer: NSObject {
         guard let currentHost = url.host?.lowercased() else { return false }
 
         // Handle all cases in case no domains are whitelisted and blacklisted
-        if hostNamesToSpoof.isEmpty && hostNamesToIgnore.isEmpty { return true }
+        if hostNamesToSpoof.isEmpty, hostNamesToIgnore.isEmpty { return true }
 
-        let domainIsWhitelisted = hostNamesToSpoof.filter { currentHost.contains($0) }.count > 0
-        let domainIsBlacklisted = hostNamesToIgnore.filter { currentHost.contains($0) }.count > 0
+        let domainIsWhitelisted = !hostNamesToSpoof.filter { currentHost.contains($0) }.isEmpty
+        let domainIsBlacklisted = !hostNamesToIgnore.filter { currentHost.contains($0) }.isEmpty
 
-        if domainIsBlacklisted { return false } // If same domain is Whitelisted and Blacklisted, prefer Blacklist. Users will have to clean up their act! :)
+        if domainIsBlacklisted { return false } // If same domain is Whitelisted and Blacklisted, prefer Blacklist.
         if domainIsWhitelisted { return true }
 
         // Handle corner case when domain is not present in either whitelist or blacklist
-        if !domainIsWhitelisted && !domainIsBlacklisted && hostNamesToSpoof.isEmpty {
+        if !domainIsWhitelisted, !domainIsBlacklisted, hostNamesToSpoof.isEmpty {
             return true
         }
 
         // Ignore the url if it has a black listed path component
-        if url.pathComponents.filter({ pathsToIgnore.contains($0) }).count > 0 {
+        if !url.pathComponents.filter({ pathsToIgnore.contains($0) }).isEmpty {
             return false
         }
 
@@ -199,7 +211,10 @@ public final class Spoofer: NSObject {
         ]
     }
 
-    /// Run migrations on the spoofer database. Call this method at the start of your apps applicationDidFinishLaunching to make sure any spoofer DB scheme changes are accounted for
+    /*
+     Run migrations on the spoofer database. Call this method at the start of your apps applicationDidFinishLaunching
+     to make sure any spoofer DB scheme changes are accounted for
+     */
     public class func runMigrations() {
         DataStore.runMigrations()
     }

@@ -9,7 +9,6 @@
 import Foundation
 
 public extension Spoofer {
-
     // MARK: - Record
 
     /// Returns true if the Spoofer is recording a scenario
@@ -26,7 +25,8 @@ public extension Spoofer {
 
      - Returns: True if recording was started, False if not
      */
-    @discardableResult class func startRecording(scenarioName name: String, inSuite suite: String = defaultSuiteName) -> Bool {
+    @discardableResult class func startRecording(scenarioName name: String,
+                                                 inSuite suite: String = defaultSuiteName) -> Bool {
         let protocolRegistered = SpooferRecorder.startIntercept()
 
         if protocolRegistered {
@@ -38,7 +38,8 @@ public extension Spoofer {
             switch saveResult {
             case let .success(scenario):
                 // Transform state to recording
-                Spoofer.sharedInstance.stateManager.transformState(networkAction: .record(scenarioName: scenario.name, suiteName: suite))
+                Spoofer.sharedInstance.stateManager.transformState(networkAction: .record(scenarioName: scenario.name,
+                                                                                          suiteName: suite))
 
             case .failure:
                 return false

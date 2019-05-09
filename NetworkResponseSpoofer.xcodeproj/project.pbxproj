@@ -13,6 +13,8 @@
 		411A357A1BC74A7D001D128D /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411A35791BC74A7D001D128D /* DataTests.swift */; };
 		411A357C1BC74A7D001D128D /* NetworkResponseSpoofer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */; settings = {ATTRIBUTES = (Required, ); }; };
 		4131B8ED1B6DEEB700EAFE04 /* SpooferReplayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */; };
+		4144352722838E4A00CC0CA7 /* NotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4144352622838E4A00CC0CA7 /* NotificationToken.swift */; };
+		414435292283ABC600CC0CA7 /* Log.swift in Sources */ = {isa = PBXBuildFile; fileRef = 414435282283ABC600CC0CA7 /* Log.swift */; };
 		4147EA531B684D7E001DE517 /* NetworkResponseSpoofer.h in Headers */ = {isa = PBXBuildFile; fileRef = 4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		4147EA6A1B684DBD001DE517 /* Spoofer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA691B684DBD001DE517 /* Spoofer.swift */; };
 		4147EA6C1B684F15001DE517 /* SpooferRecorder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4147EA6B1B684F15001DE517 /* SpooferRecorder.swift */; };
@@ -85,6 +87,8 @@
 		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
 		4131B8EC1B6DEEB700EAFE04 /* SpooferReplayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpooferReplayer.swift; sourceTree = "<group>"; };
+		4144352622838E4A00CC0CA7 /* NotificationToken.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationToken.swift; sourceTree = "<group>"; };
+		414435282283ABC600CC0CA7 /* Log.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Log.swift; sourceTree = "<group>"; };
 		4147EA4D1B684D7E001DE517 /* NetworkResponseSpoofer.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = NetworkResponseSpoofer.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4147EA511B684D7E001DE517 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4147EA521B684D7E001DE517 /* NetworkResponseSpoofer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = NetworkResponseSpoofer.h; sourceTree = "<group>"; };
@@ -200,6 +204,14 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		4144352522838E3700CC0CA7 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				4144352622838E4A00CC0CA7 /* NotificationToken.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
 		4147EA431B684D7E001DE517 = {
 			isa = PBXGroup;
 			children = (
@@ -297,6 +309,7 @@
 				4180391D1BCB73FE004E1534 /* Utility.swift */,
 				411227691E39625D00E1487B /* Validator.swift */,
 				4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */,
+				414435282283ABC600CC0CA7 /* Log.swift */,
 			);
 			path = Miscellaneous;
 			sourceTree = "<group>";
@@ -321,6 +334,7 @@
 		419430BE1DDAA10800DA65AF /* iOS_UI */ = {
 			isa = PBXGroup;
 			children = (
+				4144352522838E3700CC0CA7 /* Helpers */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
 				419430BF1DDAA19F00DA65AF /* Protocols */,
 				415CB1881C9B14C900827A0B /* View */,
@@ -401,6 +415,7 @@
 			buildConfigurationList = 411A357F1BC74A7D001D128D /* Build configuration list for PBXNativeTarget "NetworkResponseSpooferTests" */;
 			buildPhases = (
 				411A35731BC74A7D001D128D /* Sources */,
+				41CBFE6022848FE40026BF25 /* Lint */,
 				411A35741BC74A7D001D128D /* Frameworks */,
 				411A35751BC74A7D001D128D /* Resources */,
 				41BF2E4F1DCC012D00F26AC7 /* Carthage Copy Frameworks */,
@@ -419,6 +434,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4147EA631B684D7E001DE517 /* Build configuration list for PBXNativeTarget "NetworkResponseSpoofer" */;
 			buildPhases = (
+				41443524228382E900CC0CA7 /* Format & Lint */,
 				4147EA481B684D7E001DE517 /* Sources */,
 				4147EA491B684D7E001DE517 /* Frameworks */,
 				4147EA4A1B684D7E001DE517 /* Headers */,
@@ -440,6 +456,7 @@
 			buildPhases = (
 				41D244532198F6A400E38D25 /* Headers */,
 				41D244542198F6A400E38D25 /* Sources */,
+				4153798022846AAE009E6BF2 /* Lint */,
 				41D244552198F6A400E38D25 /* Frameworks */,
 				41D244562198F6A400E38D25 /* Resources */,
 			);
@@ -526,6 +543,42 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		41443524228382E900CC0CA7 /* Format & Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Format & Lint";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\n\nif which swiftformat >/dev/null; then\nswiftformat .\nelse\necho \"warning: SwiftFormat not installed, download from https://github.com/nicklockwood/SwiftFormat\"\nfi\n\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n\n\n";
+		};
+		4153798022846AAE009E6BF2 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -558,6 +611,24 @@
 			shellPath = /bin/sh;
 			shellScript = "/usr/local/bin/carthage copy-frameworks\n";
 		};
+		41CBFE6022848FE40026BF25 /* Lint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = Lint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -577,9 +648,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				4157440F1DD2426F000F4571 /* SpooferState.swift in Sources */,
+				414435292283ABC600CC0CA7 /* Log.swift in Sources */,
 				41F87A011DCA547A00B457F4 /* ResponseHeaderItem.swift in Sources */,
 				41DFB3E91B70252C00038958 /* URLExtension.swift in Sources */,
 				41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */,
+				4144352722838E4A00CC0CA7 /* NotificationToken.swift in Sources */,
 				411913251D2369F500D3FB6E /* NetworkInterceptable.swift in Sources */,
 				4180391E1BCB73FE004E1534 /* Utility.swift in Sources */,
 				410489C21C99D94800E99745 /* Constants.swift in Sources */,
@@ -831,6 +904,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Core/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies -Xfrontend -warn-long-expression-type-checking=150 -Xfrontend -warn-long-function-bodies=200";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.networkresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -855,6 +929,7 @@
 				INFOPLIST_FILE = "$(SRCROOT)/Supporting Files/Core/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_DYLIB_INSTALL_NAME = "$(DYLIB_INSTALL_NAME_BASE:standardizepath)/$(EXECUTABLE_PATH)";
+				OTHER_SWIFT_FLAGS = "-Xfrontend -debug-time-function-bodies -Xfrontend -warn-long-expression-type-checking=150 -Xfrontend -warn-long-function-bodies=200";
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.networkresponsespoofer;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

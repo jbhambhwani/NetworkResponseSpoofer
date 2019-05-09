@@ -7,9 +7,11 @@
 //
 
 import Foundation
+import os
 
 /**
- URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording. The methods are not to be overriden for Spoofer to work correctly.
+ URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording.
+ The methods are not to be overriden for Spoofer to work correctly.
  */
 public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
     static let requestHandledKey = "RecorderProtocolHandledKey"
@@ -23,17 +25,21 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
 
         // 1: Check the request's scheme. Only HTTP/HTTPS is supported right now
         let isHTTP = url.isHTTP
-        // 2: Check if the request is to be handled or not based on a whitelist. If nothing is set all requests are handled
+        // 2: Check if the request is to be handled or not based on a whitelist.
+        // If nothing is set all requests are handled
         let shouldHandleURL = Spoofer.shouldHandleURL(url)
         // 3: Check if the request was already handled. We set the below key in startLoading for handled requests
-        let isHandled = (request.value(forHTTPHeaderField: requestHandledKey) ?? "").count > 0
+        let isHandled = !(request.value(forHTTPHeaderField: requestHandledKey) ?? "").isEmpty
 
-        if Spoofer.isRecording && isHTTP && !isHandled && shouldHandleURL {
+        if Spoofer.isRecording, isHTTP, !isHandled, shouldHandleURL {
             return true
         }
 
         if shouldHandleURL == false, let url = request.url {
-            postNotification("⏩ Skipped non-whitelisted url: \(url)")
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("⏩ Skipped unhandled url: %s", log: Log.recorder, type: .info, url.absoluteString)
+            }
+            postNotification("⏩ Skipped unhandled url: \(url)")
         }
 
         return false
@@ -72,7 +78,9 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
 // MARK: - Networking Delegates
 
 extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
-    public func urlSession(_: URLSession, didReceive challenge: URLAuthenticationChallenge, completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
+    public func urlSession(_: URLSession,
+                           didReceive challenge: URLAuthenticationChallenge,
+                           completionHandler: @escaping (URLSession.AuthChallengeDisposition, URLCredential?) -> Void) {
         guard challenge.protectionSpace.authenticationMethod == NSURLAuthenticationMethodServerTrust,
             Spoofer.allowSelfSignedCertificate == true,
             let serverTrust = challenge.protectionSpace.serverTrust else {
@@ -84,7 +92,10 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
         completionHandler(.performDefaultHandling, credentials)
     }
 
-    public func urlSession(_: URLSession, dataTask _: URLSessionDataTask, didReceive response: URLResponse, completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
+    public func urlSession(_: URLSession,
+                           dataTask _: URLSessionDataTask,
+                           didReceive response: URLResponse,
+                           completionHandler: @escaping (URLSession.ResponseDisposition) -> Void) {
         // Send the received response to the client
         client?.urlProtocol(self, didReceive: response, cacheStoragePolicy: .notAllowed)
         // Save / Initialize local structures
@@ -105,7 +116,10 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
         if let error = error {
             // Pass error back to client
             client?.urlProtocol(self, didFailWithError: error)
-            postNotification("❌ Recording failure: \(error.localizedDescription)", object: self)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("❌ Record failure: %s", log: Log.recorder, type: .error, error.localizedDescription)
+            }
+            postNotification("❌ Record failure: \(error.localizedDescription)", object: self)
             // Reset internal data structures
             response = nil
             responseData = nil
@@ -125,13 +139,23 @@ extension SpooferRecorder {
         guard Spoofer.scenarioName.isEmpty == false, let httpResponse = response else { return }
 
         // Create the internal data structure which encapsulates all the needed data to replay this response later
-        guard let currentResponse = NetworkResponse.responseFrom(httpRequest: request, httpResponse: httpResponse, data: responseData) else { return }
-        let saveResult = DataStore.save(response: currentResponse, scenarioName: Spoofer.scenarioName, suite: Spoofer.suiteName)
+        guard let currentResponse = NetworkResponse.responseFrom(httpRequest: request,
+                                                                 httpResponse: httpResponse,
+                                                                 data: responseData) else { return }
+        let saveResult = DataStore.save(response: currentResponse,
+                                        scenarioName: Spoofer.scenarioName,
+                                        suite: Spoofer.suiteName)
         switch saveResult {
         case let .success(response):
-            postNotification("📡 Response received & saved: \(response)", object: self)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("📡 Response saved: %@", log: Log.recorder, response)
+            }
+            postNotification("📡 Response saved: \(response)", object: self)
         case let .failure(error):
-            postNotification("❌ Response not saved: \(error.localizedDescription)", object: self)
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("❌ Response Not saved: %s", log: Log.recorder, type: .error, error.localizedDescription)
+            }
+            postNotification("❌ Response Not saved: \(error.localizedDescription)", object: self)
         }
     }
 }

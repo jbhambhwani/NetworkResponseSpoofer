@@ -22,7 +22,9 @@ extension FileManager {
             return []
         }
 
-        let fileNames = allFiles.filter { $0.lastPathComponent.hasSuffix(realmFileExtension) }.map { $0.deletingPathExtension().lastPathComponent }
+        let fileNames = allFiles
+            .filter { $0.lastPathComponent.hasSuffix(realmFileExtension) }
+            .map { $0.deletingPathExtension().lastPathComponent }
         return fileNames.map { String($0) }
     }
 
@@ -32,7 +34,9 @@ extension FileManager {
         var isDir = ObjCBool(true)
         if FileManager.default.fileExists(atPath: spooferDirectoryURL.path, isDirectory: &isDir) == false {
             do {
-                try FileManager.default.createDirectory(at: spooferDirectoryURL, withIntermediateDirectories: true, attributes: nil)
+                try FileManager.default.createDirectory(at: spooferDirectoryURL,
+                                                        withIntermediateDirectories: true,
+                                                        attributes: nil)
             } catch {
                 fatalError("Cannot proceed without Spoofer docs directory access")
             }
@@ -47,18 +51,6 @@ extension FileManager {
         // Get a reference to the documents directory & Construct a file name based on the suite name
         let suiteFileURL = spooferDocumentsDirectory.appendingPathComponent("\(suiteName).\(realmFileExtension)")
         return suiteFileURL
-    }
-
-    private class func deleteSuite(_ suiteName: String) -> Bool {
-        // Get a reference to the documents directory & Construct a file name based on the suite file
-        let suiteFileURL = getSuiteFileURL(suiteName)
-        do {
-            // TODO: Remove all associated files as well. The Realm needs to be closed as well. Needs investigation.
-            try FileManager.default.removeItem(at: suiteFileURL)
-            return true
-        } catch {
-            return false
-        }
     }
 
     private class var applicationDocumentsDirectory: URL {

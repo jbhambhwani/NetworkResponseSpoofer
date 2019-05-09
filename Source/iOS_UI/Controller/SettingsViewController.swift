@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class SettingsViewController: UITableViewController {
     // Array of dictionaries of Spoofer Configuration Type: Any
@@ -31,22 +31,22 @@ final class SettingsViewController: UITableViewController {
     private func readSpooferConfiguration() {
         allSettings.removeAll(keepingCapacity: true)
         guard let config = Spoofer.configurations else { return }
-        for (k, v) in Array(config).sorted(by: { $0.0.rawValue < $1.0.rawValue }) {
-            allSettings.append([k: v])
+        for (key, value) in Array(config).sorted(by: { $0.0.rawValue < $1.0.rawValue }) {
+            allSettings.append([key: value])
         }
     }
 
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let cell = sender as? SwitchWithTextTableViewCell, let editVC = segue.destination as? EditSettingsViewController else { return }
+        guard let cell = sender as? SwitchWithTextTableViewCell,
+            let editVC = segue.destination as? EditSettingsViewController else { return }
         editVC.title = cell.presenter?.title
         editVC.presenter = cell.presenter
     }
 }
 
 extension SettingsViewController {
-
     // MARK: - Tableview datasource
 
     override func tableView(_: UITableView, numberOfRowsInSection _: Int) -> Int {
@@ -54,7 +54,8 @@ extension SettingsViewController {
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: SwitchWithTextTableViewCell.defaultReuseIdentifier, for: indexPath) as! SwitchWithTextTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: SwitchWithTextTableViewCell.defaultReuseIdentifier,
+                                                 for: indexPath) as! SwitchWithTextTableViewCell
         let viewModel = SwitchWithTextViewModel(model: allSettings[indexPath.row])
         cell.configure(withPresenter: viewModel)
         return cell

@@ -13,7 +13,7 @@ func logFormattedSeperator(_ message: String? = "-") {
 
     postNotification(message)
 
-    // Print "-" character before and after the message, 100 character total. Just logging every important message nicely.
+    // Print "-" character before and after the message, 100 character total to make clean log
     let messageStart = 50 - (message.count / 2)
     if messageStart > 0 {
         let hyphenString = String(repeating: "-", count: messageStart)
@@ -24,15 +24,26 @@ func logFormattedSeperator(_ message: String? = "-") {
 }
 
 func postNotification(_ message: String, object: Any? = nil) {
-    var message = message
-    message = "SpooferLog " + message
-    // Print to console
-    print(message)
+    if #available(iOS 12.0, OSX 10.14, *) {
+        // Messages are already being logged using the unified logging system
+    } else {
+        // Print to console for older os
+        var message = message
+        message = "SpooferLog " + message
+        print(message)
+    }
+
     // Post a notification with the message so that any receivers can listen and log it
-    NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferLogNotification), object: object, userInfo: ["message": message])
+    NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferLogNotification),
+                                    object: object,
+                                    userInfo: ["message": message])
 }
 
-@discardableResult func generateError(_ reason: String, recoveryMessage: String, code: Int, url: String? = nil, errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
+@discardableResult func generateError(_ reason: String,
+                                      recoveryMessage: String,
+                                      code: Int,
+                                      url: String? = nil,
+                                      errorHandler: ((_ error: NSError) -> Void)?) -> NSError {
     var userInfo = [NSLocalizedFailureReasonErrorKey: reason, NSLocalizedRecoverySuggestionErrorKey: recoveryMessage]
     if let url = url {
         userInfo[NSURLErrorFailingURLErrorKey] = url

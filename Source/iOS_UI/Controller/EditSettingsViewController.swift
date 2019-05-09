@@ -7,11 +7,13 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 final class EditSettingsViewController: UITableViewController {
     var presenter: SwitchWithTextViewPresentable?
+    private var validatorToken1: NotificationToken?
+    private var validatorToken2: NotificationToken?
 
     // MARK: - Lifecycle
 
@@ -26,11 +28,16 @@ final class EditSettingsViewController: UITableViewController {
     // MARK: - User Actions
 
     @IBAction func addAction(_: UIBarButtonItem) {
-        let alertController = UIAlertController(title: title, message: "Add an entry to the list", preferredStyle: .alert)
+        let alertController = UIAlertController(title: title,
+                                                message: "Add an entry to the list",
+                                                preferredStyle: .alert)
 
         let addAction = UIAlertAction(title: "Add", style: .default) { [unowned alertController, unowned self] _ in
             if let textFields = alertController.textFields {
-                if textFields.count > 1, let start = textFields[0].text, let end = textFields[1].text, let replacement = textFields[2].text {
+                if textFields.count > 1,
+                    let start = textFields[0].text,
+                    let end = textFields[1].text,
+                    let replacement = textFields[2].text {
                     let prReplacement = URLPathRangeReplacement(start: start, end: end, replacement: replacement)
                     self.presenter?.configurations.append(prReplacement)
                 } else if let entry = textFields[0].text {
@@ -46,10 +53,12 @@ final class EditSettingsViewController: UITableViewController {
         }
 
         if title == "Replace Path Range" {
-            alertController.addTextField { textField in
+            alertController.addTextField { [weak self] textField in
                 textField.placeholder = "From"
                 textField.autocapitalizationType = .none
-                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+                self?.validatorToken1 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification,
+                                                                           object: textField,
+                                                                           queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }
@@ -64,10 +73,12 @@ final class EditSettingsViewController: UITableViewController {
                 textField.autocapitalizationType = .none
             }
         } else {
-            alertController.addTextField { textField in
+            alertController.addTextField { [weak self] textField in
                 textField.placeholder = "Enter here!"
                 textField.autocapitalizationType = .none
-                NotificationCenter.default.addObserver(forName: UITextField.textDidChangeNotification, object: textField, queue: OperationQueue.main) { _ in
+                self?.validatorToken2 = NotificationCenter.default.observe(name: UITextField.textDidChangeNotification,
+                                                                           object: textField,
+                                                                           queue: OperationQueue.main) { _ in
                     addAction.isEnabled = textField.text != ""
                 }
             }
@@ -111,7 +122,9 @@ extension EditSettingsViewController {
 // MARK: - Tableview delegate
 
 extension EditSettingsViewController {
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView,
+                            commit editingStyle: UITableViewCell.EditingStyle,
+                            forRowAt indexPath: IndexPath) {
         switch editingStyle {
         case .delete:
             presenter?.configurations.remove(at: indexPath.row)

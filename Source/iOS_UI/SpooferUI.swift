@@ -7,8 +7,8 @@
 //
 
 import Foundation
-import UIKit
 import NetworkResponseSpoofer
+import UIKit
 
 public extension Spoofer {
     /**
@@ -16,7 +16,8 @@ public extension Spoofer {
 
      - parameter sourceViewController: The view controller from which the record popup UI will be presented from
 
-     - Note: A popup will appear asking the user to name the scenario, before recording starts. Use this method if you need to manually provide the scenario name
+     - Note: A popup will appear asking the user to name the scenario, before recording starts.
+     Use this method if you need to manually provide the scenario name
      */
     class func startRecording(inViewController sourceViewController: UIViewController?) {
         presentController(with: RecordTableViewController.identifier, sourceViewController: sourceViewController)
@@ -28,9 +29,11 @@ public extension Spoofer {
      - parameter sourceViewController: The view controller from which to present the replay selection UI
 
      - Note: The replay selection UI also has few other roles.
-     - It allows configuring the spoofer using a config button the nav bar, allowing to tweak whitelist/blacklist/query parameters, normalization etc
+     - It allows configuring the spoofer using a config button the nav bar,
+     allowing to tweak whitelist/blacklist/query parameters, normalization etc
      - It shows the list of pre-recorded scenarios in the folder. Tapping a scenario starts replay directly and dismissed the UI
-     - It allows diving deeper into the scenario by tapping the info button along the right of each scenario. This lists the url's which have recorded responses in the scenario.
+     - It allows diving deeper into the scenario by tapping the info button along the right of each scenario.
+     This lists the url's which have recorded responses in the scenario.
      */
     class func showRecordedScenarios(inViewController sourceViewController: UIViewController?) {
         presentController(with: SuiteListController.identifier, sourceViewController: sourceViewController)
@@ -43,7 +46,8 @@ private extension Spoofer {
 
         var viewControllerToPresent = spooferStoryBoard().instantiateViewController(withIdentifier: identifier)
 
-        // If SuiteListController was invoked directly, we are in replay mode, and so disallow suite creation and wrap the controller in a navcontroller
+        // If SuiteListController was invoked directly, we are in replay mode, and so disallow suite creation and
+        /// wrap the controller in a navcontroller
 
         switch viewControllerToPresent {
         case let controller as SuiteListController:

@@ -32,7 +32,7 @@ public enum SpooferError: Int, Error {
 
 // MARK: Internal
 
-public enum SpooferConfigurationType: String {
+public enum SpooferConfigurationType: String, CaseIterable {
     case queryValueNormalization = "Query Value Normalization"
     case acceptSelfSignedCertificate = "Accept Self Signed Certificate"
     case spoofedHosts = "Hostnames to Spoof"
@@ -44,14 +44,16 @@ public enum SpooferConfigurationType: String {
     case replacePathRanges = "Replace Path Range"
     case blank = ""
 
-    public var allTypes: [SpooferConfigurationType] {
-        return [.queryValueNormalization, .acceptSelfSignedCertificate, .spoofedHosts, .ignoredHosts, .normalizedSubdomains, .normalizedQueryParameters, .normalizedPathComponents, .replacePathRanges, .blank]
-    }
-
     public var description: String {
         switch self {
         case .queryValueNormalization:
-            return "Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's. For most cases this means only one response is saved per end point if the query parameter keys are the same. Effects are \n1. Reduced file size saving some storage space. \n2. Consistent response for the same end point regardless of query parameter values"
+            return """
+            Query Value Normalization causes values (not keys) of the query parameters to be dropped while comparing URL's.
+            For most cases this means only one response is saved per end point if the query parameter keys are the same.
+            Effects are \n
+            1. Reduced file size saving some storage space. \n
+            2. Consistent response for the same end point regardless of query parameter values
+            """
 
         case .acceptSelfSignedCertificate:
             return "Allows spoofer to proceed recording even when the certificate is not from a trusted authority"
@@ -66,13 +68,25 @@ public enum SpooferConfigurationType: String {
             return "Blacklist of path's to be ignored"
 
         case .normalizedSubdomains:
-            return "A general use case would be to normalize environments like QA, DEV, Staging etc which appear as part of the url. Causes URL hostnames to match production by removing these entries. \ne.g., api.qa.example.com becomes api.example.com"
+            return """
+            A general use case would be to normalize environments like QA, DEV, Staging etc which appear as part of the url.
+            Causes URL hostnames to match production by removing these entries.\n
+            e.g., api.qa.example.com becomes api.example.com
+            """
 
         case .normalizedQueryParameters:
-            return "Use this when there are dynamic query parameter keys with each request which might cause lookup failure during replay. if a parameter appears/disappears while making multiple requests and can be safely ignored, add that here. \ne.g., example.com/path?cluster=1&apikey=aa223 & example.com/path?apikey=aa223 will always be resolved to example.com/path?apikey=aa223"
+            return """
+            Use this when there are dynamic query parameter keys with each request which might cause lookup failure during replay.
+            If a parameter appears/disappears while making multiple requests and can be safely ignored, add that here.\n
+            e.g., example.com/path?cluster=1&apikey=aa223 & example.com/path?apikey=aa223 will always be resolved to
+            example.com/path?apikey=aa223
+            """
 
         case .normalizedPathComponents:
-            return "Use this setting when there are specific path components to be ignored during comparing URL's. \ne.g., api.example.com/path1/path2/path3.html becomes api.example.com/path2/path3.html if path1 is added here"
+            return """
+            Use this setting when there are specific path components to be ignored during comparing URL's. \n
+            e.g., api.example.com/path1/path2/path3.html becomes api.example.com/path2/path3.html if path1 is added here
+            """
 
         case .replacePathRanges:
             return "Use this setting when there are specific path components to be replaced during comparing URL's."
