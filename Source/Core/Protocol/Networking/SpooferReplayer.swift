@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 enum ReplayMethod {
     case statusCodeAndHeader
@@ -38,7 +39,10 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
         }
 
         if shouldHandleURL == false, let url = request.url {
-            postNotification("⏩ Skipped non-whitelisted url: \(url)")
+            if #available(iOS 12.0, *) {
+                os_log(.info, log: Log.replayer, "⏩ Skipped unhandled url: %s", url.absoluteString)
+            }
+            postNotification("⏩ Skipped unhandled url: \(url)")
         }
 
         return false
@@ -54,7 +58,10 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
     }
 
     public override func startLoading() {
-        guard let url = request.url else { return }
+        guard let url = request.url else {
+            return
+        }
+        let urlString = url.absoluteString
 
         let httpError = generateError("No saved response found",
                                       recoveryMessage: "You might need to re-record the scenario",
@@ -67,8 +74,10 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
         case let .success(scenario):
             guard let cachedResponse = scenario.responseForRequest(request),
                 URL(string: cachedResponse.requestURL) != nil else {
-                postNotification("⚠️ No saved response found: \(String(describing: request.url?.absoluteString))",
-                                 object: self)
+                if #available(iOS 12.0, *) {
+                    os_log(.debug, log: Log.replayer, "⚠️ No saved response found: %s", urlString)
+                }
+                postNotification("⚠️ No saved response found: \(urlString))", object: self)
                 // Throw an error in case we are unable to load a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
@@ -91,22 +100,29 @@ public final class SpooferReplayer: URLProtocol, NetworkInterceptable {
             }
 
             guard let spoofedResponse = httpResponse else {
-                postNotification("⚠️ Unable to serialize response: \(String(describing: request.url?.absoluteString))",
-                                 object: self)
+                if #available(iOS 12.0, *) {
+                    os_log(.debug, log: Log.replayer, "⚠️ Unable to serialize response: %s", urlString)
+                }
+                postNotification("⚠️ Unable to serialize response: \(urlString)", object: self)
                 // Throw an error in case we are unable to serialize a response
                 client?.urlProtocol(self, didFailWithError: httpError)
                 return
             }
 
-            postNotification("💾 Serving response from: \(url)", object: self)
+            if #available(iOS 12.0, *) {
+                os_log(.debug, log: Log.replayer, "💾 Serving response from: %s", urlString)
+            }
+            postNotification("💾 Serving response from: \(urlString)", object: self)
 
             client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
             client?.urlProtocol(self, didLoad: cachedResponse.data)
             client?.urlProtocolDidFinishLoading(self)
 
         case .failure:
-            postNotification("⚠️ Database read failure: \(String(describing: request.url?.absoluteString))",
-                             object: self)
+            if #available(iOS 12.0, *) {
+                os_log(.debug, log: Log.replayer, "⚠️ Database read failure: %s", urlString)
+            }
+            postNotification("⚠️ Database read failure: \(urlString)", object: self)
             // Throw an error in case we are unable to load a response
             client?.urlProtocol(self, didFailWithError: httpError)
         }

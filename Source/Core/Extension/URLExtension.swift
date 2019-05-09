@@ -94,8 +94,6 @@ private extension String {
                 } else {
                     endRange = endIndex ..< endIndex
                 }
-                print(startRange.upperBound)
-                print(endRange.lowerBound)
                 replaceSubrange(startRange.upperBound ..< endRange.lowerBound, with: pathRange.replacement)
             }
         }

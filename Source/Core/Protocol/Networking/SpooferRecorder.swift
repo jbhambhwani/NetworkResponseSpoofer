@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 /**
  URLProtocol subclass to be inserted in your URLSessionConfiguration.protocols stack to enable Recording.
@@ -35,7 +36,10 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
         }
 
         if shouldHandleURL == false, let url = request.url {
-            postNotification("⏩ Skipped non-whitelisted url: \(url)")
+            if #available(iOS 12.0, *) {
+                os_log(.info, log: Log.recorder, "⏩ Skipped unhandled url: %s", url.absoluteString)
+            }
+            postNotification("⏩ Skipped unhandled url: \(url)")
         }
 
         return false
@@ -112,6 +116,9 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
         if let error = error {
             // Pass error back to client
             client?.urlProtocol(self, didFailWithError: error)
+            if #available(iOS 12.0, *) {
+                os_log(.debug, log: Log.recorder, "❌ Recording failure: %s", error.localizedDescription)
+            }
             postNotification("❌ Recording failure: \(error.localizedDescription)", object: self)
             // Reset internal data structures
             response = nil
@@ -140,8 +147,14 @@ extension SpooferRecorder {
                                         suite: Spoofer.suiteName)
         switch saveResult {
         case let .success(response):
+            if #available(iOS 12.0, *) {
+                os_log(.debug, log: Log.recorder, "📡 Response received & saved: %@", response)
+            }
             postNotification("📡 Response received & saved: \(response)", object: self)
         case let .failure(error):
+            if #available(iOS 12.0, *) {
+                os_log(.debug, log: Log.recorder, "❌ Response not saved: %s", error.localizedDescription)
+            }
             postNotification("❌ Response not saved: \(error.localizedDescription)", object: self)
         }
     }

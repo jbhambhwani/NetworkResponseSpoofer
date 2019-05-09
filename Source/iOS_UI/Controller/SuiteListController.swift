@@ -34,10 +34,8 @@ extension SuiteListController {
 
         switch navigationController?.viewControllers.first {
         case is RecordTableViewController:
-            print("Record")
             performSegue(withIdentifier: SegueIdentifier.unwindToRecordViewController.rawValue, sender: self)
         case is SuiteListController:
-            print("Replay")
             performSegue(withIdentifier: SegueIdentifier.showScenarios.rawValue, sender: self)
         default:
             break

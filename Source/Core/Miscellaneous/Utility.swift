@@ -24,10 +24,16 @@ func logFormattedSeperator(_ message: String? = "-") {
 }
 
 func postNotification(_ message: String, object: Any? = nil) {
-    var message = message
-    message = "SpooferLog " + message
-    // Print to console
-    print(message)
+
+    if #available(iOS 12.0, *) {
+        // Messages are already being logged using the unified logging system
+    } else {
+        // Print to console for older os
+        var message = message
+        message = "SpooferLog " + message
+        print(message)
+    }
+
     // Post a notification with the message so that any receivers can listen and log it
     NotificationCenter.default.post(name: Notification.Name(rawValue: Spoofer.spooferLogNotification),
                                     object: object,
