@@ -86,14 +86,13 @@ private extension SpooferReplayer {
     }
 
     func loadSucces(url: URL, scenario: Scenario) {
-        let urlString = url.absoluteString
         guard let cachedResponse = cachedResponse(for: url, scenario: scenario) else { return }
         guard let spoofedResponse = httpResponse(for: url, fromResponse: cachedResponse) else { return }
 
         if #available(iOS 12.0, OSX 10.14, *) {
-            os_log("💾 Serving response: %s", log: Log.replayer, urlString)
+            os_log("💾 Serving response: %@", log: Log.replayer, cachedResponse)
         }
-        postNotification("💾 Serving response: \(urlString)", object: self)
+        postNotification("💾 Serving response: \(cachedResponse)", object: self)
 
         client?.urlProtocol(self, didReceive: spoofedResponse, cacheStoragePolicy: .notAllowed)
         client?.urlProtocol(self, didLoad: cachedResponse.data)
