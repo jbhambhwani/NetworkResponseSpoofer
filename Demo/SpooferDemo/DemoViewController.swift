@@ -147,7 +147,6 @@ private extension DemoViewController {
         default:
             print("Invalid button state")
         }
-
     }
 
     func executeActionsForRecording(recordingState state: Bool) {

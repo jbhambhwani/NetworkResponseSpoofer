@@ -102,7 +102,7 @@ private extension SpooferReplayer {
     func loadFailure(url: URL) {
         let urlString = url.absoluteString
         if #available(iOS 12.0, OSX 10.14, *) {
-            os_log("❌ DB Read failure: %s", log: Log.replayer, urlString)
+            os_log("❌ DB Read failure: %s", log: Log.replayer, type: .error, urlString)
         }
         postNotification("❌ DB Read failure: \(urlString)", object: self)
         // Throw an error in case we are unable to load a response
@@ -146,7 +146,7 @@ private extension SpooferReplayer {
         guard let response = httpResponse else {
             let urlString = url.absoluteString
             if #available(iOS 12.0, OSX 10.14, *) {
-                os_log("❌ Unable to de-serialize response: %s", log: Log.replayer, urlString)
+                os_log("❌ Unable to de-serialize response: %s", log: Log.replayer, type: .error, urlString)
             }
             postNotification("❌ Unable to de-serialize response: \(urlString)", object: self)
             // Throw an error in case we are unable to serialize a response
