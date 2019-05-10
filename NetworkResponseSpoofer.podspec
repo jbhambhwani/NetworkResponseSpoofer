@@ -5,15 +5,14 @@ Pod::Spec.new do |s|
   s.summary         = 'Network response record and replay library for iOS, watchOS, tvOS and macOS.'
   s.homepage        = 'https://github.com/HotwireDotCom/NetworkResponseSpoofer.git'
   s.license         = 'MIT'
-  s.author         = { 'Deepu Mukundan' => 'deepumukundan@gmail.com' }
+  s.author          = { 'Deepu Mukundan' => 'deepumukundan@gmail.com' }
   s.description     = <<-EOS
   NetworkResponseSpoofer is a network response record and replay library for iOS, watchOS, tvOS and macOS.
   It’s built on top of the Foundation URL Loading System to make recording and replaying network requests really simple.
   EOS
   s.source          = { :git => 'https://github.com/HotwireDotCom/NetworkResponseSpoofer.git', :tag => s.version.to_s }
   s.requires_arc    = true
-
-  s.dependency 'RealmSwift'
+  s.dependency      = 'RealmSwift'
 
   s.default_subspec = 'Core'
 
