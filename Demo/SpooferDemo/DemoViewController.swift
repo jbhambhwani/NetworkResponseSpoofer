@@ -133,12 +133,14 @@ private extension DemoViewController {
         // Decide on action and set state for current button press
         switch (button, button.title!) {
         case (recordButton, ButtonTitle.startRecording.rawValue):
+            clearStaleData()
             Spoofer.startRecording(inViewController: self)
 
         case (recordButton, ButtonTitle.stopRecording.rawValue):
             Spoofer.stopRecording()
 
         case (replayButton, ButtonTitle.startReplaying.rawValue):
+            clearStaleData()
             Spoofer.showRecordedScenarios(inViewController: self)
 
         case (replayButton, ButtonTitle.stopReplaying.rawValue):
@@ -149,10 +151,14 @@ private extension DemoViewController {
         }
     }
 
+    func clearStaleData() {
+        searchBar.text = ""
+        // Hacky clear screen of the webview
+        webview.loadHTMLString("<html></html>", baseURL: nil)
+    }
+
     func executeActionsForRecording(recordingState state: Bool) {
         if state {
-            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
-            searchBar.text = ""
             recordButton.title = ButtonTitle.stopRecording.rawValue
             recordButton.tintColor = UIColor.red
         } else {
@@ -163,8 +169,6 @@ private extension DemoViewController {
 
     func executeActionsForReplaying(replayingState state: Bool) {
         if state {
-            webview.loadHTMLString("<html></html>", baseURL: nil) // Hacky clear screen of the webview
-            searchBar.text = ""
             replayButton.title = ButtonTitle.stopReplaying.rawValue
             replayButton.tintColor = UIColor.red
         } else {

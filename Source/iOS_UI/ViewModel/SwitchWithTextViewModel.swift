@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import NetworkResponseSpoofer
 import UIKit
 
 struct SwitchWithTextViewModel: SwitchWithTextViewPresentable {

@@ -1,2 +1,2 @@
 # file options
---exclude Pods,Carthage
+--exclude Pods,Carthage,build
