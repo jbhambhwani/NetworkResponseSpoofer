@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import NetworkResponseSpoofer
 import UIKit
 
 final class SettingsViewController: UITableViewController {
