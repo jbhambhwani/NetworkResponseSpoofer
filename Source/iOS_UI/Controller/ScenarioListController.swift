@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import NetworkResponseSpoofer
 import UIKit
 
 final class ScenarioListController: UITableViewController {
@@ -93,7 +94,7 @@ extension ScenarioListController {
     }
 
     override func tableView(_: UITableView, accessoryButtonTappedForRowWith indexPath: IndexPath) {
-        performSegue(withIdentifier: SegueIdentifier.showResponses.rawValue, sender: indexPath)
+        perform(segue: StoryboardSegue.Spoofer.showResponses, sender: indexPath)
     }
 
     override func tableView(_: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {

@@ -1,0 +1,17 @@
+xcassets:
+  inputs:
+    - Source/iOS_UI/View/Media.xcassets
+  outputs:
+    - templateName: swift4
+      output: Source/iOS_UI/Generated/Assets.swift
+
+ib:
+  inputs:
+    - Source/iOS_UI/View
+  outputs:
+    - templateName: scenes-swift4
+      output: Source/iOS_UI/Generated/Storyboard Scenes.swift
+      param: ignoreTargetModule
+    - templateName: segues-swift4
+      output: Source/iOS_UI/Generated/Storyboard Segues.swift
+      param: ignoreTargetModule

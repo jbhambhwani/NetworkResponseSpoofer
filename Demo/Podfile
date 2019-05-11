@@ -8,9 +8,9 @@ target 'SpooferDemo' do
   pod 'NetworkResponseSpoofer/SpooferUI', :path => "../"
 end
 
-target 'SpooferDemo_Mac' do
-  platform :osx, '10.12'
-  use_frameworks!
+# target 'SpooferDemo_Mac' do
+#   platform :osx, '10.12'
+#   use_frameworks!
 
-  pod 'NetworkResponseSpoofer', :path => "../"
-end
+#   pod 'NetworkResponseSpoofer', :path => "../"
+# end
