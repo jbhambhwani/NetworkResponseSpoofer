@@ -107,6 +107,7 @@ extension EditSettingsViewController {
         guard let configurations = presenter?.configurations else { return UITableViewCell() }
 
         let cell = tableView.dequeueReusableCell(withIdentifier: UITableViewCell.defaultReuseIdentifier, for: indexPath)
+
         let object = configurations[indexPath.row]
         if let text = object as? String {
             cell.textLabel?.text = text

@@ -27,6 +27,9 @@
 		419178801FFD99750071CFA2 /* URLPathRangeReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */; };
 		41AA10EC1DC1358000860295 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* NetworkResponse.swift */; };
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
+		41B278972286286500AD3168 /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B278942286286500AD3168 /* Storyboard Scenes.swift */; };
+		41B278982286286500AD3168 /* Storyboard Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B278952286286500AD3168 /* Storyboard Segues.swift */; };
+		41B278992286286500AD3168 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B278962286286500AD3168 /* Assets.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
 		41CBFE612284CBF90026BF25 /* NotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4144352622838E4A00CC0CA7 /* NotificationToken.swift */; };
@@ -40,7 +43,6 @@
 		41D244662198F6EB00E38D25 /* UIProtocols.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D81DDAA67B00DA65AF /* UIProtocols.swift */; };
 		41D244672198F6EB00E38D25 /* UITableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430D91DDAA67B00DA65AF /* UITableViewCell.swift */; };
 		41D244682198F6EB00E38D25 /* ResponseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */; };
-		41D244692198F6EB00E38D25 /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 411227711E39730D00E1487B /* StoryboardIdentifiers.swift */; };
 		41D2446A2198F6EB00E38D25 /* SwitchWithTextTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */; };
 		41D2446B2198F6EB00E38D25 /* SwitchWithTextViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */; };
 		41D2446C2198F6EB00E38D25 /* SpooferUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 419430C01DDAA21E00DA65AF /* SpooferUI.swift */; };
@@ -78,7 +80,6 @@
 		410489CA1C99DDA100E99745 /* SwitchWithTextViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwitchWithTextViewModel.swift; sourceTree = "<group>"; };
 		411227691E39625D00E1487B /* Validator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Validator.swift; sourceTree = "<group>"; };
 		4112276E1E3966AC00E1487B /* SuiteListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SuiteListController.swift; sourceTree = "<group>"; };
-		411227711E39730D00E1487B /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		411913241D2369F500D3FB6E /* NetworkInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterceptable.swift; sourceTree = "<group>"; };
 		411A35771BC74A7D001D128D /* NetworkResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
@@ -110,6 +111,9 @@
 		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		41AA10EB1DC1358000860295 /* NetworkResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
+		41B278942286286500AD3168 /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Storyboard Scenes.swift"; path = "Source/iOS_UI/Generated/Storyboard Scenes.swift"; sourceTree = SOURCE_ROOT; };
+		41B278952286286500AD3168 /* Storyboard Segues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Storyboard Segues.swift"; path = "Source/iOS_UI/Generated/Storyboard Segues.swift"; sourceTree = SOURCE_ROOT; };
+		41B278962286286500AD3168 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = Source/iOS_UI/Generated/Assets.swift; sourceTree = SOURCE_ROOT; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
 		41C95FF91E3A806E00B749B0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -270,7 +274,6 @@
 				41C95FF91E3A806E00B749B0 /* Media.xcassets */,
 				41C95FFC1E3A87B000B749B0 /* ResponseCell.swift */,
 				412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */,
-				411227711E39730D00E1487B /* StoryboardIdentifiers.swift */,
 				410489C81C99DD4200E99745 /* SwitchWithTextTableViewCell.swift */,
 			);
 			path = View;
@@ -334,6 +337,7 @@
 		419430BE1DDAA10800DA65AF /* iOS_UI */ = {
 			isa = PBXGroup;
 			children = (
+				41B278932286284400AD3168 /* Generated */,
 				4144352522838E3700CC0CA7 /* Helpers */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
 				419430BF1DDAA19F00DA65AF /* Protocols */,
@@ -351,6 +355,17 @@
 				419430D91DDAA67B00DA65AF /* UITableViewCell.swift */,
 			);
 			path = Protocols;
+			sourceTree = "<group>";
+		};
+		41B278932286284400AD3168 /* Generated */ = {
+			isa = PBXGroup;
+			children = (
+				41B278962286286500AD3168 /* Assets.swift */,
+				41B278942286286500AD3168 /* Storyboard Scenes.swift */,
+				41B278952286286500AD3168 /* Storyboard Segues.swift */,
+			);
+			name = Generated;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		41BFEC881DC1142C006DC5D4 /* Realm */ = {
@@ -455,6 +470,7 @@
 			buildConfigurationList = 41D2445D2198F6A400E38D25 /* Build configuration list for PBXNativeTarget "SpooferUI" */;
 			buildPhases = (
 				41D244532198F6A400E38D25 /* Headers */,
+				41B27892228626AF00AD3168 /* SwiftGen */,
 				41D244542198F6A400E38D25 /* Sources */,
 				4153798022846AAE009E6BF2 /* Lint */,
 				41D244552198F6A400E38D25 /* Frameworks */,
@@ -579,6 +595,24 @@
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
 		};
+		41B27892228626AF00AD3168 /* SwiftGen */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftGen;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif which swiftgen >/dev/null; then\necho \"Running swiftgen\"\n# swiftgen\nelse\necho \"warning: SwiftGen not installed, download it from https://github.com/SwiftGen/SwiftGen\"\nfi\n";
+		};
 		41BF2E451DCBC82E00F26AC7 /* Carthage Copy Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 12;
@@ -682,11 +716,13 @@
 				41D244672198F6EB00E38D25 /* UITableViewCell.swift in Sources */,
 				41D2446B2198F6EB00E38D25 /* SwitchWithTextViewModel.swift in Sources */,
 				41D244612198F6EB00E38D25 /* RecordTableViewController.swift in Sources */,
+				41B278992286286500AD3168 /* Assets.swift in Sources */,
 				41CBFE612284CBF90026BF25 /* NotificationToken.swift in Sources */,
-				41D244692198F6EB00E38D25 /* StoryboardIdentifiers.swift in Sources */,
+				41B278982286286500AD3168 /* Storyboard Segues.swift in Sources */,
 				41D244602198F6EB00E38D25 /* EditSettingsViewController.swift in Sources */,
 				41D244642198F6EB00E38D25 /* SettingsViewController.swift in Sources */,
 				41D244662198F6EB00E38D25 /* UIProtocols.swift in Sources */,
+				41B278972286286500AD3168 /* Storyboard Scenes.swift in Sources */,
 				41D244652198F6EB00E38D25 /* SuiteListController.swift in Sources */,
 				41D244632198F6EB00E38D25 /* ScenarioListController.swift in Sources */,
 				41D244682198F6EB00E38D25 /* ResponseCell.swift in Sources */,

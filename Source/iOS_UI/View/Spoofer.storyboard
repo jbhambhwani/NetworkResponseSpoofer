@@ -12,7 +12,7 @@
         <!--Recorded Scenarios-->
         <scene sceneID="ZK6-7R-wu2">
             <objects>
-                <tableViewController storyboardIdentifier="ScenarioListController" id="brR-F4-4fZ" customClass="ScenarioListController" customModule="NetworkResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ScenarioListController" id="brR-F4-4fZ" customClass="ScenarioListController" customModule="SpooferUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" tag="10" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="2m4-an-cO2">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -58,13 +58,13 @@
         <!--Spoofer Configuration-->
         <scene sceneID="fBy-8d-eGX">
             <objects>
-                <tableViewController title="Spoofer Configuration" id="21e-je-LnQ" customClass="SettingsViewController" customModule="NetworkResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Spoofer Configuration" id="21e-je-LnQ" customClass="SettingsViewController" customModule="SpooferUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="bAl-XE-t8R">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SwitchWithTextTableViewCell" rowHeight="60" id="V1u-No-CWk" userLabel="SwitchWithTextTableViewCell" customClass="SwitchWithTextTableViewCell" customModule="NetworkResponseSpoofer_iOS_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="SwitchWithTextTableViewCell" rowHeight="60" id="V1u-No-CWk" userLabel="SwitchWithTextTableViewCell" customClass="SwitchWithTextTableViewCell" customModule="SpooferUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="60"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="V1u-No-CWk" id="YyH-t6-pQX">
@@ -123,7 +123,7 @@
         <!--Edit Settings View Controller-->
         <scene sceneID="0Tb-KU-P6w">
             <objects>
-                <tableViewController id="Emy-fH-AuI" customClass="EditSettingsViewController" customModule="NetworkResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController id="Emy-fH-AuI" customClass="EditSettingsViewController" customModule="SpooferUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="x3U-DL-U56">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -181,7 +181,7 @@
         <!--Record a Scenario-->
         <scene sceneID="31c-5h-C8O">
             <objects>
-                <tableViewController storyboardIdentifier="RecordTableViewController" title="Record a Scenario" id="6sP-Ny-Zoi" customClass="RecordTableViewController" customModule="NetworkResponseSpoofer" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="RecordTableViewController" title="Record a Scenario" id="6sP-Ny-Zoi" customClass="RecordTableViewController" customModule="SpooferUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="static" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="18" sectionFooterHeight="18" id="vqg-kl-EfG">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -312,7 +312,7 @@
         <!--Available Suites-->
         <scene sceneID="smy-zh-Wb7">
             <objects>
-                <tableViewController storyboardIdentifier="SuiteListController" title="Available Suites" id="Yiu-Le-paM" customClass="SuiteListController" customModule="NetworkResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SuiteListController" title="Available Suites" id="Yiu-Le-paM" customClass="SuiteListController" customModule="SpooferUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lqO-ey-5Bm">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -375,13 +375,13 @@
         <!--Response List-->
         <scene sceneID="upC-Ye-yme">
             <objects>
-                <tableViewController title="Response List" id="FXU-Kx-14D" customClass="ResponseListController" customModule="NetworkResponseSpoofer_iOS_UI" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController title="Response List" id="FXU-Kx-14D" customClass="ResponseListController" customModule="SpooferUI" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="zYq-58-taD">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResponseCell" rowHeight="80" id="BZA-R2-sby" customClass="ResponseCell" customModule="NetworkResponseSpoofer_iOS_UI" customModuleProvider="target">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ResponseCell" rowHeight="80" id="BZA-R2-sby" customClass="ResponseCell" customModule="SpooferUI" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="80"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="BZA-R2-sby" id="rDM-fq-5kf">
