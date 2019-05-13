@@ -16,7 +16,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
 
-        Spoofer.runMigrations(newSchemaVersion: 3)
+        Spoofer.runMigrations(newSchemaVersion: 4)
         return true
     }
 }
