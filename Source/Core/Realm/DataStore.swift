@@ -18,6 +18,7 @@ public enum StoreError: Int, Error {
     case unableToSaveScenario
     case unableToResetScenario
     case unableToSaveResponse
+    case unableToUpdateResponse
     case unableToDeleteScenario
 
     var localizedDescription: String {
@@ -30,6 +31,8 @@ public enum StoreError: Int, Error {
             return "Unable to reset scenario"
         case .unableToSaveResponse:
             return "Unable to save response"
+        case .unableToUpdateResponse:
+            return "Unable to update response"
         case .unableToDeleteScenario:
             return "Unable to delete scenario"
         }
@@ -46,6 +49,7 @@ public protocol Store {
     func delete(scenarioName: String, suite: String) -> Result<Bool>
     // Response
     func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse>
+    func markAsServed(response: NetworkResponse) -> Result<Bool>
     func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool>
 }
 
@@ -72,6 +76,10 @@ public enum DataStore {
 
     public static func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse> {
         return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName, suite: suite)
+    }
+
+    public static func markAsServed(response: NetworkResponse) -> Result<Bool> {
+        return RealmStore.sharedInstance.markAsServed(response: response)
     }
 
     public static func delete(response: NetworkResponse, scenarioName: String, suite: String) -> Result<Bool> {
@@ -172,10 +180,6 @@ extension RealmStore: Store {
             return .failure(StoreError.unableToResetScenario)
         }
 
-        if #available(iOS 12.0, OSX 10.14, *) {
-            os_log("Loaded scenario: %s, Suite: %s", log: Log.database, type: .info, scenarioName, suite)
-        }
-
         return .success(scenario)
     }
 
@@ -213,6 +217,17 @@ extension RealmStore: Store {
             return .success(response)
         } catch {
             return .failure(StoreError.unableToSaveResponse)
+        }
+    }
+
+    func markAsServed(response: NetworkResponse) -> Result<Bool> {
+        do {
+            try realm.write {
+                response.servedToClient = true
+            }
+            return .success(true)
+        } catch {
+            return .failure(StoreError.unableToUpdateResponse)
         }
     }
 

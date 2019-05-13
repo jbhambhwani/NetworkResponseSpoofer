@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 
 public extension Spoofer {
     // MARK: - Replay
@@ -35,6 +36,10 @@ public extension Spoofer {
 
         switch loadResult {
         case let .success(scenario):
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("Loaded scenario: %s, Suite: %s", log: Log.database, type: .info, scenarioName, suite)
+            }
+
             Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name,
                                                                                       suiteName: suite))
 
