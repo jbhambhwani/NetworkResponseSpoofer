@@ -27,9 +27,9 @@
 		419178801FFD99750071CFA2 /* URLPathRangeReplacement.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4191787F1FFD99750071CFA2 /* URLPathRangeReplacement.swift */; };
 		41AA10EC1DC1358000860295 /* NetworkResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41AA10EB1DC1358000860295 /* NetworkResponse.swift */; };
 		41B1D1311D2428F000CB450E /* Swizzler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B1D1301D2428F000CB450E /* Swizzler.swift */; };
-		41B278972286286500AD3168 /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B278942286286500AD3168 /* Storyboard Scenes.swift */; };
-		41B278982286286500AD3168 /* Storyboard Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B278952286286500AD3168 /* Storyboard Segues.swift */; };
-		41B278992286286500AD3168 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B278962286286500AD3168 /* Assets.swift */; };
+		41B2789E2289D25200AD3168 /* Assets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B2789B2289D25200AD3168 /* Assets.swift */; };
+		41B2789F2289D25200AD3168 /* Storyboard Scenes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B2789C2289D25200AD3168 /* Storyboard Scenes.swift */; };
+		41B278A02289D25200AD3168 /* Storyboard Segues.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41B2789D2289D25200AD3168 /* Storyboard Segues.swift */; };
 		41C012CA1BF3F088004E54DF /* Spoofer+Record.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012C91BF3F088004E54DF /* Spoofer+Record.swift */; };
 		41C012CD1BF3F09C004E54DF /* Spoofer+Replay.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */; };
 		41CBFE612284CBF90026BF25 /* NotificationToken.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4144352622838E4A00CC0CA7 /* NotificationToken.swift */; };
@@ -111,9 +111,9 @@
 		419430D91DDAA67B00DA65AF /* UITableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UITableViewCell.swift; sourceTree = "<group>"; };
 		41AA10EB1DC1358000860295 /* NetworkResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkResponse.swift; sourceTree = "<group>"; };
 		41B1D1301D2428F000CB450E /* Swizzler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Swizzler.swift; sourceTree = "<group>"; };
-		41B278942286286500AD3168 /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Storyboard Scenes.swift"; path = "Source/iOS_UI/Generated/Storyboard Scenes.swift"; sourceTree = SOURCE_ROOT; };
-		41B278952286286500AD3168 /* Storyboard Segues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Storyboard Segues.swift"; path = "Source/iOS_UI/Generated/Storyboard Segues.swift"; sourceTree = SOURCE_ROOT; };
-		41B278962286286500AD3168 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Assets.swift; path = Source/iOS_UI/Generated/Assets.swift; sourceTree = SOURCE_ROOT; };
+		41B2789B2289D25200AD3168 /* Assets.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Assets.swift; sourceTree = "<group>"; };
+		41B2789C2289D25200AD3168 /* Storyboard Scenes.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Scenes.swift"; sourceTree = "<group>"; };
+		41B2789D2289D25200AD3168 /* Storyboard Segues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Storyboard Segues.swift"; sourceTree = "<group>"; };
 		41C012C91BF3F088004E54DF /* Spoofer+Record.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Record.swift"; sourceTree = "<group>"; };
 		41C012CC1BF3F09C004E54DF /* Spoofer+Replay.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Spoofer+Replay.swift"; sourceTree = "<group>"; };
 		41C95FF91E3A806E00B749B0 /* Media.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Media.xcassets; sourceTree = "<group>"; };
@@ -337,7 +337,7 @@
 		419430BE1DDAA10800DA65AF /* iOS_UI */ = {
 			isa = PBXGroup;
 			children = (
-				41B278932286284400AD3168 /* Generated */,
+				41B2789A2289D25200AD3168 /* Generated */,
 				4144352522838E3700CC0CA7 /* Helpers */,
 				412A7B881BC9D20A002E9FF2 /* Controller */,
 				419430BF1DDAA19F00DA65AF /* Protocols */,
@@ -357,15 +357,14 @@
 			path = Protocols;
 			sourceTree = "<group>";
 		};
-		41B278932286284400AD3168 /* Generated */ = {
+		41B2789A2289D25200AD3168 /* Generated */ = {
 			isa = PBXGroup;
 			children = (
-				41B278962286286500AD3168 /* Assets.swift */,
-				41B278942286286500AD3168 /* Storyboard Scenes.swift */,
-				41B278952286286500AD3168 /* Storyboard Segues.swift */,
+				41B2789B2289D25200AD3168 /* Assets.swift */,
+				41B2789C2289D25200AD3168 /* Storyboard Scenes.swift */,
+				41B2789D2289D25200AD3168 /* Storyboard Segues.swift */,
 			);
-			name = Generated;
-			path = "New Group";
+			path = Generated;
 			sourceTree = "<group>";
 		};
 		41BFEC881DC1142C006DC5D4 /* Realm */ = {
@@ -716,13 +715,13 @@
 				41D244672198F6EB00E38D25 /* UITableViewCell.swift in Sources */,
 				41D2446B2198F6EB00E38D25 /* SwitchWithTextViewModel.swift in Sources */,
 				41D244612198F6EB00E38D25 /* RecordTableViewController.swift in Sources */,
-				41B278992286286500AD3168 /* Assets.swift in Sources */,
 				41CBFE612284CBF90026BF25 /* NotificationToken.swift in Sources */,
-				41B278982286286500AD3168 /* Storyboard Segues.swift in Sources */,
+				41B278A02289D25200AD3168 /* Storyboard Segues.swift in Sources */,
 				41D244602198F6EB00E38D25 /* EditSettingsViewController.swift in Sources */,
+				41B2789E2289D25200AD3168 /* Assets.swift in Sources */,
 				41D244642198F6EB00E38D25 /* SettingsViewController.swift in Sources */,
 				41D244662198F6EB00E38D25 /* UIProtocols.swift in Sources */,
-				41B278972286286500AD3168 /* Storyboard Scenes.swift in Sources */,
+				41B2789F2289D25200AD3168 /* Storyboard Scenes.swift in Sources */,
 				41D244652198F6EB00E38D25 /* SuiteListController.swift in Sources */,
 				41D244632198F6EB00E38D25 /* ScenarioListController.swift in Sources */,
 				41D244682198F6EB00E38D25 /* ResponseCell.swift in Sources */,

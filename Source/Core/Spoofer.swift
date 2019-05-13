@@ -215,8 +215,8 @@ public final class Spoofer: NSObject {
      Run migrations on the spoofer database. Call this method at the start of your apps applicationDidFinishLaunching
      to make sure any spoofer DB scheme changes are accounted for
      */
-    public class func runMigrations() {
-        DataStore.runMigrations()
+    public class func runMigrations(newSchemaVersion: UInt64 = 1) {
+        DataStore.runMigrations(newSchemaVersion: newSchemaVersion)
     }
 
     // MARK: - Internal variables

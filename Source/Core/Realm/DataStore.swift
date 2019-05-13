@@ -34,7 +34,7 @@ public enum StoreError: Int, Error {
 
 public protocol Store {
     // Migration
-    func runMigrations()
+    func runMigrations(newSchemaVersion: UInt64)
     // Scenario
     func allScenarioNames(suite: String) -> [String]
     func save(scenario: Scenario, suite: String) -> Result<Scenario>
@@ -46,8 +46,8 @@ public protocol Store {
 }
 
 public enum DataStore {
-    public static func runMigrations() {
-        return RealmStore.sharedInstance.runMigrations()
+    public static func runMigrations(newSchemaVersion: UInt64) {
+        return RealmStore.sharedInstance.runMigrations(newSchemaVersion: newSchemaVersion)
     }
 
     public static func allScenarioNames(suite: String) -> [String] {
@@ -92,24 +92,24 @@ private struct RealmStore {
         // Set this as the configuration used for the default Realm
         Realm.Configuration.defaultConfiguration = config
 
-        if Spoofer.suiteName != suiteName {
-            print("Datastore Path: \(String(describing: Realm.Configuration.defaultConfiguration.fileURL))")
+        if Spoofer.suiteName != suiteName, let path = Realm.Configuration.defaultConfiguration.fileURL {
+            print("Datastore Path: \(path)")
         }
     }
 }
 
 extension RealmStore: Store {
-    func runMigrations() {
+    func runMigrations(newSchemaVersion: UInt64) {
         let config = Realm.Configuration(
             // Set the new schema version. This must be greater than the previously used
             // version (if you've never set a schema version before, the version is 0).
-            schemaVersion: 1,
+            schemaVersion: newSchemaVersion,
 
             // Set the block which will be called automatically when opening a Realm with
             // a schema version lower than the one set above
             migrationBlock: { _, oldSchemaVersion in
                 switch oldSchemaVersion {
-                case 0:
+                case 0, 1:
                     // Nothing to do!
                     // Realm will automatically detect new properties and removed properties
                     // And will update the schema on disk automatically
