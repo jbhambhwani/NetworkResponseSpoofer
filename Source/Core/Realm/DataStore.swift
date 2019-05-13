@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import os
 import RealmSwift
 
 public let defaultSuiteName = "Default"
@@ -15,6 +16,7 @@ public let defaultSuiteName = "Default"
 public enum StoreError: Int, Error {
     case scenarioNotFound
     case unableToSaveScenario
+    case unableToResetScenario
     case unableToSaveResponse
     case unableToDeleteScenario
 
@@ -24,6 +26,8 @@ public enum StoreError: Int, Error {
             return "Scenario Not Found"
         case .unableToSaveScenario:
             return "Unable to save scenario"
+        case .unableToResetScenario:
+            return "Unable to reset scenario"
         case .unableToSaveResponse:
             return "Unable to save response"
         case .unableToDeleteScenario:
@@ -143,6 +147,11 @@ extension RealmStore: Store {
             try realm.write {
                 realm.add(scenario, update: true)
             }
+
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("Saved scenario: %s, Suite: %s", log: Log.database, type: .info, scenario.name, suite)
+            }
+
             return .success(scenario)
         } catch {
             return .failure(StoreError.unableToSaveScenario)
@@ -153,6 +162,20 @@ extension RealmStore: Store {
         guard let scenario = getScenario(scenarioName, suite: suite) else {
             return .failure(StoreError.scenarioNotFound)
         }
+
+        // Reset the served flag on a new load
+        do {
+            try realm.write {
+                scenario.networkResponses.forEach { $0.servedToClient = false }
+            }
+        } catch {
+            return .failure(StoreError.unableToResetScenario)
+        }
+
+        if #available(iOS 12.0, OSX 10.14, *) {
+            os_log("Loaded scenario: %s, Suite: %s", log: Log.database, type: .info, scenarioName, suite)
+        }
+
         return .success(scenario)
     }
 
@@ -167,6 +190,11 @@ extension RealmStore: Store {
                 realm.delete(scenario.networkResponses)
                 realm.delete(scenario)
             }
+
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("Deleted scenario: %s, Suite: %s", log: Log.database, type: .info, scenarioName, suite)
+            }
+
             return .success(true)
         } catch {
             return .failure(StoreError.unableToDeleteScenario)

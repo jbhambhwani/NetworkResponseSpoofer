@@ -17,6 +17,7 @@ public class NetworkResponse: Object {
     @objc public dynamic var mimeType: String?
     @objc public dynamic var encoding: String?
     @objc public dynamic var expectedContentLength = 0
+    @objc public dynamic var servedToClient = false
     public let headerFields = List<ResponseHeaderItem>()
 
     /* IMPORTANT: README
