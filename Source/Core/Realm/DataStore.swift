@@ -46,6 +46,7 @@ public protocol Store {
     func allScenarioNames(suite: String) -> [String]
     func save(scenario: Scenario, suite: String) -> Result<Scenario>
     func load(scenarioName: String, suite: String) -> Result<Scenario>
+    func reset(scenario: Scenario) -> Result<Bool>
     func delete(scenarioName: String, suite: String) -> Result<Bool>
     // Response
     func save(response: NetworkResponse, scenarioName: String, suite: String) -> Result<NetworkResponse>
@@ -78,6 +79,9 @@ public enum DataStore {
         return RealmStore.sharedInstance.save(response: response, scenarioName: scenarioName, suite: suite)
     }
 
+    public static func reset(scenario: Scenario) -> Result<Bool> {
+        return RealmStore.sharedInstance.reset(scenario: scenario)
+    }
     public static func markAsServed(response: NetworkResponse) -> Result<Bool> {
         return RealmStore.sharedInstance.markAsServed(response: response)
     }
@@ -171,16 +175,19 @@ extension RealmStore: Store {
             return .failure(StoreError.scenarioNotFound)
         }
 
-        // Reset the served flag on a new load
+        return .success(scenario)
+    }
+
+    func reset(scenario: Scenario) -> Result<Bool> {
+        // Reset the served flag on all responses of a scenario
         do {
             try realm.write {
                 scenario.networkResponses.forEach { $0.servedToClient = false }
             }
+            return .success(true)
         } catch {
             return .failure(StoreError.unableToResetScenario)
         }
-
-        return .success(scenario)
     }
 
     func delete(scenarioName: String, suite: String) -> Result<Bool> {
