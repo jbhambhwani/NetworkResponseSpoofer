@@ -83,7 +83,6 @@
 		411913241D2369F500D3FB6E /* NetworkInterceptable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkInterceptable.swift; sourceTree = "<group>"; };
 		411A35771BC74A7D001D128D /* NetworkResponseSpooferTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NetworkResponseSpooferTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		411A35791BC74A7D001D128D /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
-		411A357B1BC74A7D001D128D /* TestsInfo.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = TestsInfo.plist; sourceTree = "<group>"; };
 		4123E81E1C9A0ED700C7FB32 /* EditSettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EditSettingsViewController.swift; sourceTree = "<group>"; };
 		412A7B861BC9D1FE002E9FF2 /* ScenarioListController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScenarioListController.swift; sourceTree = "<group>"; };
 		412A7BB01BC9DF74002E9FF2 /* Spoofer.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Spoofer.storyboard; sourceTree = "<group>"; };
@@ -329,7 +328,6 @@
 		418209401F4D1537009E69D6 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				411A357B1BC74A7D001D128D /* TestsInfo.plist */,
 			);
 			path = Tests;
 			sourceTree = "<group>";

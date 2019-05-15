@@ -82,6 +82,7 @@ public enum DataStore {
     public static func reset(scenario: Scenario) -> Result<Bool> {
         return RealmStore.sharedInstance.reset(scenario: scenario)
     }
+
     public static func markAsServed(response: NetworkResponse) -> Result<Bool> {
         return RealmStore.sharedInstance.markAsServed(response: response)
     }
