@@ -36,13 +36,14 @@ public extension Spoofer {
 
         switch loadResult {
         case let .success(scenario):
-            if #available(iOS 12.0, OSX 10.14, *) {
-                os_log("Loaded scenario: %s, Suite: %s", log: Log.database, type: .info, scenarioName, suite)
-            }
             _ = DataStore.reset(scenario: scenario)
-
             Spoofer.sharedInstance.stateManager.transformState(networkAction: .replay(scenarioName: scenario.name,
                                                                                       suiteName: suite))
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("Started Replay scenario: %s (%d responses), suite: %s",
+                       log: Log.database,
+                       type: .info, scenarioName, scenario.networkResponses.count, suite)
+            }
 
         case .failure:
             return false
@@ -57,5 +58,8 @@ public extension Spoofer {
     class func stopReplaying() {
         SpooferReplayer.stopIntercept()
         Spoofer.sharedInstance.stateManager.transformState(networkAction: .stopIntercept)
+        if #available(iOS 12.0, OSX 10.14, *) {
+            os_log("Stopped Replay", log: Log.database)
+        }
     }
 }

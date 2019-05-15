@@ -99,6 +99,9 @@ private struct RealmStore {
         do {
             return try Realm()
         } catch {
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("Unable to instanciate Realm store", log: Log.database, type: .error)
+            }
             preconditionFailure("Unable to instanciate Realm store")
         }
     }
@@ -110,7 +113,10 @@ private struct RealmStore {
         Realm.Configuration.defaultConfiguration = config
 
         if Spoofer.suiteName != suiteName, let path = Realm.Configuration.defaultConfiguration.fileURL {
-            print("Datastore Path: \(path)")
+            postNotification("Datastore Path: \(path)")
+            if #available(iOS 12.0, OSX 10.14, *) {
+                os_log("Datastore Path: %s", log: Log.database, path.absoluteString)
+            }
         }
     }
 }
