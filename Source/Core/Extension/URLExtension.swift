@@ -47,8 +47,7 @@ private extension URL {
         guard query != nil else { return result }
 
         // Normalize Query Parameters
-        let normalizedQueryItems = allQueryItems
-            .filter { Spoofer.queryParametersToNormalize.contains($0.name) == false }
+        let normalizedQueryItems = allQueryItems.filter { Spoofer.queryParametersToNormalize.contains($0.name) == false }
         result.normalizeQuery(items: normalizedQueryItems)
 
         if let fragment = fragment {

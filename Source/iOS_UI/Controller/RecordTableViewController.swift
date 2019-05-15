@@ -35,7 +35,7 @@ final class RecordTableViewController: UITableViewController {
 
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        NotificationCenter.default.removeObserver(scenarioNameTextField)
+        NotificationCenter.default.removeObserver(scenarioNameTextField as Any)
     }
 
     // MARK: - User Actions

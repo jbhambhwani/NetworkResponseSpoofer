@@ -132,6 +132,8 @@ extension EditSettingsViewController {
             tableView.deleteRows(at: [indexPath], with: .automatic)
         case .insert: break
         case .none: break
+        @unknown default:
+            fatalError("Unknown editing style")
         }
     }
 
