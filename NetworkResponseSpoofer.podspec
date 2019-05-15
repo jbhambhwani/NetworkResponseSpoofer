@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name            = 'NetworkResponseSpoofer'
-  s.version         = '8.5.0'
+  s.version         = '9.0.0'
   s.swift_version   = '4.2.0'
   s.summary         = 'Network response record and replay library for iOS, watchOS, tvOS and macOS.'
   s.homepage        = 'https://github.com/HotwireDotCom/NetworkResponseSpoofer.git'

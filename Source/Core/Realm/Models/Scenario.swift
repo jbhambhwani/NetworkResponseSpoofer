@@ -31,7 +31,16 @@ extension Scenario {
             return normalizedSavedURL.contains(requestURLString)
         }
 
-        return matchingResponses.first
+        let matchingUnserved = matchingResponses.filter { $0.servedToClient == false }
+        if let exactMatch = matchingUnserved.first {
+            // Return the first unserved response if any so that we can process in sequence
+            let result = DataStore.markAsServed(response: exactMatch)
+            print("Response update: \(result)")
+            return exactMatch
+        } else {
+            // Else return the last match from all responses (served already, re-serving now onwards)
+            return matchingResponses.last
+        }
     }
 
     subscript(urlRequest: URLRequest) -> NetworkResponse? {
