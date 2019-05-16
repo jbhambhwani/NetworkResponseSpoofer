@@ -42,7 +42,7 @@ public extension Spoofer {
                 Spoofer.sharedInstance.stateManager.transformState(networkAction: .record(scenarioName: scenario.name,
                                                                                           suiteName: suite))
                 if #available(iOS 12.0, OSX 10.14, *) {
-                    os_log("Started Recording", log: Log.database)
+                    os_log("Started Recording", log: .database)
                 }
 
             case .failure:
@@ -60,7 +60,7 @@ public extension Spoofer {
         SpooferRecorder.stopIntercept()
         Spoofer.sharedInstance.stateManager.transformState(networkAction: .stopIntercept)
         if #available(iOS 12.0, OSX 10.14, *) {
-            os_log("Stopped Recording", log: Log.database)
+            os_log("Stopped Recording", log: .database)
         }
     }
 }

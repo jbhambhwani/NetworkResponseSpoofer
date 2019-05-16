@@ -41,7 +41,7 @@ public extension Spoofer {
                                                                                       suiteName: suite))
             if #available(iOS 12.0, OSX 10.14, *) {
                 os_log("Started Replay scenario: %s (%d responses), suite: %s",
-                       log: Log.database,
+                       log: .database,
                        type: .info, scenarioName, scenario.networkResponses.count, suite)
             }
 
@@ -59,7 +59,7 @@ public extension Spoofer {
         SpooferReplayer.stopIntercept()
         Spoofer.sharedInstance.stateManager.transformState(networkAction: .stopIntercept)
         if #available(iOS 12.0, OSX 10.14, *) {
-            os_log("Stopped Replay", log: Log.database)
+            os_log("Stopped Replay", log: .database)
         }
     }
 }
