@@ -7,7 +7,9 @@
 //
 
 import Foundation
+#if !COCOAPODS
 import NetworkResponseSpoofer
+#endif
 import UIKit
 
 final class EditSettingsViewController: UITableViewController {
