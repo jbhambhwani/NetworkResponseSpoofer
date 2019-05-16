@@ -107,20 +107,20 @@ extension NetworkResponse {
 
 extension NetworkResponse {
     public override var description: String { return """
-    URL: \(requestURL)\n
-    Method: \(httpMethod)\n
+    URL: \(requestURL)
+    Method: \(httpMethod)
     StatusCode: \(statusCode)
     """
     }
 
     public override var debugDescription: String { return """
-    URL: \(requestURL)\n
-    Method: \(httpMethod)\n
-    StatusCode: \(statusCode)\n
-    CreatedDate: \(createdDate)\n
-    MIMEType: \(String(describing: mimeType))\n
-    Encoding: \(String(describing: encoding))\n
-    HeaderFields: \(headerFields)\n
+    URL: \(requestURL)
+    Method: \(httpMethod)
+    StatusCode: \(statusCode)
+    CreatedDate: \(createdDate)
+    MIMEType: \(String(describing: mimeType))
+    Encoding: \(String(describing: encoding))
+    HeaderFields: \(headerFields)
     """
     }
 }

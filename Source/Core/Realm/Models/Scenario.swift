@@ -34,8 +34,7 @@ extension Scenario {
         let matchingUnserved = matchingResponses.filter { $0.servedToClient == false }
         if let exactMatch = matchingUnserved.first {
             // Return the first unserved response if any so that we can process in sequence
-            let result = DataStore.markAsServed(response: exactMatch)
-            print("Response update: \(result)")
+            _ = DataStore.markAsServed(response: exactMatch)
             return exactMatch
         } else {
             // Else return the last match from all responses (served already, re-serving now onwards)

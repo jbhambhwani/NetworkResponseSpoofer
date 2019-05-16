@@ -1,5 +1,5 @@
 //
-//  Log.swift
+//  OSLogExtension.swift
 //  NetworkResponseSpoofer
 //
 //  Created by Deepu Mukundan on 5/8/19.
@@ -12,8 +12,8 @@ import os
 private let subsystem = "com.hotwire.networkresponsespoofer"
 
 @available(iOS 12, OSX 10.14, *)
-public struct Log {
-    static let database = OSLog(subsystem: subsystem, category: "Database")
+extension OSLog {
+    static let database = OSLog(subsystem: subsystem, category: "Spoofer Database")
     static let recorder = OSLog(subsystem: subsystem, category: "Spoofer Recorder")
     static let replayer = OSLog(subsystem: subsystem, category: "Spoofer Replayer")
 }

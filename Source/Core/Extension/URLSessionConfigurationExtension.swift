@@ -32,16 +32,19 @@ public extension URLSessionConfiguration {
      through new methods, allowing us to insert the recording and replaying protocols to any such spawned session configuration.
      */
 
-    /// Spoofed Default URLSessionConfiguration (As a property)
-    static var spoofed: URLSessionConfiguration {
-        let sessionConfig = URLSessionConfiguration.default
-        insertInterceptors(inConfig: sessionConfig)
-        return sessionConfig
-    }
-
     /// Swizzle URLSessionConfiguration to insert Spoofer Interceptor protocols
     class func swizzleConfiguration() {
         _ = swizzleURLSessionConfiguration
+    }
+
+    class func insertInterceptors(inConfig config: URLSessionConfiguration) {
+        var protocolClasses = config.protocolClasses
+        protocolClasses?.removeAll {
+            $0 == SpooferRecorder.self || $0 == SpooferReplayer.self
+        }
+        protocolClasses?.insert(SpooferRecorder.self, at: 0)
+        protocolClasses?.insert(SpooferReplayer.self, at: 0)
+        config.protocolClasses = protocolClasses
     }
 
     /// Spoofed Default URLSessionConfiguration (As a method)
@@ -56,12 +59,5 @@ public extension URLSessionConfiguration {
         let config = spoofedEphemeral()
         insertInterceptors(inConfig: config)
         return config
-    }
-
-    private class func insertInterceptors(inConfig config: URLSessionConfiguration) {
-        var protocolClasses = config.protocolClasses
-        protocolClasses?.insert(SpooferRecorder.self, at: 0)
-        protocolClasses?.insert(SpooferReplayer.self, at: 0)
-        config.protocolClasses = protocolClasses
     }
 }
