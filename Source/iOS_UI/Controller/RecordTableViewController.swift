@@ -8,7 +8,7 @@
 
 import Foundation
 #if !COCOAPODS
-import NetworkResponseSpoofer
+    import NetworkResponseSpoofer
 #endif
 import UIKit
 
