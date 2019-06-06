@@ -27,10 +27,10 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NetworkResponseSpoofer: bc9caea88ca669f164c43a31c3bf460794d1ff9a
+  NetworkResponseSpoofer: 45ff08cfd22b9ffece83fc5b70afac3fddd8e9fa
   Realm: 601cacc51d8be3b17a377ef787be0f6ee0e76cf1
   RealmSwift: 486f2e09d5a8ccff63ed66e48d0846b111deb5e5
 
-PODFILE CHECKSUM: 21a4780ffcb3746345049a777be241e9454c1542
+PODFILE CHECKSUM: 51ad6c3fb98fd38ebdb9cd6b38e957a32ba297ca
 
-COCOAPODS: 1.6.2
+COCOAPODS: 1.7.1

@@ -763,7 +763,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.NetworkResponseSpooferTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos macosx appletvos watchos iphonesimulator appletvsimulator watchsimulator";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Debug;
 		};
@@ -786,7 +787,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire.NetworkResponseSpooferTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
-				SUPPORTED_PLATFORMS = "iphoneos macosx appletvos watchos iphonesimulator appletvsimulator watchsimulator";
+				SUPPORTED_PLATFORMS = "iphonesimulator iphoneos";
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 			};
 			name = Release;
 		};
@@ -849,6 +851,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = debugging;
+				SUPPORTED_PLATFORMS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
@@ -911,6 +914,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = com.hotwire;
 				SKIP_INSTALL = YES;
 				STRIP_STYLE = debugging;
+				SUPPORTED_PLATFORMS = "";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2,3,4";
@@ -946,6 +950,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos macosx appletvos watchos iphonesimulator appletvsimulator watchsimulator";
 				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Debug;
@@ -976,6 +981,7 @@
 				SKIP_INSTALL = YES;
 				SUPPORTED_PLATFORMS = "iphoneos macosx appletvos watchos iphonesimulator appletvsimulator watchsimulator";
 				TVOS_DEPLOYMENT_TARGET = 10.0;
+				VALID_ARCHS = "arm64 arm64e armv7 armv7s";
 				WATCHOS_DEPLOYMENT_TARGET = 4.0;
 			};
 			name = Release;
