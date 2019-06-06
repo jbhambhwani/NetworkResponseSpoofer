@@ -113,14 +113,46 @@ extension ResponseListController: UISearchResultsUpdating, UISearchControllerDel
             tableView.reloadData()
         }
 
-        guard let searchText = searchController.searchBar.text else {
+        guard let searchText = searchController.searchBar.text?.lowercased() else {
             filteredResponses = allResponses
             return
         }
 
-        filteredResponses = allResponses.filter {
-            let url = $0.requestURL
-            return url.contains(searchText.lowercased())
+        filteredResponses = allResponses.filter { search(text: searchText, in: $0) }
+    }
+}
+
+private extension ResponseListController {
+    func search(text: String, in response: NetworkResponse) -> Bool {
+        if response.requestURL.lowercased().contains(text) {
+            return true
+        } else if response.httpMethod.lowercased() == text {
+            return true
+        } else if let mimeType = response.mimeType, mimeType.lowercased().contains(text) {
+            return true
+        } else if let encoding = response.encoding, encoding.lowercased().contains(text) {
+            return true
+        } else if let httpStatus = Int(text), (100 ... 600).contains(httpStatus) {
+            return search(savedStatus: response.statusCode, searchedStatus: httpStatus)
+        }
+
+        return false
+    }
+
+    func search(savedStatus: Int, searchedStatus: Int) -> Bool {
+        switch (savedStatus, searchedStatus) {
+        case (100 ... 199, 100):
+            return true
+        case (200 ... 299, 200):
+            return true
+        case (300 ... 399, 300):
+            return true
+        case (400 ... 499, 400):
+            return true
+        case (500 ... 599, 500):
+            return true
+        case let (saved, searched):
+            return saved == searched
         }
     }
 }

@@ -164,7 +164,7 @@ extension RealmStore: Store {
         setDefaultRealmForSuite(suiteName: suite)
         do {
             try realm.write {
-                realm.add(scenario, update: true)
+                realm.add(scenario, update: .all)
             }
 
             if #available(iOS 12.0, OSX 10.14, *) {

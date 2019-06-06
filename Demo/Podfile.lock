@@ -1,17 +1,17 @@
 PODS:
-  - NetworkResponseSpoofer (10.1.0):
-    - NetworkResponseSpoofer/Core (= 10.1.0)
+  - NetworkResponseSpoofer (10.2.0):
+    - NetworkResponseSpoofer/Core (= 10.2.0)
     - RealmSwift
-  - NetworkResponseSpoofer/Core (10.1.0):
+  - NetworkResponseSpoofer/Core (10.2.0):
     - RealmSwift
-  - NetworkResponseSpoofer/SpooferUI (10.1.0):
+  - NetworkResponseSpoofer/SpooferUI (10.2.0):
     - NetworkResponseSpoofer/Core
     - RealmSwift
-  - Realm (3.15.0):
-    - Realm/Headers (= 3.15.0)
-  - Realm/Headers (3.15.0)
-  - RealmSwift (3.15.0):
-    - Realm (= 3.15.0)
+  - Realm (3.16.1):
+    - Realm/Headers (= 3.16.1)
+  - Realm/Headers (3.16.1)
+  - RealmSwift (3.16.1):
+    - Realm (= 3.16.1)
 
 DEPENDENCIES:
   - NetworkResponseSpoofer (from `../`)
@@ -27,9 +27,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  NetworkResponseSpoofer: c25fec6a2de391c6c2003972dbdcfabf6e7077b0
-  Realm: 9b834e1be6062f544805252c812348872dc5d4ed
-  RealmSwift: 8a41886f8ab6efef9eb8df97de2f2bb911561a79
+  NetworkResponseSpoofer: bc9caea88ca669f164c43a31c3bf460794d1ff9a
+  Realm: 601cacc51d8be3b17a377ef787be0f6ee0e76cf1
+  RealmSwift: 486f2e09d5a8ccff63ed66e48d0846b111deb5e5
 
 PODFILE CHECKSUM: 21a4780ffcb3746345049a777be241e9454c1542
 
