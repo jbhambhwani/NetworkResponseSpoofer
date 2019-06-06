@@ -12,10 +12,11 @@ Spoofer uses Realm as a DB to store all network responses, so its important that
 
 @import NetworkResponseSpoofer
 
-    func application(_: UIApplication, didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         // Run migrations first before accesing the Spoofer
-        Spoofer.runMigrations()
+        // Pass the schema version (Optional) if you use Realm within your app as well and need to decide a specific schema version
+        Spoofer.runMigrations(newSchemaVersion: X)
 
         // Do other setup stuff
 
@@ -180,11 +181,14 @@ Spoofer will fire the following notifications whenever its state changes. You ca
 - spooferStoppedReplayingNotification
 ```
 
+## Troubleshooting
+Spoofer uses Apple Unified logging (os_log) to send internal operations and results for review. Open Console.app in mac and search for messages from subsystem "com.hotwire.networkresponsespoofer" to see messages coming in from Spoofer. This will allow troubleshooting any issues you see with record/replay
+
 ## Requirements (Latest Version)
 
 - iOS 10+ / macOS 10.11+ / tvOS 10.0+ / watchOS 4.0+
 - Xcode 10+
-- Swift 4.2+
+- Swift 5+
 
 ## Installation
 
