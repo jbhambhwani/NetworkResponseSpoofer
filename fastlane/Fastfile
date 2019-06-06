@@ -20,14 +20,6 @@ platform :ios do
 
 #----------------------------------------------Lane Marker----------------------------------------------
 
-  desc "Updates the storyboard identifier Swift values"
-  lane :sbconstants do
-    view_folder = "Source/iOS_UI/View"
-    sh "cd .. ; bundle exec sbconstants #{view_folder}/StoryboardIdentifiers.swift --source-dir #{view_folder} --swift"
-  end
-
-#----------------------------------------------Lane Marker----------------------------------------------
-
   desc "Increments the version and build number"
   desc "- type: can be patch, minor or major. type defaults to patch and can be ignored"
 
