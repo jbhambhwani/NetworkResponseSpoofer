@@ -22,9 +22,9 @@ Pod::Spec.new do |s|
     ss.source_files = 'Source/Core/**/*.swift'
     ss.framework  = 'Foundation'
     ss.ios.deployment_target = '10.0'
-    ss.osx.deployment_target = '10.12'
-    ss.watchos.deployment_target = '4.0'
-    ss.tvos.deployment_target = '10.0'
+    # ss.osx.deployment_target = '10.12'
+    # ss.watchos.deployment_target = '4.0'
+    # ss.tvos.deployment_target = '10.0'
   end
 
   s.subspec 'SpooferUI' do |ss|
