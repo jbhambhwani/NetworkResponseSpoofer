@@ -11,6 +11,11 @@ import RealmSwift
 
 public class NetworkResponse: Object {
     @objc public dynamic var requestURL = ""
+    @objc public dynamic var requestQueryParams: String? = ""
+    @objc public dynamic var requestHeaders: String? = ""
+    @objc public dynamic var requestBody: String? = ""
+    @objc public dynamic var responseHeaders: String? = ""
+    @objc public dynamic var responseBody: String? = ""
     @objc public dynamic var httpMethod = ""
     @objc public dynamic var statusCode = 0
     @objc public dynamic var createdDate = Date()
@@ -72,6 +77,17 @@ extension NetworkResponse {
 
         let response = NetworkResponse()
         response.requestURL = url.absoluteString.lowercased()
+        response.requestQueryParams = url.query
+        response.requestHeaders = httpRequest.allHTTPHeaderFields?.reduce(into: "") {
+                $0 = $0 + "\($1.key) \($1.value)"
+            }
+        response.requestBody = String(data: httpRequest.httpBody ?? Data(), encoding: .utf8)
+        
+        response.responseHeaders = httpURLResponse.allHeaderFields.reduce(into: "") {
+                $0 = $0 + "\($1.key) \($1.value)"
+        }
+        response.responseBody = String(data: data, encoding: .utf8)
+        
         response.httpMethod = method
         response.statusCode = statusCode
         response.mimeType = mimeType

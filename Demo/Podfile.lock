@@ -7,30 +7,52 @@ PODS:
   - NetworkResponseSpoofer/SpooferUI (10.2.0):
     - NetworkResponseSpoofer/Core
     - RealmSwift
-  - Realm (3.16.1):
-    - Realm/Headers (= 3.16.1)
-  - Realm/Headers (3.16.1)
-  - RealmSwift (3.16.1):
-    - Realm (= 3.16.1)
+  - Realm (5.1.0):
+    - Realm/Headers (= 5.1.0)
+  - Realm/Headers (5.1.0)
+  - RealmSwift (5.1.0):
+    - Realm (= 5.1.0)
+  - SwiftGen (6.0.2)
 
 DEPENDENCIES:
   - NetworkResponseSpoofer (from `../`)
   - NetworkResponseSpoofer/SpooferUI (from `../`)
+  - Realm (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - RealmSwift (from `https://github.com/realm/realm-cocoa.git`, branch `master`)
+  - SwiftGen (~> 6.0.0)
 
 SPEC REPOS:
   https://github.com/cocoapods/specs.git:
-    - Realm
-    - RealmSwift
+    - SwiftGen
 
 EXTERNAL SOURCES:
   NetworkResponseSpoofer:
     :path: "../"
+  Realm:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :branch: master
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+
+CHECKOUT OPTIONS:
+  Realm:
+    :commit: 5fb765106f0978735b350504d78c6f5b08457c23
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
+  RealmSwift:
+    :commit: 5fb765106f0978735b350504d78c6f5b08457c23
+    :git: https://github.com/realm/realm-cocoa.git
+    :submodules: true
 
 SPEC CHECKSUMS:
-  NetworkResponseSpoofer: 45ff08cfd22b9ffece83fc5b70afac3fddd8e9fa
-  Realm: 601cacc51d8be3b17a377ef787be0f6ee0e76cf1
-  RealmSwift: 486f2e09d5a8ccff63ed66e48d0846b111deb5e5
+  NetworkResponseSpoofer: f4fe300e847d1c81b793a61bffc86c92a022f441
+  Realm: bdea546851e37b4cf0a2400cef115c7c26fda488
+  RealmSwift: 70945aa168db93b215c460e9c8ef680261aa28af
+  SwiftGen: e5b047067aa84082826a0c4f1c4c2ddc95bcf74c
 
-PODFILE CHECKSUM: 51ad6c3fb98fd38ebdb9cd6b38e957a32ba297ca
+PODFILE CHECKSUM: fc8bf2a9edba4a7b0d9d478800e2c6dcfbfde9fb
 
 COCOAPODS: 1.7.1

@@ -35,7 +35,7 @@ final class ResponseListController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.scrollsToTop = true
-
+        tableView.delegate = self
         tableView.tableHeaderView = searchController.searchBar
         // Load the responses for the passed in scenario
         if !scenarioName.isEmpty {
@@ -60,6 +60,14 @@ final class ResponseListController: UITableViewController {
             tableView.reloadData()
         case .failure:
             break
+        }
+    }
+    
+    // MARK: - Navigation
+
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let response = sender as? NetworkResponse, let destination = segue.destination as? ReponseDetailsViewController {
+            destination.response = response
         }
     }
 }
@@ -104,6 +112,14 @@ extension ResponseListController {
         }
     }
 }
+
+extension ResponseListController {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
+        perform(segue: StoryboardSegue.Spoofer.showReponseDetail, sender: response)
+    }
+}
+
 
 // MARK: - Search controller delegate
 
