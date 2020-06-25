@@ -62,6 +62,8 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
         newRequest.setValue("yes", forHTTPHeaderField: SpooferRecorder.requestHandledKey)
         // 3: Start a new session to fetch the data
         session = URLSession(configuration: URLSessionConfiguration.default, delegate: self, delegateQueue: nil)
+        // 4: Save the request as the body gets nil'd out http://openradar.appspot.com/15993891
+        requestData = dataTask?.currentRequest?.httpJSONBodyStream
         dataTask = session?.dataTask(with: newRequest)
         dataTask?.resume()
     }
@@ -102,7 +104,6 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
         // Save / Initialize local structures
         self.response = response
         responseData = Data()
-        requestData = dataTask?.currentRequest?.httpJSONBodyStream
         completionHandler(.allow)
     }
 
