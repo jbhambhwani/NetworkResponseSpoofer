@@ -28,12 +28,6 @@ extension URLRequest {
         buffer.deallocate()
         bodyStream.close()
 
-        do {
-            let jsonObj = try JSONSerialization.jsonObject(with: dat, options: JSONSerialization.ReadingOptions.allowFragments)
-            return try JSONSerialization.data(withJSONObject: jsonObj, options: .prettyPrinted)
-        } catch {
-            print(error.localizedDescription)
-            return nil
-        }
+        return dat
     }
 }
