@@ -62,11 +62,11 @@ public class NetworkResponse: Object {
 // MARK: -
 
 extension NetworkResponse {
-    class func responseFrom(httpRequest: URLRequest, httpResponse: URLResponse, data: Data?) -> NetworkResponse? {
+    class func responseFrom(httpRequest: URLRequest, httpResponse: URLResponse, requestData: Data?, responseData: Data?) -> NetworkResponse? {
         guard let httpURLResponse = httpResponse as? HTTPURLResponse,
             let url = httpRequest.url,
             let method = httpRequest.httpMethod,
-            let data = data
+            let data = responseData
         else { return nil }
 
         let headerFields = httpURLResponse.allHeaderFields
@@ -81,7 +81,7 @@ extension NetworkResponse {
         response.requestHeaders = httpRequest.allHTTPHeaderFields?.reduce(into: "") {
                 $0 = $0 + "\($1.key) \($1.value)"
             }
-        response.requestBody = String(data: httpRequest.httpBody ?? Data(), encoding: .utf8)
+        response.requestBody = String(data: httpRequest.httpBody ?? requestData ?? Data(), encoding: .utf8)
         
         response.responseHeaders = httpURLResponse.allHeaderFields.reduce(into: "") {
                 $0 = $0 + "\($1.key) \($1.value)"

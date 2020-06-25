@@ -19,6 +19,7 @@ public final class SpooferRecorder: URLProtocol, NetworkInterceptable {
     var dataTask: URLSessionDataTask?
     var response: URLResponse?
     var responseData: Data?
+    var requestData: Data?
 
     public override class func canInit(with request: URLRequest) -> Bool {
         guard let url = request.url else { return false }
@@ -101,7 +102,7 @@ extension SpooferRecorder: URLSessionDataDelegate, URLSessionTaskDelegate {
         // Save / Initialize local structures
         self.response = response
         responseData = Data()
-
+        requestData = dataTask?.currentRequest?.httpJSONBodyStream
         completionHandler(.allow)
     }
 
@@ -141,7 +142,8 @@ extension SpooferRecorder {
         // Create the internal data structure which encapsulates all the needed data to replay this response later
         guard let currentResponse = NetworkResponse.responseFrom(httpRequest: request,
                                                                  httpResponse: httpResponse,
-                                                                 data: responseData) else { return }
+                                                                 requestData: requestData,
+                                                                 responseData: responseData) else { return }
         let saveResult = DataStore.save(response: currentResponse,
                                         scenarioName: Spoofer.scenarioName,
                                         suite: Spoofer.suiteName)
