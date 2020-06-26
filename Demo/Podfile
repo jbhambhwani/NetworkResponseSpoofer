@@ -1,7 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
 
 target 'SpooferDemo' do
-  platform :ios, '10.0'
+  platform :ios, '12.0'
   use_frameworks!
 
   pod 'SwiftGen', '~> 6.0.0'
