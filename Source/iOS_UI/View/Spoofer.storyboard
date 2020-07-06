@@ -695,13 +695,14 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="ZXw-M4-7xs">
-                        <barButtonItem key="rightBarButtonItem" title="copy" id="vrO-Yx-ueY">
+                        <barButtonItem key="rightBarButtonItem" enabled="NO" title="copy" id="vrO-Yx-ueY">
                             <connections>
                                 <action selector="copyButtonTapped:" destination="1Pt-Nj-739" id="9jG-uF-dWs"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="copyButton" destination="vrO-Yx-ueY" id="sPm-Rf-LSP"/>
                         <outlet property="dataLabel" destination="XiQ-qJ-PJu" id="I9w-o0-YPs"/>
                     </connections>
                 </viewController>

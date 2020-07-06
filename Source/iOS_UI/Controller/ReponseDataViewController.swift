@@ -10,11 +10,16 @@ import UIKit
 class ReponseDataViewController: UIViewController {
 
     @IBOutlet weak var dataLabel: UILabel!
+    @IBOutlet weak var copyButton: UIBarButtonItem!
     var data: String?
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        dataLabel.text = data
+        
+        if let data = data {
+            dataLabel.text = data
+            copyButton.isEnabled = true
+        }
     }
     
     @IBAction func copyButtonTapped(_ sender: Any) {
