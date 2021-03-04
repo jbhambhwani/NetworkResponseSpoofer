@@ -97,7 +97,7 @@ private struct RealmStore {
 
     var realm: Realm {
         do {
-            return try Realm(configuration: Realm.Configuration(objectTypes: [NetworkResponse.self, Scenario.self, ResponseHeaderItem.self]))
+            return try Realm()
         } catch {
             if #available(iOS 12.0, OSX 10.14, *) {
                 os_log("Unable to instanciate Realm store", log: .database, type: .error)

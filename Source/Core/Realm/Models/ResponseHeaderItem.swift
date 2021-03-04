@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import Realm
 
 public class ResponseHeaderItem: Object {
     @objc dynamic var key = ""

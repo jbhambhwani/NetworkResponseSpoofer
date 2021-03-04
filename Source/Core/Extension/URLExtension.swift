@@ -75,10 +75,10 @@ private extension String {
     // Remove sub domains which are to be normalized from the host name part. e.g. DEV, QA, PREPROD etc.
     mutating func normalizeSubDomains() {
         for subDomainToNormalize in Spoofer.subDomainsToNormalize {
-            if let ignoredRange = range(of: subDomainToNormalize + ".") {
+            if let ignoredRange = self.range(of: subDomainToNormalize + ".") {
                 removeSubrange(ignoredRange)
             }
-            if let ignoredRange = range(of: subDomainToNormalize) {
+            if let ignoredRange = self.range(of: subDomainToNormalize) {
                 removeSubrange(ignoredRange)
             }
         }
@@ -86,7 +86,7 @@ private extension String {
 
     mutating func replacePathRanges() {
         for pathRange in Spoofer.pathRangesToReplace {
-            if let startRange = range(of: pathRange.start + "/") {
+            if let startRange = self.range(of: pathRange.start + "/") {
                 let endRange: Range<String.Index>
                 if let end = pathRange.end {
                     endRange = range(of: "/" + end, range: startRange.upperBound ..< endIndex) ?? endIndex ..< endIndex
@@ -107,7 +107,7 @@ private extension String {
     // Remove path components which are to be ignored from the URL. e.g. V1, V2.1 etc.
     mutating func normalizePathComponents() {
         for pathComponent in Spoofer.pathComponentsToNormalize {
-            if let pathComponentRange = range(of: "/" + pathComponent) {
+            if let pathComponentRange = self.range(of: "/" + pathComponent) {
                 removeSubrange(pathComponentRange)
             }
         }

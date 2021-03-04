@@ -12,62 +12,61 @@ import UIKit
 
 // swiftlint:disable explicit_type_interface identifier_name line_length type_body_length type_name
 internal enum StoryboardScene {
-    internal enum Spoofer: StoryboardType {
-        internal static let storyboardName = "Spoofer"
+  internal enum Spoofer: StoryboardType {
+    internal static let storyboardName = "Spoofer"
 
-        internal static let recordNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Spoofer.self, identifier: "RecordNavigationController")
+    internal static let recordNavigationController = SceneType<UIKit.UINavigationController>(storyboard: Spoofer.self, identifier: "RecordNavigationController")
 
-        internal static let recordTableViewController = SceneType<RecordTableViewController>(storyboard: Spoofer.self, identifier: "RecordTableViewController")
+    internal static let recordTableViewController = SceneType<RecordTableViewController>(storyboard: Spoofer.self, identifier: "RecordTableViewController")
 
-        internal static let responseDataController = SceneType<ReponseDataViewController>(storyboard: Spoofer.self, identifier: "ResponseDataController")
+    internal static let responseDataController = SceneType<ReponseDataViewController>(storyboard: Spoofer.self, identifier: "ResponseDataController")
 
-        internal static let responseDetailsController = SceneType<ReponseDetailsViewController>(storyboard: Spoofer.self, identifier: "ResponseDetailsController")
+    internal static let responseDetailsController = SceneType<ReponseDetailsViewController>(storyboard: Spoofer.self, identifier: "ResponseDetailsController")
 
-        internal static let responseListController = SceneType<ResponseListController>(storyboard: Spoofer.self, identifier: "ResponseListController")
+    internal static let responseListController = SceneType<ResponseListController>(storyboard: Spoofer.self, identifier: "ResponseListController")
 
-        internal static let scenarioListController = SceneType<ScenarioListController>(storyboard: Spoofer.self, identifier: "ScenarioListController")
+    internal static let scenarioListController = SceneType<ScenarioListController>(storyboard: Spoofer.self, identifier: "ScenarioListController")
 
-        internal static let suiteListController = SceneType<SuiteListController>(storyboard: Spoofer.self, identifier: "SuiteListController")
-    }
+    internal static let suiteListController = SceneType<SuiteListController>(storyboard: Spoofer.self, identifier: "SuiteListController")
+  }
 }
-
 // swiftlint:enable explicit_type_interface identifier_name line_length type_body_length type_name
 
 // MARK: - Implementation Details
 
 internal protocol StoryboardType {
-    static var storyboardName: String { get }
+  static var storyboardName: String { get }
 }
 
 internal extension StoryboardType {
-    static var storyboard: UIStoryboard {
-        let name = storyboardName
-        return UIStoryboard(name: name, bundle: Bundle(for: BundleToken.self))
-    }
+  static var storyboard: UIStoryboard {
+    let name = self.storyboardName
+    return UIStoryboard(name: name, bundle: Bundle(for: BundleToken.self))
+  }
 }
 
 internal struct SceneType<T: UIViewController> {
-    internal let storyboard: StoryboardType.Type
-    internal let identifier: String
+  internal let storyboard: StoryboardType.Type
+  internal let identifier: String
 
-    internal func instantiate() -> T {
-        let identifier = self.identifier
-        guard let controller = storyboard.storyboard.instantiateViewController(withIdentifier: identifier) as? T else {
-            fatalError("ViewController '\(identifier)' is not of the expected class \(T.self).")
-        }
-        return controller
+  internal func instantiate() -> T {
+    let identifier = self.identifier
+    guard let controller = storyboard.storyboard.instantiateViewController(withIdentifier: identifier) as? T else {
+      fatalError("ViewController '\(identifier)' is not of the expected class \(T.self).")
     }
+    return controller
+  }
 }
 
 internal struct InitialSceneType<T: UIViewController> {
-    internal let storyboard: StoryboardType.Type
+  internal let storyboard: StoryboardType.Type
 
-    internal func instantiate() -> T {
-        guard let controller = storyboard.storyboard.instantiateInitialViewController() as? T else {
-            fatalError("ViewController is not of the expected class \(T.self).")
-        }
-        return controller
+  internal func instantiate() -> T {
+    guard let controller = storyboard.storyboard.instantiateInitialViewController() as? T else {
+      fatalError("ViewController is not of the expected class \(T.self).")
     }
+    return controller
+  }
 }
 
 private final class BundleToken {}

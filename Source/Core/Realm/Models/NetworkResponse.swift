@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import Realm
 
 public class NetworkResponse: Object {
     @objc public dynamic var requestURL = ""
@@ -80,15 +79,15 @@ extension NetworkResponse {
         response.requestURL = url.absoluteString.lowercased()
         response.requestQueryParams = url.query
         response.requestHeaders = httpRequest.allHTTPHeaderFields?.reduce(into: "") {
-            $0 = $0 + "\($1.key) \($1.value)"
-        }
+                $0 = $0 + "\($1.key) \($1.value)"
+            }
         response.requestBody = String(data: httpRequest.httpBody ?? requestData ?? Data(), encoding: .utf8)
-
+        
         response.responseHeaders = httpURLResponse.allHeaderFields.reduce(into: "") {
-            $0 = $0 + "\($1.key) \($1.value)"
+                $0 = $0 + "\($1.key) \($1.value)"
         }
         response.responseBody = String(data: data, encoding: .utf8)
-
+        
         response.httpMethod = method
         response.statusCode = statusCode
         response.mimeType = mimeType

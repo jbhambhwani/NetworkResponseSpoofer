@@ -8,7 +8,6 @@
 
 import Foundation
 import RealmSwift
-import Realm
 
 public class Scenario: Object {
     @objc public dynamic var name = "Default"

@@ -62,7 +62,7 @@ final class ResponseListController: UITableViewController {
             break
         }
     }
-
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -114,11 +114,12 @@ extension ResponseListController {
 }
 
 extension ResponseListController {
-    override func tableView(_: UITableView, didSelectRowAt indexPath: IndexPath) {
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let response = searchController.isActive ? filteredResponses[indexPath.row] : allResponses[indexPath.row]
         perform(segue: StoryboardSegue.Spoofer.showReponseDetail, sender: response)
     }
 }
+
 
 // MARK: - Search controller delegate
 

@@ -8,8 +8,10 @@
 import Foundation
 
 extension URLRequest {
+
     var httpJSONBodyStream: Data? {
-        guard let bodyStream = httpBodyStream else { return nil }
+
+        guard let bodyStream = self.httpBodyStream else { return nil }
 
         bodyStream.open()
 

@@ -12,30 +12,31 @@ import Foundation
 import UIKit
 
 class ReponseDetailsViewController: UIViewController {
-    var response: NetworkResponse? {
+
+    var response: NetworkResponse?{
         didSet {
-            guard view.window != nil else { return }
+            guard view.window != nil else { return  }
             configureWithResponse()
         }
     }
-
-    @IBOutlet var urlLabel: UILabel!
-    @IBOutlet var httpMethodLabel: UILabel!
-    @IBOutlet var reponseCodeLabel: UILabel!
-
+    
+    @IBOutlet weak var urlLabel: UILabel!
+    @IBOutlet weak var httpMethodLabel: UILabel!
+    @IBOutlet weak var reponseCodeLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         configureWithResponse()
     }
-
+    
     // MARK: - Setup
-
+    
     func configureWithResponse() {
         urlLabel.text = response?.requestURL
         httpMethodLabel.text = response?.httpMethod
         reponseCodeLabel.text = "\(response?.statusCode ?? -1)"
     }
-
+    
     // MARK: - Navigation
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -45,8 +46,9 @@ class ReponseDetailsViewController: UIViewController {
     }
 
     // MARK: - Events
-
+    
     @IBAction func showDetails(_ sender: UIButton) {
+        
         switch sender.tag {
         case 100:
             perform(segue: StoryboardSegue.Spoofer.showReponseData, sender: response?.requestQueryParams)

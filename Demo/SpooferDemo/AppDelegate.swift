@@ -7,8 +7,8 @@
 //
 
 import NetworkResponseSpoofer
-import RealmSwift
 import UIKit
+import RealmSwift
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
