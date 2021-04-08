@@ -8,6 +8,7 @@
 
 import Foundation
 import RealmSwift
+import Realm
 
 public class NetworkResponse: Object {
     @objc public dynamic var requestURL = ""

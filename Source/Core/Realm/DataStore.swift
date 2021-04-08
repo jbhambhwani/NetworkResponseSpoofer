@@ -97,7 +97,7 @@ private struct RealmStore {
 
     var realm: Realm {
         do {
-            return try Realm()
+            return try Realm(configuration: Realm.Configuration(fileURL: FileManager.spooferDocumentsDirectory, inMemoryIdentifier: "NetworkSpoofer", objectTypes: [NetworkResponse.self, Scenario.self, ResponseHeaderItem.self]))
         } catch {
             if #available(iOS 12.0, OSX 10.14, *) {
                 os_log("Unable to instanciate Realm store", log: .database, type: .error)
