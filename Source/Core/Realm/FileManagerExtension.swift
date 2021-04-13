@@ -54,9 +54,14 @@ extension FileManager {
     }
 
     private class var applicationDocumentsDirectory: URL {
+        if let resourceURL = URL(string: ProcessInfo.processInfo.environment["TestResourcePath"] ?? "") {
+            return resourceURL
+        }
+    
         guard let docsDir = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first else {
             fatalError("Cannot proceed without application docs directory access")
         }
+    
         return docsDir
     }
 }
